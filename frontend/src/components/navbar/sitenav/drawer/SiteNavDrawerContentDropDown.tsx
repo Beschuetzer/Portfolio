@@ -28,21 +28,22 @@ const DropDownContainerItem = styled.div<SiteNavStyledProps>`
   position: relative;
   grid-column: 1 / -1;
   font-weight: 300;
+  ${props => props.issectionopen === "true" ? `border-bottom: 1px dotted ;` : ""};
   ${dropDownContainerItemStyles}
 `;
 
 const DropDownContainerItemSubItemContainer = styled.div<
-  SiteNavStyledProps & { issectionopen?: string }
+  SiteNavStyledProps
 >`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 2px;
   transition: transform 0.5s ease;
   height: ${(props) => (props.issectionopen === "true" ? "auto" : "0")};
 `;
 
 const DropDownContainerItemSubItem = styled.div<
-  SiteNavStyledProps & { issectionopen?: string }
+  SiteNavStyledProps
 >`
   height: ${(props) => (props.issectionopen === "true" ? "auto" : "0")};
 `;
@@ -51,6 +52,7 @@ export function SiteNavDrawerContentDropDown(
   props: SiteNavDrawerContextDropDownProps
 ) {
   const { drownDownItems, text, isDropdownItem } = props;
+  console.log({drownDownItems, text, isDropdownItem});
   const { scrollBarWidth } = useSiteNav();
   const [isSectionOpen, setIsSectionOpen] = useState(false);
   const colorScheme = useColorScheme();

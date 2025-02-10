@@ -6,6 +6,7 @@ export type SiteNavStyledProps = {
   colorscheme?: ColorScheme;
   isopen?: boolean;
   islast?: boolean;
+  issectionopen?: string;
   orientation?: SiteNaveItemOrientation;
   scrollbarwidth?: string;
   sitenavnavswitchtop?: string;

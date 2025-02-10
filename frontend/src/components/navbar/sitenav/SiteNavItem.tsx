@@ -30,28 +30,29 @@ const Item = styled.div<
     ${(props) => (props.image ? "opacity: .1;" : "")}
   }
 
+  &:hover {
+    box-shadow: -10px 0 10px hsla(0, 0%, 7%, 0.5);
+    /* -webkit-transform: translateX(.56rem) !important; */
+    transform: translateX(0.56rem) !important;
+    background-color: ${(props) => props.colorscheme?.primary1};
+
+    & .item-link {
+      color: ${(props) => props.colorscheme?.primary4};
+    }
+
+    & + div {
+      border-top: 1px solid transparent;
+    }
+  }
+  transition: background 0.1666666667s ease, transform 0.25s ease,
+    box-shadow 0.25s ease, -webkit-transform 0.25s ease;
+
   ${itemStyles}
 
   ${(props) =>
     props.orientation === SiteNaveItemOrientation.vertical
       ? `
       border-top: 1px solid ${props.colorscheme?.primary1};
-      transition: background .1666666667s ease, transform .25s ease,box-shadow .25s ease,-webkit-transform .25s ease;
-      &:hover {
-        box-shadow: -10px 0 10px hsla(0, 0%, 7%, 0.5);
-        /* -webkit-transform: translateX(.56rem) !important; */
-        transform: translateX(0.56rem) !important;
-        background-color: ${props.colorscheme?.primary1};
-
-
-        & .item-link {
-          color: ${props.colorscheme?.primary4};
-        }
-
-        & + div {
-          border-top: 1px solid transparent;
-        }
-      }
     `
       : ""}
 `;
@@ -91,26 +92,44 @@ export function SiteNavItem(props: SiteNavItemProps) {
     image = "",
   } = props;
 
-  const propsToAdd: SiteNavStyledProps = useMemo(() => ({
-    colorscheme: colorScheme != null ? colorScheme : undefined,
-    isopen: isOpen != null ? isOpen : undefined,
-    islast: isLast != null ? isLast : undefined,
-    orientation: orientation,
-  }), [colorScheme, isOpen, isLast, orientation]);
+  const propsToAdd: SiteNavStyledProps = useMemo(
+    () => ({
+      colorscheme: colorScheme != null ? colorScheme : undefined,
+      isopen: isOpen != null ? isOpen : undefined,
+      islast: isLast != null ? isLast : undefined,
+      orientation: orientation,
+    }),
+    [colorScheme, isOpen, isLast, orientation]
+  );
 
   const onClickLocal = useCallback(() => {
     toggleIsOpen();
   }, [toggleIsOpen]);
 
   return (
-    <Item {...propsToAdd} isdropdownitem={isDropDownItem} image={image} {...itemProps}>
+    <Item
+      {...propsToAdd}
+      isdropdownitem={isDropDownItem}
+      image={image}
+      {...itemProps}
+    >
       <Image {...propsToAdd} src={image} alt={text} className="image" />
       {href ? (
-        <ExternalLink {...propsToAdd} href={href || ""} className="item-link" onClick={onClickLocal}>
+        <ExternalLink
+          {...propsToAdd}
+          href={href || ""}
+          className="item-link"
+          onClick={onClickLocal}
+        >
           {text}
         </ExternalLink>
       ) : (
-        <StyledLink {...propsToAdd} to={to || ""} className="item-link" onClick={onClickLocal}>
+        <StyledLink
+          {...propsToAdd}
+          to={to || ""}
+          className="item-link"
+          onClick={onClickLocal}
+        >
           {text}
         </StyledLink>
       )}
