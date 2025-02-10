@@ -25,8 +25,7 @@ const ItemContainer = styled.div<StyledProps>`
   ${itemTransformStyles}
   transform: translateX(${(props) =>
     props.isopen ? "0" : `calc(-100% - ${SITE_NAV_NAV_SWITCH_TOP})`});
-    user-select: none;
-
+  user-select: none;
 `;
 
 const ItemContainerItem = styled.div<SiteNavStyledProps>`
@@ -35,6 +34,11 @@ const ItemContainerItem = styled.div<SiteNavStyledProps>`
   position: relative;
   grid-column: 1 / -1;
   font-weight: 300;
+  ${(props) =>
+    props.issectionopen === "true"
+      ? `margin-bottom: 1px;`
+      : ""}
+
   ${dropDownContainerItemStyles}
 `;
 
@@ -55,21 +59,21 @@ const SubItem = styled.div<StyledProps>`
   transform: translateX(
     ${(props) =>
     props.issectionopen === "true"
-      ? "0" : `calc(-${(props.index % 3) + 1}00% - ${SITE_NAV_NAV_SWITCH_TOP} - ${
+      ? "0"
+      : `calc(-${(props.index % 3) + 1}00% - ${SITE_NAV_NAV_SWITCH_TOP} - ${
           props.index % 3
-        } * ${SPACING})`
-      }
+        } * ${SPACING})`}
   );
   ${respond.phone`
     transform: translateX(
       ${(props: StyledProps) =>
         props.issectionopen === "true"
-          ? "0" : `calc(-${
+          ? "0"
+          : `calc(-${
               (props.index % 2) + 1
             }00% - ${SITE_NAV_NAV_SWITCH_TOP}  - ${
               props.index % 3
-            } * ${SPACING})`
-          }
+            } * ${SPACING})`}
     );
   `}
 `;
@@ -121,7 +125,11 @@ export function SiteNavDrawerContentItem(props: SiteNavDrawerContextItemProps) {
   }
 
   return (
-    <ItemContainer {...propsToAdd} index={index} onClick={(e) => e.stopPropagation()}>
+    <ItemContainer
+      {...propsToAdd}
+      index={index}
+      onClick={(e) => e.stopPropagation()}
+    >
       {isDropdownItem ? (
         <>
           <ItemContainerItem {...propsToAdd} onClick={onConainterItemClick}>
