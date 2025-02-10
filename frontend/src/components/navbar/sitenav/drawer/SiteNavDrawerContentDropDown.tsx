@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { styled } from "styled-components";
 import { SiteNavItemInput, SiteNavStyledProps } from "../types";
 import { useColorScheme } from "../../../../hooks/useColorScheme";
@@ -8,17 +8,22 @@ import SiteNavTriangle from "../SiteNavTriangle";
 import {
   SiteNaveItemOrientation,
   SiteNavItem,
-  SiteNavItemProps,
 } from "../SiteNavItem";
+import { respond } from "../../../../styles/breakpoints";
 
-type SiteNavDrawerContextDropDownProps = SiteNavItemInput & {};
+type SiteNavDrawerContextDropDownProps = SiteNavItemInput & { index: number };
 
-const DropDownContainer = styled.div<SiteNavStyledProps>`
+const DropDownContainer = styled.div<
+  SiteNavStyledProps & Pick<SiteNavDrawerContextDropDownProps, "index">
+>`
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: max-height 0.5s ease;
   padding-bottom: 1px;
+  transition: transform 0.5s ease;
+  transition-delay: ${(props) =>
+    props.isopen ? `${props.index * 0.05 + 0}s` : "0"};
+  transform: translateX(${(props) => (props.isopen ? "0" : "-100%")});
 `;
 
 const DropDownContainerItem = styled.div<SiteNavStyledProps>`
@@ -32,10 +37,13 @@ const DropDownContainerItem = styled.div<SiteNavStyledProps>`
 
 const DropDownContainerItemSubItemContainer = styled.div<SiteNavStyledProps>`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 2px;
   transition: transform 0.5s ease;
   height: ${(props) => (props.issectionopen === "true" ? "auto" : "0")};
+  ${respond.phone`
+    grid-template-columns: 1fr 1fr;
+    `}
 `;
 
 const DropDownContainerItemSubItem = styled.div<SiteNavStyledProps>`
@@ -45,8 +53,8 @@ const DropDownContainerItemSubItem = styled.div<SiteNavStyledProps>`
 export function SiteNavDrawerContentDropDown(
   props: SiteNavDrawerContextDropDownProps
 ) {
-  const { drownDownItems, text, isDropdownItem } = props;
-  const { scrollBarWidth } = useSiteNav();
+  const { drownDownItems, text, isDropdownItem, index } = props;
+  const { scrollBarWidth, isOpen } = useSiteNav();
   const [isSectionOpen, setIsSectionOpen] = useState(false);
   const colorScheme = useColorScheme();
   const propsToAdd: SiteNavStyledProps = useMemo(
@@ -54,17 +62,19 @@ export function SiteNavDrawerContentDropDown(
       scrollbarwidth: scrollBarWidth != null ? scrollBarWidth : undefined,
       colorscheme: colorScheme != null ? colorScheme : undefined,
       issectionopen: isSectionOpen.toString(),
+      isopen: isOpen != null ? isOpen : undefined,
     }),
-    [colorScheme, isSectionOpen, scrollBarWidth]
+    [colorScheme, isOpen, isSectionOpen, scrollBarWidth]
   );
 
   const onConainterItemClick = useCallback(() => {
     setIsSectionOpen((prev) => !prev);
   }, []);
 
-  const onSubItemClick = useCallback((item: SiteNavItemProps) => {
+  useEffect(() => {
+    if (isOpen) return;
     setIsSectionOpen(false);
-  }, []);
+  }, [isOpen]);
 
   function renderItems() {
     if (isDropdownItem) {
@@ -76,7 +86,6 @@ export function SiteNavDrawerContentDropDown(
                 key={index}
                 {...propsToAdd}
                 issectionopen={isSectionOpen.toString()}
-                onClick={onSubItemClick.bind(null, item)}
               >
                 <SiteNavItem {...item} />
               </DropDownContainerItemSubItem>
@@ -89,7 +98,7 @@ export function SiteNavDrawerContentDropDown(
   }
 
   return (
-    <DropDownContainer>
+    <DropDownContainer {...propsToAdd} index={index}>
       {isDropdownItem ? (
         <>
           <DropDownContainerItem {...propsToAdd} onClick={onConainterItemClick}>
@@ -104,7 +113,9 @@ export function SiteNavDrawerContentDropDown(
           </DropDownContainerItem>
           {renderItems()}
         </>
-      ) : <SiteNavItem {...props} />}
+      ) : (
+        <SiteNavItem {...props} />
+      )}
     </DropDownContainer>
   );
 }

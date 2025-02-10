@@ -36,7 +36,7 @@ export default function SiteNavDrawerContent(props: SiteNavDrawerContentProps) {
 
   const itemsToRender = useMemo(() => {
     return items.map((item, index) => {
-      return <SiteNavDrawerContentDropDown key={index} {...item} />
+      return <SiteNavDrawerContentDropDown key={index} {...item} index={index} />
     });
   }, [items]);
 
