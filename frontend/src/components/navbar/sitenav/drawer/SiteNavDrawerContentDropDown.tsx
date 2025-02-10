@@ -14,13 +14,17 @@ type SiteNavDrawerContextItemProps = SiteNavItemInput & { index: number };
 type StyledProps = SiteNavStyledProps &
   Pick<SiteNavDrawerContextItemProps, "index">;
 
+const SPACING = "2px";
+
 const ItemContainer = styled.div<StyledProps>`
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-bottom: 2px;
+  padding-bottom: ${SPACING};
   ${itemTransformStyles}
-  transform: translateX(${(props) => props.isopen ? "0" : `calc(-100% - ${SITE_NAV_NAV_SWITCH_TOP})`});
+  transform: translateX(${(props) =>
+    props.isopen ? "0" : `calc(-100% - ${SITE_NAV_NAV_SWITCH_TOP})`});
+
 `;
 
 const ItemContainerItem = styled.div<SiteNavStyledProps>`
@@ -48,19 +52,27 @@ const SubItem = styled.div<StyledProps>`
   ${itemTransformStyles}
   transform: translateX(
     ${(props) =>
-    props.issectionopen === "true" ? "0" : `calc(-${(props.index % 3) + 1}00% - ${SITE_NAV_NAV_SWITCH_TOP})`}
+    props.issectionopen === "true"
+      ? "0" : `calc(-${(props.index % 3) + 1}00% - ${SITE_NAV_NAV_SWITCH_TOP} - ${
+          props.index % 3
+        } * ${SPACING})`
+      }
   );
   ${respond.phone`
     transform: translateX(
       ${(props: StyledProps) =>
-      props.issectionopen === "true" ? "0" : `calc(-${(props.index % 2) + 1}00% - ${SITE_NAV_NAV_SWITCH_TOP})`}
+        props.issectionopen === "true"
+          ? "0" : `calc(-${
+              (props.index % 2) + 1
+            }00% - ${SITE_NAV_NAV_SWITCH_TOP}  - ${
+              props.index % 3
+            } * ${SPACING})`
+          }
     );
   `}
 `;
 
-export function SiteNavDrawerContentItem(
-  props: SiteNavDrawerContextItemProps
-) {
+export function SiteNavDrawerContentItem(props: SiteNavDrawerContextItemProps) {
   const { drownDownItems, text, isDropdownItem, index } = props;
   const { scrollBarWidth, isOpen } = useSiteNav();
   const [isSectionOpen, setIsSectionOpen] = useState(false);
