@@ -27,7 +27,6 @@ export default function SiteNavDrawerContent(props: SiteNavDrawerContentProps) {
   const colorScheme = useColorScheme();
   const { items, buttonRadius, scrollBarWidth } = useSiteNav();
 
-  console.log({scrollBarWidth})
   const propsToAdd: SiteNavStyledProps = useMemo(() => ({
     buttonradius: buttonRadius != null ? buttonRadius : undefined,
     colorscheme: colorScheme != null ? colorScheme : undefined,

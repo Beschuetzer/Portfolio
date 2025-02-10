@@ -5,17 +5,21 @@ import { useColorScheme } from "../../../../hooks/useColorScheme";
 import { dropDownContainerItemStyles } from "../styles";
 import { useSiteNav } from "../SiteNavContext";
 import SiteNavTriangle from "../SiteNavTriangle";
-import { SiteNaveItemOrientation, SiteNavItem, SiteNavItemProps } from "../SiteNavItem";
+import {
+  SiteNaveItemOrientation,
+  SiteNavItem,
+  SiteNavItemProps,
+} from "../SiteNavItem";
 
 type SiteNavDrawerContextDropDownProps = SiteNavItemInput & {};
 
 const DropDownContainer = styled.div<SiteNavStyledProps>`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   position: relative;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1px;
-  padding-bottom: 1px;
   transition: max-height 0.5s ease;
+  padding-bottom: 1px;
+
 `;
 
 const DropDownContainerItem = styled.div<SiteNavStyledProps>`
@@ -27,10 +31,20 @@ const DropDownContainerItem = styled.div<SiteNavStyledProps>`
   ${dropDownContainerItemStyles}
 `;
 
+const DropDownContainerItemSubItemContainer = styled.div<
+  SiteNavStyledProps & { issectionopen?: string }
+>`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2px;
+  transition: transform 0.5s ease;
+  height: ${(props) => (props.issectionopen === "true" ? "auto" : "0")};
+`;
+
 const DropDownContainerItemSubItem = styled.div<
   SiteNavStyledProps & { issectionopen?: string }
 >`
-  transform: scale(${(props) => (props.issectionopen === "true" ? "1" : "0")});
+  height: ${(props) => (props.issectionopen === "true" ? "auto" : "0")};
 `;
 
 export function SiteNavDrawerContentDropDown(
@@ -44,11 +58,12 @@ export function SiteNavDrawerContentDropDown(
     () => ({
       scrollbarwidth: scrollBarWidth != null ? scrollBarWidth : undefined,
       colorscheme: colorScheme != null ? colorScheme : undefined,
+      issectionopen: isSectionOpen.toString(),
     }),
-    [colorScheme, scrollBarWidth]
+    [colorScheme, isSectionOpen, scrollBarWidth]
   );
 
-const onConainterItemClick = useCallback(() => {
+  const onConainterItemClick = useCallback(() => {
     setIsSectionOpen((prev) => !prev);
   }, []);
 
@@ -56,12 +71,31 @@ const onConainterItemClick = useCallback(() => {
     setIsSectionOpen(false);
   }, []);
 
+  function renderItems() {
+    if (isDropdownItem) {
+      return (
+        <DropDownContainerItemSubItemContainer {...propsToAdd}>
+          {drownDownItems?.map((item, index) => {
+            return (
+              <DropDownContainerItemSubItem
+                key={index}
+                {...propsToAdd}
+                issectionopen={isSectionOpen.toString()}
+                onAbort={onSubItemClick.bind(null, item)}
+              >
+                <SiteNavItem {...item} />
+              </DropDownContainerItemSubItem>
+            );
+          })}
+        </DropDownContainerItemSubItemContainer>
+      );
+    }
+    return null;
+  }
+
   return (
     <DropDownContainer>
-      <DropDownContainerItem
-        {...propsToAdd}
-        onClick={(onConainterItemClick)}
-      >
+      <DropDownContainerItem {...propsToAdd} onClick={onConainterItemClick}>
         {text}
         {isDropdownItem ? (
           <SiteNavTriangle
@@ -73,19 +107,7 @@ const onConainterItemClick = useCallback(() => {
           />
         ) : null}
       </DropDownContainerItem>
-      {isDropdownItem &&
-        drownDownItems?.map((item, index) => {
-          return (
-            <DropDownContainerItemSubItem
-              key={index}
-              {...propsToAdd}
-              issectionopen={isSectionOpen.toString()}
-              onAbort={onSubItemClick.bind(null, item)}
-            >
-              <SiteNavItem {...item} />
-            </DropDownContainerItemSubItem>
-          );
-        })}
+      {renderItems()}
     </DropDownContainer>
   );
 }
