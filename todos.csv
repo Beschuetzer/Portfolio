@@ -1,6 +1,8 @@
 
 refactor stuff:
-  -Modify logic in SiteNav use Effect to navigate to the top of the page when no hash in the locatio
+  -SiteNavDrawer:
+    --how hard would it be to only have one open section at a time (the ones not clicked would transform back to the original position)
+  -Modify logic in SiteNav use Effect to navigate to the top of the page when no hash in the location
   -finish the site nav drawer
   -finish github button
   -start ExampleLayout (use grid and have left column house the page nav)
