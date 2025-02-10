@@ -1,6 +1,5 @@
 
 refactor stuff:
-  -figure out how to disable scrolling when the site nav is open (can hide the scrollbar too when below a certain width)
   -finish the site nav drawer
   -finish github button
   -start ExampleLayout (use grid and have left column house the page nav)

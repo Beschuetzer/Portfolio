@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { SiteNavProps } from "./SiteNav";
 
 type SiteNavContextProps = {
@@ -27,6 +27,17 @@ export const SiteNavProvider: React.FC<SiteNavProviderProps> = ({
   const toggleIsOpenLocal = () => {
     setIsOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   return (
     <SiteNavContext.Provider
