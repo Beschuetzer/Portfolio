@@ -3,7 +3,7 @@ import { useSiteNav } from "../SiteNavContext";
 import { useColorScheme } from "../../../../hooks/useColorScheme";
 import { SiteNavStyledProps } from "../types";
 import { styled } from "styled-components";
-import { SiteNavDrawerContentDropDown } from "./SiteNavDrawerContentDropDown";
+import { SiteNavDrawerContentItem } from "./SiteNavDrawerContentDropDown";
 import { SITE_NAV_NAV_SWITCH_TOP } from "../SiteNav";
 
 const ContentContainer = styled.div<SiteNavStyledProps>`
@@ -36,7 +36,7 @@ export default function SiteNavDrawerContent(props: SiteNavDrawerContentProps) {
 
   const itemsToRender = useMemo(() => {
     return items.map((item, index) => {
-      return <SiteNavDrawerContentDropDown key={index} {...item} index={index} />
+      return <SiteNavDrawerContentItem key={index} {...item} index={index} />
     });
   }, [items]);
 

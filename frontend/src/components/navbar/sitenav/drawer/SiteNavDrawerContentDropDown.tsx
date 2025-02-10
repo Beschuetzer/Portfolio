@@ -9,12 +9,12 @@ import { SiteNaveItemOrientation, SiteNavItem } from "../SiteNavItem";
 import { respond } from "../../../../styles/breakpoints";
 import { SITE_NAV_NAV_SWITCH_TOP } from "../SiteNav";
 
-type SiteNavDrawerContextDropDownProps = SiteNavItemInput & { index: number };
+type SiteNavDrawerContextItemProps = SiteNavItemInput & { index: number };
 
 type StyledProps = SiteNavStyledProps &
-  Pick<SiteNavDrawerContextDropDownProps, "index">;
+  Pick<SiteNavDrawerContextItemProps, "index">;
 
-const DropDownContainer = styled.div<StyledProps>`
+const ItemContainer = styled.div<StyledProps>`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -23,7 +23,7 @@ const DropDownContainer = styled.div<StyledProps>`
   transform: translateX(${(props) => props.isopen ? "0" : `calc(-100% - ${SITE_NAV_NAV_SWITCH_TOP})`});
 `;
 
-const DropDownContainerItem = styled.div<SiteNavStyledProps>`
+const ItemContainerItem = styled.div<SiteNavStyledProps>`
   display: flex;
   flex-direction: row;
   position: relative;
@@ -32,7 +32,7 @@ const DropDownContainerItem = styled.div<SiteNavStyledProps>`
   ${dropDownContainerItemStyles}
 `;
 
-const DropDownContainerItemSubItemContainer = styled.div<SiteNavStyledProps>`
+const SubItemContainer = styled.div<SiteNavStyledProps>`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 2px;
@@ -43,7 +43,7 @@ const DropDownContainerItemSubItemContainer = styled.div<SiteNavStyledProps>`
     `}
 `;
 
-const DropDownContainerItemSubItem = styled.div<StyledProps>`
+const SubItem = styled.div<StyledProps>`
   height: ${(props) => (props.issectionopen === "true" ? "auto" : "0")};
   ${itemTransformStyles}
   transform: translateX(
@@ -58,8 +58,8 @@ const DropDownContainerItemSubItem = styled.div<StyledProps>`
   `}
 `;
 
-export function SiteNavDrawerContentDropDown(
-  props: SiteNavDrawerContextDropDownProps
+export function SiteNavDrawerContentItem(
+  props: SiteNavDrawerContextItemProps
 ) {
   const { drownDownItems, text, isDropdownItem, index } = props;
   const { scrollBarWidth, isOpen } = useSiteNav();
@@ -87,30 +87,30 @@ export function SiteNavDrawerContentDropDown(
   function renderItems() {
     if (isDropdownItem) {
       return (
-        <DropDownContainerItemSubItemContainer {...propsToAdd}>
+        <SubItemContainer {...propsToAdd}>
           {drownDownItems?.map((item, index) => {
             return (
-              <DropDownContainerItemSubItem
+              <SubItem
                 key={index}
                 {...propsToAdd}
                 issectionopen={isSectionOpen.toString()}
                 index={index}
               >
                 <SiteNavItem {...item} />
-              </DropDownContainerItemSubItem>
+              </SubItem>
             );
           })}
-        </DropDownContainerItemSubItemContainer>
+        </SubItemContainer>
       );
     }
     return null;
   }
 
   return (
-    <DropDownContainer {...propsToAdd} index={index}>
+    <ItemContainer {...propsToAdd} index={index}>
       {isDropdownItem ? (
         <>
-          <DropDownContainerItem {...propsToAdd} onClick={onConainterItemClick}>
+          <ItemContainerItem {...propsToAdd} onClick={onConainterItemClick}>
             {text}
             <SiteNavTriangle
               orientation={
@@ -119,12 +119,12 @@ export function SiteNavDrawerContentDropDown(
                   : SiteNaveItemOrientation.horizontal
               }
             />
-          </DropDownContainerItem>
+          </ItemContainerItem>
           {renderItems()}
         </>
       ) : (
         <SiteNavItem {...props} />
       )}
-    </DropDownContainer>
+    </ItemContainer>
   );
 }
