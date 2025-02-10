@@ -12,7 +12,8 @@ const DropDownContainer = styled.div<SiteNavStyledProps>`
   position: relative;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1px;
-
+  padding-bottom: 1px;
+  transition: max-height 0.5s ease;
 `;
 
 const DropDownContainerItem = styled.div<SiteNavStyledProps>`
@@ -23,15 +24,18 @@ const DropDownContainerItem = styled.div<SiteNavStyledProps>`
   ${dropDownContainerItemStyles}
 `;
 
-const DropDownContainerItemSubItem = styled.div<SiteNavStyledProps>`
-  ${dropDownContainerItemStyles}
+const DropDownContainerItemSubItem = styled.div<
+  SiteNavStyledProps & { issectionopen?: string }
+>`
+${dropDownContainerItemStyles}
+${props => props.issectionopen === "true" ? `display: flex;` : `display: none;`}
 `;
 
 export function SiteNavDrawerContentDropDown(
   props: SiteNavDrawerContextDropDownProps
 ) {
   const { drownDownItems, text, isDropdownItem } = props;
-  const {scrollBarWidth} = useSiteNav();
+  const { scrollBarWidth } = useSiteNav();
   const [isSectionOpen, setIsSectionOpen] = useState(false);
   const colorScheme = useColorScheme();
   const propsToAdd: SiteNavStyledProps = useMemo(
@@ -50,10 +54,14 @@ export function SiteNavDrawerContentDropDown(
       >
         {text}
       </DropDownContainerItem>
-      {isSectionOpen && isDropdownItem &&
+      {isDropdownItem &&
         drownDownItems?.map((item, index) => {
           return (
-            <DropDownContainerItemSubItem key={index} {...propsToAdd}>
+            <DropDownContainerItemSubItem
+              key={index}
+              {...propsToAdd}
+              issectionopen={isSectionOpen.toString()}
+            >
               {item.text}
             </DropDownContainerItemSubItem>
           );
