@@ -32,11 +32,12 @@ const SiteNavContainer = styled.header<{ sitenavleft: string }>`
 `;
 
 export type SiteNavProps = {
-  items: SiteNavItem[]
+  items: SiteNavItem[];
+  scrollBarWidth?: string;
 };
 
 export function SiteNav(props: SiteNavProps) {
-  const { items } = props;
+  const { items, scrollBarWidth } = props;
   const location = useLocation();
   const [siteNavleft, setSiteNavleft] = useState(getAbsoluteLeftPosition());
 
@@ -62,7 +63,11 @@ export function SiteNav(props: SiteNavProps) {
   }, []);
 
   return (
-    <SiteNavProvider buttonRadius={BUTTON_RADIUS} items={items}>
+    <SiteNavProvider
+      buttonRadius={BUTTON_RADIUS}
+      items={items}
+      scrollBarWidth={scrollBarWidth}
+    >
       <SiteNavContainer sitenavleft={siteNavleft}>
         <SiteNavButton />
         <SiteNavContent />

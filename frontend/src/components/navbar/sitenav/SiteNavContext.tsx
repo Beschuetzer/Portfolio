@@ -17,9 +17,10 @@ type SiteNavProviderProps = {
 } & SiteNavProps;
 
 export const SiteNavProvider: React.FC<SiteNavProviderProps> = ({
-  items,
   buttonRadius,
   children,
+  items,
+  scrollBarWidth,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,6 +31,7 @@ export const SiteNavProvider: React.FC<SiteNavProviderProps> = ({
   return (
     <SiteNavContext.Provider
       value={{
+        scrollBarWidth,
         items,
         buttonRadius,
         isOpen,

@@ -42,6 +42,12 @@ export const triangleRotateStyles = css<SiteNavStyledProps>`
 `;
 
 export const dropDownContainerItemStyles = css<SiteNavStyledProps>`
-  padding: ${getFontSizeCustom()} 0;
-  width: calc(100% - calc(${(props) => props.scrollbarwidth} * 2));
+  padding: ${getFontSizeCustom()} ${getFontSizeCustom(2)};
+  background-color: ${(props) => props.colorscheme?.primary4};
+  color: ${(props) => props.colorscheme?.primary1};
+  font-size: ${fontSizeSix};
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

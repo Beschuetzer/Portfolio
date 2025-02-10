@@ -18,19 +18,22 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
   background-color: transparent;
   padding-top: calc(calc(${(props) => props.sitenavnavswitchtop} * 2) + ${(props) => `${props.buttonradius}`});
   padding-left: ${(props) => props.sitenavnavswitchtop};
+  padding-right: calc(${(props) => props.scrollbarwidth} * 2);
 `;
 
 type SiteNavDrawerContentProps = {};
 
 export default function SiteNavDrawerContent(props: SiteNavDrawerContentProps) {
   const colorScheme = useColorScheme();
-  const { items, buttonRadius } = useSiteNav();
+  const { items, buttonRadius, scrollBarWidth } = useSiteNav();
 
+  console.log({scrollBarWidth})
   const propsToAdd: SiteNavStyledProps = useMemo(() => ({
     buttonradius: buttonRadius != null ? buttonRadius : undefined,
     colorscheme: colorScheme != null ? colorScheme : undefined,
-    sitenavnavswitchtop: SITE_NAV_NAV_SWITCH_TOP
-  }), [buttonRadius, colorScheme]);
+    sitenavnavswitchtop: SITE_NAV_NAV_SWITCH_TOP,
+    scrollbarwidth: scrollBarWidth != null ? scrollBarWidth : undefined,
+  }), [buttonRadius, colorScheme, scrollBarWidth]);
 
   const itemsToRender = useMemo(() => {
     return items.map((item, index) => {

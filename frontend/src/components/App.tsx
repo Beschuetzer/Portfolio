@@ -54,6 +54,7 @@ import {
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
 import { Redirect } from "../pages/Redirect";
 import { NavbarHeader } from "./navbar/NavbarHeader";
+import { SCROLL_BAR_WIDTH_IN_REM } from "../styles/constants";
 
 type AppProps = {};
 
@@ -80,6 +81,7 @@ export const App: React.FC<AppProps> = (props) => {
       <Router history={history}>
         <NavbarHeader>
           <SiteNav
+            scrollBarWidth={`${SCROLL_BAR_WIDTH_IN_REM}rem`}
             items={[
               {
                 text: "Résumé",
