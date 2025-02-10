@@ -6,7 +6,6 @@ import { SiteNavStyledProps } from "./types";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import { getFontSizeCustom } from "../../../styles/constants";
 import { BREAK_POINTS } from "../../../styles/breakpoints";
-import { SiteNavDropDownItem } from "./SiteNavDropDownItem";
 import { SiteNavDropDown } from "./SiteNavDropDown";
 import SiteNavItem from "./SiteNavItem";
 
@@ -26,6 +25,7 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
   column-gap: 1px;
   border-radius: 0 14rem 14rem 0;
   background-color: ${(props) => props.colorscheme?.primary1};
+  user-select: none;
 `;
 
 export function SiteNavContent(props: SiteNavContentProps) {
@@ -50,15 +50,14 @@ export function SiteNavContent(props: SiteNavContentProps) {
     });
   }, [items]);
 
-  const propsToAdd: SiteNavStyledProps = useMemo(() => ({
-    buttonradius: buttonRadius != null ? buttonRadius : undefined,
-    isopen: isOpen != null ? isOpen && isRelevant : undefined,
-    colorscheme: colorScheme != null ? colorScheme : undefined,
-  }), [buttonRadius, colorScheme, isOpen, isRelevant]);
-
-  return (
-    <ContentContainer {...propsToAdd}>
-      {itemsToRender}
-    </ContentContainer>
+  const propsToAdd: SiteNavStyledProps = useMemo(
+    () => ({
+      buttonradius: buttonRadius != null ? buttonRadius : undefined,
+      isopen: isOpen != null ? isOpen && isRelevant : undefined,
+      colorscheme: colorScheme != null ? colorScheme : undefined,
+    }),
+    [buttonRadius, colorScheme, isOpen, isRelevant]
   );
+
+  return <ContentContainer {...propsToAdd}>{itemsToRender}</ContentContainer>;
 }

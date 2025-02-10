@@ -4,6 +4,7 @@ import { SiteNavItem, SiteNavStyledProps } from "../types";
 import { useColorScheme } from "../../../../hooks/useColorScheme";
 import { dropDownContainerItemStyles } from "../styles";
 import { useSiteNav } from "../SiteNavContext";
+import { fontSizeFive } from "../../../../styles/constants";
 
 type SiteNavDrawerContextDropDownProps = SiteNavItem & {};
 
@@ -21,6 +22,7 @@ const DropDownContainerItem = styled.div<SiteNavStyledProps>`
   flex-direction: column;
   position: relative;
   grid-column: 1 / -1;
+  font-weight: 300;
   ${dropDownContainerItemStyles}
 `;
 
@@ -29,6 +31,8 @@ const DropDownContainerItemSubItem = styled.div<
 >`
 ${dropDownContainerItemStyles}
 ${props => props.issectionopen === "true" ? `display: flex;` : `display: none;`}
+font-size: ${fontSizeFive};
+font-weight: 900
 `;
 
 export function SiteNavDrawerContentDropDown(
