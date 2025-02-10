@@ -19,7 +19,6 @@ const DropDownContainer = styled.div<SiteNavStyledProps>`
   position: relative;
   transition: max-height 0.5s ease;
   padding-bottom: 1px;
-
 `;
 
 const DropDownContainerItem = styled.div<SiteNavStyledProps>`
@@ -28,13 +27,10 @@ const DropDownContainerItem = styled.div<SiteNavStyledProps>`
   position: relative;
   grid-column: 1 / -1;
   font-weight: 300;
-  ${props => props.issectionopen === "true" ? `border-bottom: 1px dotted ;` : ""};
   ${dropDownContainerItemStyles}
 `;
 
-const DropDownContainerItemSubItemContainer = styled.div<
-  SiteNavStyledProps
->`
+const DropDownContainerItemSubItemContainer = styled.div<SiteNavStyledProps>`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 2px;
@@ -42,9 +38,7 @@ const DropDownContainerItemSubItemContainer = styled.div<
   height: ${(props) => (props.issectionopen === "true" ? "auto" : "0")};
 `;
 
-const DropDownContainerItemSubItem = styled.div<
-  SiteNavStyledProps
->`
+const DropDownContainerItemSubItem = styled.div<SiteNavStyledProps>`
   height: ${(props) => (props.issectionopen === "true" ? "auto" : "0")};
 `;
 
@@ -52,7 +46,6 @@ export function SiteNavDrawerContentDropDown(
   props: SiteNavDrawerContextDropDownProps
 ) {
   const { drownDownItems, text, isDropdownItem } = props;
-  console.log({drownDownItems, text, isDropdownItem});
   const { scrollBarWidth } = useSiteNav();
   const [isSectionOpen, setIsSectionOpen] = useState(false);
   const colorScheme = useColorScheme();
@@ -83,7 +76,7 @@ export function SiteNavDrawerContentDropDown(
                 key={index}
                 {...propsToAdd}
                 issectionopen={isSectionOpen.toString()}
-                onAbort={onSubItemClick.bind(null, item)}
+                onClick={onSubItemClick.bind(null, item)}
               >
                 <SiteNavItem {...item} />
               </DropDownContainerItemSubItem>
@@ -97,19 +90,21 @@ export function SiteNavDrawerContentDropDown(
 
   return (
     <DropDownContainer>
-      <DropDownContainerItem {...propsToAdd} onClick={onConainterItemClick}>
-        {text}
-        {isDropdownItem ? (
-          <SiteNavTriangle
-            orientation={
-              isSectionOpen
-                ? SiteNaveItemOrientation.vertical
-                : SiteNaveItemOrientation.horizontal
-            }
-          />
-        ) : null}
-      </DropDownContainerItem>
-      {renderItems()}
+      {isDropdownItem ? (
+        <>
+          <DropDownContainerItem {...propsToAdd} onClick={onConainterItemClick}>
+            {text}
+            <SiteNavTriangle
+              orientation={
+                isSectionOpen
+                  ? SiteNaveItemOrientation.vertical
+                  : SiteNaveItemOrientation.horizontal
+              }
+            />
+          </DropDownContainerItem>
+          {renderItems()}
+        </>
+      ) : <SiteNavItem {...props} />}
     </DropDownContainer>
   );
 }
