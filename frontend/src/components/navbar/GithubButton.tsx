@@ -1,7 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { getAbsoluteRightPosition } from "./sitenav/helpers";
 import { styled } from "styled-components";
-import { BUTTON_RADIUS, fontSizeThree, getFontSizeCustom } from "../../styles/constants";
+import {
+  BUTTON_RADIUS,
+  fontSizeThree,
+  getFontSizeCustom,
+} from "../../styles/constants";
 import { SiteNavStyledProps } from "./sitenav/types";
 import { useColorScheme } from "../../hooks/useColorScheme";
 import { SITE_NAV_NAV_SWITCH_TOP } from "../../styles/constants";
@@ -26,11 +30,17 @@ const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
   align-items: center;
   justify-content: space-between;
   left: ${(props) => props.sitenavright};
+  z-index: 100;
+  transition: opacity 0.25s ease;
 
   ${respond.navSwitch`
       top: ${SITE_NAV_NAV_SWITCH_TOP};
       left: auto;
       right: ${SITE_NAV_NAV_SWITCH_TOP};
+      opacity: .5;
+      &:hover {
+        opacity: 1;
+      }
       `}
 `;
 
@@ -46,8 +56,7 @@ const Svg = styled.svg<SiteNavStyledProps>`
   z-index: -100;
 `;
 
-const Use = styled.use`
-`;
+const Use = styled.use``;
 
 export function GithubButton(props: GithubButtonProps) {
   const [siteNavRight, setSiteNavRight] = useState(getAbsoluteRightPosition());

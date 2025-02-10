@@ -21,7 +21,7 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
       ${(props) => `${props.buttonradius}`}
   );
   padding-left: ${(props) => props.sitenavnavswitchtop};
-  padding-right: calc(${(props) => props.scrollbarwidth} * 2);
+  padding-right: calc(${(props) => props.scrollbarwidth});
 `;
 
 type SiteNavDrawerContentProps = {};
