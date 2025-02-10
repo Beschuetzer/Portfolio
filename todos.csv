@@ -1,5 +1,6 @@
 
 refactor stuff:
+  -Modify logic in SiteNav use Effect to navigate to the top of the page when no hash in the locatio
   -finish the site nav drawer
   -finish github button
   -start ExampleLayout (use grid and have left column house the page nav)
