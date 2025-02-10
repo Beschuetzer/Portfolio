@@ -1,27 +1,52 @@
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  getAbsoluteRightPosition,
-} from "./sitenav/helpers";
+import { getAbsoluteRightPosition } from "./sitenav/helpers";
 import { styled } from "styled-components";
-import { BUTTON_RADIUS } from "../../styles/constants";
+import { BUTTON_RADIUS, fontSizeThree, getFontSizeCustom } from "../../styles/constants";
 import { SiteNavStyledProps } from "./sitenav/types";
 import { useColorScheme } from "../../hooks/useColorScheme";
 import { SITE_NAV_NAV_SWITCH_TOP } from "../../styles/constants";
 import { buttonPlacementStyles } from "./sitenav/styles";
+import { GITHUB_URL } from "../constants";
+import { respond } from "../../styles/breakpoints";
 
 type GithubButtonProps = {};
 
-const Container = styled.div<SiteNavStyledProps & { sitenavright: string }>`
+const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
   position: absolute;
-  display: flex;
   flex-direction: column;
   border-radius: 50%;
   width: ${BUTTON_RADIUS};
   height: ${BUTTON_RADIUS};
-  top: ${(props) => props.sitenavnavswitchtop};
-  background-color: ${(props) => props.colorscheme?.primary4};
+  background-color: transparent;
+  color: ${(props) => props.colorscheme?.primary1};
+  font-weight: 700;
+  text-decoration: none;
+  font-size: ${fontSizeThree};
   ${buttonPlacementStyles}
+  align-items: center;
+  justify-content: space-between;
   left: ${(props) => props.sitenavright};
+
+  ${respond.navSwitch`
+      top: ${SITE_NAV_NAV_SWITCH_TOP};
+      left: auto;
+      right: ${SITE_NAV_NAV_SWITCH_TOP};
+      `}
+`;
+
+const Text = styled.span`
+  padding: ${getFontSizeCustom(0.25)};
+`;
+
+const Svg = styled.svg<SiteNavStyledProps>`
+  fill: ${(props) => props.colorscheme?.primary4};
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+`;
+
+const Use = styled.use`
 `;
 
 export function GithubButton(props: GithubButtonProps) {
@@ -48,28 +73,14 @@ export function GithubButton(props: GithubButtonProps) {
     };
   }, []);
 
-  return <Container {...propsToAdd}></Container>;
+  return (
+    <Container {...propsToAdd} href={GITHUB_URL} target="_blank">
+      <Text>Show</Text>
+      <Svg {...propsToAdd}>
+        <Use xlinkHref="/sprite.svg#icon-github-with-circle" />
+        <Use xlinkHref="/sprite.svg#icon-github" />
+      </Svg>
+      <Text>Github</Text>
+    </Container>
+  );
 }
-
-// export class GithubButton extends React.Component {
-//   render() {
-//     return (
-//       ReactDOM.createPortal(
-//         <React.Fragment>
-//           <a target="_blank" rel="noreferrer" className="github__link" href={GITHUB_URL}>
-//             <span className="github__text github__text-top">View</span>
-//             {/* <span className="github__text github__text-middle">My</span> */}
-//             <span className="github__text github__text-bottom">GitHub</span>
-//             <svg className="github__svg">
-//               <use className="github__top" xlinkHref="/sprite.svg#icon-github-with-circle"></use>
-//               <use className='github__bottom' xlinkHref="/sprite.svg#icon-github"></use>
-//             </svg>
-//           </a>
-
-//         </React.Fragment>
-//       ,
-//         document.querySelector('#github')!
-//       )
-//     );
-//   }
-// }

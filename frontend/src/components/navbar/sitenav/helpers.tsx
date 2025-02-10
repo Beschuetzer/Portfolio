@@ -15,10 +15,9 @@ export function getAbsoluteLeftPosition() {
 }
 
 export function getAbsoluteRightPosition() {
-  return `calc(((calc(${
-    window.innerWidth
-  }px - ${SCROLL_BAR_WIDTH_IN_REM}rem) - ${SECTION_WIDTH_IN_PIXELS}px) / 4) - ${getFontSizeCustom(
-    1,
+  const columnWidth = `calc(calc(${window.innerWidth}px - ${SCROLL_BAR_WIDTH_IN_REM}rem - ${SECTION_WIDTH_IN_PIXELS}px) / 2)`;
+  return `calc(${columnWidth} + ${SECTION_WIDTH_IN_PIXELS}px + calc(${columnWidth} / 2) - ${getFontSizeCustom(
+    0.5,
     BUTTON_RADIUS
   )})`;
 }
