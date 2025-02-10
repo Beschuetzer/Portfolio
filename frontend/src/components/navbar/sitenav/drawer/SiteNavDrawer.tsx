@@ -5,6 +5,7 @@ import { SiteNavStyledProps } from "../types";
 import { useSiteNav } from "../SiteNavContext";
 import { BREAK_POINTS } from "../../../../styles/breakpoints";
 import SiteNavDrawerContent from "./SiteNavDrawerContent";
+import { hexToRgba } from "../helpers";
 
 type SiteNavDrawerProps = {};
 
@@ -17,22 +18,11 @@ const Drawer = styled.div<SiteNavStyledProps>`
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  background-color: ${props => hexToRgba(props.colorscheme?.primary1, .5)}; /* Semi-transparent background */
   backdrop-filter: blur(10px); /* Frosted glass effect */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   transform: translateX(${(props) => (props.isopen ? "0" : "-100%")});
   transition: transform 0.3s ease-in-out;
-
-  &::before {
-    content: "A";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 10rem; /* Adjust the size as needed */
-    color: rgba(0, 0, 0, 0.025); /* Semi-transparent black color */
-    z-index: 2; /* Ensure it is on top of the glass */
-  }
 `;
 
 export function SiteNavDrawer(props: SiteNavDrawerProps) {
