@@ -7,6 +7,7 @@ import { useSiteNav } from "../SiteNavContext";
 import SiteNavTriangle from "../SiteNavTriangle";
 import { SiteNaveItemOrientation, SiteNavItem } from "../SiteNavItem";
 import { respond } from "../../../../styles/breakpoints";
+import { SITE_NAV_NAV_SWITCH_TOP } from "../SiteNav";
 
 type SiteNavDrawerContextDropDownProps = SiteNavItemInput & { index: number };
 
@@ -19,7 +20,7 @@ const DropDownContainer = styled.div<StyledProps>`
   position: relative;
   padding-bottom: 2px;
   ${itemTransformStyles}
-  transform: translateX(${(props) => (props.isopen ? "0" : "-100%")});
+  transform: translateX(${(props) => props.isopen ? "0" : `calc(-100% - ${SITE_NAV_NAV_SWITCH_TOP})`});
 `;
 
 const DropDownContainerItem = styled.div<SiteNavStyledProps>`
