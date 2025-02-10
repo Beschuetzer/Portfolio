@@ -19,6 +19,10 @@ const StyledNav = styled.button<SiteNavStyledProps>`
   justify-content: center;
   transition: all 0.3s ease-in-out;
 
+  &:hover {
+    opacity: 1;
+  }
+
   &:hover .hamburger {
     ${(props) => (props.isopen ? "background-color: transparent;" : "")}
     &::before {
@@ -37,6 +41,7 @@ const StyledNav = styled.button<SiteNavStyledProps>`
 
   ${respond.navSwitch`
       border-radius: ${defaultFontSize};
+      opacity: ${(props: SiteNavStyledProps) => (props.isopen ? 1 : 0.5)};
       `}
 `;
 
