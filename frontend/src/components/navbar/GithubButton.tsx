@@ -34,12 +34,21 @@ const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
   z-index: 100;
   transition: opacity 0.25s ease;
 
+  &:hover {
+    & .svg-front, .github-text {
+      opacity: 0;
+    }
+    & .svg-behind {
+      opacity: 1;
+    }
+  }
+
   ${respond.navSwitch`
       top: ${SITE_NAV_NAV_SWITCH_TOP};
       left: auto;
       right: ${SITE_NAV_NAV_SWITCH_TOP};
 
-      ${(props: SiteNavStyledProps) => props.isopen ? '' :  `opacity: .5;`}
+      ${(props: SiteNavStyledProps) => (props.isopen ? "" : `opacity: .5;`)}
       &:hover {
         opacity: 1;
       }
@@ -48,10 +57,22 @@ const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
 
 const Text = styled.span`
   padding: ${getFontSizeCustom(0.25)};
+  transition: opacity 0.125s ease;
 `;
 
 const Svg = styled.svg<SiteNavStyledProps>`
   fill: ${(props) => props.colorscheme?.primary4};
+  position: absolute;
+  transition: opacity 0.125s ease;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+`;
+
+const SvgBehind = styled.svg<SiteNavStyledProps>`
+  fill: ${(props) => props.colorscheme?.primary1};
+  opacity: 0;
+  transition: opacity 0.125s ease;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -88,12 +109,14 @@ export function GithubButton(props: GithubButtonProps) {
 
   return (
     <Container {...propsToAdd} href={GITHUB_URL} target="_blank">
-      <Text>Show</Text>
-      <Svg {...propsToAdd}>
+      <Text className="github-text">Show</Text>
+      <Svg {...propsToAdd} className="svg-front">
         <Use xlinkHref="/sprite.svg#icon-github-with-circle" />
-        <Use xlinkHref="/sprite.svg#icon-github" />
       </Svg>
-      <Text>Github</Text>
+      <SvgBehind {...propsToAdd} className="svg-behind">
+        <Use xlinkHref="/sprite.svg#icon-github" />
+      </SvgBehind>
+      <Text className="github-text">Github</Text>
     </Container>
   );
 }
