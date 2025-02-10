@@ -15,7 +15,12 @@ export function getAbsoluteLeftPosition() {
 }
 
 export function getAbsoluteRightPosition() {
-  return `calc(((calc(${window.innerWidth}px - ${SCROLL_BAR_WIDTH_IN_REM}rem) - ${SECTION_WIDTH_IN_PIXELS}px) / 4 - ${BUTTON_RADIUS} / 2))`;
+  return `calc(((calc(${
+    window.innerWidth
+  }px - ${SCROLL_BAR_WIDTH_IN_REM}rem) - ${SECTION_WIDTH_IN_PIXELS}px) / 4) - ${getFontSizeCustom(
+    1,
+    BUTTON_RADIUS
+  )})`;
 }
 
 /**
