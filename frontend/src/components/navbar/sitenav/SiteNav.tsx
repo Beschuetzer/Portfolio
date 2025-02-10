@@ -47,6 +47,8 @@ export function SiteNav(props: SiteNavProps) {
     const element = document.getElementById(location.hash?.replace("#", ""));
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [location?.hash]);
 
