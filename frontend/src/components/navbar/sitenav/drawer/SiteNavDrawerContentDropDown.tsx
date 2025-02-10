@@ -48,12 +48,12 @@ const DropDownContainerItemSubItem = styled.div<StyledProps>`
   ${itemTransformStyles}
   transform: translateX(
     ${(props) =>
-    props.issectionopen === "true" ? "0" : `-${(props.index % 3) + 1}00%`}
+    props.issectionopen === "true" ? "0" : `calc(-${(props.index % 3) + 1}00% - ${SITE_NAV_NAV_SWITCH_TOP})`}
   );
   ${respond.phone`
     transform: translateX(
       ${(props: StyledProps) =>
-      props.issectionopen === "true" ? "0" : `-${(props.index % 2) + 1}00%`}
+      props.issectionopen === "true" ? "0" : `calc(-${(props.index % 2) + 1}00% - ${SITE_NAV_NAV_SWITCH_TOP})`}
     );
   `}
 `;
