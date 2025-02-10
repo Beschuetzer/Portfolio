@@ -1,14 +1,13 @@
-import { MouseEventHandler, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { styled } from "styled-components";
-import { SiteNavItem, SiteNavStyledProps } from "../types";
+import { SiteNavItemInput, SiteNavStyledProps } from "../types";
 import { useColorScheme } from "../../../../hooks/useColorScheme";
 import { dropDownContainerItemStyles } from "../styles";
 import { useSiteNav } from "../SiteNavContext";
-import { fontSizeFive } from "../../../../styles/constants";
 import SiteNavTriangle from "../SiteNavTriangle";
-import { SiteNaveItemOrientation } from "../SiteNavItem";
+import { SiteNaveItemOrientation, SiteNavItem, SiteNavItemProps } from "../SiteNavItem";
 
-type SiteNavDrawerContextDropDownProps = SiteNavItem & {};
+type SiteNavDrawerContextDropDownProps = SiteNavItemInput & {};
 
 const DropDownContainer = styled.div<SiteNavStyledProps>`
   display: grid;
@@ -31,11 +30,7 @@ const DropDownContainerItem = styled.div<SiteNavStyledProps>`
 const DropDownContainerItemSubItem = styled.div<
   SiteNavStyledProps & { issectionopen?: string }
 >`
-  ${dropDownContainerItemStyles}
-  ${(props) =>
-    props.issectionopen === "true" ? `display: flex;` : `display: none;`}
-font-size: ${fontSizeFive};
-  font-weight: 900;
+  transform: scale(${(props) => (props.issectionopen === "true" ? "1" : "0")});
 `;
 
 export function SiteNavDrawerContentDropDown(
@@ -53,11 +48,11 @@ export function SiteNavDrawerContentDropDown(
     [colorScheme, scrollBarWidth]
   );
 
-const onConainterItemClick = useMemo((e: MouseEventHandler) => {
-    setIsSectionOpen(!isSectionOpen);
-  }, [isSectionOpen]);
+const onConainterItemClick = useCallback(() => {
+    setIsSectionOpen((prev) => !prev);
+  }, []);
 
-  const onSubItemClick = useMemo(() => {
+  const onSubItemClick = useCallback((item: SiteNavItemProps) => {
     setIsSectionOpen(false);
   }, []);
 
@@ -85,8 +80,9 @@ const onConainterItemClick = useMemo((e: MouseEventHandler) => {
               key={index}
               {...propsToAdd}
               issectionopen={isSectionOpen.toString()}
+              onAbort={onSubItemClick.bind(null, item)}
             >
-              {item.text}
+              <SiteNavItem {...item} />
             </DropDownContainerItemSubItem>
           );
         })}

@@ -77,7 +77,7 @@ const ExternalLink = styled.a<SiteNavStyledProps>`
   ${linkStyles}
 `;
 
-export default function SiteNavItem(props: SiteNavItemProps) {
+export function SiteNavItem(props: SiteNavItemProps) {
   const colorScheme = useColorScheme();
   const { isOpen, toggleIsOpen } = useSiteNav();
   const {

@@ -7,7 +7,7 @@ import { useColorScheme } from "../../../hooks/useColorScheme";
 import { getFontSizeCustom } from "../../../styles/constants";
 import { BREAK_POINTS } from "../../../styles/breakpoints";
 import { SiteNavDropDown } from "./SiteNavDropDown";
-import SiteNavItem from "./SiteNavItem";
+import {SiteNavItem} from "./SiteNavItem";
 
 type SiteNavContentProps = {};
 

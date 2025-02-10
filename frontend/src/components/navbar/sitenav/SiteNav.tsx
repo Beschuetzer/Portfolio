@@ -15,7 +15,7 @@ import { useLocation } from "react-router-dom";
 import { getAbsoluteLeftPosition } from "./helpers";
 import { respond } from "../../../styles/breakpoints";
 import { SiteNavDrawer } from "./drawer/SiteNavDrawer";
-import { SiteNavItem } from "./types";
+import { SiteNavItemInput } from "./types";
 
 export const SITE_NAV_NAV_SWITCH_TOP = defaultFontSize;
 
@@ -32,7 +32,7 @@ const SiteNavContainer = styled.header<{ sitenavleft: string }>`
 `;
 
 export type SiteNavProps = {
-  items: SiteNavItem[];
+  items: SiteNavItemInput[];
   scrollBarWidth?: string;
 };
 

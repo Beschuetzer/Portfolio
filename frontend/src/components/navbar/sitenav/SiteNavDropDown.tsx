@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import styled from "styled-components";
 import { SiteNavStyledProps } from "./types";
-import SiteNavItem, { SiteNaveItemOrientation, SiteNavItemProps } from "./SiteNavItem";
+import { SiteNavItem, SiteNaveItemOrientation, SiteNavItemProps } from "./SiteNavItem";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import { useSiteNav } from "./SiteNavContext";
 import { SiteNavDropDownItem } from "./SiteNavDropDownItem";

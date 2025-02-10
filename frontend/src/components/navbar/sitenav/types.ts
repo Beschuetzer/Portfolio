@@ -11,7 +11,7 @@ export type SiteNavStyledProps = {
   sitenavnavswitchtop?: string;
 };
 
-export type SiteNavItem = {
+export type SiteNavItemInput = {
   drownDownItems?: SiteNavItemProps[];
   href?: string;
   isDropdownItem: boolean;
