@@ -8,13 +8,14 @@ import SiteNavTriangle from "../SiteNavTriangle";
 import { SiteNaveItemOrientation, SiteNavItem } from "../SiteNavItem";
 import { respond } from "../../../../styles/breakpoints";
 import { SITE_NAV_NAV_SWITCH_TOP } from "../SiteNav";
+import { defaultFontSize } from "../../../../styles/constants";
 
 type SiteNavDrawerContextItemProps = SiteNavItemInput & { index: number };
 
 type StyledProps = SiteNavStyledProps &
   Pick<SiteNavDrawerContextItemProps, "index">;
 
-const SPACING = "2px";
+const SPACING = defaultFontSize;
 
 const ItemContainer = styled.div<StyledProps>`
   display: flex;
@@ -24,6 +25,7 @@ const ItemContainer = styled.div<StyledProps>`
   ${itemTransformStyles}
   transform: translateX(${(props) =>
     props.isopen ? "0" : `calc(-100% - ${SITE_NAV_NAV_SWITCH_TOP})`});
+    user-select: none;
 
 `;
 
@@ -119,7 +121,7 @@ export function SiteNavDrawerContentItem(props: SiteNavDrawerContextItemProps) {
   }
 
   return (
-    <ItemContainer {...propsToAdd} index={index}>
+    <ItemContainer {...propsToAdd} index={index} onClick={(e) => e.stopPropagation()}>
       {isDropdownItem ? (
         <>
           <ItemContainerItem {...propsToAdd} onClick={onConainterItemClick}>
