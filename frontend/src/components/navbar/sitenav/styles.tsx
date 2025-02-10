@@ -52,3 +52,9 @@ export const dropDownContainerItemStyles = css<SiteNavStyledProps>`
   justify-content: center;
   user-select: none;
 `;
+
+export const itemTransformStyles = css<SiteNavStyledProps & {index: number}>`
+  transition: transform 0.5s ease;
+  transition-delay: ${(props) =>
+    props.isopen ? `${props.index * 0.05 + 0}s` : "0"};
+`;

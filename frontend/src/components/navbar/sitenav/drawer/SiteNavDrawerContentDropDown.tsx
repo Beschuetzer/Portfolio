@@ -2,27 +2,23 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { styled } from "styled-components";
 import { SiteNavItemInput, SiteNavStyledProps } from "../types";
 import { useColorScheme } from "../../../../hooks/useColorScheme";
-import { dropDownContainerItemStyles } from "../styles";
+import { dropDownContainerItemStyles, itemTransformStyles } from "../styles";
 import { useSiteNav } from "../SiteNavContext";
 import SiteNavTriangle from "../SiteNavTriangle";
-import {
-  SiteNaveItemOrientation,
-  SiteNavItem,
-} from "../SiteNavItem";
+import { SiteNaveItemOrientation, SiteNavItem } from "../SiteNavItem";
 import { respond } from "../../../../styles/breakpoints";
 
 type SiteNavDrawerContextDropDownProps = SiteNavItemInput & { index: number };
 
-const DropDownContainer = styled.div<
-  SiteNavStyledProps & Pick<SiteNavDrawerContextDropDownProps, "index">
->`
+type StyledProps = SiteNavStyledProps &
+  Pick<SiteNavDrawerContextDropDownProps, "index">;
+
+const DropDownContainer = styled.div<StyledProps>`
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-bottom: 1px;
-  transition: transform 0.5s ease;
-  transition-delay: ${(props) =>
-    props.isopen ? `${props.index * 0.05 + 0}s` : "0"};
+  padding-bottom: 2px;
+  ${itemTransformStyles}
   transform: translateX(${(props) => (props.isopen ? "0" : "-100%")});
 `;
 
@@ -46,8 +42,19 @@ const DropDownContainerItemSubItemContainer = styled.div<SiteNavStyledProps>`
     `}
 `;
 
-const DropDownContainerItemSubItem = styled.div<SiteNavStyledProps>`
+const DropDownContainerItemSubItem = styled.div<StyledProps>`
   height: ${(props) => (props.issectionopen === "true" ? "auto" : "0")};
+  ${itemTransformStyles}
+  transform: translateX(
+    ${(props) =>
+    props.issectionopen === "true" ? "0" : `-${(props.index % 3) + 1}00%`}
+  );
+  ${respond.phone`
+    transform: translateX(
+      ${(props: StyledProps) =>
+      props.issectionopen === "true" ? "0" : `-${(props.index % 2) + 1}00%`}
+    );
+  `}
 `;
 
 export function SiteNavDrawerContentDropDown(
@@ -86,6 +93,7 @@ export function SiteNavDrawerContentDropDown(
                 key={index}
                 {...propsToAdd}
                 issectionopen={isSectionOpen.toString()}
+                index={index}
               >
                 <SiteNavItem {...item} />
               </DropDownContainerItemSubItem>
