@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 import {
   BUTTON_RADIUS,
-  defaultFontSize,
-  fontSizeEight,
 } from "../../../styles/constants";
 
 import { styled } from "styled-components";
@@ -13,22 +11,13 @@ import { SiteNavProvider } from "./SiteNavContext";
 import SiteNavBackground from "./SiteNavBackground";
 import { useLocation } from "react-router-dom";
 import { getAbsoluteLeftPosition } from "./helpers";
-import { respond } from "../../../styles/breakpoints";
 import { SiteNavDrawer } from "./drawer/SiteNavDrawer";
-import { SiteNavItemInput } from "./types";
+import { SiteNavItemInput, SiteNavStyledProps } from "./types";
+import { GithubButton } from "../GithubButton";
+import { buttonPlacementStyles } from "./styles";
 
-export const SITE_NAV_NAV_SWITCH_TOP = defaultFontSize;
-
-const SiteNavContainer = styled.header<{ sitenavleft: string }>`
-  position: absolute;
-  top: ${fontSizeEight};
-  left: ${(props) => props.sitenavleft};
-  display: flex;
-
-  ${respond.navSwitch`
-    top: ${SITE_NAV_NAV_SWITCH_TOP};
-    left: ${SITE_NAV_NAV_SWITCH_TOP};
-    `}
+const SiteNavContainer = styled.header<SiteNavStyledProps>`
+  ${buttonPlacementStyles}
 `;
 
 export type SiteNavProps = {
@@ -76,6 +65,7 @@ export function SiteNav(props: SiteNavProps) {
         <SiteNavBackground />
         <SiteNavDrawer />
       </SiteNavContainer>
+      <GithubButton />
     </SiteNavProvider>
   );
 }

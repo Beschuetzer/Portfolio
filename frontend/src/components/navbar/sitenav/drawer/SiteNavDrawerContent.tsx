@@ -4,7 +4,7 @@ import { useColorScheme } from "../../../../hooks/useColorScheme";
 import { SiteNavStyledProps } from "../types";
 import { styled } from "styled-components";
 import { SiteNavDrawerContentItem } from "./SiteNavDrawerContentDropDown";
-import { SITE_NAV_NAV_SWITCH_TOP } from "../SiteNav";
+import { SITE_NAV_NAV_SWITCH_TOP } from "../../../../styles/constants";
 
 const ContentContainer = styled.div<SiteNavStyledProps>`
   text-align: center;

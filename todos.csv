@@ -1,6 +1,5 @@
 
 refactor stuff:
-  -finish the site nav drawer
   -finish github button
   -start ExampleLayout (use grid and have left column house the page nav)
   -start ResumeLayout?

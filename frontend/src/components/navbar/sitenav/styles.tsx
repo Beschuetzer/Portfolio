@@ -1,6 +1,7 @@
 import { css } from "styled-components";
 import {
   defaultFontSize,
+  fontSizeEight,
   fontSizeFive,
   fontSizeSeven,
   fontSizeSix,
@@ -8,6 +9,20 @@ import {
 } from "../../../styles/constants";
 import { SiteNaveItemOrientation } from "./SiteNavItem";
 import { SiteNavStyledProps } from "./types";
+import { respond } from "../../../styles/breakpoints";
+import { SITE_NAV_NAV_SWITCH_TOP } from "../../../styles/constants";
+
+export const buttonPlacementStyles = css<SiteNavStyledProps>`
+  position: absolute;
+  top: ${fontSizeEight};
+  left: ${(props) => props.sitenavleft};
+  display: flex;
+
+  ${respond.navSwitch`
+    top: ${SITE_NAV_NAV_SWITCH_TOP};
+    left: ${SITE_NAV_NAV_SWITCH_TOP};
+    `}
+`;
 
 export const linkStyles = css<SiteNavStyledProps>`
   display: flex;
@@ -53,8 +68,8 @@ export const dropDownContainerItemStyles = css<SiteNavStyledProps>`
   user-select: none;
 `;
 
-export const itemTransformStyles = css<SiteNavStyledProps & {index: number}>`
-  ${props => props.isopen ? `transition: transform 0.5s ease;` : ""}
+export const itemTransformStyles = css<SiteNavStyledProps & { index: number }>`
+  ${(props) => (props.isopen ? `transition: transform 0.5s ease;` : "")}
   transition-delay: ${(props) =>
     props.isopen ? `${props.index * 0.05 + 0}s` : "0"};
 `;

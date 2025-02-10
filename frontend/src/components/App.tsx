@@ -166,8 +166,6 @@ export const App: React.FC<AppProps> = (props) => {
               },
             ]}
           />
-          {/* <PageNav /> */}
-          {/* <GithubButton /> */}
         </NavbarHeader>
         <Switch>
           <Route path="/" exact component={Home} />

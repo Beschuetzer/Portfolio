@@ -9,6 +9,7 @@ export type SiteNavStyledProps = {
   issectionopen?: string;
   orientation?: SiteNaveItemOrientation;
   scrollbarwidth?: string;
+  sitenavleft?: string
   sitenavnavswitchtop?: string;
 };
 

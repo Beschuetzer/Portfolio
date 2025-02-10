@@ -7,7 +7,7 @@ import { useSiteNav } from "../SiteNavContext";
 import SiteNavTriangle from "../SiteNavTriangle";
 import { SiteNaveItemOrientation, SiteNavItem } from "../SiteNavItem";
 import { respond } from "../../../../styles/breakpoints";
-import { SITE_NAV_NAV_SWITCH_TOP } from "../SiteNav";
+import { SITE_NAV_NAV_SWITCH_TOP } from "../../../../styles/constants";
 import { defaultFontSize } from "../../../../styles/constants";
 
 type SiteNavDrawerContextItemProps = SiteNavItemInput & { index: number };

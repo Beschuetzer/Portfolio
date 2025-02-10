@@ -1,18 +1,21 @@
-import { SCROLL_BAR_WIDTH_IN_REM, SECTION_WIDTH_IN_PIXELS, getFontSizeCustom, BUTTON_RADIUS } from "../../../styles/constants";
+import {
+  SCROLL_BAR_WIDTH_IN_REM,
+  SECTION_WIDTH_IN_PIXELS,
+  getFontSizeCustom,
+  BUTTON_RADIUS,
+} from "../../../styles/constants";
 
 export function getAbsoluteLeftPosition() {
   return `calc(((calc(${
     window.innerWidth
-  }px + ${SCROLL_BAR_WIDTH_IN_REM}rem) - ${SECTION_WIDTH_IN_PIXELS}px) / 4) - ${getFontSizeCustom(
+  }px - ${SCROLL_BAR_WIDTH_IN_REM}rem) - ${SECTION_WIDTH_IN_PIXELS}px) / 4) - ${getFontSizeCustom(
     0.5,
     BUTTON_RADIUS
   )})`;
 }
 
 export function getAbsoluteRightPosition() {
-  return `calc(((calc(${
-    window.innerWidth
-  }px - ${SCROLL_BAR_WIDTH_IN_REM}rem) - ${SECTION_WIDTH_IN_PIXELS}px) / 2 + ${SECTION_WIDTH_IN_PIXELS}px))`;
+  return `calc(((calc(${window.innerWidth}px - ${SCROLL_BAR_WIDTH_IN_REM}rem) - ${SECTION_WIDTH_IN_PIXELS}px) / 4 - ${BUTTON_RADIUS} / 2))`;
 }
 
 /**
@@ -23,7 +26,7 @@ export function getAbsoluteRightPosition() {
  */
 export function hexToRgba(hex = "#fff", opacity = 1): string {
   // Remove the hash at the start if it's there
-  hex = hex.replace(/^#/, '');
+  hex = hex.replace(/^#/, "");
 
   // Parse r, g, b values
   let r = parseInt(hex.substring(0, 2), 16);
