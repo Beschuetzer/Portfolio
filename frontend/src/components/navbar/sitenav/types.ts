@@ -1,12 +1,12 @@
 import { ColorScheme } from "../../../styles/constants";
-import { SiteNavItemProps } from "./SiteNavItem";
+import { SiteNaveItemOrientation, SiteNavItemProps } from "./SiteNavItem";
 
 export type SiteNavStyledProps = {
   buttonradius?: string;
   colorscheme?: ColorScheme;
   isopen?: boolean;
   islast?: boolean;
-  orientation?: "horizontal" | "vertical";
+  orientation?: SiteNaveItemOrientation;
   scrollbarwidth?: string;
   sitenavnavswitchtop?: string;
 };

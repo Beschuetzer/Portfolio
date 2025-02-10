@@ -1,10 +1,11 @@
 import React, { useMemo } from "react";
-import { SiteNavItemProps } from "./SiteNavItem";
+import { SiteNaveItemOrientation, SiteNavItemProps } from "./SiteNavItem";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./types";
 import { useSiteNav } from "./SiteNavContext";
 import { itemStyles, linkStyles, triangleRotateStyles } from "./styles";
+import SiteNavTriangle from "./SiteNavTriangle";
 
 type SiteNavDropDownProps = Pick<SiteNavItemProps, "text"> & {
   isHovering?: boolean;
@@ -24,17 +25,6 @@ const DropDownItem = styled.div<SiteNavStyledProps>`
   }
 `;
 
-const SiteNavTriangle = styled.div<SiteNavStyledProps & { ishovering?: boolean }>`
-  border-color: transparent transparent transparent
-    ${(props) => props.colorscheme?.primary1};
-  border-style: solid;
-  border-width: 0.462rem 0 0.462rem 1.05rem;
-  height: 0;
-  margin-left: 0.7rem;
-  width: 0;
-  transition: transform 0.25s ease, -webkit-transform 0.25s ease;
-  ${(props) => (props.ishovering ? triangleRotateStyles : "")}
-`;
 
 export function SiteNavDropDownItem(props: SiteNavDropDownProps) {
   const { isHovering, text } = props;
@@ -43,13 +33,14 @@ export function SiteNavDropDownItem(props: SiteNavDropDownProps) {
   const propsToAdd: SiteNavStyledProps = useMemo(() => ({
     colorscheme: colorScheme != null ? colorScheme : undefined,
     isopen: isOpen != null ? isOpen : undefined,
-  }), [colorScheme, isOpen]);
+    orientation: isHovering ? SiteNaveItemOrientation.vertical : SiteNaveItemOrientation.horizontal,
+  }), [colorScheme, isHovering, isOpen]);
 
   return (
     <DropdownContainer {...propsToAdd}>
       <DropDownItem {...propsToAdd}>
         {text}
-        <SiteNavTriangle {...propsToAdd} ishovering={isHovering != null ? isHovering : undefined} className="triangle" />
+        <SiteNavTriangle {...propsToAdd} />
       </DropDownItem>
     </DropdownContainer>
   );

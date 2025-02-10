@@ -1,10 +1,12 @@
-import { useMemo, useState } from "react";
+import { MouseEventHandler, useMemo, useState } from "react";
 import { styled } from "styled-components";
 import { SiteNavItem, SiteNavStyledProps } from "../types";
 import { useColorScheme } from "../../../../hooks/useColorScheme";
 import { dropDownContainerItemStyles } from "../styles";
 import { useSiteNav } from "../SiteNavContext";
 import { fontSizeFive } from "../../../../styles/constants";
+import SiteNavTriangle from "../SiteNavTriangle";
+import { SiteNaveItemOrientation } from "../SiteNavItem";
 
 type SiteNavDrawerContextDropDownProps = SiteNavItem & {};
 
@@ -19,7 +21,7 @@ const DropDownContainer = styled.div<SiteNavStyledProps>`
 
 const DropDownContainerItem = styled.div<SiteNavStyledProps>`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   position: relative;
   grid-column: 1 / -1;
   font-weight: 300;
@@ -29,10 +31,11 @@ const DropDownContainerItem = styled.div<SiteNavStyledProps>`
 const DropDownContainerItemSubItem = styled.div<
   SiteNavStyledProps & { issectionopen?: string }
 >`
-${dropDownContainerItemStyles}
-${props => props.issectionopen === "true" ? `display: flex;` : `display: none;`}
+  ${dropDownContainerItemStyles}
+  ${(props) =>
+    props.issectionopen === "true" ? `display: flex;` : `display: none;`}
 font-size: ${fontSizeFive};
-font-weight: 900
+  font-weight: 900;
 `;
 
 export function SiteNavDrawerContentDropDown(
@@ -50,13 +53,30 @@ export function SiteNavDrawerContentDropDown(
     [colorScheme, scrollBarWidth]
   );
 
+const onConainterItemClick = useMemo((e: MouseEventHandler) => {
+    setIsSectionOpen(!isSectionOpen);
+  }, [isSectionOpen]);
+
+  const onSubItemClick = useMemo(() => {
+    setIsSectionOpen(false);
+  }, []);
+
   return (
     <DropDownContainer>
       <DropDownContainerItem
         {...propsToAdd}
-        onClick={() => setIsSectionOpen((current) => !current)}
+        onClick={(onConainterItemClick)}
       >
         {text}
+        {isDropdownItem ? (
+          <SiteNavTriangle
+            orientation={
+              isSectionOpen
+                ? SiteNaveItemOrientation.vertical
+                : SiteNaveItemOrientation.horizontal
+            }
+          />
+        ) : null}
       </DropDownContainerItem>
       {isDropdownItem &&
         drownDownItems?.map((item, index) => {
