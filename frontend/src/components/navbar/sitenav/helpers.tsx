@@ -5,6 +5,12 @@ import {
   BUTTON_WIDTH,
 } from "../../../styles/constants";
 
+//create a capitalize function
+export function capitalize(str: string): string {
+  if (!str) return "";
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export function getAbsoluteLeftPosition() {
   return `calc(((calc(${
     window.innerWidth

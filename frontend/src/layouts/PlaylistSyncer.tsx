@@ -11,11 +11,21 @@ const Content = styled.div<LayoutStyledProps>`
   align-items: start;
 `;
 
+const Section = styled.section<LayoutStyledProps>`  
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  height: 100vh;
+`;
+
 export function PlaylistSyncerPage(props: PlaylistSyncerPageProps) {
-  console.log("PlaylistSyncerPage");
   return (
     <ExampleLayout>
-      <Content>Content here</Content>
+      <Content>
+        <Section id="test">Test</Section>
+        <Section id="test2">Test</Section>
+        <Section id="test3">Test</Section>
+      </Content>
     </ExampleLayout>
   );
 }

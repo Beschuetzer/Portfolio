@@ -10,8 +10,7 @@ const Layout = styled.div<LayoutStyledProps>`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr ${SECTION_WIDTH_IN_PIXELS}px 1fr;
-  background-color: ${(props) => props.colorscheme?.primary3};
-  height: 200vh;
+  background: ${(props) => props.colorscheme?.primary1};
 
   ${respond.navSwitch`
     flex-direction: column;
