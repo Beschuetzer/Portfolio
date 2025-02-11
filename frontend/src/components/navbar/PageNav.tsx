@@ -35,10 +35,9 @@ export function PageNav(props: PageNavProps) {
 
   useEffect(() => {
     const elementsWithId = Array.from(document.querySelectorAll("[id]"));
+    if (!elementsWithId || elementsWithId.length === 0) return;
     setSections(elementsWithId.filter((element) => element.id && element.id !== "root"));
   }, []);
-
-  console.log({window})
 
   return (
     <PaddingOffset>
