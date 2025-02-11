@@ -1308,10 +1308,6 @@ body {
   transition: border-radius 0.5s ease !important;
 }
 
-#root {
-  overflow: hidden;
-}
-
 .header {
   pointer-events: none;
   top: 2.1rem;

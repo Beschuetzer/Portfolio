@@ -643,10 +643,6 @@ $scale-y-amount: .25;
 	}
 }
 
-#root {
-	overflow: hidden;
-}
-
 .header {
 	pointer-events: none;
 	top: $header-top;
