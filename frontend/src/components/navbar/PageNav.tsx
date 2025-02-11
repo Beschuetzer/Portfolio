@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./sitenav/types";
-import { BUTTON_WIDTH, fontSizeEight, fontSizeSix, SITE_NAV_TOP } from "../../styles/constants";
+import {
+  BUTTON_WIDTH,
+  defaultFontSize,
+  fontSizeEight,
+  fontSizeSix,
+  getFontSizeCustom,
+  SITE_NAV_TOP,
+} from "../../styles/constants";
 import { capitalize } from "../../helpers";
 import { Link } from "react-router-dom";
 
@@ -26,6 +33,16 @@ const Item = styled(Link)<SiteNavStyledProps>`
   background-color: ${(props) => props.colorscheme?.primary2};
   font-size: ${fontSizeSix};
   cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  font-weight: bold;
+  padding: ${getFontSizeCustom(.75)} ${getFontSizeCustom(.75 * 2)};
+
+  &:hover {
+    transform: translateY(-0.25vw);
+    text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
+      0 -5px 35px hsla(0, 0%, 100%, 0.3);
+  }
 `;
 
 type PageNavProps = {};
@@ -39,14 +56,18 @@ export function PageNav(props: PageNavProps) {
       console.warn("PageNav - No elements with id found");
       return;
     }
-    setSections(elementsWithId.filter((element) => element.id && element.id !== "root"));
+    setSections(
+      elementsWithId.filter((element) => element.id && element.id !== "root")
+    );
   }, []);
 
   return (
     <PaddingOffset>
       <ContentContainer>
         {sections.map((section: Element, index: number) => (
-          <Item key={index} to={`${window.location.pathname}#${section.id}`}>{capitalize(section.id)}</Item>
+          <Item key={index} to={`${window.location.pathname}#${section.id}`}>
+            {capitalize(section.id)}
+          </Item>
         ))}
       </ContentContainer>
     </PaddingOffset>
