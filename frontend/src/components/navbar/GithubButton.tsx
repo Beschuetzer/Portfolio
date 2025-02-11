@@ -109,7 +109,7 @@ export function GithubButton(props: GithubButtonProps) {
 
   return (
     <Container {...propsToAdd} href={GITHUB_URL} target="_blank">
-      <Text className="github-text">Show</Text>
+      <Text className="github-text">Open</Text>
       <Svg {...propsToAdd} className="svg-front">
         <Use xlinkHref="/sprite.svg#icon-github-with-circle" />
       </Svg>
