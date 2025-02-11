@@ -167,7 +167,7 @@ export const colors: Colors = {
 //#endregion
 
 //#region Layout Stuff
-export const BUTTON_RADIUS = fontSizeEleven;
+export const BUTTON_WIDTH = fontSizeEleven;
 export const SCROLL_BAR_WIDTH_IN_REM = 1.4;
 export const SECTION_WIDTH_IN_PIXELS = 744;
 export const SITE_NAV_NAV_SWITCH_TOP = defaultFontSize;

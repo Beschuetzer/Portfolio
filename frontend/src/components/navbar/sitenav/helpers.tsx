@@ -2,7 +2,7 @@ import {
   SCROLL_BAR_WIDTH_IN_REM,
   SECTION_WIDTH_IN_PIXELS,
   getFontSizeCustom,
-  BUTTON_RADIUS,
+  BUTTON_WIDTH,
 } from "../../../styles/constants";
 
 export function getAbsoluteLeftPosition() {
@@ -10,7 +10,7 @@ export function getAbsoluteLeftPosition() {
     window.innerWidth
   }px - ${SCROLL_BAR_WIDTH_IN_REM}rem) - ${SECTION_WIDTH_IN_PIXELS}px) / 4) - ${getFontSizeCustom(
     0.5,
-    BUTTON_RADIUS
+    BUTTON_WIDTH
   )})`;
 }
 
@@ -18,7 +18,7 @@ export function getAbsoluteRightPosition() {
   const columnWidth = `calc(calc(${window.innerWidth}px - ${SCROLL_BAR_WIDTH_IN_REM}rem - ${SECTION_WIDTH_IN_PIXELS}px) / 2)`;
   return `calc(${columnWidth} + ${SECTION_WIDTH_IN_PIXELS}px + calc(${columnWidth} / 2) - ${getFontSizeCustom(
     0.5,
-    BUTTON_RADIUS
+    BUTTON_WIDTH
   )})`;
 }
 

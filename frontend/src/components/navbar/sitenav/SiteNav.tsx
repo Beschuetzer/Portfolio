@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import {
-  BUTTON_RADIUS,
+  BUTTON_WIDTH,
 } from "../../../styles/constants";
 
 import { styled } from "styled-components";
@@ -55,7 +55,7 @@ export function SiteNav(props: SiteNavProps) {
 
   return (
     <SiteNavProvider
-      buttonRadius={BUTTON_RADIUS}
+      buttonRadius={BUTTON_WIDTH}
       items={items}
       scrollBarWidth={scrollBarWidth}
     >

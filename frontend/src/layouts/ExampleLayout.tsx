@@ -11,8 +11,7 @@ const Layout = styled.div<LayoutStyledProps>`
   display: grid;
   grid-template-columns: 1fr ${SECTION_WIDTH_IN_PIXELS}px 1fr;
   background-color: ${(props) => props.colorscheme?.primary3};
-  height: 100000px;
-  align-items: start;
+  height: 200vh;
 
   ${respond.navSwitch`
     flex-direction: column;
@@ -37,6 +36,7 @@ export function ExampleLayout(props: ExampleLayoutProps) {
     <Layout {...propsToAdd}>
       <PageNav />
       {children}
+      <div/>
     </Layout>
   );
 }

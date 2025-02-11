@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { getAbsoluteRightPosition } from "./sitenav/helpers";
 import { styled } from "styled-components";
 import {
-  BUTTON_RADIUS,
+  BUTTON_WIDTH,
   fontSizeThree,
   getFontSizeCustom,
 } from "../../styles/constants";
@@ -20,8 +20,8 @@ const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
   position: absolute;
   flex-direction: column;
   border-radius: 50%;
-  width: ${BUTTON_RADIUS};
-  height: ${BUTTON_RADIUS};
+  width: ${BUTTON_WIDTH};
+  height: ${BUTTON_WIDTH};
   background-color: transparent;
   color: ${(props) => props.colorscheme?.primary1};
   font-weight: 700;
