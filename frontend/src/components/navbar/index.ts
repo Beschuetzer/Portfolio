@@ -1,4 +1,4 @@
 export * from './NavListItem';
 export * from './NavListItemExpanded';
-export * from './PageNav';
+export * from './PageNavLegacy';
 export * from './sitenav/SiteNav';

@@ -1,11 +1,11 @@
 import { css } from "styled-components";
 import {
   defaultFontSize,
-  fontSizeEight,
   fontSizeFive,
   fontSizeSeven,
   fontSizeSix,
   getFontSizeCustom,
+  SITE_NAV_TOP,
 } from "../../../styles/constants";
 import { SiteNaveItemOrientation } from "./SiteNavItem";
 import { SiteNavStyledProps } from "./types";
@@ -14,7 +14,7 @@ import { SITE_NAV_NAV_SWITCH_TOP } from "../../../styles/constants";
 
 export const buttonPlacementStyles = css<SiteNavStyledProps>`
   position: absolute;
-  top: ${fontSizeEight};
+  top: ${SITE_NAV_TOP};
   left: ${(props) => props.sitenavleft};
   display: flex;
 

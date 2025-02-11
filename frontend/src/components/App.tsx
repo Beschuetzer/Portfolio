@@ -46,7 +46,6 @@ import {
   About,
   BridgeDemo,
   Downloader,
-  PlaylistSyncer,
   ReplayViewer,
   Home,
   Resume,
@@ -55,6 +54,7 @@ import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarous
 import { Redirect } from "../pages/Redirect";
 import { NavbarHeader } from "./navbar/NavbarHeader";
 import { SCROLL_BAR_WIDTH_IN_REM } from "../styles/constants";
+import { PlaylistSyncerPage } from "../layouts/PlaylistSyncer";
 
 type AppProps = {};
 
@@ -80,6 +80,7 @@ export const App: React.FC<AppProps> = (props) => {
     <>
       <Router history={history}>
         <NavbarHeader>
+          {/* <PageNav /> */}
           <SiteNav
             scrollBarWidth={`${SCROLL_BAR_WIDTH_IN_REM}rem`}
             items={[
@@ -199,7 +200,7 @@ export const App: React.FC<AppProps> = (props) => {
           <Route path={BRIDGE_URL} exact component={Bridge} />
           <Route path={BRIDGE_DEMO_URL} exact component={BridgeDemo} />
           <Route path={DOWNLOADER_URL} exact component={Downloader} />
-          <Route path={PLAYLIST_SYNCER_URL} exact component={PlaylistSyncer} />
+          <Route path={PLAYLIST_SYNCER_URL} exact component={PlaylistSyncerPage} />
           <Route path={REPLAY_VIEWER_URL} exact component={ReplayViewer} />
           <Route path={AUTO_BID_URL} exact component={AutoBid} />
           <Route path={ABOUT_URL} exact component={About} />

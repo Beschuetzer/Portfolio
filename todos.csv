@@ -1,5 +1,6 @@
 
 refactor stuff:
+  -fix overflow styling with root and body
   -start ExampleLayout (use grid and have left column house the page nav)
   -start ResumeLayout?
   -start BridgeLayout?
