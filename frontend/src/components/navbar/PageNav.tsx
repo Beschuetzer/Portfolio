@@ -54,7 +54,6 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
 `;
 
 const Item = styled(Link)<SiteNavStyledProps>`
-  background-color: ${(props) => props.colorscheme?.primary2};
   font-size: ${fontSizeSix};
   cursor: pointer;
   transition: all 0.25s ease;
@@ -64,6 +63,8 @@ const Item = styled(Link)<SiteNavStyledProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: ${(props) => props.colorscheme?.primary4};
+
 
   &:hover {
     transform: translateY(-0.25vw);
@@ -116,7 +117,7 @@ export function PageNav(props: PageNavProps) {
     <PaddingOffset {...propsToAdd}>
       <ContentContainer {...propsToAdd}>
         {sections.map((section: Element, index: number) => (
-          <Item key={index} to={`${window.location.pathname}#${section.id}`}>
+          <Item key={index} to={`${window.location.pathname}#${section.id}`} {...propsToAdd}> 
             {capitalize(section.id)}
           </Item>
         ))}
