@@ -8,7 +8,7 @@ import {
   SITE_NAV_NAV_SWITCH_TOP,
   SITE_NAV_TOP,
 } from "../../styles/constants";
-import { capitalize } from "../../helpers";
+import { capitalize, ensureMaxLength } from "../../helpers";
 import { Link } from "react-router-dom";
 import { respond } from "../../styles/breakpoints";
 import { useColorScheme } from "../../hooks/useColorScheme";
@@ -66,7 +66,7 @@ const Item = styled(Link)<SiteNavStyledProps>`
   align-items: center;
   justify-content: center;
   transition: color 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
-  color: ${(props) => hexToRgba(props.colorscheme?.primary4, 0.85)};
+  color: ${(props) => hexToRgba(props.colorscheme?.primary4, 0.5)};
 
   &:hover {
     transform: translateY(-0.25vw);
@@ -76,12 +76,11 @@ const Item = styled(Link)<SiteNavStyledProps>`
   }
 
   ${respond.navSwitch`
+    font-size: 1.75vw;
     height: auto;
     padding: 0;
   `}
 `;
-
-const ItemText = styled.div<SiteNavStyledProps>``;
 
 type PageNavProps = {};
 
@@ -134,7 +133,7 @@ export function PageNav(props: PageNavProps) {
             to={`${window.location.pathname}#${section.id}`}
             {...propsToAdd}
           >
-            {capitalize(section.id)}
+            {ensureMaxLength(capitalize(section.id), 18)}
           </Item>
         ))}
       </ContentContainer>

@@ -91,6 +91,12 @@ export const closeVideo = (video: HTMLVideoElement | null) => {
 	video.currentTime = 0;
 };
 
+export function ensureMaxLength(str: string, maxLength: number) {
+	if (!str) return "";
+	if (str.length <= maxLength) return str;
+	return str.slice(0, maxLength - 3) + "...";
+  }
+
 export function functionToGetContainer(e: Event) {
 	return (e.currentTarget as any).parentNode.querySelector(
 		`.${CAROUSEL_VIDEO_CLASSNAME}`,

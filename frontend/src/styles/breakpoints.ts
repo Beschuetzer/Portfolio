@@ -21,7 +21,7 @@ export const BREAK_POINTS: { [key in Breakpoints]: string } = {
   [Breakpoints.phoneTouch]: '655px',
   [Breakpoints.tabPort]: '843px',
   [Breakpoints.tabLand]: '937px',
-  [Breakpoints.navSwitch]: '1100px',
+  [Breakpoints.navSwitch]: '1300px',
   [Breakpoints.bigDesktop]: '1800px',
   [Breakpoints.largerThanNavSwitch]: '1100px',
 };
