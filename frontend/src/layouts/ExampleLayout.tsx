@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { LayoutStyledProps } from "./types";
 import { styled } from "styled-components";
 import { SECTION_WIDTH_IN_PIXELS } from "../styles/constants";
@@ -27,15 +27,18 @@ type ExampleLayoutProps = {
 export function ExampleLayout(props: ExampleLayoutProps) {
   const { children } = props;
   const colorScheme = useColorScheme();
-  const propsToAdd: LayoutStyledProps = {
-    colorscheme: colorScheme != null ? colorScheme : undefined,
-  };
+  const propsToAdd: LayoutStyledProps = useMemo(
+    () => ({
+      colorscheme: colorScheme != null ? colorScheme : undefined,
+    }),
+    [colorScheme]
+  );
 
   return (
     <Layout {...propsToAdd}>
       <PageNav />
       {children}
-      <div/>
+      <div />
     </Layout>
   );
 }

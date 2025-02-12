@@ -23,8 +23,8 @@ export function PlaylistSyncerPage(props: PlaylistSyncerPageProps) {
     <ExampleLayout>
       <Content>
         <Section id="test">Test</Section>
-        <Section id="test2">test2</Section>
-        <Section id="test3">test3</Section>
+        <Section id="overview-section-two">This is a long name</Section>
+        <Section id="SomethingRatherLong">test3</Section>
         <Section id="test4">test4</Section>
         <Section id="test5">test5</Section>
         <Section id="test6">test6</Section>

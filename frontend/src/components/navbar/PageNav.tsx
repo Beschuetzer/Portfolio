@@ -14,13 +14,16 @@ import { respond } from "../../styles/breakpoints";
 import { useColorScheme } from "../../hooks/useColorScheme";
 import { navbarHeaderNavSwitchHeightStyles } from "./sitenav/styles";
 import { useOnWindowResize } from "../../hooks/useOnWindowResize";
+import { hexToRgba } from "./sitenav/helpers";
 
 const ITEM_HEIGHT = fontSizeTen;
 
 const PaddingOffset = styled.div<SiteNavStyledProps>`
   ${(props) =>
     props.numberofsections != null
-      ? `padding-top: calc(50vh - ${ITEM_HEIGHT} * ${props.numberofsections / 2} + (calc(${SITE_NAV_TOP} + ${BUTTON_WIDTH}) / 2));`
+      ? `padding-top: calc(50vh - ${ITEM_HEIGHT} * ${
+          props.numberofsections / 2
+        } + (calc(${SITE_NAV_TOP} + ${BUTTON_WIDTH}) / 2));`
       : ""}
 
   ${respond.navSwitch`
@@ -44,9 +47,8 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
     left:0;
     right: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(${(
-      props: SiteNavStyledProps
-    ) => props.minpixelwidth}, 1fr));
+    grid-template-columns: repeat(${(props: SiteNavStyledProps) =>
+      props.minpixelwidth}, 1fr);
     margin: 0 calc(${BUTTON_WIDTH} + ${SITE_NAV_NAV_SWITCH_TOP});
     z-index: 1000000;
     ${navbarHeaderNavSwitchHeightStyles}
@@ -63,13 +65,14 @@ const Item = styled(Link)<SiteNavStyledProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${(props) => props.colorscheme?.primary4};
-
+  transition: color 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
+  color: ${(props) => hexToRgba(props.colorscheme?.primary4, 0.85)};
 
   &:hover {
     transform: translateY(-0.25vw);
     text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
       0 -5px 35px hsla(0, 0%, 100%, 0.3);
+    color: ${(props) => props.colorscheme?.primary4};
   }
 
   ${respond.navSwitch`
@@ -77,6 +80,8 @@ const Item = styled(Link)<SiteNavStyledProps>`
     padding: 0;
   `}
 `;
+
+const ItemText = styled.div<SiteNavStyledProps>``;
 
 type PageNavProps = {};
 
@@ -96,9 +101,16 @@ export function PageNav(props: PageNavProps) {
   console.log({ propsToAdd, sections });
 
   const onResize = useCallback(() => {
-    setMinPixelWidth(
-      `calc((${window.innerWidth}px - ${BUTTON_WIDTH} * 2 - ${SITE_NAV_NAV_SWITCH_TOP} * 2) / ${sections.length})`
-    );
+    ////old approach
+    // setMinPixelWidth(
+    //   `calc((${window.innerWidth}px - ${BUTTON_WIDTH} * 2 - ${SITE_NAV_NAV_SWITCH_TOP} * 2) / ${sections.length})`
+    // );
+    ////old column style
+    // grid-template-columns: repeat(auto-fill, minmax(${(
+    //   props: SiteNavStyledProps
+    // ) => props.minpixelwidth}, 1fr));
+
+    setMinPixelWidth(`${Math.ceil(sections.length / 2)}`);
   }, [sections.length]);
 
   useEffect(() => {
@@ -117,7 +129,11 @@ export function PageNav(props: PageNavProps) {
     <PaddingOffset {...propsToAdd}>
       <ContentContainer {...propsToAdd}>
         {sections.map((section: Element, index: number) => (
-          <Item key={index} to={`${window.location.pathname}#${section.id}`} {...propsToAdd}> 
+          <Item
+            key={index}
+            to={`${window.location.pathname}#${section.id}`}
+            {...propsToAdd}
+          >
             {capitalize(section.id)}
           </Item>
         ))}
