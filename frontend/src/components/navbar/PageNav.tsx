@@ -3,8 +3,8 @@ import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./sitenav/types";
 import {
   BUTTON_WIDTH,
+  fontSizeNine,
   fontSizeSix,
-  getFontSizeCustom,
   SITE_NAV_NAV_SWITCH_TOP,
   SITE_NAV_TOP,
 } from "../../styles/constants";
@@ -15,14 +15,15 @@ import { useColorScheme } from "../../hooks/useColorScheme";
 import { navbarHeaderNavSwitchHeightStyles } from "./sitenav/styles";
 import { useOnWindowResize } from "../../hooks/useOnWindowResize";
 
-const PaddingOffset = styled.div<
-  SiteNavStyledProps & { numberofsections?: number }
->`
-  padding-top: 50vh;
+const PaddingOffset = styled.div<SiteNavStyledProps>`
+  ${(props) =>
+    props.numberofsections != null
+      ? `padding-top: calc(50vh - ${fontSizeNine} * ${props.numberofsections / 2} + (calc(${SITE_NAV_TOP} + ${BUTTON_WIDTH}) / 2));`
+      : ""}
 
   ${respond.navSwitch`
     padding-top: 0;
-    `}
+  `}
 `;
 
 const ContentContainer = styled.div<SiteNavStyledProps>`
@@ -57,7 +58,10 @@ const Item = styled(Link)<SiteNavStyledProps>`
   transition: all 0.25s ease;
   text-decoration: none;
   font-weight: bold;
-  padding: ${getFontSizeCustom(0.75)} ${getFontSizeCustom(0.75 * 2)};
+  height: ${fontSizeNine};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     transform: translateY(-0.25vw);
@@ -66,6 +70,7 @@ const Item = styled(Link)<SiteNavStyledProps>`
   }
 
   ${respond.navSwitch`
+    height: auto;
     padding: 0;
   `}
 `;
@@ -80,12 +85,17 @@ export function PageNav(props: PageNavProps) {
     () => ({
       colorscheme: colorScheme != null ? colorScheme : undefined,
       minpixelwidth: minPixelWidth,
+      numberofsections: sections.length,
     }),
-    [colorScheme, minPixelWidth]
+    [colorScheme, minPixelWidth, sections.length]
   );
 
+  console.log({ propsToAdd, sections });
+
   const onResize = useCallback(() => {
-    setMinPixelWidth(`calc((${window.innerWidth}px - ${BUTTON_WIDTH} * 2 - ${SITE_NAV_NAV_SWITCH_TOP} * 2) / ${sections.length})`);
+    setMinPixelWidth(
+      `calc((${window.innerWidth}px - ${BUTTON_WIDTH} * 2 - ${SITE_NAV_NAV_SWITCH_TOP} * 2) / ${sections.length})`
+    );
   }, [sections.length]);
 
   useEffect(() => {
@@ -101,7 +111,7 @@ export function PageNav(props: PageNavProps) {
   useOnWindowResize(onResize);
 
   return (
-    <PaddingOffset>
+    <PaddingOffset {...propsToAdd}>
       <ContentContainer {...propsToAdd}>
         {sections.map((section: Element, index: number) => (
           <Item key={index} to={`${window.location.pathname}#${section.id}`}>

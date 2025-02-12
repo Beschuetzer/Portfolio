@@ -8,6 +8,7 @@ export type SiteNavStyledProps = {
   islast?: boolean;
   issectionopen?: string;
   minpixelwidth?: string;
+  numberofsections?: number;
   orientation?: SiteNaveItemOrientation;
   scrollbarwidth?: string;
   sitenavleft?: string
