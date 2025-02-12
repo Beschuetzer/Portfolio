@@ -11,7 +11,7 @@ const Content = styled.div<LayoutStyledProps>`
   align-items: start;
 `;
 
-const Section = styled.section<LayoutStyledProps>`  
+const Section = styled.section<LayoutStyledProps>`
   display: flex;
   flex-direction: column;
   align-items: start;

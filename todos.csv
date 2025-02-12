@@ -1,8 +1,7 @@
 
 refactor stuff:
   -page nav
-    --hard code the grid width for the first column
-    --add ellispsis for overflow cases
+    --figure out how to handle the urls section on the right
   -start ExampleLayout (use grid and have left column house the page nav)
   -start ResumeLayout?
   -start BridgeLayout?

@@ -11,6 +11,7 @@ const Layout = styled.div<LayoutStyledProps>`
   display: grid;
   grid-template-columns: 1fr ${SECTION_WIDTH_IN_PIXELS}px 1fr;
   background: ${(props) => props.colorscheme?.primary1};
+  background-image: url("${(props) => props.backgroundsvg}");
 
   ${respond.navSwitch`
     flex-direction: column;
@@ -22,16 +23,23 @@ const Layout = styled.div<LayoutStyledProps>`
 
 type ExampleLayoutProps = {
   children: React.ReactNode | React.ReactNode[];
+  backgroundSvg?: string;
+  urls?: {
+    code?: string;
+    demo?: string;
+    liveSite?: string;
+  }
 };
 
 export function PageNavLayout(props: ExampleLayoutProps) {
-  const { children } = props;
+  const { children, backgroundSvg = '', urls } = props;
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = useMemo(
     () => ({
       colorscheme: colorScheme != null ? colorScheme : undefined,
+      backgroundsvg: backgroundSvg,
     }),
-    [colorScheme]
+    [backgroundSvg, colorScheme]
   );
 
   return (
