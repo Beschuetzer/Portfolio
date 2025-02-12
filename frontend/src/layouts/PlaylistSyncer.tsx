@@ -12,8 +12,6 @@ import {
   getFontSizeCustom,
 } from "../styles/constants";
 import { OS_10_ISSUE_TRACKER_URL } from "../components/constants";
-import { EmbeddedLink } from "../components/EmbeddedLink";
-import Paragraph from "../typography/Paragraph";
 
 type PlaylistSyncerPageProps = {};
 
@@ -62,17 +60,18 @@ const SectionHeader = styled.h3<LayoutStyledProps>`
 `;
 
 const SectionContent = styled.div<LayoutStyledProps>`
-  padding: ${SIDE_PADDING};
+  padding: 0 ${SIDE_PADDING} ${SIDE_PADDING} ${SIDE_PADDING};
   display: flex;
   flex-direction: column;
   align-items: start;
   width: 100%;
 `;
 
-const PARAGRAPH = styled.p<LayoutStyledProps>`
+const Paragraph = styled.p<LayoutStyledProps>`
   font-size: ${fontSizeFive};
-  font-family
+  font-family: Open Sans, sans-serif;
   color: ${(props) => props.colorscheme?.primary1};
+  margin-top: ${SIDE_PADDING};
 `;
 
 type SectionProps = { name: string; content: ReactNode | ReactNode[] };
@@ -81,16 +80,16 @@ const SECTIONS: SectionProps[] = [
     name: "Background",
     content: (
       <>
-        <PARAGRAPH>
+        <Paragraph>
           Around the end of Febraury 2020, Samsung updated their Android OS to
           version 10.&nbsp; Eager to check out the newest Android OS, I promptly
-          updated.&nbsp; Unfortunately, the update
-          <EmbeddedLink href={OS_10_ISSUE_TRACKER_URL}>
+          updated.&nbsp; Unfortunately, the update&nbsp;
+          <a href={OS_10_ISSUE_TRACKER_URL}>
             broke my ability to sync music and playlists
-          </EmbeddedLink>
-          to my Galaxy S9+ phone.&nbsp;
-        </PARAGRAPH>
-        <Paragraph size="four" classNameToAdd="margin-top-1">
+          </a>
+          &nbsp; to my Galaxy S9+ phone.&nbsp;
+        </Paragraph>
+        <Paragraph>
           Thinking it would get resolved in a prompt manner, I waited a few
           months.&nbsp; In the meantime, I looked into other ways of easily
           syncing music/playlists to my phone.&nbsp; After looking for over a
