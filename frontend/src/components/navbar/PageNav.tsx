@@ -45,7 +45,7 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
     grid-template-columns: repeat(auto-fill, minmax(${(
       props: SiteNavStyledProps
     ) => props.minpixelwidth}, 1fr));
-    padding: 0 calc(${BUTTON_WIDTH} + ${SITE_NAV_NAV_SWITCH_TOP});
+    margin: 0 calc(${BUTTON_WIDTH} + ${SITE_NAV_NAV_SWITCH_TOP});
     ${navbarHeaderNavSwitchHeightStyles}
   `}
 `;
