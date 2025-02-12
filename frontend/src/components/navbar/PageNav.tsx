@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./sitenav/types";
 import {
   BUTTON_WIDTH,
+  fontSizeFive,
   fontSizeSix,
   fontSizeTen,
   SITE_NAV_NAV_SWITCH_TOP,
@@ -78,7 +79,7 @@ const Item = styled(Link)<SiteNavStyledProps>`
   }
 
   ${respond.navSwitch`
-    font-size: 1.75vw;
+    font-size: 1.66vw;
     height: auto;
     padding: 0;
   `}
