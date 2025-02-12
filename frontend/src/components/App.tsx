@@ -49,17 +49,16 @@ import {
   ReplayViewer,
   Home,
   Resume,
+  PlaylistSyncer,
 } from "../pages";
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
 import { Redirect } from "../pages/Redirect";
-import { NavbarHeader } from "./navbar/NavbarHeader";
 import { SCROLL_BAR_WIDTH_IN_REM } from "../styles/constants";
 import { PlaylistSyncerPage } from "../layouts/PlaylistSyncer";
 
 type AppProps = {};
 
 export const App: React.FC<AppProps> = (props) => {
-
   // //Loading Sounds, etc
   // useEffect(() => {
   // 	const sounds = new Howl({
@@ -77,97 +76,93 @@ export const App: React.FC<AppProps> = (props) => {
   // }, [setSounds]);
 
   return (
-    <>
       <Router history={history}>
-        <NavbarHeader>
-          {/* <PageNav /> */}
-          <SiteNav
-            scrollBarWidth={`${SCROLL_BAR_WIDTH_IN_REM}rem`}
-            items={[
-              {
-                text: "Résumé",
-                isDropdownItem: true,
-                drownDownItems: [
-                  {
-                    text: "Overview",
-                    to: `${RESUME_URL}#overview`,
-                    image: resume1,
-                  },
-                  {
-                    text: "Skills",
-                    to: `${RESUME_URL}#skills`,
-                    image: resume2,
-                  },
-                  {
-                    text: "Work History",
-                    to: `${RESUME_URL}#work-history`,
-                    image: resume3,
-                  },
-                  {
-                    text: "Education",
-                    to: `${RESUME_URL}#education`,
-                    image: resume4,
-                  },
-                  {
-                    text: "References",
-                    to: `${RESUME_URL}#references`,
-                    image: resume5,
-                  },
-                ],
-              },
-              {
-                text: "About",
-                isDropdownItem: true,
-                drownDownItems: [
-                  {
-                    text: "Overview",
-                    to: `${ABOUT_URL}#overview`,
-                    image: about1,
-                  },
-                  {
-                    text: "Interests",
-                    to: `${ABOUT_URL}#interests`,
-                    image: about2,
-                  },
-                  { text: "Music", to: `${ABOUT_URL}#music`, image: about3 },
-                  {
-                    text: "Personality",
-                    to: `${PERSONALITY_URL}`,
-                    image: about4,
-                  },
-                ],
-              },
-              {
-                text: "Projects",
-                isDropdownItem: true,
-                drownDownItems: [
-                  { text: "A# Maj Bridge", to: BRIDGE_URL, image: bridgeImage },
-                  {
-                    text: "Replay Viewer",
-                    to: REPLAY_VIEWER_URL,
-                    image: replayImage,
-                  },
-                  {
-                    text: "Downloader",
-                    to: DOWNLOADER_URL,
-                    image: downloaderImage,
-                  },
-                  {
-                    text: "Syncer",
-                    to: PLAYLIST_SYNCER_URL,
-                    image: syncerImage,
-                  },
-                ],
-              },
-              {
-                text: "Contact",
-                href: `mailto:${EMAIL}`,
-                isDropdownItem: false,
-                image: contactImage,
-              },
-            ]}
-          />
-        </NavbarHeader>
+        <SiteNav
+          scrollBarWidth={`${SCROLL_BAR_WIDTH_IN_REM}rem`}
+          items={[
+            {
+              text: "Résumé",
+              isDropdownItem: true,
+              drownDownItems: [
+                {
+                  text: "Overview",
+                  to: `${RESUME_URL}#overview`,
+                  image: resume1,
+                },
+                {
+                  text: "Skills",
+                  to: `${RESUME_URL}#skills`,
+                  image: resume2,
+                },
+                {
+                  text: "Work History",
+                  to: `${RESUME_URL}#work-history`,
+                  image: resume3,
+                },
+                {
+                  text: "Education",
+                  to: `${RESUME_URL}#education`,
+                  image: resume4,
+                },
+                {
+                  text: "References",
+                  to: `${RESUME_URL}#references`,
+                  image: resume5,
+                },
+              ],
+            },
+            {
+              text: "About",
+              isDropdownItem: true,
+              drownDownItems: [
+                {
+                  text: "Overview",
+                  to: `${ABOUT_URL}#overview`,
+                  image: about1,
+                },
+                {
+                  text: "Interests",
+                  to: `${ABOUT_URL}#interests`,
+                  image: about2,
+                },
+                { text: "Music", to: `${ABOUT_URL}#music`, image: about3 },
+                {
+                  text: "Personality",
+                  to: `${PERSONALITY_URL}`,
+                  image: about4,
+                },
+              ],
+            },
+            {
+              text: "Projects",
+              isDropdownItem: true,
+              drownDownItems: [
+                { text: "A# Maj Bridge", to: BRIDGE_URL, image: bridgeImage },
+                {
+                  text: "Replay Viewer",
+                  to: REPLAY_VIEWER_URL,
+                  image: replayImage,
+                },
+                {
+                  text: "Downloader",
+                  to: DOWNLOADER_URL,
+                  image: downloaderImage,
+                },
+                {
+                  text: "Syncer",
+                  to: PLAYLIST_SYNCER_URL,
+                  image: syncerImage,
+                },
+              ],
+            },
+            {
+              text: "Contact",
+              href: `mailto:${EMAIL}`,
+              isDropdownItem: false,
+              image: contactImage,
+            },
+          ]}
+        />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route
@@ -200,18 +195,26 @@ export const App: React.FC<AppProps> = (props) => {
           <Route path={BRIDGE_URL} exact component={Bridge} />
           <Route path={BRIDGE_DEMO_URL} exact component={BridgeDemo} />
           <Route path={DOWNLOADER_URL} exact component={Downloader} />
-          <Route path={PLAYLIST_SYNCER_URL} exact component={PlaylistSyncerPage} />
+          <Route
+            path={PLAYLIST_SYNCER_URL}
+            exact
+            component={PlaylistSyncer}
+          />
           <Route path={REPLAY_VIEWER_URL} exact component={ReplayViewer} />
           <Route path={AUTO_BID_URL} exact component={AutoBid} />
           <Route path={ABOUT_URL} exact component={About} />
           <Route path={RESUME_URL} exact component={Resume} />
           <Route path={PERSONALITY_URL} exact component={BigFive} />
+          <Route
+            path={"/test"}
+            exact
+            component={PlaylistSyncerPage}
+          />
           <Route path="*" exact component={Home} />
         </Switch>
 
         {/* <AudioPlayer /> */}
         {/* <Footer/> */}
       </Router>
-    </>
   );
 };

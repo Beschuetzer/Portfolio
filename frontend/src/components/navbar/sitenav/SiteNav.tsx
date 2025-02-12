@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
-import {
-  BUTTON_WIDTH,
-} from "../../../styles/constants";
+import { BUTTON_WIDTH } from "../../../styles/constants";
 
 import { styled } from "styled-components";
 import { SiteNavButton } from "./SiteNavButton";
@@ -15,6 +13,7 @@ import { SiteNavDrawer } from "./drawer/SiteNavDrawer";
 import { SiteNavItemInput, SiteNavStyledProps } from "./types";
 import { GithubButton } from "../GithubButton";
 import { buttonPlacementStyles } from "./styles";
+import { NavbarHeader } from "../NavbarHeader";
 
 const SiteNavContainer = styled.header<SiteNavStyledProps>`
   ${buttonPlacementStyles}
@@ -59,13 +58,15 @@ export function SiteNav(props: SiteNavProps) {
       items={items}
       scrollBarWidth={scrollBarWidth}
     >
-      <SiteNavContainer sitenavleft={siteNavleft}>
-        <SiteNavButton />
-        <SiteNavContent />
-        <SiteNavBackground />
-        <SiteNavDrawer />
-      </SiteNavContainer>
-      <GithubButton />
+      <NavbarHeader>
+        <SiteNavContainer sitenavleft={siteNavleft}>
+          <SiteNavButton />
+          <SiteNavContent />
+          <SiteNavBackground />
+          <SiteNavDrawer />
+        </SiteNavContainer>
+        <GithubButton />
+      </NavbarHeader>
     </SiteNavProvider>
   );
 }

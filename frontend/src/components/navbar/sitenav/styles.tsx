@@ -1,5 +1,6 @@
 import { css } from "styled-components";
 import {
+  BUTTON_WIDTH,
   defaultFontSize,
   fontSizeFive,
   fontSizeSeven,
@@ -72,4 +73,8 @@ export const itemTransformStyles = css<SiteNavStyledProps & { index: number }>`
   ${(props) => (props.isopen ? `transition: transform 0.5s ease;` : "")}
   transition-delay: ${(props) =>
     props.isopen ? `${props.index * 0.05 + 0}s` : "0"};
+`;
+
+export const navbarHeaderNavSwitchHeightStyles = css<SiteNavStyledProps>`
+  height: calc(${SITE_NAV_NAV_SWITCH_TOP} * 2 + ${BUTTON_WIDTH});
 `;
