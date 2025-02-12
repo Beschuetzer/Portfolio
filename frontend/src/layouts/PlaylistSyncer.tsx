@@ -136,7 +136,6 @@ const SECTIONS: SectionProps[] = [
           container: {
             style: {
               borderRadius: 0,
-              width: '100%',
             },
           },
           thumbnail: {
@@ -161,6 +160,11 @@ const SECTIONS: SectionProps[] = [
             currentItemBorder: `2px dotted ${COLORS[PLAYLIST_SYNCER_URL]?.primary4}`,
           },
           styling: {
+            container: {
+              margin: {
+                top: 4,
+              }
+            },
             colorTheme: {
               colorOne: COLORS[PLAYLIST_SYNCER_URL]?.primary1,
               colorTwo: COLORS[PLAYLIST_SYNCER_URL]?.primary2,
