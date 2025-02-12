@@ -50,6 +50,7 @@ export const bigDesktopMinWidth = "112.5em";
 
 //#region Colors
 export type ColorScheme = {
+    greyOne?: string;
     primary1: string;
     primary2: string;
     primary3: string;
@@ -78,13 +79,15 @@ export type ColorScheme = {
     } & ColorScheme;
   };
 
-export const colors: Colors = {
+export const COLORS: Colors = {
   [ABOUT_URL]: {
     primary1: "#161616",
     primary2: "#c84b31",
     primary3: "#31C9B0",
     primary4: "#ecdbba",
     primaryRed: "#c84b31",
+    greyOne: "#ddd",
+
   },
   [AUTO_BID_URL]: {
     primary1: "#e6e6e6",
@@ -123,6 +126,7 @@ export const colors: Colors = {
     sectionSvg4: "#112d4edb",
   },
   general: {
+    greyOne: "#333",
     greyLight1: "#faf9f9",
     greyLight2: "#f3f1f1",
     greyLight3: "#f1efef",
