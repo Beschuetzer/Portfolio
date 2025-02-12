@@ -3,8 +3,8 @@ import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./sitenav/types";
 import {
   BUTTON_WIDTH,
-  fontSizeNine,
   fontSizeSix,
+  fontSizeTen,
   SITE_NAV_NAV_SWITCH_TOP,
   SITE_NAV_TOP,
 } from "../../styles/constants";
@@ -15,10 +15,12 @@ import { useColorScheme } from "../../hooks/useColorScheme";
 import { navbarHeaderNavSwitchHeightStyles } from "./sitenav/styles";
 import { useOnWindowResize } from "../../hooks/useOnWindowResize";
 
+const ITEM_HEIGHT = fontSizeTen;
+
 const PaddingOffset = styled.div<SiteNavStyledProps>`
   ${(props) =>
     props.numberofsections != null
-      ? `padding-top: calc(50vh - ${fontSizeNine} * ${props.numberofsections / 2} + (calc(${SITE_NAV_TOP} + ${BUTTON_WIDTH}) / 2));`
+      ? `padding-top: calc(50vh - ${ITEM_HEIGHT} * ${props.numberofsections / 2} + (calc(${SITE_NAV_TOP} + ${BUTTON_WIDTH}) / 2));`
       : ""}
 
   ${respond.navSwitch`
@@ -33,8 +35,7 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
   justify-content: center;
   border-radius: 1rem;
   position: sticky;
-  top: calc(${SITE_NAV_TOP} * 2 + ${BUTTON_WIDTH});
-  z-index: 1000000;
+  top: calc(${SITE_NAV_TOP} * 2 + ${BUTTON_WIDTH} - ${ITEM_HEIGHT} / 2.75);
   text-align: center;
 
   ${respond.navSwitch`
@@ -47,6 +48,7 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
       props: SiteNavStyledProps
     ) => props.minpixelwidth}, 1fr));
     margin: 0 calc(${BUTTON_WIDTH} + ${SITE_NAV_NAV_SWITCH_TOP});
+    z-index: 1000000;
     ${navbarHeaderNavSwitchHeightStyles}
   `}
 `;
@@ -58,7 +60,7 @@ const Item = styled(Link)<SiteNavStyledProps>`
   transition: all 0.25s ease;
   text-decoration: none;
   font-weight: bold;
-  height: ${fontSizeNine};
+  height: ${ITEM_HEIGHT};
   display: flex;
   align-items: center;
   justify-content: center;
