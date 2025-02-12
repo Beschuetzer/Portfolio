@@ -1,5 +1,5 @@
 import React from "react";
-import { ExampleLayout } from "./ExampleLayout";
+import { PageNavLayout } from "./PageNavLayout";
 import styled from "styled-components";
 import { LayoutStyledProps } from "./types";
 
@@ -20,7 +20,7 @@ const Section = styled.section<LayoutStyledProps>`
 
 export function PlaylistSyncerPage(props: PlaylistSyncerPageProps) {
   return (
-    <ExampleLayout>
+    <PageNavLayout>
       <Content>
         <Section id="test">Test</Section>
         <Section id="overview-section-two">This is a long name</Section>
@@ -30,6 +30,6 @@ export function PlaylistSyncerPage(props: PlaylistSyncerPageProps) {
         <Section id="test6">test6</Section>
         <Section id="test7">test7</Section>
       </Content>
-    </ExampleLayout>
+    </PageNavLayout>
   );
 }

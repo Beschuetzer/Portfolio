@@ -24,7 +24,7 @@ type ExampleLayoutProps = {
   children: React.ReactNode | React.ReactNode[];
 };
 
-export function ExampleLayout(props: ExampleLayoutProps) {
+export function PageNavLayout(props: ExampleLayoutProps) {
   const { children } = props;
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = useMemo(
