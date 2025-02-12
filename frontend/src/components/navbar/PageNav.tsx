@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./sitenav/types";
 import {
@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { respond } from "../../styles/breakpoints";
 import { useColorScheme } from "../../hooks/useColorScheme";
 import { navbarHeaderNavSwitchHeightStyles } from "./sitenav/styles";
+import { useOnWindowResize } from "../../hooks/useOnWindowResize";
 
 const PaddingOffset = styled.div<
   SiteNavStyledProps & { numberofsections?: number }
@@ -41,7 +42,9 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
     left:0;
     right: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(${(
+      props: SiteNavStyledProps
+    ) => props.minpixelwidth}, 1fr));
     padding: 0 calc(${BUTTON_WIDTH} + ${SITE_NAV_NAV_SWITCH_TOP});
     ${navbarHeaderNavSwitchHeightStyles}
   `}
@@ -72,9 +75,18 @@ type PageNavProps = {};
 export function PageNav(props: PageNavProps) {
   const colorScheme = useColorScheme();
   const [sections, setSections] = useState<Element[]>([]);
-  const propsToAdd: SiteNavStyledProps = {
-    colorscheme: colorScheme != null ? colorScheme : undefined,
-  };
+  const [minPixelWidth, setMinPixelWidth] = useState("187px");
+  const propsToAdd: SiteNavStyledProps = useMemo(
+    () => ({
+      colorscheme: colorScheme != null ? colorScheme : undefined,
+      minpixelwidth: minPixelWidth,
+    }),
+    [colorScheme, minPixelWidth]
+  );
+
+  const onResize = useCallback(() => {
+    setMinPixelWidth(`calc((${window.innerWidth}px - ${BUTTON_WIDTH} * 2 - ${SITE_NAV_NAV_SWITCH_TOP} * 2) / ${sections.length})`);
+  }, [sections.length]);
 
   useEffect(() => {
     const elementsWithId = Array.from(document.querySelectorAll("[id]"));
@@ -86,6 +98,7 @@ export function PageNav(props: PageNavProps) {
       elementsWithId.filter((element) => element.id && element.id !== "root")
     );
   }, []);
+  useOnWindowResize(onResize);
 
   return (
     <PaddingOffset>
