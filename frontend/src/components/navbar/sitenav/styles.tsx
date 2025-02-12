@@ -13,6 +13,7 @@ import { SiteNavStyledProps } from "./types";
 import { respond } from "../../../styles/breakpoints";
 import { SITE_NAV_NAV_SWITCH_TOP } from "../../../styles/constants";
 
+export const NAVBAR_HEADER_NAV_SWITCH_HEIGHT = `calc(${SITE_NAV_NAV_SWITCH_TOP} * 2 + ${BUTTON_WIDTH})`;
 export const buttonPlacementStyles = css<SiteNavStyledProps>`
   position: absolute;
   top: ${SITE_NAV_TOP};
@@ -76,5 +77,5 @@ export const itemTransformStyles = css<SiteNavStyledProps & { index: number }>`
 `;
 
 export const navbarHeaderNavSwitchHeightStyles = css<SiteNavStyledProps>`
-  height: calc(${SITE_NAV_NAV_SWITCH_TOP} * 2 + ${BUTTON_WIDTH});
+  height: ${NAVBAR_HEADER_NAV_SWITCH_HEIGHT};
 `;
