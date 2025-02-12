@@ -40,6 +40,7 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
   position: sticky;
   top: calc(${SITE_NAV_TOP} * 2 + ${BUTTON_WIDTH} - ${ITEM_HEIGHT} / 2.75);
   text-align: center;
+  user-select: none;
 
   ${respond.navSwitch`
     position: fixed;
@@ -47,6 +48,7 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
     left:0;
     right: 0;
     display: grid;
+    column-gap: 1vw;
     grid-template-columns: repeat(${(props: SiteNavStyledProps) =>
       props.minpixelwidth}, 1fr);
     margin: 0 calc(${BUTTON_WIDTH} + ${SITE_NAV_NAV_SWITCH_TOP});
