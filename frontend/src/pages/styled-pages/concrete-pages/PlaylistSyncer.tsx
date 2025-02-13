@@ -261,6 +261,15 @@ export function PlaylistSyncer(props: PlaylistSyncerProps) {
                 xlinkHref: `/sprite.svg#icon-code`,
             }
           },
+        //   {
+        //     title: {
+        //         text: "Test",
+        //     },
+        //     url: ABOUT_URL,
+        //     svg: {
+        //         xlinkHref: `/sprite.svg#icon-code`,
+        //     }
+        //   },
         ],
       }}
     />

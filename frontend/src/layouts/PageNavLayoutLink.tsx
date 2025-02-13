@@ -13,47 +13,65 @@ import {
 } from "../components/navbar/sitenav/helpers";
 import { useOnWindowResize } from "../hooks/useOnWindowResize";
 import { LayoutStyledProps } from "./types";
+import { pageNavLayoutLinkStyles } from "./styles";
+import { PAGE_NAVE_LAYOUT_LINK_ON_HOVER_FILL } from "./constants";
 
 const Container = styled.div<LayoutStyledProps>`
   position: fixed;
   top: calc(
-    ${SITE_NAV_TOP} + ${BUTTON_WIDTH} + ${(props) => props.index || 1} *
-      ${defaultFontSize}
+    ${SITE_NAV_TOP} + ${BUTTON_WIDTH} +
+      (${(props) => (props.index || 0) + 1} * ${defaultFontSize})
   );
   left: ${(props) => props.sitenavright || SITE_NAV_TOP};
   width: ${BUTTON_WIDTH};
   height: ${BUTTON_WIDTH};
-`;
+  user-select: none;
 
-const LinkInternal = styled(Link)<LayoutStyledProps>`
-  color: ${(props) => props.colorscheme?.primary4};
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  transition: background-color 0.3s;
   &:hover {
-    background-color: ${(props) => props.colorscheme?.primary3};
+    & > * > svg {
+      fill: ${(props) => hexToRgba(props.svgfillcolor, PAGE_NAVE_LAYOUT_LINK_ON_HOVER_FILL)};
+    }
+    & > span {
+      transform: rotate(270deg) translate(25%, calc(${BUTTON_WIDTH} / 4));
+    }
   }
 `;
 
-const LinkExternal = styled.a<LayoutStyledProps>``;
+const LinkInternal = styled(Link)<LayoutStyledProps>`
+  ${pageNavLayoutLinkStyles}
+`;
+
+const LinkExternal = styled.a<LayoutStyledProps>`
+  ${pageNavLayoutLinkStyles}
+`;
 
 const Svg = styled.svg<LayoutStyledProps>`
   height: 100%;
   width: 100%;
   transition: fill 0.25s;
-  fill: ${(props) => hexToRgba(props.svgfillcolor, 0.75)};
+  fill: ${(props) => hexToRgba(props.svgfillcolor, 0.25)};
+`;
 
-  &:hover {
-    fill: ${(props) => hexToRgba(props.svgfillcolor, 1)};
-  }
+const Use = styled.use`
+  height: 100%;
+  width: 100%;
 `;
 
 const Title = styled.span<LayoutStyledProps>`
-  margin-left: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: ${(props) => props.textcolor};
+  background-color: ${(props) => hexToRgba(props.colorscheme?.primary1, 0.1)};
+  font-family: Merriweather, serif;
+  font-size: ${defaultFontSize};
+  font-weight: 900;
+  border-radius: 50%;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  z-index: 10000;
+  transition: transform 0.125s;
 `;
 
 export type PageNavLayoutLinkProps = {
@@ -87,6 +105,8 @@ export function PageNavLayoutLink(props: PageNavLayoutLinkProps) {
     [color, colorScheme, fill, index, siteNavRight]
   );
 
+  console.log({ index, title, url });
+
   const onResize = useCallback(() => {
     setSiteNavRight(getAbsoluteRightPosition());
   }, [setSiteNavRight]);
@@ -96,15 +116,15 @@ export function PageNavLayoutLink(props: PageNavLayoutLinkProps) {
   const renderSvg = useCallback(
     () => (
       <Svg {...propsToAdd}>
-        <Title {...propsToAdd}>{text}</Title>
-        <use xlinkHref={xlinkHref} />
+        <Use xlinkHref={xlinkHref} />
       </Svg>
     ),
-    [propsToAdd, text, xlinkHref]
+    [propsToAdd, xlinkHref]
   );
 
   return (
     <Container {...propsToAdd}>
+      <Title {...propsToAdd}>{text}</Title>
       {isInternal ? (
         <LinkInternal {...propsToAdd} to={url.trim()}>
           {renderSvg()}

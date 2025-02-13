@@ -1,0 +1,1 @@
+export const PAGE_NAVE_LAYOUT_LINK_ON_HOVER_FILL = 0.5;
