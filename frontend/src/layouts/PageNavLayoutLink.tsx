@@ -12,9 +12,13 @@ import {
   hexToRgba,
 } from "../components/navbar/sitenav/helpers";
 import { useOnWindowResize } from "../hooks/useOnWindowResize";
-import { LayoutStyledProps } from "./types";
-import { pageNavLayoutLinkStyles } from "./styles";
-import { PAGE_NAVE_LAYOUT_LINK_ON_HOVER_FILL } from "./constants";
+import { HoverEffect, LayoutStyledProps } from "./types";
+import {
+  pageNavLayoutLinkHoverExplodeStyle,
+  pageNavLayoutLinkHoverRotateStyle,
+  pageNavLayoutLinkStyles,
+} from "./styles";
+import { PAGE_NAV_LAYOUT_LINK_FILL, PAGE_NAV_LAYOUT_LINK_TEXT_BACKGROUND_COLOR_OPACITY, PAGE_NAV_LAYOUT_LINK_TEXT_COLOR_OPACITY } from "./constants";
 
 const Container = styled.div<LayoutStyledProps>`
   position: fixed;
@@ -27,14 +31,10 @@ const Container = styled.div<LayoutStyledProps>`
   height: ${BUTTON_WIDTH};
   user-select: none;
 
-  &:hover {
-    & > * > svg {
-      fill: ${(props) => hexToRgba(props.svgfillcolor, PAGE_NAVE_LAYOUT_LINK_ON_HOVER_FILL)};
-    }
-    & > span {
-      transform: rotate(270deg) translate(25%, calc(${BUTTON_WIDTH} / 4));
-    }
-  }
+  ${(props) =>
+    props.hovereffecttype === HoverEffect.rotate
+      ? pageNavLayoutLinkHoverRotateStyle
+      : pageNavLayoutLinkHoverExplodeStyle}
 `;
 
 const LinkInternal = styled(Link)<LayoutStyledProps>`
@@ -48,8 +48,7 @@ const LinkExternal = styled.a<LayoutStyledProps>`
 const Svg = styled.svg<LayoutStyledProps>`
   height: 100%;
   width: 100%;
-  transition: fill 0.25s;
-  fill: ${(props) => hexToRgba(props.svgfillcolor, 0.25)};
+  fill: ${(props) => hexToRgba(props.svgfillcolor, PAGE_NAV_LAYOUT_LINK_FILL)};
 `;
 
 const Use = styled.use`
@@ -62,8 +61,8 @@ const Title = styled.span<LayoutStyledProps>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: ${(props) => props.textcolor};
-  background-color: ${(props) => hexToRgba(props.colorscheme?.primary1, 0.1)};
+  color: ${(props) => hexToRgba(props.textcolor, PAGE_NAV_LAYOUT_LINK_TEXT_COLOR_OPACITY)};
+  background-color: ${(props) => hexToRgba(props.colorscheme?.primary1, PAGE_NAV_LAYOUT_LINK_TEXT_BACKGROUND_COLOR_OPACITY)};
   font-family: Merriweather, serif;
   font-size: ${defaultFontSize};
   font-weight: 900;
@@ -71,11 +70,13 @@ const Title = styled.span<LayoutStyledProps>`
   padding: 0.35rem 0.7rem;
   cursor: pointer;
   z-index: 10000;
-  transition: transform 0.125s;
+  text-wrap: nowrap;
+  text-align: center;
 `;
 
 export type PageNavLayoutLinkProps = {
   index: number;
+  hoverEffectType?: HoverEffect;
   svg: {
     xlinkHref: string;
     fill?: string;
@@ -89,7 +90,13 @@ export type PageNavLayoutLinkProps = {
 
 export function PageNavLayoutLink(props: PageNavLayoutLinkProps) {
   const colorScheme = useColorScheme();
-  const { index, svg, title, url } = props;
+  const {
+    hoverEffectType = HoverEffect.explode,
+    index,
+    svg,
+    title,
+    url,
+  } = props;
   const { xlinkHref, fill = colorScheme.primary4 } = svg;
   const { color = colorScheme.primary4, text } = title;
   const isInternal = useMemo(() => url.startsWith("/"), [url]);
@@ -101,11 +108,12 @@ export function PageNavLayoutLink(props: PageNavLayoutLinkProps) {
       sitenavright: siteNavRight,
       textcolor: color,
       svgfillcolor: fill,
+      hovereffecttype: hoverEffectType,
     }),
-    [color, colorScheme, fill, index, siteNavRight]
+    [color, colorScheme, fill, hoverEffectType, index, siteNavRight]
   );
 
-  console.log({ index, title, url });
+  console.log({ hoverEffectType, index, title, url });
 
   const onResize = useCallback(() => {
     setSiteNavRight(getAbsoluteRightPosition());

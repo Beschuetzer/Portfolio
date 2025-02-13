@@ -12,7 +12,7 @@ import {
 import { Quote } from "../../../components/Quote";
 import { CSharpCardSection } from "../../examples";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
-import { LayoutStyledProps } from "../../../layouts/types";
+import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";
 
 import img1 from "../../../imgs/playlist-syncer/img1.png";
 import imgProblem from "../../../imgs/playlist-syncer/img-problem.jpg";
@@ -254,12 +254,13 @@ export function PlaylistSyncer(props: PlaylistSyncerProps) {
         links: [
           {
             title: {
-                text: "Code",
+                text: "Live Url",
             },
             url: `${GITHUB_URL}/${PLAYLIST_SYNCER_PAGE_NAME}`,
             svg: {
                 xlinkHref: `/sprite.svg#icon-code`,
-            }
+            },
+            hoverEffectType: HoverEffect.explode,
           },
         //   {
         //     title: {

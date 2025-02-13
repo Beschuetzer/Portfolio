@@ -10,11 +10,11 @@ import {
 } from "../../styles/constants";
 
 import { respond } from "../../styles/breakpoints";
-import { hexToRgba } from "../../components/navbar/sitenav/helpers";
 import { SIDE_PADDING } from "./constants";
 import { ExamplePageSection } from "./ExamplePageSection";
 import { ExamplePageSectionContent } from "./ExamplePageSectionContent";
 import { ExamplePageSectionHeader } from "./ExamplePageSectionHeader";
+import { textShadowStyle } from "../../styles/styles";
 
 
 const Content = styled.div<LayoutStyledProps>`
@@ -36,10 +36,7 @@ const Header = styled.h2<LayoutStyledProps>`
   align-items: center;
   justify-content: center;
   margin-bottom: ${SIDE_PADDING};
-  text-shadow: 0 4px 3px
-      ${(props) => hexToRgba(props.colorscheme?.primary3, 0.4)},
-    0 8px 13px ${(props) => hexToRgba(props.colorscheme?.primary3, 0.1)},
-    0 18px 23px ${(props) => hexToRgba(props.colorscheme?.primary3, 0.1)};
+  ${textShadowStyle}
 `;
 
 type ExamplePageProps = {
