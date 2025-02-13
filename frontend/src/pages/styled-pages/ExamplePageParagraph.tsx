@@ -9,7 +9,7 @@ const Paragraph = styled.p<LayoutStyledProps>`
   font-size: ${FONT_SIZE};
   font-family: Open Sans, sans-serif;
   color: ${(props) => props.colorscheme?.primary1};
-  margin-top: calc(${SIDE_PADDING} / 2);
+  margin-top: ${SIDE_PADDING};
 `;
 
 export function ExamplePageParagraph(props: StyledPageProps) {

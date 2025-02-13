@@ -4,6 +4,7 @@ import { respond } from "../../styles/breakpoints";
 import { SiteNavStyledProps } from "./sitenav/types";
 import { useColorScheme } from "../../hooks/useColorScheme";
 import { navbarHeaderNavSwitchHeightStyles } from "./sitenav/styles";
+import { hexToRgba } from "./sitenav/helpers";
 
 type NavbarHeaderProps = {
   children?: React.ReactNode | React.ReactNode[];
@@ -17,10 +18,8 @@ const NavbarHeaderNav = styled.nav<SiteNavStyledProps>`
 
   ${respond.navSwitch`
     background-color: ${(props: SiteNavStyledProps) =>
-      props.colorscheme?.primary1};
+      hexToRgba(props.colorscheme?.primary4, .875)};
     border-radius: 0;
-    border-bottom: 1px solid
-      ${(props: SiteNavStyledProps) => props.colorscheme?.primary4};
     ${navbarHeaderNavSwitchHeightStyles}
   `}  
 `;

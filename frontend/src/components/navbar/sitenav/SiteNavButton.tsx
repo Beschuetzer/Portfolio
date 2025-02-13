@@ -41,8 +41,10 @@ const StyledNav = styled.button<SiteNavStyledProps>`
 
   ${respond.navSwitch`
       border-radius: ${defaultFontSize};
+      background-color: ${(props: SiteNavStyledProps) =>
+        props.colorscheme?.primary1};
       opacity: ${(props: SiteNavStyledProps) => (props.isopen ? 1 : 0.5)};
-      `}
+  `}
 `;
 
 const Hamburger = styled.div<SiteNavStyledProps>`
@@ -81,6 +83,17 @@ const Hamburger = styled.div<SiteNavStyledProps>`
     ${(props) =>
       props.isopen ? ` transform: rotate(-105deg) translate(1.353786rem);` : ""}
   }
+
+  ${respond.navSwitch`
+    background-color: ${(props: SiteNavStyledProps) =>
+      props.colorscheme?.primary4};
+
+    &::before,
+    &::after {
+      background-color: ${(props: SiteNavStyledProps) =>
+        props.colorscheme?.primary4};
+    }
+  `}
 `;
 
 type SiteNavButtonProps = {

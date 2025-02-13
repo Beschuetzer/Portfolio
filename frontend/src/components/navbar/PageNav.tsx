@@ -3,8 +3,10 @@ import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./sitenav/types";
 import {
   BUTTON_WIDTH,
+  fontSizeFive,
   fontSizeSix,
   fontSizeTen,
+  getFontSizeCustom,
   SITE_NAV_NAV_SWITCH_TOP,
   SITE_NAV_TOP,
 } from "../../styles/constants";
@@ -73,15 +75,21 @@ const Item = styled(Link)<SiteNavStyledProps>`
   color: ${(props) => hexToRgba(props.colorscheme?.primary4, 0.75)};
 
   &:hover {
-    transform: translateY(-0.25vw);
+    transform: translateY(${getFontSizeCustom(-0.25)});
     ${getTextShadowPageNavStyle(-2)}
     color: ${(props) => props.colorscheme?.primary4};
   }
 
   ${respond.navSwitch`
-    font-size: 1.66vw;
+    font-size: ${fontSizeFive};
     height: auto;
     padding: 0;
+    color: ${(props: SiteNavStyledProps) =>
+      hexToRgba(props.colorscheme?.primary1, 0.75)};
+
+    &:hover {
+      color: ${(props: SiteNavStyledProps) => props.colorscheme?.primary1};
+    }
   `}
 `;
 
@@ -122,7 +130,9 @@ export function PageNav(props: PageNavProps) {
       return;
     }
     setSections(
-      elementsWithId.filter((element) => element.id && !IDS_NOT_ALLOWED.includes(element.id))
+      elementsWithId.filter(
+        (element) => element.id && !IDS_NOT_ALLOWED.includes(element.id)
+      )
     );
   }, []);
   useOnWindowResize(onResize);

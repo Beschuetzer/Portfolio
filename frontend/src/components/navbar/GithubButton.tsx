@@ -35,7 +35,8 @@ const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
   transition: opacity 0.25s ease;
 
   &:hover {
-    & .svg-front, .github-text {
+    & .svg-front,
+    .github-text {
       opacity: 0;
     }
     & .svg-behind {
@@ -47,12 +48,13 @@ const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
       top: ${SITE_NAV_NAV_SWITCH_TOP};
       left: auto;
       right: ${SITE_NAV_NAV_SWITCH_TOP};
+      color: ${(props: SiteNavStyledProps) => props.colorscheme?.primary4};
 
       ${(props: SiteNavStyledProps) => (props.isopen ? "" : `opacity: .5;`)}
       &:hover {
         opacity: 1;
       }
-      `}
+  `}
 `;
 
 const Text = styled.span`
@@ -67,6 +69,10 @@ const Svg = styled.svg<SiteNavStyledProps>`
   width: 100%;
   height: 100%;
   z-index: -100;
+
+  ${respond.navSwitch`
+    fill: ${(props: SiteNavStyledProps) => props.colorscheme?.primary1};
+  `}
 `;
 
 const SvgBehind = styled.svg<SiteNavStyledProps>`
@@ -77,6 +83,10 @@ const SvgBehind = styled.svg<SiteNavStyledProps>`
   width: 100%;
   height: 100%;
   z-index: -100;
+
+  ${respond.navSwitch`
+    fill: ${(props: SiteNavStyledProps) => props.colorscheme?.primary1};
+  `}
 `;
 
 const Use = styled.use``;
