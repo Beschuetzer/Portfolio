@@ -34,10 +34,12 @@ import demoVideo_480p from "../clips/playlist-syncer/demo-480p.mp4";
 import demoVideoThumbnail from "../clips/playlist-syncer/demo-thumbnail.png";
 import { Carousel } from "react-thumbnail-carousel";
 import { CSharpCardSection } from "../pages";
+import { Quote } from "../components/Quote";
 
 type PlaylistSyncerPageProps = {};
 
 const SIDE_PADDING = getFontSizeCustom(2);
+const INTER_SECTION_PADDING = getFontSizeCustom(4);
 
 const Content = styled.div<LayoutStyledProps>`
   display: flex;
@@ -53,6 +55,8 @@ const Header = styled.h2<LayoutStyledProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: ${SIDE_PADDING};
+
 `;
 
 const Section = styled.section<LayoutStyledProps>`
@@ -63,7 +67,8 @@ const Section = styled.section<LayoutStyledProps>`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  margin-top: ${getFontSizeCustom(4)};
+  margin-bottom: ${INTER_SECTION_PADDING};
+  overflow: hidden;
 `;
 
 const SectionHeader = styled.h3<LayoutStyledProps>`
@@ -262,6 +267,25 @@ const SECTIONS: SectionProps[] = [
           },
         ]}
       />
+    ),
+  },
+  {
+    name: "Problem",
+    content: (
+      <>
+        <Quote author="Charles Kettering" className="padding-top-1">
+          A problem well-stated is a problem half-solved;
+        </Quote>
+        <Paragraph>
+          It was clear from the experiences others were having that the problem
+          stemmed from how Android 10 handled the playlist information with
+          regards to the media database.&nbsp; After doing some more digging, I
+          came across a workaround that involved simple filename path
+          changes.&nbsp; After successfully trying this workaround out for
+          myself, I began thinking about how to integrate it into the app I was
+          planning on building.
+        </Paragraph>
+      </>
     ),
   },
 ];
