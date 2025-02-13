@@ -307,7 +307,7 @@ export function StyledPage(props: StyledPageProps) {
         ),
       },
     ],
-    [propsToAdd]
+    [colorScheme, propsToAdd]
   );
 
   return (
