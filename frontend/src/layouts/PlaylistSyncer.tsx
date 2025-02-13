@@ -61,7 +61,7 @@ const Header = styled.h2<LayoutStyledProps>`
 
 const Section = styled.section<LayoutStyledProps>`
   width: 100%;
-  border-radius: ${getFontSizeCustom(0.33)};
+  border-radius: 0 0 ${getFontSizeCustom(0.33)} ${getFontSizeCustom(0.33)};
   background: ${(props) => props.colorscheme?.primary3};
   display: flex;
   flex-direction: column;
@@ -270,7 +270,7 @@ const SECTIONS: SectionProps[] = [
     ),
   },
   {
-    name: "Problem",
+    name: "The Problem",
     content: (
       <>
         <Quote author="Charles Kettering" className="padding-top-1">
