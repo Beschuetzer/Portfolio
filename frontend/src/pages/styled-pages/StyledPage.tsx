@@ -42,9 +42,9 @@ import { CSharpCardSection } from "..";
 import { Quote } from "../../components/Quote";
 import { respond } from "../../styles/breakpoints";
 import { hexToRgba } from "../../components/navbar/sitenav/helpers";
-import { Section } from "../../components/Section";
 import { SIDE_PADDING } from "./constants";
 import { StyledPageSection } from "./StyledPageSection";
+import { StyledPageParagraph } from "./StyledPageParagraph";
 
 type StyledPageProps = {};
 
@@ -96,13 +96,6 @@ const SectionContent = styled.div<LayoutStyledProps>`
   width: 100%;
 `;
 
-const Paragraph = styled.p<LayoutStyledProps>`
-  font-size: ${fontSizeFive};
-  font-family: Open Sans, sans-serif;
-  color: ${(props) => props.colorscheme?.primary1};
-  margin-top: ${SIDE_PADDING};
-`;
-
 type SectionProps = {
   name: string;
   content: ReactNode | ReactNode[];
@@ -126,7 +119,7 @@ export function StyledPage(props: StyledPageProps) {
         name: "Background",
         content: (
           <>
-            <Paragraph {...propsToAdd}>
+            <StyledPageParagraph {...propsToAdd}>
               Around the end of Febraury 2020, Samsung updated their Android OS
               to version 10.&nbsp; Eager to check out the newest Android OS, I
               promptly updated.&nbsp; Unfortunately, the update&nbsp;
@@ -134,8 +127,8 @@ export function StyledPage(props: StyledPageProps) {
                 broke my ability to sync music and playlists
               </a>
               &nbsp; to my Galaxy S9+ phone.&nbsp;
-            </Paragraph>
-            <Paragraph {...propsToAdd}>
+            </StyledPageParagraph>
+            <StyledPageParagraph {...propsToAdd}>
               Thinking it would get resolved in a prompt manner, I waited a few
               months.&nbsp; In the meantime, I looked into other ways of easily
               syncing music/playlists to my phone.&nbsp; After looking for over
@@ -143,7 +136,7 @@ export function StyledPage(props: StyledPageProps) {
               the bug, I decided it would be an interesting programming exercise
               to create a simple application that could sync music and playlists
               to my phone.
-            </Paragraph>
+            </StyledPageParagraph>
           </>
         ),
       },
@@ -295,7 +288,7 @@ export function StyledPage(props: StyledPageProps) {
             <Quote author="Charles Kettering" className="padding-top-1">
               A problem well-stated is a problem half-solved;
             </Quote>
-            <Paragraph {...propsToAdd}>
+            <StyledPageParagraph {...propsToAdd}>
               It was clear from the experiences others were having that the
               problem stemmed from how Android 10 handled the playlist
               information with regards to the media database.&nbsp; After doing
@@ -303,7 +296,7 @@ export function StyledPage(props: StyledPageProps) {
               filename path changes.&nbsp; After successfully trying this
               workaround out for myself, I began thinking about how to integrate
               it into the app I was planning on building.
-            </Paragraph>
+            </StyledPageParagraph>
           </>
         ),
       },
@@ -311,7 +304,7 @@ export function StyledPage(props: StyledPageProps) {
         name: "The Approach",
         content: (
           <>
-            <Paragraph {...propsToAdd}>
+            <StyledPageParagraph {...propsToAdd}>
               First I needed to figure out how to sync music to an Android
               device. It turns out that the main way to do that is through a
               protocol called the &nbsp;
@@ -322,13 +315,13 @@ export function StyledPage(props: StyledPageProps) {
               <a href={DOWNLOADER_URL}>downloader</a>
               &nbsp;app I had recently started, I decided to use c# and WPF to
               create the playlist syncing app.
-            </Paragraph>
-            <Paragraph {...propsToAdd}>
+            </StyledPageParagraph>
+            <StyledPageParagraph {...propsToAdd}>
               Creating the application was fairly straight forward due to what I
               had already learned from the downloader after I had thoroughly
               understood the problem and had a firm grasp on how task factories
               work and async code in general.
-            </Paragraph>
+            </StyledPageParagraph>
           </>
         ),
       },

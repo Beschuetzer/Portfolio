@@ -8,11 +8,7 @@ import {
 } from "../../styles/constants";
 import { INTER_SECTION_PADDING } from "./constants";
 import { useColorScheme } from "../../hooks/useColorScheme";
-
-type StyledPageSectionProps = {
-  children: React.ReactNode | React.ReactNode[];
-  htmlAttributes?: React.HTMLAttributes<HTMLElement>;
-};
+import { StyledPageProps } from "./types";
 
 const Section = styled.section<LayoutStyledProps>`
   width: 100%;
@@ -33,7 +29,7 @@ const Section = styled.section<LayoutStyledProps>`
   `}
 `;
 
-export function StyledPageSection(props: StyledPageSectionProps) {
+export function StyledPageSection(props: StyledPageProps) {
   const colorScheme = useColorScheme();
   const { children, htmlAttributes: propsToSpread } = props;
   const propsToAdd = {
