@@ -18,14 +18,23 @@ import {
   pageNavLayoutLinkHoverRotateStyle,
   pageNavLayoutLinkStyles,
 } from "./styles";
-import { PAGE_NAV_LAYOUT_LINK_FILL, PAGE_NAV_LAYOUT_LINK_TEXT_BACKGROUND_COLOR_OPACITY, PAGE_NAV_LAYOUT_LINK_TEXT_COLOR_OPACITY } from "./constants";
+import {
+  PAGE_NAV_LAYOUT_LINK_FILL,
+  PAGE_NAV_LAYOUT_LINK_TEXT_BACKGROUND_COLOR_OPACITY,
+  PAGE_NAV_LAYOUT_LINK_TEXT_COLOR_OPACITY,
+} from "./constants";
+
+function getContainerTop(props: LayoutStyledProps) {
+  const index = props.index || 0;
+  const toBottomOfButton = `calc(${SITE_NAV_TOP} + ${BUTTON_WIDTH})`;
+  const spacingToStart = defaultFontSize;
+  const interItemSpacing = `calc(${index} * (${spacingToStart} + ${BUTTON_WIDTH}))`;
+  return `calc(${spacingToStart} + ${interItemSpacing} + ${toBottomOfButton})`;
+}
 
 const Container = styled.div<LayoutStyledProps>`
   position: fixed;
-  top: calc(
-    ${SITE_NAV_TOP} + ${BUTTON_WIDTH} +
-      (${(props) => (props.index || 0) + 1} * ${defaultFontSize})
-  );
+  top: ${(props) => getContainerTop(props)};
   left: ${(props) => props.sitenavright || SITE_NAV_TOP};
   width: ${BUTTON_WIDTH};
   height: ${BUTTON_WIDTH};
@@ -61,8 +70,13 @@ const Title = styled.span<LayoutStyledProps>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: ${(props) => hexToRgba(props.textcolor, PAGE_NAV_LAYOUT_LINK_TEXT_COLOR_OPACITY)};
-  background-color: ${(props) => hexToRgba(props.colorscheme?.primary1, PAGE_NAV_LAYOUT_LINK_TEXT_BACKGROUND_COLOR_OPACITY)};
+  color: ${(props) =>
+    hexToRgba(props.textcolor, PAGE_NAV_LAYOUT_LINK_TEXT_COLOR_OPACITY)};
+  background-color: ${(props) =>
+    hexToRgba(
+      props.colorscheme?.primary1,
+      PAGE_NAV_LAYOUT_LINK_TEXT_BACKGROUND_COLOR_OPACITY
+    )};
   font-family: Merriweather, serif;
   font-size: ${defaultFontSize};
   font-weight: 900;
