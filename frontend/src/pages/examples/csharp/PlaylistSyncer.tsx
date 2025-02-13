@@ -30,7 +30,7 @@ import {
   WIKIPEDIA_DRM_URL,
   WIKIPEDIA_MTP_URL,
 } from "../../../components/constants";
-import { Quote } from "../../../components/Quote";
+import { QuoteLegacy } from "../../../components/QuoteLegacy";
 
 const sectionNames = ["Background", "Media", "Problem", "Approach"];
 
@@ -200,9 +200,9 @@ export const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
           pageName: C_SHARP_CLASSNAME,
           children: [
             <React.Fragment>
-              <Quote author="Charles Kettering" className="padding-top-1">
+              <QuoteLegacy author="Charles Kettering" className="padding-top-1">
                 A problem well-stated is a problem half-solved;
-              </Quote>
+              </QuoteLegacy>
               <CSharpCardSection>
                 <Paragraph size="four">
                   It was clear from the experiences others were having that the

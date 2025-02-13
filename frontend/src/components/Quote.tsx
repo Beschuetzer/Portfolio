@@ -1,111 +1,96 @@
-import React from "react";
-import { useRef } from "react";
-import { getComputedStyleCustom, getSentencesFromString } from "../helpers";
-import { HIDDEN_CLASSNAME, QUOTE_POPUP_TRANSFORM_DEFAULT_CUSTOM_PROPERTY_NAME } from "./constants";
+import React, { HtmlHTMLAttributes, useRef } from "react";
+import { LayoutStyledProps } from "../layouts/types";
+import styled from "styled-components";
+import {
+  defaultFontSize,
+  fontSizeSix,
+  getFontSizeCustom,
+} from "../styles/constants";
 
-export const QUOTE_CLASSNAME = "quote";
+const Container = styled.figure<LayoutStyledProps>`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 ${getFontSizeCustom(2)};
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  color: ${(props) => props.colorscheme?.primary3};
 
-export interface QuoteProps {
-	children: string;
-	author: string;
-	shouldBreakLines?: boolean;
-	className?: string;
-}
+  &:hover {
+    opacity: 0.75;
+  }
 
-export const Quote: React.FC<QuoteProps> = ({
-	children,
-	author,
-	shouldBreakLines = false,
-	className = ''
-}) => {
-	const POPUP_SHOW_DURATION = 2500;
-	const POPUP_MESSAGE = 'Quote Copied to Clipboard';
-	const messageRef = useRef<HTMLElement>(null);
-	const authorRef = useRef<HTMLElement>(null);
-	const popUpRef = useRef<HTMLElement>(null);
-	const punctuationMarks = [".", "?", "!"];
+  &:hover::before,
+  &:hover::after {
+    opacity: 0.5;
+    color: ${(props) => props.colorscheme?.primary1};
+  }
 
-	let popUpTimeout: any;
+  &::before,
+  &::after {
+    color: ${(props) => props.colorscheme?.primary1};
+    font-size: 4.272625rem;
+    opacity: 0.125;
+    padding: 0.896rem;
+    position: absolute;
+    top: 0;
+  }
 
-	function copyToClipboard() {
-		const message = `"${(messageRef.current as any)?.textContent}" ${
-			(authorRef.current as any)?.textContent
-		}`;
+  &::before {
+    content: "“";
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 
-		const el = document.createElement("textarea") as HTMLTextAreaElement;
-		el.value = message;
-		document.body.appendChild(el);
-		el.select();
-		document.execCommand("copy");
-		document.body.removeChild(el);
-		showPopup();
-	};
+  &::after {
+    content: "”";
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+`;
 
-	function getMessage() {
-		if (!children.split) return null;
-		const splitByPeriod = children?.split(".");
-		const splitByQuestionMark = children?.split("?");
-		const splitByExclamationPoint = children?.split("!");
-		const splitsToIterateThrough = [
-			splitByPeriod,
-			splitByQuestionMark,
-			splitByExclamationPoint,
-		];
+const BlockQuote = styled.blockquote<LayoutStyledProps>`
+  position: relative;
+  font-style: italic;
+  font-size: ${fontSizeSix};
+  font-family: "New Tegomin", serif;
+`;
 
-		let sentences = [children];
-		if (shouldBreakLines)
-			sentences = getSentencesFromString(children, punctuationMarks);
+const Cite = styled.cite<LayoutStyledProps>`
+  font-size: ${defaultFontSize};
+  font-family: "Merriweather", serif;
+`;
 
-		let shouldReturnOriginal = true;
-		for (let i = 0; i < splitsToIterateThrough.length; i++) {
-			const splitToIterateThrough = splitsToIterateThrough[i];
-			if (splitToIterateThrough.length > 1) {
-				shouldReturnOriginal = false;
-			}
-		}
-
-		return sentences.map((sentence, index) => {
-			if (index === 0 || index === sentences.length - 1)
-				return (
-					<span key={index}>{shouldReturnOriginal ? children : sentence}</span>
-				);
-
-			return (
-				<div key={index}>{shouldReturnOriginal ? children : sentence}</div>
-			);
-		});
-	};
-
-	function showPopup() {
-		const popUp = popUpRef.current as HTMLElement;
-		if (!popUp) return;
-		clearTimeout(popUpTimeout);
-
-		popUp.classList.remove(HIDDEN_CLASSNAME);
-		popUp.style.transform = `translate(-0%, 00%) scale(1)`;
-
-		popUpTimeout = setTimeout(() => {
-			popUp.style.transform = getComputedStyleCustom(QUOTE_POPUP_TRANSFORM_DEFAULT_CUSTOM_PROPERTY_NAME);
-			popUp.classList.add(HIDDEN_CLASSNAME);
-		}, POPUP_SHOW_DURATION)
-	}
-
-	return (
-		<figure
-			onClick={(e: any) => copyToClipboard()}
-			className={`${QUOTE_CLASSNAME} ${className}`}>
-			<blockquote ref={messageRef as any} className={`${QUOTE_CLASSNAME}__message`}>
-				{getMessage()}
-			</blockquote>
-			<cite ref={authorRef as any} className={`${QUOTE_CLASSNAME}__author`}>
-				&#8212;{author}
-			</cite>
-			<div ref={popUpRef as any} className={`${QUOTE_CLASSNAME}__popup hidden`}>
-				{POPUP_MESSAGE}
-				{/* <div className={`arrow-down arrow-down--left`}></div> */}
-				<div className={`arrow-down arrow-down--center`}></div>
-				{/* <div className={`arrow-down arrow-down--right`}></div> */}
-			</div>
-		</figure>
-	);
+type QuoteProps = {
+  author: string;
+  containerProps?: HtmlHTMLAttributes<HTMLDivElement>;
+  text: string;
 };
+
+export default function Quote(props: QuoteProps) {
+  const { author, containerProps, text } = props;
+  const messageRef = useRef<HTMLQuoteElement>(null);
+  const authorRef = useRef<HTMLDivElement>(null);
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        messageRef.current?.textContent || ""
+      );
+    } catch (error) {
+      console.error("Failed to copy quote to clipboard: ", error);
+    }
+  };
+
+  return (
+    <Container {...containerProps} onClick={(e: any) => copyToClipboard()}>
+      <BlockQuote ref={messageRef}>{text}</BlockQuote>
+      <Cite ref={authorRef}>&#8212;{author}</Cite>
+    </Container>
+  );
+}

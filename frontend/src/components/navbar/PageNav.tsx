@@ -16,6 +16,7 @@ import { navbarHeaderNavSwitchHeightStyles } from "./sitenav/styles";
 import { useOnWindowResize } from "../../hooks/useOnWindowResize";
 import { hexToRgba } from "./sitenav/helpers";
 import { getTextShadowPageNavStyle } from "../../styles/styles";
+import { AUDIO_PLAYER_TOGGLER_CLASSNAME } from "../AudioPlayer/AudioPlayer";
 
 const ITEM_HEIGHT = fontSizeTen;
 
@@ -86,6 +87,8 @@ const Item = styled(Link)<SiteNavStyledProps>`
 
 type PageNavProps = {};
 
+const IDS_NOT_ALLOWED = ["root", AUDIO_PLAYER_TOGGLER_CLASSNAME];
+
 export function PageNav(props: PageNavProps) {
   const colorScheme = useColorScheme();
   const [sections, setSections] = useState<Element[]>([]);
@@ -119,7 +122,7 @@ export function PageNav(props: PageNavProps) {
       return;
     }
     setSections(
-      elementsWithId.filter((element) => element.id && element.id !== "root")
+      elementsWithId.filter((element) => element.id && !IDS_NOT_ALLOWED.includes(element.id))
     );
   }, []);
   useOnWindowResize(onResize);

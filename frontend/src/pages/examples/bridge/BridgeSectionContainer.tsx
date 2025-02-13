@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "../../../components/Card/Card";
 import { CardManager } from "../../../components/Card/CardManager";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
-import { Quote } from "../../../components/Quote";
+import { QuoteLegacy } from "../../../components/QuoteLegacy";
 import { SectionContainer } from "../../../components/SectionContainer";
 import {
   bridgeSectionNames,
@@ -45,9 +45,9 @@ const sectionContents = [
     pageName={BRIDGE_PAGE_NAME}
   >
     <BridgeSection titleSize="two" titleContent={bridgeSectionNames[0]}>
-      <Quote author="Timothy Ferriss" className="padding-bottom-2">
+      <QuoteLegacy author="Timothy Ferriss" className="padding-bottom-2">
         What we fear doing most is usually what we most need to do.
-      </Quote>
+      </QuoteLegacy>
       <BridgeCardSection
         title="What is A#Maj Bridge?"
         // title='An App is Born'
@@ -252,9 +252,9 @@ const sectionContents = [
     pageName={BRIDGE_PAGE_NAME}
   >
     <BridgeSection titleSize="two" titleContent={bridgeSectionNames[2]}>
-      <Quote author="Walt Disney" className="padding-bottom-2">
+      <QuoteLegacy author="Walt Disney" className="padding-bottom-2">
         There's no magic in magic, it's all in the details.
-      </Quote>
+      </QuoteLegacy>
       <BridgeCardSection title="Off and Running">
         <p>
           Because I had just completed the
@@ -452,10 +452,10 @@ const sectionContents = [
     pageName={BRIDGE_PAGE_NAME}
   >
     <BridgeSection titleSize="two" titleContent={bridgeSectionNames[3]}>
-      <Quote author="Zig Ziglar" className="padding-bottom-2">
+      <QuoteLegacy author="Zig Ziglar" className="padding-bottom-2">
         If you are not willing to learn, no one can help you.&nbsp; If you are
         determined to learn, no one can stop you.
-      </Quote>
+      </QuoteLegacy>
       <BridgeCardSection title="Sometimes Bread and Butter is not enough">
         <p>
           At the time it was easy for me to justify delaying learning about

@@ -107,7 +107,7 @@ import { AudioList } from "../../../components/AudioPlayer/AudioList";
 import { LoadingSpinner } from "../../../components/loading/LoadingSpinner";
 import { Carousel } from "react-thumbnail-carousel";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
-import { Quote } from "../../../components/Quote";
+import { QuoteLegacy } from "../../../components/QuoteLegacy";
 import { CSharpCardSection } from "./CSharpCardSection";
 
 export const ABOUT_SECTION_NAMES = ["Overview", "Interests", "Music"];
@@ -191,38 +191,38 @@ const peopleToPeopleCarousel = (
 );
 
 const regretQuote = (
-  <Quote author="Anonymous" className="padding-bottom-1">
+  <QuoteLegacy author="Anonymous" className="padding-bottom-1">
     In the end, we only regret the chances we didn't take, relationships we were
     afraid to have, and the decisions we waited too long to make.
-  </Quote>
+  </QuoteLegacy>
 );
 
 const youngQuote = (
-  <Quote author="Henry Ford" className="padding-top-1">
+  <QuoteLegacy author="Henry Ford" className="padding-top-1">
     Anyone who stops learning is old, whether at twenty or eighty. &nbsp;Anyone
     who keeps learning stays young.
-  </Quote>
+  </QuoteLegacy>
 );
 
 const greatThingsQuote = (
-  <Quote author="Leornard Bernstein" className="padding-top-1">
+  <QuoteLegacy author="Leornard Bernstein" className="padding-top-1">
     To achieve great things, two things are needed: a plan, and not quite enough
     time.
-  </Quote>
+  </QuoteLegacy>
 );
 
 const hobbyQuote = (
-  <Quote author="Phyllis McGinley" className="padding-top-1">
+  <QuoteLegacy author="Phyllis McGinley" className="padding-top-1">
     A hobby a day keeps the doldrums away.
-  </Quote>
+  </QuoteLegacy>
 );
 
 const selfDoubtQuote = (
-  <Quote author="Sylvia Plath" className="padding-top-1">
+  <QuoteLegacy author="Sylvia Plath" className="padding-top-1">
     And by the way, everything in life is writable about if you have the
     outgoing guts to do it, and the imagination to improvise. The worst enemy to
     creativity is self-doubt.
-  </Quote>
+  </QuoteLegacy>
 );
 
 interface AboutProps {}

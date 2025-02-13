@@ -47,7 +47,7 @@ import {
   C_SHARP_CLASSNAME,
   CAROUSEL_COLORS,
 } from "../../../components/constants";
-import { Quote } from "../../../components/Quote";
+import { QuoteLegacy } from "../../../components/QuoteLegacy";
 
 const sectionNames = ["Motivation", "Media", "Features", "Notes"];
 
@@ -63,9 +63,9 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
           pageName: C_SHARP_CLASSNAME,
           children: [
             <React.Fragment>
-              <Quote author="Anonymous">
+              <QuoteLegacy author="Anonymous">
                 When the why is clear, the how is easy.
-              </Quote>
+              </QuoteLegacy>
               <CSharpCardSection title="The Reasons">
                 <Paragraph size="five">
                   There are two reasons why I chose to build the
@@ -348,10 +348,10 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
           pageName: C_SHARP_CLASSNAME,
           children: [
             <React.Fragment>
-              <Quote author="Tim Cook" className="padding-top-1">
+              <QuoteLegacy author="Tim Cook" className="padding-top-1">
                 A great product isn't just a collection of features. &nbsp;It's
                 how it all works together.
-              </Quote>
+              </QuoteLegacy>
 
               <CSharpCardSection title="Filters">
                 <Paragraph size="five">

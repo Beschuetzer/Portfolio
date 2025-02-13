@@ -33,7 +33,7 @@ import {
   OC_REMIX_URL,
   PLAYLIST_SYNCER_URL,
 } from "../../../components/constants";
-import { Quote } from "../../../components/Quote";
+import { QuoteLegacy } from "../../../components/QuoteLegacy";
 
 const sectionNames = ["Description", "Media", "Notes"];
 
@@ -48,9 +48,9 @@ export const Downloader: React.FC<DownloaderProps> = () => {
           pageName: C_SHARP_CLASSNAME,
           children: [
             <React.Fragment>
-              <Quote author="Peter Drucker" className="padding-top-1">
+              <QuoteLegacy author="Peter Drucker" className="padding-top-1">
                 Efficiency is doing better what is already being done.
-              </Quote>
+              </QuoteLegacy>
               <CSharpCardSection title="Why">
                 Websites like
                 <EmbeddedLink href={OC_REMIX_URL}>OCRemix</EmbeddedLink> and

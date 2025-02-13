@@ -31,7 +31,7 @@ import {
 	C_SHARP_CLASSNAME,
 } from "../../components/constants";
 import { SourceCodeLink } from "../../components/SourceCodeLink";
-import { Quote } from "../../components/Quote";
+import { QuoteLegacy } from "../../components/QuoteLegacy";
 import { capitalize } from "../../helpers";
 import { PageWrapper } from "../PageWrapper";
 import { EducationItem } from "./EducationItem";
@@ -390,9 +390,9 @@ export const Resume: React.FC<ResumeProps> = () => {
 			RESUME_SECTION_TITLES[0],
 			<React.Fragment>
 				<section aria-label="Overview">
-					<Quote author="Seth Godin">
+					<QuoteLegacy author="Seth Godin">
 						You are not your résumé, you are your work.
-					</Quote>
+					</QuoteLegacy>
 					<Paragraph classNameToAdd={`${NO_MARGIN_CLASSNAME}`} size="five">
 						Below you will find the following:
 					</Paragraph>

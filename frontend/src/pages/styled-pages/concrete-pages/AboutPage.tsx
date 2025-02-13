@@ -9,7 +9,7 @@ import {
   GITHUB_URL,
   PLAYLIST_SYNCER_PAGE_NAME,
 } from "../../../components/constants";
-import { Quote } from "../../../components/Quote";
+import { QuoteLegacy } from "../../../components/QuoteLegacy";
 import { CSharpCardSection } from "../../examples";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
 import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";

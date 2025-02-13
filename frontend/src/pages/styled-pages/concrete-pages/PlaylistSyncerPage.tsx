@@ -9,7 +9,6 @@ import {
   GITHUB_URL,
   PLAYLIST_SYNCER_PAGE_NAME,
 } from "../../../components/constants";
-import { Quote } from "../../../components/Quote";
 import { CSharpCardSection } from "../../examples";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
 import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";
@@ -29,6 +28,9 @@ import img4Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img4-thumbna
 import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
 import demoVideo_480p from "../../../clips/playlist-syncer/demo-480p.mp4";
 import demoVideoThumbnail from "../../../clips/playlist-syncer/demo-thumbnail.png";
+import { QuoteLegacy } from "../../../components/QuoteLegacy";
+import Quote from "../../../components/Quote";
+import { defaultFontSize } from "../../../styles/constants";
 
 type PlaylistSyncerProps = {};
 
@@ -204,9 +206,12 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
     name: "The Problem",
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
-        <Quote author="Charles Kettering" className="padding-top-1">
+        <Quote author="Charles Kettering" text="A problem well-stated is a problem half-solved." containerProps={{style: {
+          marginTop: defaultFontSize,
+        }}}/>
+        <QuoteLegacy author="Charles Kettering" className="padding-top-1">
           A problem well-stated is a problem half-solved;
-        </Quote>
+        </QuoteLegacy>
         <ExamplePageParagraph {...propsToAdd}>
           It was clear from the experiences others were having that the problem
           stemmed from how Android 10 handled the playlist information with
