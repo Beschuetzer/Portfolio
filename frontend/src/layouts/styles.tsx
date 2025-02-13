@@ -3,7 +3,7 @@ import { LayoutStyledProps } from "./types";
 import { hexToRgba } from "../components/navbar/sitenav/helpers";
 import { BUTTON_WIDTH } from "../styles/constants";
 import { PAGE_NAV_LAYOUT_LINK_ON_HOVER_FILL } from "./constants";
-import { textShadowStyle } from "../styles/styles";
+import { getTextShadowStyle } from "../styles/styles";
 
 export const pageNavLayoutLinkStyles = css<LayoutStyledProps>`
   color: ${(props) => props.colorscheme?.primary4};
@@ -39,7 +39,7 @@ export const pageNavLayoutLinkHoverCommonStyles = css<LayoutStyledProps>`
     }
     & > span {
       ${pageNavLayoutLinkHoverTransitionStyle}
-      ${textShadowStyle}
+      ${getTextShadowStyle(2)}
       color: ${(props) => hexToRgba(props.textcolor, 1)};
     }
   }

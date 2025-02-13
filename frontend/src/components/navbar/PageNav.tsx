@@ -15,6 +15,7 @@ import { useColorScheme } from "../../hooks/useColorScheme";
 import { navbarHeaderNavSwitchHeightStyles } from "./sitenav/styles";
 import { useOnWindowResize } from "../../hooks/useOnWindowResize";
 import { hexToRgba } from "./sitenav/helpers";
+import { getTextShadowPageNavStyle } from "../../styles/styles";
 
 const ITEM_HEIGHT = fontSizeTen;
 
@@ -72,8 +73,7 @@ const Item = styled(Link)<SiteNavStyledProps>`
 
   &:hover {
     transform: translateY(-0.25vw);
-    text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
-      0 -5px 35px hsla(0, 0%, 100%, 0.3);
+    ${getTextShadowPageNavStyle(-2)}
     color: ${(props) => props.colorscheme?.primary4};
   }
 

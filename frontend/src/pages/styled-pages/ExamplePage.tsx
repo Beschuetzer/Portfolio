@@ -14,7 +14,7 @@ import { SIDE_PADDING } from "./constants";
 import { ExamplePageSection } from "./ExamplePageSection";
 import { ExamplePageSectionContent } from "./ExamplePageSectionContent";
 import { ExamplePageSectionHeader } from "./ExamplePageSectionHeader";
-import { textShadowStyle } from "../../styles/styles";
+import { getTextShadowStyle } from "../../styles/styles";
 
 
 const Content = styled.div<LayoutStyledProps>`
@@ -36,7 +36,7 @@ const Header = styled.h2<LayoutStyledProps>`
   align-items: center;
   justify-content: center;
   margin-bottom: ${SIDE_PADDING};
-  ${textShadowStyle}
+  ${getTextShadowStyle()}
 `;
 
 type ExamplePageProps = {

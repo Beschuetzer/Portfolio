@@ -2,9 +2,14 @@ import { css } from "styled-components";
 import { hexToRgba } from "../components/navbar/sitenav/helpers";
 import { LayoutStyledProps } from "../layouts/types";
 
-export const textShadowStyle = css<LayoutStyledProps>`
-  text-shadow: 0 4px 3px
+export const getTextShadowStyle = (x = 0) => css<LayoutStyledProps>`
+  text-shadow: ${x}px 4px 3px
       ${(props) => hexToRgba(props.colorscheme?.primary3, 0.4)},
-    0 8px 13px ${(props) => hexToRgba(props.colorscheme?.primary3, 0.1)},
-    0 18px 23px ${(props) => hexToRgba(props.colorscheme?.primary3, 0.1)};
+    ${x}px 8px 13px ${(props) => hexToRgba(props.colorscheme?.primary3, 0.1)},
+    ${x}px 18px 23px ${(props) => hexToRgba(props.colorscheme?.primary3, 0.1)};
+`;
+
+export const getTextShadowPageNavStyle = (x = 0) => css<LayoutStyledProps>`
+  text-shadow: ${x}px 7px 6px rgba(0, 0, 0, 0.2),
+    ${x}px -5px 35px hsla(0, 0%, 100%, 0.3);
 `;
