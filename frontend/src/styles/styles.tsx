@@ -13,3 +13,14 @@ export const getTextShadowPageNavStyle = (x = 0) => css<LayoutStyledProps>`
   text-shadow: ${x}px 7px 6px rgba(0, 0, 0, 0.2),
     ${x}px -5px 35px hsla(0, 0%, 100%, 0.3);
 `;
+
+export const linkStyles = css<LayoutStyledProps>`
+  text-decoration: underline;
+  font-weight: bold;
+  transition: color 0.25s ease-in-out;
+  cursor: pointer;
+  color: ${(props) => props.colorscheme?.primary1};
+  &:hover {
+    color: ${(props) => props.colorscheme?.primary3};
+  }
+`;

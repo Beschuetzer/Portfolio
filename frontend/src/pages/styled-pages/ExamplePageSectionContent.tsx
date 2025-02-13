@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { LayoutStyledProps } from "../../layouts/types";
-import { SIDE_PADDING } from "./constants";
+import { FONT_SIZE, SIDE_PADDING } from "./constants";
 import { useColorScheme } from "../../hooks/useColorScheme";
 import { StyledPageProps } from "./types";
 
 const SectionContent = styled.div<LayoutStyledProps>`
-  padding: 0 ${SIDE_PADDING} ${SIDE_PADDING} ${SIDE_PADDING};
+  padding: 0 ${SIDE_PADDING} ${FONT_SIZE} ${SIDE_PADDING};
   display: flex;
   flex-direction: column;
   align-items: start;

@@ -29,6 +29,7 @@ import demoVideo_480p from "../../../clips/playlist-syncer/demo-480p.mp4";
 import demoVideoThumbnail from "../../../clips/playlist-syncer/demo-thumbnail.png";
 import { Quote } from "../../../components/Quote";
 import { getFontSizeCustom } from "../../../styles/constants";
+import { ExamplePageLink } from "../ExamplePageLink";
 
 type PlaylistSyncerProps = {};
 
@@ -41,9 +42,9 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
           Around the end of Febraury 2020, Samsung updated their Android OS to
           version 10.&nbsp; Eager to check out the newest Android OS, I promptly
           updated.&nbsp; Unfortunately, the update&nbsp;
-          <a href={OS_10_ISSUE_TRACKER_URL}>
+          <ExamplePageLink url={OS_10_ISSUE_TRACKER_URL}>
             broke my ability to sync music and playlists
-          </a>
+          </ExamplePageLink>
           &nbsp; to my Galaxy S9+ phone.&nbsp;
         </ExamplePageParagraph>
         <ExamplePageParagraph {...propsToAdd}>
@@ -233,11 +234,11 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
           First I needed to figure out how to sync music to an Android device.
           It turns out that the main way to do that is through a protocol called
           the &nbsp;
-          <a href={WIKIPEDIA_MTP_URL}>Media Transfer Protocol</a>
+          <ExamplePageLink url={WIKIPEDIA_MTP_URL}>Media Transfer Protocol</ExamplePageLink>
           &nbsp; (MTP), which is part of the&nbsp;
-          <a href={WIKIPEDIA_DRM_URL}>Windows Media DRM</a>. Because of
+          <ExamplePageLink url={WIKIPEDIA_DRM_URL}>Windows Media DRM</ExamplePageLink>. Because of
           the&nbsp;
-          <a href={DOWNLOADER_URL}>downloader</a>
+          <ExamplePageLink url={DOWNLOADER_URL}>downloader</ExamplePageLink>
           &nbsp;app I had recently started, I decided to use c# and WPF to
           create the playlist syncing app.
         </ExamplePageParagraph>
