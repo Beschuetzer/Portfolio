@@ -68,7 +68,7 @@ const Item = styled(Link)<SiteNavStyledProps>`
   align-items: center;
   justify-content: center;
   transition: color 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
-  color: ${(props) => hexToRgba(props.colorscheme?.primary4, 0.5)};
+  color: ${(props) => hexToRgba(props.colorscheme?.primary4, 0.75)};
 
   &:hover {
     transform: translateY(-0.25vw);

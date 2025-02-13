@@ -57,22 +57,22 @@ const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
 
 const Text = styled.span`
   padding: ${getFontSizeCustom(0.25)};
-  transition: opacity 0.125s ease;
+  transition: opacity 0.25s ease;
 `;
 
 const Svg = styled.svg<SiteNavStyledProps>`
   fill: ${(props) => props.colorscheme?.primary4};
   position: absolute;
-  transition: opacity 0.125s ease;
+  transition: opacity 0.25s ease;
   width: 100%;
   height: 100%;
   z-index: -100;
 `;
 
 const SvgBehind = styled.svg<SiteNavStyledProps>`
-  fill: ${(props) => props.colorscheme?.primary1};
+  fill: ${(props) => props.colorscheme?.primary4};
   opacity: 0;
-  transition: opacity 0.125s ease;
+  transition: opacity 0.25s ease;
   position: absolute;
   width: 100%;
   height: 100%;

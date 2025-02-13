@@ -198,18 +198,13 @@ export const App: React.FC<AppProps> = (props) => {
           <Route
             path={PLAYLIST_SYNCER_URL}
             exact
-            component={PlaylistSyncer}
+            component={PlaylistSyncerPage}
           />
           <Route path={REPLAY_VIEWER_URL} exact component={ReplayViewer} />
           <Route path={AUTO_BID_URL} exact component={AutoBid} />
           <Route path={ABOUT_URL} exact component={About} />
           <Route path={RESUME_URL} exact component={Resume} />
           <Route path={PERSONALITY_URL} exact component={BigFive} />
-          <Route
-            path={"/test"}
-            exact
-            component={PlaylistSyncerPage}
-          />
           <Route path="*" exact component={Home} />
         </Switch>
 
