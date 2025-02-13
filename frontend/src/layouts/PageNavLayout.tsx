@@ -2,7 +2,6 @@ import React, { useMemo } from "react";
 import { LayoutStyledProps } from "./types";
 import { styled } from "styled-components";
 import {
-  BUTTON_WIDTH,
   SECTION_WIDTH_IN_PIXELS,
   SITE_NAV_NAV_SWITCH_TOP,
   SITE_NAV_TOP,
@@ -41,20 +40,10 @@ const Layout = styled.div<LayoutStyledProps>`
 `}
 `;
 
-const LinkContainer = styled.div<LayoutStyledProps>`
-  position: fixed;
-  top: ${props => props.index || 1 * 2}rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: ${BUTTON_WIDTH};
-`;
-
 export type PageNavLayoutProps = {
   children: React.ReactNode | React.ReactNode[];
   backgroundSvg?: string;
-  links?: PageNavLayoutLinkProps[];
+  links?: Omit<PageNavLayoutLinkProps, 'index'>[];
 };
 
 export function PageNavLayout(props: PageNavLayoutProps) {
@@ -73,9 +62,7 @@ export function PageNavLayout(props: PageNavLayoutProps) {
       <PageNav />
       <ChildrenContainer>{children}</ChildrenContainer>
       {links?.map((link, index) => (
-        <LinkContainer key={index} index={index}>
-          <PageNavLayoutLink {...link} />
-        </LinkContainer>
+          <PageNavLayoutLink {...link} key={index} index={index} />
       ))}
     </Layout>
   );

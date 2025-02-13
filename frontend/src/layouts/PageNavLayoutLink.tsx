@@ -3,6 +3,22 @@ import { useColorScheme } from "../hooks/useColorScheme";
 import { SiteNavStyledProps } from "../components/navbar/sitenav/types";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
+import {
+  SITE_NAV_TOP,
+  BUTTON_WIDTH,
+  defaultFontSize,
+} from "../styles/constants";
+import { LayoutStyledProps } from "./types";
+
+const Container = styled.div<LayoutStyledProps>`
+  position: fixed;
+  top: calc(
+    ${SITE_NAV_TOP} + ${BUTTON_WIDTH} + ${(props) => props.index || 1} *
+      ${defaultFontSize}
+  );
+  width: ${BUTTON_WIDTH};
+  height: ${BUTTON_WIDTH};
+`;
 
 const LinkInternal = styled(Link)<SiteNavStyledProps>`
   color: ${(props) => props.colorscheme?.primary4};
@@ -30,6 +46,7 @@ const Title = styled.span<SiteNavStyledProps>`
 `;
 
 export type PageNavLayoutLinkProps = {
+  index: number;
   svg: {
     xlinkHref: string;
     fill?: string;
@@ -43,23 +60,30 @@ export type PageNavLayoutLinkProps = {
 
 export function PageNavLayoutLink(props: PageNavLayoutLinkProps) {
   const colorScheme = useColorScheme();
-  const { svg, title, url } = props;
+  const { index, svg, title, url } = props;
   const { xlinkHref, fill = colorScheme.primary4 } = svg;
   const { color: titleFill = colorScheme.primary4, text } = title;
   const propsToAdd: SiteNavStyledProps = useMemo(
     () => ({
       colorscheme: colorScheme != null ? colorScheme : undefined,
+      index: index,
     }),
-    [colorScheme]
+    [colorScheme, index]
   );
+
   const isInternal = useMemo(() => url.startsWith("/"), [url]);
   const TagToUse = isInternal ? LinkInternal : LinkExternal;
+
   return (
-    <TagToUse {...propsToAdd} to={url.trim()} href={url.trim()}>
-      <Svg {...propsToAdd} fill={fill}>
-        <Title {...propsToAdd} color={titleFill}>{text}</Title>
-        <use xlinkHref={xlinkHref} />
-      </Svg>
-    </TagToUse>
+    <Container {...propsToAdd}>
+      <TagToUse {...propsToAdd} to={url.trim()} href={url.trim()}>
+        <Svg {...propsToAdd} fill={fill}>
+          <Title {...propsToAdd} color={titleFill}>
+            {text}
+          </Title>
+          <use xlinkHref={xlinkHref} />
+        </Svg>
+      </TagToUse>
+    </Container>
   );
 }
