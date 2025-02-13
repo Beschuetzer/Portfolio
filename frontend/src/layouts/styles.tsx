@@ -1,9 +1,12 @@
 import { css } from "styled-components";
 import { LayoutStyledProps } from "./types";
 import { hexToRgba } from "../components/navbar/sitenav/helpers";
-import { BUTTON_WIDTH } from "../styles/constants";
+import { BUTTON_WIDTH, SITE_NAV_NAV_SWITCH_TOP } from "../styles/constants";
 import { PAGE_NAV_LAYOUT_LINK_ON_HOVER_FILL } from "./constants";
 import { getTextShadowStyle } from "../styles/styles";
+import { NAVBAR_HEADER_NAV_SWITCH_HEIGHT } from "../components/navbar/sitenav/styles";
+
+export const pageNavLayoutHeaderMarginTopNavSwitch = `calc(${NAVBAR_HEADER_NAV_SWITCH_HEIGHT} + ${SITE_NAV_NAV_SWITCH_TOP});`;
 
 export const pageNavLayoutLinkStyles = css<LayoutStyledProps>`
   color: ${(props) => props.colorscheme?.primary4};
@@ -20,7 +23,8 @@ export const pageNavLayoutLinkHoverTransitionStyle = css<LayoutStyledProps>`
 `;
 
 export const pageNavLayoutLinkTransitionStyle = css<LayoutStyledProps>`
-  transition: transform .5s ease-out, color .5s ease-out, fill .5s ease-out, text-shadow .5s ease-out;
+  transition: transform 0.5s ease-out, color 0.5s ease-out, fill 0.5s ease-out,
+    text-shadow 0.5s ease-out;
 `;
 
 export const pageNavLayoutLinkHoverCommonStyles = css<LayoutStyledProps>`

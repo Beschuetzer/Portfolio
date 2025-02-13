@@ -254,7 +254,7 @@ export function PlaylistSyncer(props: PlaylistSyncerProps) {
         links: [
           {
             title: {
-                text: "Live Url",
+                text: "Code",
             },
             url: `${GITHUB_URL}/${PLAYLIST_SYNCER_PAGE_NAME}`,
             svg: {
@@ -262,15 +262,6 @@ export function PlaylistSyncer(props: PlaylistSyncerProps) {
             },
             hoverEffectType: HoverEffect.explode,
           },
-        //   {
-        //     title: {
-        //         text: "Test",
-        //     },
-        //     url: ABOUT_URL,
-        //     svg: {
-        //         xlinkHref: `/sprite.svg#icon-code`,
-        //     }
-        //   },
         ],
       }}
     />

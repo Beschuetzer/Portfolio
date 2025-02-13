@@ -6,7 +6,7 @@ import { useColorScheme } from "../../hooks/useColorScheme";
 import {
   BUTTON_WIDTH,
   fontSizeEight,
-  SITE_NAV_NAV_SWITCH_TOP,
+  fontSizeSeven,
 } from "../../styles/constants";
 
 import { respond } from "../../styles/breakpoints";
@@ -22,10 +22,6 @@ const Content = styled.div<LayoutStyledProps>`
   flex-direction: column;
   align-items: start;
   width: 100%;
-
-  ${respond.navSwitch`
-    padding: 0 ${SITE_NAV_NAV_SWITCH_TOP};
-  `}
 `;
 
 const Header = styled.h2<LayoutStyledProps>`
@@ -36,6 +32,13 @@ const Header = styled.h2<LayoutStyledProps>`
   align-items: center;
   justify-content: center;
   margin-bottom: ${SIDE_PADDING};
+
+  ${respond.contentFull`
+    justify-content: flex-start;
+    width: 100%;
+    font-size: ${fontSizeSeven};
+  `}
+
   ${getTextShadowStyle()}
 `;
 

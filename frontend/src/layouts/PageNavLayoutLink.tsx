@@ -6,6 +6,7 @@ import {
   SITE_NAV_TOP,
   BUTTON_WIDTH,
   defaultFontSize,
+  SITE_NAV_NAV_SWITCH_TOP,
 } from "../styles/constants";
 import {
   getAbsoluteRightPosition,
@@ -14,6 +15,7 @@ import {
 import { useOnWindowResize } from "../hooks/useOnWindowResize";
 import { HoverEffect, LayoutStyledProps } from "./types";
 import {
+  pageNavLayoutHeaderMarginTopNavSwitch,
   pageNavLayoutLinkHoverExplodeStyle,
   pageNavLayoutLinkHoverRotateStyle,
   pageNavLayoutLinkStyles,
@@ -23,6 +25,7 @@ import {
   PAGE_NAV_LAYOUT_LINK_TEXT_BACKGROUND_COLOR_OPACITY,
   PAGE_NAV_LAYOUT_LINK_TEXT_COLOR_OPACITY,
 } from "./constants";
+import { respond } from "../styles/breakpoints";
 
 function getContainerTop(props: LayoutStyledProps) {
   const index = props.index || 0;
@@ -44,6 +47,13 @@ const Container = styled.div<LayoutStyledProps>`
     props.hovereffecttype === HoverEffect.rotate
       ? pageNavLayoutLinkHoverRotateStyle
       : pageNavLayoutLinkHoverExplodeStyle}
+
+  ${respond.navSwitch`
+    left: auto;
+    right: ${SITE_NAV_NAV_SWITCH_TOP};
+    top: ${pageNavLayoutHeaderMarginTopNavSwitch};
+    z-index: 1000000;
+  `}
 `;
 
 const LinkInternal = styled(Link)<LayoutStyledProps>`
@@ -86,6 +96,7 @@ const Title = styled.span<LayoutStyledProps>`
   z-index: 10000;
   text-wrap: nowrap;
   text-align: center;
+  pointer-events: none;
 `;
 
 export type PageNavLayoutLinkProps = {
