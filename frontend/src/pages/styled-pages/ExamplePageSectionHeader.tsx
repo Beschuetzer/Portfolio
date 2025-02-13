@@ -9,11 +9,11 @@ const SectionHeader = styled.h3<LayoutStyledProps>`
   width: 100%;
   padding: ${defaultFontSize} ${SIDE_PADDING};
   font-size: ${fontSizeSix};
-  color: ${(props) => props.colorscheme?.primary1};
+  color: ${(props) => props.colorscheme?.primary4};
   background: linear-gradient(
     to bottom right,
-    ${(props) => props.colorscheme?.primary4},
-    ${(props) => props.colorscheme?.primary3}
+    ${(props) => props.colorscheme?.primary2},
+    ${(props) => props.colorscheme?.primary1}
   );
   display: flex;
   align-items: center;

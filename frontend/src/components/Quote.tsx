@@ -23,7 +23,7 @@ const Container = styled.figure<LayoutStyledProps>`
   color: ${(props) => props.colorscheme?.primary1};
   transition: opacity 0.25s ease-in-out;
 
-  &:hover {
+  &:hover > *:not(:first-child) {
     opacity: 0.75;
   }
 
@@ -73,8 +73,8 @@ const Popup = styled.div<LayoutStyledProps>`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: ${(props) => props.colorscheme?.primary4};
-  color: ${(props) => props.colorscheme?.primary1};
+  background-color: ${(props) => props.colorscheme?.primary1};
+  color: ${(props) => props.colorscheme?.primary4};
   display: flex;
   align-items: center;
   justify-content: center;

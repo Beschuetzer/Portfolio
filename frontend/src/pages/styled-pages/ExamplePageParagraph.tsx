@@ -1,18 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { LayoutStyledProps } from "../../layouts/types";
-import {
-    fontSizeFive,
-} from "../../styles/constants";
-import { SIDE_PADDING } from "./constants";
+import { FONT_SIZE, SIDE_PADDING } from "./constants";
 import { useColorScheme } from "../../hooks/useColorScheme";
 import { StyledPageProps } from "./types";
 
 const Paragraph = styled.p<LayoutStyledProps>`
-  font-size: ${fontSizeFive};
+  font-size: ${FONT_SIZE};
   font-family: Open Sans, sans-serif;
   color: ${(props) => props.colorscheme?.primary1};
-  margin-top: ${SIDE_PADDING};
+  margin-top: calc(${SIDE_PADDING} / 2);
 `;
 
 export function ExamplePageParagraph(props: StyledPageProps) {

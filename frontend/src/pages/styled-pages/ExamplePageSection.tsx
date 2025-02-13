@@ -13,7 +13,7 @@ import { StyledPageProps } from "./types";
 const Section = styled.section<LayoutStyledProps>`
   width: 100%;
   border-radius: 0 0 ${getFontSizeCustom(0.33)} ${getFontSizeCustom(0.33)};
-  background: ${(props) => props.colorscheme?.primary3};
+  background: ${(props) => props.colorscheme?.primary4};
   display: flex;
   flex-direction: column;
   align-items: flex-start;

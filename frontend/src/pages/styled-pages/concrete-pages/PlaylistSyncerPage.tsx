@@ -77,7 +77,7 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
             },
           },
           thumbnail: {
-            size: [[200], [100, 1200, "max-width"]],
+            size: [[125], [100, 1200, "max-width"]],
             descriptionOverlay: {
               hideDescriptionOverlayUnlessHovered: false,
               textColor: propsToAdd.colorscheme?.primary4,
@@ -95,7 +95,7 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
                 },
               },
             },
-            currentItemBorder: `2px dotted ${propsToAdd.colorscheme?.primary4}`,
+            currentItemBorder: `2px dotted ${propsToAdd.colorscheme?.primary2}`,
           },
           styling: {
             container: {
@@ -110,20 +110,20 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
             colorTheme: {
               colorOne: propsToAdd.colorscheme?.primary1,
               colorTwo: propsToAdd.colorscheme?.primary2,
-              colorThree: propsToAdd.colorscheme?.primary2,
-              colorFour: propsToAdd.colorscheme?.primary3,
+              colorThree: propsToAdd.colorscheme?.primary3,
+              colorFour: propsToAdd.colorscheme?.primary4,
               colorFive: propsToAdd.colorscheme?.primary4,
               colorGreyOne: propsToAdd.colorscheme?.greyOne,
             },
             navigation: {
-              backgroundColor: propsToAdd.colorscheme?.primary3,
+              backgroundColor: propsToAdd.colorscheme?.primary4,
               elements: {
                 color: propsToAdd.colorscheme?.primary1,
               },
             },
 
             itemViewer: {
-              backgroundColor: propsToAdd.colorscheme?.primary3,
+              backgroundColor: propsToAdd.colorscheme?.primary4,
               loadingSpinner: {
                 options: {
                   color: propsToAdd.colorscheme?.primary4,
