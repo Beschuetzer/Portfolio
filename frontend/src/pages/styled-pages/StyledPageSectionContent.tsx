@@ -1,0 +1,26 @@
+import styled from "styled-components";
+import { LayoutStyledProps } from "../../layouts/types";
+import { SIDE_PADDING } from "./constants";
+import { useColorScheme } from "../../hooks/useColorScheme";
+import { StyledPageProps } from "./types";
+
+const SectionContent = styled.div<LayoutStyledProps>`
+  padding: 0 ${SIDE_PADDING} ${SIDE_PADDING} ${SIDE_PADDING};
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+`;
+
+export function StyledPageSectionContent(props: StyledPageProps) {
+  const colorScheme = useColorScheme();
+  const { children, htmlAttributes: propsToSpread } = props;
+  const propsToAdd = {
+    colorscheme: colorScheme,
+  };
+  return (
+    <SectionContent {...propsToAdd} {...propsToSpread}>
+      {children}
+    </SectionContent>
+  );
+}

@@ -1,7 +1,7 @@
 
 refactor stuff:
-  -page nav
-    --figure out how to handle the urls section on the right
+  -finish StyledPage refactor stuff
+  -use StyledPage to finish the rest of the content
   -start ExampleLayout (use grid and have left column house the page nav)
   -start ResumeLayout?
   -start BridgeLayout?

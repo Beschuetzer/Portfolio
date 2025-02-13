@@ -8,10 +8,7 @@ import {
   COLORS,
   defaultFontSize,
   fontSizeEight,
-  fontSizeFive,
   fontSizeSix,
-  getFontSizeCustom,
-  SECTION_WIDTH_IN_PIXELS,
   SITE_NAV_NAV_SWITCH_TOP,
 } from "../../styles/constants";
 import {
@@ -45,6 +42,7 @@ import { hexToRgba } from "../../components/navbar/sitenav/helpers";
 import { SIDE_PADDING } from "./constants";
 import { StyledPageSection } from "./StyledPageSection";
 import { StyledPageParagraph } from "./StyledPageParagraph";
+import { StyledPageSectionContent } from "./StyledPageSectionContent";
 
 type StyledPageProps = {};
 
@@ -86,14 +84,6 @@ const SectionHeader = styled.h3<LayoutStyledProps>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-`;
-
-const SectionContent = styled.div<LayoutStyledProps>`
-  padding: 0 ${SIDE_PADDING} ${SIDE_PADDING} ${SIDE_PADDING};
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  width: 100%;
 `;
 
 type SectionProps = {
@@ -348,9 +338,9 @@ export function StyledPage(props: StyledPageProps) {
               <SectionHeader {...propsToAdd} style={headerStyle}>
                 {name}
               </SectionHeader>
-              <SectionContent {...propsToAdd} style={contentStyle}>
+              <StyledPageSectionContent {...propsToAdd} htmlAttributes={{style: contentStyle}}>
                 {content}
-              </SectionContent>
+              </StyledPageSectionContent>
             </StyledPageSection>
           );
         })}
