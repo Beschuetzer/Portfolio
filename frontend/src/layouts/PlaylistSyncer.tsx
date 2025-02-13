@@ -41,6 +41,7 @@ import { Carousel } from "react-thumbnail-carousel";
 import { CSharpCardSection } from "../pages";
 import { Quote } from "../components/Quote";
 import { respond } from "../styles/breakpoints";
+import { hexToRgba } from "../components/navbar/sitenav/helpers";
 
 type PlaylistSyncerPageProps = {};
 
@@ -66,6 +67,9 @@ const Header = styled.h2<LayoutStyledProps>`
   align-items: center;
   justify-content: center;
   margin-bottom: ${SIDE_PADDING};
+  text-shadow: 0 4px 3px ${(props) => hexToRgba(props.colorscheme?.primary3, .4)},
+    0 8px 13px ${(props) => hexToRgba(props.colorscheme?.primary3, .1)},
+    0 18px 23px ${(props) => hexToRgba(props.colorscheme?.primary3, .1)};
 `;
 
 const Section = styled.section<LayoutStyledProps>`
@@ -220,9 +224,7 @@ export function PlaylistSyncerPage(props: PlaylistSyncerPageProps) {
                   colorGreyOne: COLORS[PLAYLIST_SYNCER_URL]?.greyOne,
                 },
                 toolbar: {
-                  elements: {
-
-                  }
+                  elements: {},
                 },
                 itemViewer: {
                   loadingSpinner: {
