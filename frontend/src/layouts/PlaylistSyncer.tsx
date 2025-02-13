@@ -11,10 +11,14 @@ import {
   fontSizeFive,
   fontSizeSix,
   getFontSizeCustom,
+  SECTION_WIDTH_IN_PIXELS,
 } from "../styles/constants";
 import {
+  DOWNLOADER_URL,
   OS_10_ISSUE_TRACKER_URL,
   PLAYLIST_SYNCER_URL,
+  WIKIPEDIA_DRM_URL,
+  WIKIPEDIA_MTP_URL,
 } from "../components/constants";
 
 import img1 from "../imgs/playlist-syncer/img1.png";
@@ -35,6 +39,8 @@ import demoVideoThumbnail from "../clips/playlist-syncer/demo-thumbnail.png";
 import { Carousel } from "react-thumbnail-carousel";
 import { CSharpCardSection } from "../pages";
 import { Quote } from "../components/Quote";
+import { EmbeddedLink } from "../components/EmbeddedLink";
+import { respond } from "../styles/breakpoints";
 
 type PlaylistSyncerPageProps = {};
 
@@ -56,7 +62,6 @@ const Header = styled.h2<LayoutStyledProps>`
   align-items: center;
   justify-content: center;
   margin-bottom: ${SIDE_PADDING};
-
 `;
 
 const Section = styled.section<LayoutStyledProps>`
@@ -69,6 +74,12 @@ const Section = styled.section<LayoutStyledProps>`
   justify-content: center;
   margin-bottom: ${INTER_SECTION_PADDING};
   overflow: hidden;
+  max-width: ${SECTION_WIDTH_IN_PIXELS}px;
+  z-index: 1;
+
+  ${respond.navSwitch`
+    margin: 0 auto ${INTER_SECTION_PADDING} auto;  
+  `}
 `;
 
 const SectionHeader = styled.h3<LayoutStyledProps>`
@@ -284,6 +295,37 @@ const SECTIONS: SectionProps[] = [
           changes.&nbsp; After successfully trying this workaround out for
           myself, I began thinking about how to integrate it into the app I was
           planning on building.
+        </Paragraph>
+      </>
+    ),
+  },
+  {
+    name: "The Approach",
+    content: (
+      <>
+        <Paragraph>
+          First I needed to figure out how to sync music to an Android device.
+          It turns out that the main way to do that is through a protocol called
+          the &nbsp;
+          <a href={WIKIPEDIA_MTP_URL}>
+            Media Transfer Protocol
+          </a>
+          &nbsp; (MTP), which is part of the&nbsp;
+          <a href={WIKIPEDIA_DRM_URL}>
+            Windows Media DRM
+          </a>
+          .  Because of the&nbsp;
+          <a href={DOWNLOADER_URL}>
+            downloader
+          </a>
+          &nbsp;app I had recently started, I decided to use c# and WPF to create the
+          playlist syncing app.
+        </Paragraph>
+        <Paragraph>
+          Creating the application was fairly straight forward due to what I had
+          already learned from the downloader after I had thoroughly understood
+          the problem and had a firm grasp on how task factories work and async
+          code in general.
         </Paragraph>
       </>
     ),
