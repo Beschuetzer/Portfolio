@@ -4,4 +4,7 @@ export type LayoutStyledProps = {
     backgroundsvg?: string;
     colorscheme?: ColorScheme;
     index?: number;
+    sitenavright?: string;
+    textcolor?: string;
+    svgfillcolor?: string;
 }

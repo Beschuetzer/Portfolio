@@ -11,6 +11,10 @@ export function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+/**
+ * Get the absolute left position of the site nav.
+ * @returns The absolute left position as a string that can be used as the `left` css property.
+ */
 export function getAbsoluteLeftPosition() {
   return `calc(((calc(${
     window.innerWidth
@@ -20,6 +24,10 @@ export function getAbsoluteLeftPosition() {
   )})`;
 }
 
+/**
+ * Get the absolute right position of the site nav.
+ * @returns The absolute right position as a string that can be used as the `left` css property.
+ */
 export function getAbsoluteRightPosition() {
   const columnWidth = `calc(calc(${window.innerWidth}px - ${SCROLL_BAR_WIDTH_IN_REM}rem - ${SECTION_WIDTH_IN_PIXELS}px) / 2)`;
   return `calc(${columnWidth} + ${SECTION_WIDTH_IN_PIXELS}px + calc(${columnWidth} / 2) - ${getFontSizeCustom(
