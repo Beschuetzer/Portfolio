@@ -20,7 +20,7 @@ const SectionHeader = styled.h3<LayoutStyledProps>`
   justify-content: flex-start;
 `;
 
-export function StyledPageSectionHeader(props: StyledPageProps) {
+export function ExamplePageSectionHeader(props: StyledPageProps) {
   const colorScheme = useColorScheme();
   const { children, htmlAttributes } = props;
   const propsToAdd = {

@@ -29,7 +29,7 @@ const Section = styled.section<LayoutStyledProps>`
   `}
 `;
 
-export function StyledPageSection(props: StyledPageProps) {
+export function ExamplePageSection(props: StyledPageProps) {
   const colorScheme = useColorScheme();
   const { children, htmlAttributes } = props;
   const propsToAdd = {

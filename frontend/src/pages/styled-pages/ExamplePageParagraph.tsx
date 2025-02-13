@@ -1,26 +1,29 @@
+import React from "react";
 import styled from "styled-components";
 import { LayoutStyledProps } from "../../layouts/types";
+import {
+    fontSizeFive,
+} from "../../styles/constants";
 import { SIDE_PADDING } from "./constants";
 import { useColorScheme } from "../../hooks/useColorScheme";
 import { StyledPageProps } from "./types";
 
-const SectionContent = styled.div<LayoutStyledProps>`
-  padding: 0 ${SIDE_PADDING} ${SIDE_PADDING} ${SIDE_PADDING};
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  width: 100%;
+const Paragraph = styled.p<LayoutStyledProps>`
+  font-size: ${fontSizeFive};
+  font-family: Open Sans, sans-serif;
+  color: ${(props) => props.colorscheme?.primary1};
+  margin-top: ${SIDE_PADDING};
 `;
 
-export function StyledPageSectionContent(props: StyledPageProps) {
+export function ExamplePageParagraph(props: StyledPageProps) {
   const colorScheme = useColorScheme();
   const { children, htmlAttributes } = props;
   const propsToAdd = {
     colorscheme: colorScheme,
   };
   return (
-    <SectionContent {...propsToAdd} {...htmlAttributes}>
+    <Paragraph {...propsToAdd} {...htmlAttributes}>
       {children}
-    </SectionContent>
+    </Paragraph>
   );
 }

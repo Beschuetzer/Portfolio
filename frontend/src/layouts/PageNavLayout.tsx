@@ -39,7 +39,7 @@ const Layout = styled.div<LayoutStyledProps>`
 `}
 `;
 
-type ExampleLayoutProps = {
+type PageNavLayoutProps = {
   children: React.ReactNode | React.ReactNode[];
   backgroundSvg?: string;
   urls?: {
@@ -49,7 +49,7 @@ type ExampleLayoutProps = {
   };
 };
 
-export function PageNavLayout(props: ExampleLayoutProps) {
+export function PageNavLayout(props: PageNavLayoutProps) {
   const { children, backgroundSvg = "", urls } = props;
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = useMemo(
