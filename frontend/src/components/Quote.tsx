@@ -1,11 +1,14 @@
-import React, { HtmlHTMLAttributes, useRef } from "react";
+import { HtmlHTMLAttributes, useRef, useState } from "react";
 import { LayoutStyledProps } from "../layouts/types";
 import styled from "styled-components";
 import {
   defaultFontSize,
+  fontSizeFour,
+  fontSizeNine,
   fontSizeSix,
   getFontSizeCustom,
 } from "../styles/constants";
+import { useColorScheme } from "../hooks/useColorScheme";
 
 const Container = styled.figure<LayoutStyledProps>`
   width: 100%;
@@ -17,7 +20,8 @@ const Container = styled.figure<LayoutStyledProps>`
   cursor: pointer;
   text-align: center;
   position: relative;
-  color: ${(props) => props.colorscheme?.primary3};
+  color: ${(props) => props.colorscheme?.primary1};
+  transition: opacity 0.25s ease-in-out;
 
   &:hover {
     opacity: 0.75;
@@ -25,32 +29,28 @@ const Container = styled.figure<LayoutStyledProps>`
 
   &:hover::before,
   &:hover::after {
-    opacity: 0.5;
-    color: ${(props) => props.colorscheme?.primary1};
+    opacity: 1;
   }
 
   &::before,
   &::after {
-    color: ${(props) => props.colorscheme?.primary1};
-    font-size: 4.272625rem;
+    transition: opacity 0.25s ease-in-out;
+    font-size: ${fontSizeNine};
     opacity: 0.125;
-    padding: 0.896rem;
     position: absolute;
-    top: 0;
+    top: calc(${fontSizeNine} / 10);
   }
 
   &::before {
     content: "“";
-    position: absolute;
     left: 0;
-    top: 0;
+    top: calc(${fontSizeNine} / 2);
   }
 
   &::after {
     content: "”";
-    position: absolute;
     right: 0;
-    top: 0;
+    top: calc(-1 * ${fontSizeNine} / 4);
   }
 `;
 
@@ -66,31 +66,75 @@ const Cite = styled.cite<LayoutStyledProps>`
   font-family: "Merriweather", serif;
 `;
 
+const Popup = styled.div<LayoutStyledProps>`
+  user-select: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: ${(props) => props.colorscheme?.primary4};
+  color: ${(props) => props.colorscheme?.primary1};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: ${(props) => (props.ispopupvisible ? 1 : 0)};
+  transition: opacity 0.25s ease-in-out;
+  font-size: ${fontSizeFour};
+  z-index: 1000;
+  border-radius: ${getFontSizeCustom(0.5)};
+`;
+
 type QuoteProps = {
   author: string;
   containerProps?: HtmlHTMLAttributes<HTMLDivElement>;
   text: string;
 };
 
-export default function Quote(props: QuoteProps) {
+const COPY_MESSAGE_TIMEOUT = 1000;
+
+export function Quote(props: QuoteProps) {
   const { author, containerProps, text } = props;
+  const colorScheme = useColorScheme();
   const messageRef = useRef<HTMLQuoteElement>(null);
   const authorRef = useRef<HTMLDivElement>(null);
+  const [popupMessage, setPopupMessage] = useState("");
+  const isVisibleTimeout = useRef<any>(null);
+
+  const propsToAdd: LayoutStyledProps = {
+    colorscheme: colorScheme != null ? colorScheme : undefined,
+    ispopupvisible: popupMessage.length > 0,
+  };
 
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(
         messageRef.current?.textContent || ""
       );
+      setPopupMessage("Copied Quote to Clipboard!");
     } catch (error) {
-      console.error("Failed to copy quote to clipboard: ", error);
+      setPopupMessage("Failed to Copy Quote to Clipboard...");
+    } finally {
+      isVisibleTimeout.current && clearTimeout(isVisibleTimeout.current);
+      isVisibleTimeout.current = setTimeout(() => {
+        setPopupMessage("");
+      }, COPY_MESSAGE_TIMEOUT);
     }
   };
 
   return (
-    <Container {...containerProps} onClick={(e: any) => copyToClipboard()}>
-      <BlockQuote ref={messageRef}>{text}</BlockQuote>
-      <Cite ref={authorRef}>&#8212;{author}</Cite>
+    <Container
+      {...containerProps}
+      {...propsToAdd}
+      onClick={(e: any) => copyToClipboard()}
+    >
+      <Popup {...propsToAdd}>{popupMessage}</Popup>
+      <BlockQuote ref={messageRef} {...propsToAdd}>
+        {text}
+      </BlockQuote>
+      <Cite ref={authorRef} {...propsToAdd}>
+        &#8212;{author}
+      </Cite>
     </Container>
   );
 }

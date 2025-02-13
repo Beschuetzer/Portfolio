@@ -9,6 +9,7 @@ export type LayoutStyledProps = {
   backgroundsvg?: string;
   colorscheme?: ColorScheme;
   index?: number;
+  ispopupvisible?: boolean;
   sitenavright?: string;
   textcolor?: string;
   svgfillcolor?: string;
