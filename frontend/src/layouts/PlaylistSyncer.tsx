@@ -1,6 +1,6 @@
 import { ReactNode, useMemo } from "react";
 import { PageNavLayout } from "./PageNavLayout";
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 import { LayoutStyledProps } from "./types";
 import { useColorScheme } from "../hooks/useColorScheme";
 import {
@@ -63,7 +63,7 @@ const Section = styled.section<LayoutStyledProps>`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  margin-top: ${getFontSizeCustom(2)};
+  margin-top: ${getFontSizeCustom(4)};
 `;
 
 const SectionHeader = styled.h3<LayoutStyledProps>`
@@ -96,7 +96,14 @@ const Paragraph = styled.p<LayoutStyledProps>`
   margin-top: ${SIDE_PADDING};
 `;
 
-type SectionProps = { name: string; content: ReactNode | ReactNode[] };
+type SectionProps = {
+  name: string;
+  content: ReactNode | ReactNode[];
+  contentStyle?: CSSProperties;
+  containerStyle?: CSSProperties;
+  headerStyle?: CSSProperties;
+};
+
 const SECTIONS: SectionProps[] = [
   {
     name: "Background",
@@ -124,6 +131,9 @@ const SECTIONS: SectionProps[] = [
   },
   {
     name: "Media",
+    contentStyle: {
+      padding: 0,
+    },
     content: (
       <Carousel
         options={{
@@ -163,7 +173,11 @@ const SECTIONS: SectionProps[] = [
             container: {
               margin: {
                 top: 4,
-              }
+              },
+              padding: {
+                right: 25,
+                left: 25,
+              },
             },
             colorTheme: {
               colorOne: COLORS[PLAYLIST_SYNCER_URL]?.primary1,
@@ -265,12 +279,25 @@ export function PlaylistSyncerPage(props: PlaylistSyncerPageProps) {
     <PageNavLayout>
       <Header {...propsToAdd}>Playlist Syncer</Header>
       <Content {...propsToAdd}>
-        {SECTIONS.map((section, index) => (
-          <Section key={index} id={section.name} {...propsToAdd}>
-            <SectionHeader {...propsToAdd}>{section.name}</SectionHeader>
-            <SectionContent {...propsToAdd}>{section.content}</SectionContent>
-          </Section>
-        ))}
+        {SECTIONS.map((section, index) => {
+          const { contentStyle, containerStyle, headerStyle, name, content } =
+            section;
+          return (
+            <Section
+              key={index}
+              id={name}
+              style={containerStyle}
+              {...propsToAdd}
+            >
+              <SectionHeader {...propsToAdd} style={headerStyle}>
+                {name}
+              </SectionHeader>
+              <SectionContent {...propsToAdd} style={contentStyle}>
+                {content}
+              </SectionContent>
+            </Section>
+          );
+        })}
       </Content>
     </PageNavLayout>
   );
