@@ -43,9 +43,9 @@ import { SIDE_PADDING } from "./constants";
 import { StyledPageSection } from "./StyledPageSection";
 import { StyledPageParagraph } from "./StyledPageParagraph";
 import { StyledPageSectionContent } from "./StyledPageSectionContent";
+import { StyledPageSectionHeader } from "./StyledPageSectionHeader";
 
 type StyledPageProps = {};
-
 
 const Content = styled.div<LayoutStyledProps>`
   display: flex;
@@ -66,24 +66,10 @@ const Header = styled.h2<LayoutStyledProps>`
   align-items: center;
   justify-content: center;
   margin-bottom: ${SIDE_PADDING};
-  text-shadow: 0 4px 3px ${(props) => hexToRgba(props.colorscheme?.primary3, .4)},
-    0 8px 13px ${(props) => hexToRgba(props.colorscheme?.primary3, .1)},
-    0 18px 23px ${(props) => hexToRgba(props.colorscheme?.primary3, .1)};
-`;
-
-const SectionHeader = styled.h3<LayoutStyledProps>`
-  width: 100%;
-  padding: ${defaultFontSize} ${SIDE_PADDING};
-  font-size: ${fontSizeSix};
-  color: ${(props) => props.colorscheme?.primary1};
-  background: linear-gradient(
-    to bottom right,
-    ${(props) => props.colorscheme?.primary4},
-    ${(props) => props.colorscheme?.primary3}
-  );
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  text-shadow: 0 4px 3px
+      ${(props) => hexToRgba(props.colorscheme?.primary3, 0.4)},
+    0 8px 13px ${(props) => hexToRgba(props.colorscheme?.primary3, 0.1)},
+    0 18px 23px ${(props) => hexToRgba(props.colorscheme?.primary3, 0.1)};
 `;
 
 type SectionProps = {
@@ -153,22 +139,22 @@ export function StyledPage(props: StyledPageProps) {
                 size: [[200], [100, 1200, "max-width"]],
                 descriptionOverlay: {
                   hideDescriptionOverlayUnlessHovered: false,
-                  textColor: COLORS[PLAYLIST_SYNCER_URL]?.primary4,
+                  textColor: colorScheme?.primary4,
                   background: {
                     gradient: {
                       start: {
                         opacity: 0.9,
-                        color: COLORS[PLAYLIST_SYNCER_URL]?.primary1,
+                        color: colorScheme?.primary1,
                       },
                       end: {
                         opacity: 0.9,
-                        color: COLORS[PLAYLIST_SYNCER_URL]?.primary2,
+                        color: colorScheme?.primary2,
                       },
                       angle: 270,
                     },
                   },
                 },
-                currentItemBorder: `2px dotted ${COLORS[PLAYLIST_SYNCER_URL]?.primary4}`,
+                currentItemBorder: `2px dotted ${colorScheme?.primary4}`,
               },
               styling: {
                 container: {
@@ -181,25 +167,25 @@ export function StyledPage(props: StyledPageProps) {
                   },
                 },
                 colorTheme: {
-                  colorOne: COLORS[PLAYLIST_SYNCER_URL]?.primary1,
-                  colorTwo: COLORS[PLAYLIST_SYNCER_URL]?.primary2,
-                  colorThree: COLORS[PLAYLIST_SYNCER_URL]?.primary2,
-                  colorFour: COLORS[PLAYLIST_SYNCER_URL]?.primary3,
-                  colorFive: COLORS[PLAYLIST_SYNCER_URL]?.primary4,
-                  colorGreyOne: COLORS[PLAYLIST_SYNCER_URL]?.greyOne,
+                  colorOne: colorScheme?.primary1,
+                  colorTwo: colorScheme?.primary2,
+                  colorThree: colorScheme?.primary2,
+                  colorFour: colorScheme?.primary3,
+                  colorFive: colorScheme?.primary4,
+                  colorGreyOne: colorScheme?.greyOne,
                 },
                 navigation: {
-                  backgroundColor: COLORS[PLAYLIST_SYNCER_URL]?.primary3,
+                  backgroundColor: colorScheme?.primary3,
                   elements: {
-                    color: COLORS[PLAYLIST_SYNCER_URL]?.primary1,
-                  }
+                    color: colorScheme?.primary1,
+                  },
                 },
-                
+
                 itemViewer: {
-                  backgroundColor: COLORS[PLAYLIST_SYNCER_URL]?.primary3,
+                  backgroundColor: colorScheme?.primary3,
                   loadingSpinner: {
                     options: {
-                      color: COLORS[PLAYLIST_SYNCER_URL].primary4,
+                      color: colorScheme.primary4,
                     },
                   },
                 },
@@ -336,14 +322,20 @@ export function StyledPage(props: StyledPageProps) {
               key={index}
               htmlAttributes={{
                 id: name,
-                style: containerStyle
+                style: containerStyle,
               }}
               {...propsToAdd}
             >
-              <SectionHeader {...propsToAdd} style={headerStyle}>
+              <StyledPageSectionHeader
+                {...propsToAdd}
+                htmlAttributes={{ style: headerStyle }}
+              >
                 {name}
-              </SectionHeader>
-              <StyledPageSectionContent {...propsToAdd} htmlAttributes={{style: contentStyle}}>
+              </StyledPageSectionHeader>
+              <StyledPageSectionContent
+                {...propsToAdd}
+                htmlAttributes={{ style: contentStyle }}
+              >
                 {content}
               </StyledPageSectionContent>
             </StyledPageSection>

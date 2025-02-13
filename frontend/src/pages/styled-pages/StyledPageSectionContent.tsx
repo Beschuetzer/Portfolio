@@ -14,12 +14,12 @@ const SectionContent = styled.div<LayoutStyledProps>`
 
 export function StyledPageSectionContent(props: StyledPageProps) {
   const colorScheme = useColorScheme();
-  const { children, htmlAttributes: propsToSpread } = props;
+  const { children, htmlAttributes } = props;
   const propsToAdd = {
     colorscheme: colorScheme,
   };
   return (
-    <SectionContent {...propsToAdd} {...propsToSpread}>
+    <SectionContent {...propsToAdd} {...htmlAttributes}>
       {children}
     </SectionContent>
   );

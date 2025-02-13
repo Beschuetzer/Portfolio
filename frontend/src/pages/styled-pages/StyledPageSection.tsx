@@ -31,12 +31,12 @@ const Section = styled.section<LayoutStyledProps>`
 
 export function StyledPageSection(props: StyledPageProps) {
   const colorScheme = useColorScheme();
-  const { children, htmlAttributes: propsToSpread } = props;
+  const { children, htmlAttributes } = props;
   const propsToAdd = {
     colorscheme: colorScheme,
   };
   return (
-    <Section {...propsToAdd} {...propsToSpread}>
+    <Section {...propsToAdd} {...htmlAttributes}>
       {children}
     </Section>
   );

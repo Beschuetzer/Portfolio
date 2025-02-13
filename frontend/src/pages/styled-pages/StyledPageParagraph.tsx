@@ -17,12 +17,12 @@ const Paragraph = styled.p<LayoutStyledProps>`
 
 export function StyledPageParagraph(props: StyledPageProps) {
   const colorScheme = useColorScheme();
-  const { children, htmlAttributes: propsToSpread } = props;
+  const { children, htmlAttributes } = props;
   const propsToAdd = {
     colorscheme: colorScheme,
   };
   return (
-    <Paragraph {...propsToAdd} {...propsToSpread}>
+    <Paragraph {...propsToAdd} {...htmlAttributes}>
       {children}
     </Paragraph>
   );
