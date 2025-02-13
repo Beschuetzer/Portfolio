@@ -99,8 +99,6 @@ export function PageNav(props: PageNavProps) {
     [colorScheme, minPixelWidth, sections.length]
   );
 
-  console.log({ propsToAdd, sections });
-
   const onResize = useCallback(() => {
     ////old approach
     // setMinPixelWidth(
