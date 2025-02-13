@@ -35,6 +35,11 @@ function getContainerTop(props: LayoutStyledProps) {
   return `calc(${spacingToStart} + ${interItemSpacing} + ${toBottomOfButton})`;
 }
 
+function getContainerRight(props: LayoutStyledProps) {
+  const interItemSpacing = `calc(${props.index} * (${defaultFontSize} + ${BUTTON_WIDTH}))`;
+  return `calc(${SITE_NAV_NAV_SWITCH_TOP} + ${interItemSpacing})`;
+}
+
 const Container = styled.div<LayoutStyledProps>`
   position: fixed;
   top: ${(props) => getContainerTop(props)};
@@ -50,7 +55,7 @@ const Container = styled.div<LayoutStyledProps>`
 
   ${respond.navSwitch`
     left: auto;
-    right: ${SITE_NAV_NAV_SWITCH_TOP};
+    right: ${(props: LayoutStyledProps) => getContainerRight(props)};
     top: ${pageNavLayoutHeaderMarginTopNavSwitch};
     z-index: 1000000;
   `}
@@ -137,8 +142,6 @@ export function PageNavLayoutLink(props: PageNavLayoutLinkProps) {
     }),
     [color, colorScheme, fill, hoverEffectType, index, siteNavRight]
   );
-
-  console.log({ hoverEffectType, index, title, url });
 
   const onResize = useCallback(() => {
     setSiteNavRight(getAbsoluteRightPosition());

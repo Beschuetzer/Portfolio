@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { SECTION_WIDTH_IN_PIXELS } from './constants';
+import { defaultFontSize, SECTION_WIDTH_IN_PIXELS } from './constants';
 
 enum Breakpoints {
   navListBreak = 'navListBreak',
@@ -8,6 +8,7 @@ enum Breakpoints {
   phone = 'phone',
   phoneTouch = 'phoneTouch',
   contentFull = 'contentFull',
+  contentFullWithPadding = 'contentFullWithPadding',
   tabPort = 'tabPort',
   tabLand = 'tabLand',
   navSwitch = 'navSwitch',
@@ -22,6 +23,7 @@ export const BREAK_POINTS: { [key in Breakpoints]: string } = {
   [Breakpoints.phone]: '655px',
   [Breakpoints.phoneTouch]: '655px',
   [Breakpoints.contentFull]: `${SECTION_WIDTH_IN_PIXELS}px`,
+  [Breakpoints.contentFullWithPadding]: `calc(${SECTION_WIDTH_IN_PIXELS}px + 2 * ${defaultFontSize})`,
   [Breakpoints.tabPort]: '843px',
   [Breakpoints.tabLand]: '937px',
   [Breakpoints.navSwitch]: '1300px',

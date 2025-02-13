@@ -27,6 +27,10 @@ const Section = styled.section<LayoutStyledProps>`
   ${respond.navSwitch`
     margin: 0 auto ${INTER_SECTION_PADDING} auto;  
   `}
+
+  ${respond.contentFullWithPadding`
+    max-width: none;
+  `}
 `;
 
 export function ExamplePageSection(props: StyledPageProps) {
