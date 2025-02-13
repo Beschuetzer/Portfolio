@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { LayoutStyledProps } from "./types";
 import { styled } from "styled-components";
 import {
+  BUTTON_WIDTH,
   SECTION_WIDTH_IN_PIXELS,
   SITE_NAV_NAV_SWITCH_TOP,
   SITE_NAV_TOP,
@@ -10,6 +11,7 @@ import { respond } from "../styles/breakpoints";
 import { useColorScheme } from "../hooks/useColorScheme";
 import { PageNav } from "../components/navbar/PageNav";
 import { NAVBAR_HEADER_NAV_SWITCH_HEIGHT } from "../components/navbar/sitenav/styles";
+import { PageNavLayoutLink, PageNavLayoutLinkProps } from "./PageNavLayoutLink";
 
 const ChildrenContainer = styled.div`
   display: flex;
@@ -39,18 +41,24 @@ const Layout = styled.div<LayoutStyledProps>`
 `}
 `;
 
-type PageNavLayoutProps = {
+const LinkContainer = styled.div<LayoutStyledProps>`
+  position: fixed;
+  top: ${props => props.index || 1 * 2}rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: ${BUTTON_WIDTH};
+`;
+
+export type PageNavLayoutProps = {
   children: React.ReactNode | React.ReactNode[];
   backgroundSvg?: string;
-  urls?: {
-    code?: string;
-    demo?: string;
-    liveSite?: string;
-  };
+  links?: PageNavLayoutLinkProps[];
 };
 
 export function PageNavLayout(props: PageNavLayoutProps) {
-  const { children, backgroundSvg = "", urls } = props;
+  const { children, backgroundSvg = "", links } = props;
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = useMemo(
     () => ({
@@ -64,7 +72,11 @@ export function PageNavLayout(props: PageNavLayoutProps) {
     <Layout {...propsToAdd}>
       <PageNav />
       <ChildrenContainer>{children}</ChildrenContainer>
-      <div />
+      {links?.map((link, index) => (
+        <LinkContainer key={index} index={index}>
+          <PageNavLayoutLink {...link} />
+        </LinkContainer>
+      ))}
     </Layout>
   );
 }

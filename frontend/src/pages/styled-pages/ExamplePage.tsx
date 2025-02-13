@@ -1,5 +1,5 @@
 import { ReactNode, useMemo } from "react";
-import { PageNavLayout } from "../../layouts/PageNavLayout";
+import { PageNavLayout, PageNavLayoutProps } from "../../layouts/PageNavLayout";
 import styled, { CSSProperties } from "styled-components";
 import { LayoutStyledProps } from "../../layouts/types";
 import { useColorScheme } from "../../hooks/useColorScheme";
@@ -44,6 +44,7 @@ const Header = styled.h2<LayoutStyledProps>`
 
 type ExamplePageProps = {
   sections: ExamplePageSectionProps[];
+  layoutProps?: Omit<PageNavLayoutProps, 'children'>;
 };
 
 export type ExamplePageSectionProps = {
@@ -55,7 +56,7 @@ export type ExamplePageSectionProps = {
 };
 
 export function ExamplePage(props: ExamplePageProps) {
-  const { sections } = props;
+  const { layoutProps, sections } = props;
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = useMemo(
     () => ({
@@ -65,7 +66,7 @@ export function ExamplePage(props: ExamplePageProps) {
   );
 
   return (
-    <PageNavLayout>
+    <PageNavLayout {...layoutProps}>
       <Header {...propsToAdd}>Playlist Syncer</Header>
       <Content {...propsToAdd}>
         {sections.map((section, index) => {
