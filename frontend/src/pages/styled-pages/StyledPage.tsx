@@ -78,8 +78,8 @@ const SectionHeader = styled.h3<LayoutStyledProps>`
   color: ${(props) => props.colorscheme?.primary1};
   background: linear-gradient(
     to bottom right,
-    ${(props) => props.colorscheme?.primary3},
-    ${(props) => props.colorscheme?.primary4}
+    ${(props) => props.colorscheme?.primary4},
+    ${(props) => props.colorscheme?.primary3}
   );
   display: flex;
   align-items: center;
@@ -188,10 +188,15 @@ export function StyledPage(props: StyledPageProps) {
                   colorFive: COLORS[PLAYLIST_SYNCER_URL]?.primary4,
                   colorGreyOne: COLORS[PLAYLIST_SYNCER_URL]?.greyOne,
                 },
-                toolbar: {
-                  elements: {},
+                navigation: {
+                  backgroundColor: COLORS[PLAYLIST_SYNCER_URL]?.primary3,
+                  elements: {
+                    color: COLORS[PLAYLIST_SYNCER_URL]?.primary1,
+                  }
                 },
+                
                 itemViewer: {
+                  backgroundColor: COLORS[PLAYLIST_SYNCER_URL]?.primary3,
                   loadingSpinner: {
                     options: {
                       color: COLORS[PLAYLIST_SYNCER_URL].primary4,
