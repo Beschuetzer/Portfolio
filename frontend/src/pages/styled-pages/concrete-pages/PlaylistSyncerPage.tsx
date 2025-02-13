@@ -246,7 +246,7 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
   },
 ];
 
-export function PlaylistSyncer(props: PlaylistSyncerProps) {
+export function PlaylistSyncerPage(props: PlaylistSyncerProps) {
   return (
     <ExamplePage
       sections={PLAYLIST_SYNCER_SECTIONS}

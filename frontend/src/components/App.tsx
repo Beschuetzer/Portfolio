@@ -53,7 +53,9 @@ import {
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
 import { Redirect } from "../pages/Redirect";
 import { SCROLL_BAR_WIDTH_IN_REM } from "../styles/constants";
-import { PlaylistSyncer } from "../pages/styled-pages/concrete-pages/PlaylistSyncer";
+import { PlaylistSyncerPage } from "../pages/styled-pages/concrete-pages/PlaylistSyncerPage";
+import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
+import { AboutPage } from "../pages/styled-pages/concrete-pages/AboutPage";
 
 type AppProps = {};
 
@@ -197,17 +199,17 @@ export const App: React.FC<AppProps> = (props) => {
           <Route
             path={PLAYLIST_SYNCER_URL}
             exact
-            component={PlaylistSyncer}
+            component={PlaylistSyncerPage}
           />
           <Route path={REPLAY_VIEWER_URL} exact component={ReplayViewer} />
           <Route path={AUTO_BID_URL} exact component={AutoBid} />
-          <Route path={ABOUT_URL} exact component={About} />
+          <Route path={ABOUT_URL} exact component={AboutPage} />
           <Route path={RESUME_URL} exact component={Resume} />
           <Route path={PERSONALITY_URL} exact component={BigFive} />
           <Route path="*" exact component={Home} />
         </Switch>
 
-        {/* <AudioPlayer /> */}
+        <AudioPlayer />
         {/* <Footer/> */}
       </Router>
   );

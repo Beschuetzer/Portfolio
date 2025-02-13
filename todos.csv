@@ -1,8 +1,9 @@
 
 refactor stuff:
-  -finish StyledPage refactor stuff
   -use StyledPage to finish the rest of the content
-  -start ExampleLayout (use grid and have left column house the page nav)
+    --clean up stuff  
+      ---remove no-longer-needed pages
+      ---remove no-longer-needed scss files
   -start ResumeLayout?
   -start BridgeLayout?
    -SiteNavDrawer:
