@@ -42,11 +42,12 @@ import { CSharpCardSection } from "..";
 import { Quote } from "../../components/Quote";
 import { respond } from "../../styles/breakpoints";
 import { hexToRgba } from "../../components/navbar/sitenav/helpers";
+import { Section } from "../../components/Section";
+import { SIDE_PADDING } from "./constants";
+import { StyledPageSection } from "./StyledPageSection";
 
-type PlaylistSyncerPageProps = {};
+type StyledPageProps = {};
 
-const SIDE_PADDING = getFontSizeCustom(2);
-const INTER_SECTION_PADDING = getFontSizeCustom(4);
 
 const Content = styled.div<LayoutStyledProps>`
   display: flex;
@@ -70,25 +71,6 @@ const Header = styled.h2<LayoutStyledProps>`
   text-shadow: 0 4px 3px ${(props) => hexToRgba(props.colorscheme?.primary3, .4)},
     0 8px 13px ${(props) => hexToRgba(props.colorscheme?.primary3, .1)},
     0 18px 23px ${(props) => hexToRgba(props.colorscheme?.primary3, .1)};
-`;
-
-const Section = styled.section<LayoutStyledProps>`
-  width: 100%;
-  border-radius: 0 0 ${getFontSizeCustom(0.33)} ${getFontSizeCustom(0.33)};
-  background: ${(props) => props.colorscheme?.primary3};
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin-bottom: ${INTER_SECTION_PADDING};
-  overflow: hidden;
-  max-width: ${SECTION_WIDTH_IN_PIXELS}px;
-  z-index: 1;
-  box-shadow: 0 4px 8px hsla(0, 0%, 7%, 0.33);
-
-  ${respond.navSwitch`
-    margin: 0 auto ${INTER_SECTION_PADDING} auto;  
-  `}
 `;
 
 const SectionHeader = styled.h3<LayoutStyledProps>`
@@ -129,7 +111,7 @@ type SectionProps = {
   headerStyle?: CSSProperties;
 };
 
-export function PlaylistSyncerPage(props: PlaylistSyncerPageProps) {
+export function StyledPage(props: StyledPageProps) {
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = useMemo(
     () => ({
@@ -362,10 +344,12 @@ export function PlaylistSyncerPage(props: PlaylistSyncerPageProps) {
           const { contentStyle, containerStyle, headerStyle, name, content } =
             section;
           return (
-            <Section
+            <StyledPageSection
               key={index}
-              id={name}
-              style={containerStyle}
+              htmlAttributes={{
+                id: name,
+                style: containerStyle
+              }}
               {...propsToAdd}
             >
               <SectionHeader {...propsToAdd} style={headerStyle}>
@@ -374,7 +358,7 @@ export function PlaylistSyncerPage(props: PlaylistSyncerPageProps) {
               <SectionContent {...propsToAdd} style={contentStyle}>
                 {content}
               </SectionContent>
-            </Section>
+            </StyledPageSection>
           );
         })}
       </Content>

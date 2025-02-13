@@ -53,7 +53,7 @@ import {
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
 import { Redirect } from "../pages/Redirect";
 import { SCROLL_BAR_WIDTH_IN_REM } from "../styles/constants";
-import { PlaylistSyncerPage } from "../pages/styled-pages/PlaylistSyncer";
+import { StyledPage } from "../pages/styled-pages/StyledPage";
 
 type AppProps = {};
 
@@ -197,7 +197,7 @@ export const App: React.FC<AppProps> = (props) => {
           <Route
             path={PLAYLIST_SYNCER_URL}
             exact
-            component={PlaylistSyncerPage}
+            component={StyledPage}
           />
           <Route path={REPLAY_VIEWER_URL} exact component={ReplayViewer} />
           <Route path={AUTO_BID_URL} exact component={AutoBid} />
