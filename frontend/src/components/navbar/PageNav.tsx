@@ -23,7 +23,7 @@ const PaddingOffset = styled.div<SiteNavStyledProps>`
     props.numberofsections != null
       ? `padding-top: calc(50vh - ${ITEM_HEIGHT} * ${
           props.numberofsections / 2
-        } + (calc(${SITE_NAV_TOP} + ${BUTTON_WIDTH}) / 2));`
+        });`
       : ""}
 
   ${respond.navSwitch`
