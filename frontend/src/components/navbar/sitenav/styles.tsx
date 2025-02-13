@@ -26,7 +26,7 @@ export const buttonPlacementStyles = css<SiteNavStyledProps>`
     `}
 `;
 
-export const linkStyles = css<SiteNavStyledProps>`
+export const siteNavLinkStyles = css<SiteNavStyledProps>`
   display: flex;
   align-items: center;
   color: ${(props) => props.colorscheme?.primary1};

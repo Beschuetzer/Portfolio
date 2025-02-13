@@ -4,7 +4,7 @@ import { SiteNavStyledProps } from "./types";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import { Link } from "react-router-dom";
 import { useSiteNav } from "./SiteNavContext";
-import { itemStyles, linkStyles } from "./styles";
+import { itemStyles, siteNavLinkStyles } from "./styles";
 
 export enum SiteNaveItemOrientation {
   horizontal = "horizontal",
@@ -71,11 +71,11 @@ const Image = styled.img<SiteNavStyledProps>`
 `;
 
 const StyledLink = styled(Link)<SiteNavStyledProps>`
-  ${linkStyles}
+  ${siteNavLinkStyles}
 `;
 
 const ExternalLink = styled.a<SiteNavStyledProps>`
-  ${linkStyles}
+  ${siteNavLinkStyles}
 `;
 
 export function SiteNavItem(props: SiteNavItemProps) {

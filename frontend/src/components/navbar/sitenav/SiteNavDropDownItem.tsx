@@ -4,7 +4,7 @@ import { useColorScheme } from "../../../hooks/useColorScheme";
 import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./types";
 import { useSiteNav } from "./SiteNavContext";
-import { itemStyles, linkStyles, triangleRotateStyles } from "./styles";
+import { itemStyles, siteNavLinkStyles, triangleRotateStyles } from "./styles";
 import SiteNavTriangle from "./SiteNavTriangle";
 
 type SiteNavDropDownProps = Pick<SiteNavItemProps, "text"> & {
@@ -19,7 +19,7 @@ const DropdownContainer = styled.div<SiteNavStyledProps>`
 const DropDownItem = styled.div<SiteNavStyledProps>`
   cursor: default;
   ${itemStyles}
-  ${linkStyles}
+  ${siteNavLinkStyles}
    &:hover .triangle {
     ${triangleRotateStyles}
   }
