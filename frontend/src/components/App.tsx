@@ -49,12 +49,11 @@ import {
   ReplayViewer,
   Home,
   Resume,
-  PlaylistSyncer,
 } from "../pages";
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
 import { Redirect } from "../pages/Redirect";
 import { SCROLL_BAR_WIDTH_IN_REM } from "../styles/constants";
-import { PlaylistSyncerPage } from "../layouts/PlaylistSyncer";
+import { PlaylistSyncerPage } from "../pages/styled-pages/PlaylistSyncer";
 
 type AppProps = {};
 

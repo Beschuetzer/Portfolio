@@ -1,8 +1,8 @@
 import { ReactNode, useMemo } from "react";
-import { PageNavLayout } from "./PageNavLayout";
+import { PageNavLayout } from "../../layouts/PageNavLayout";
 import styled, { CSSProperties } from "styled-components";
-import { LayoutStyledProps } from "./types";
-import { useColorScheme } from "../hooks/useColorScheme";
+import { LayoutStyledProps } from "../../layouts/types";
+import { useColorScheme } from "../../hooks/useColorScheme";
 import {
   BUTTON_WIDTH,
   COLORS,
@@ -13,35 +13,35 @@ import {
   getFontSizeCustom,
   SECTION_WIDTH_IN_PIXELS,
   SITE_NAV_NAV_SWITCH_TOP,
-} from "../styles/constants";
+} from "../../styles/constants";
 import {
   DOWNLOADER_URL,
   OS_10_ISSUE_TRACKER_URL,
   PLAYLIST_SYNCER_URL,
   WIKIPEDIA_DRM_URL,
   WIKIPEDIA_MTP_URL,
-} from "../components/constants";
+} from "../../components/constants";
 
-import img1 from "../imgs/playlist-syncer/img1.png";
-import imgProblem from "../imgs/playlist-syncer/img-problem.jpg";
-import img2 from "../imgs/playlist-syncer/img2.png";
-import img3 from "../imgs/playlist-syncer/img3.png";
-import img4 from "../imgs/playlist-syncer/img4.png";
+import img1 from "../../imgs/playlist-syncer/img1.png";
+import imgProblem from "../../imgs/playlist-syncer/img-problem.jpg";
+import img2 from "../../imgs/playlist-syncer/img2.png";
+import img3 from "../../imgs/playlist-syncer/img3.png";
+import img4 from "../../imgs/playlist-syncer/img4.png";
 
-import img1Thumbnail from "../imgs/playlist-syncer/thumbnails/img1-thumbnail.png";
-import imgProblemThumbnail from "../imgs/playlist-syncer/thumbnails/img-problem-thumbnail.jpg";
-import img2Thumbnail from "../imgs/playlist-syncer/thumbnails/img2-thumbnail.png";
-import img3Thumbnail from "../imgs/playlist-syncer/thumbnails/img3-thumbnail.png";
-import img4Thumbnail from "../imgs/playlist-syncer/thumbnails/img4-thumbnail.png";
+import img1Thumbnail from "../../imgs/playlist-syncer/thumbnails/img1-thumbnail.png";
+import imgProblemThumbnail from "../../imgs/playlist-syncer/thumbnails/img-problem-thumbnail.jpg";
+import img2Thumbnail from "../../imgs/playlist-syncer/thumbnails/img2-thumbnail.png";
+import img3Thumbnail from "../../imgs/playlist-syncer/thumbnails/img3-thumbnail.png";
+import img4Thumbnail from "../../imgs/playlist-syncer/thumbnails/img4-thumbnail.png";
 
-import demoVideo from "../clips/playlist-syncer/demo.mp4";
-import demoVideo_480p from "../clips/playlist-syncer/demo-480p.mp4";
-import demoVideoThumbnail from "../clips/playlist-syncer/demo-thumbnail.png";
+import demoVideo from "../../clips/playlist-syncer/demo.mp4";
+import demoVideo_480p from "../../clips/playlist-syncer/demo-480p.mp4";
+import demoVideoThumbnail from "../../clips/playlist-syncer/demo-thumbnail.png";
 import { Carousel } from "react-thumbnail-carousel";
-import { CSharpCardSection } from "../pages";
-import { Quote } from "../components/Quote";
-import { respond } from "../styles/breakpoints";
-import { hexToRgba } from "../components/navbar/sitenav/helpers";
+import { CSharpCardSection } from "..";
+import { Quote } from "../../components/Quote";
+import { respond } from "../../styles/breakpoints";
+import { hexToRgba } from "../../components/navbar/sitenav/helpers";
 
 type PlaylistSyncerPageProps = {};
 
