@@ -84,7 +84,7 @@ const Title = styled.span<LayoutStyledProps>`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   color: ${(props) =>
     hexToRgba(props.textcolor, PAGE_NAV_LAYOUT_LINK_TEXT_COLOR_OPACITY)};
   background-color: ${(props) =>

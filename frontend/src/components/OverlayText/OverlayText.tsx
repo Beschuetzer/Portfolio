@@ -73,7 +73,7 @@ export const OverlayText: React.FC<OverlayTextProps> = ({
       left: '50%',
       bottom: 'auto',
       right: 'auto',
-      transform: "translate(-50%, -50%)",
+      transform: "translate3d(-50%, -50%, 0)",
       zIndex: 10000,
     };
   

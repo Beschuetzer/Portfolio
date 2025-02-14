@@ -52,7 +52,7 @@ export const pageNavLayoutLinkHoverCommonStyles = css<LayoutStyledProps>`
 export const pageNavLayoutLinkHoverRotateStyle = css<LayoutStyledProps>`
   &:hover {
     & > span {
-      transform: rotate(270deg) translate(25%, calc(${BUTTON_WIDTH} / 4));
+      transform: rotate(270deg) translate3d(25%, calc(${BUTTON_WIDTH} / 4), 0);
     }
   }
   ${pageNavLayoutLinkHoverCommonStyles}
@@ -61,7 +61,7 @@ export const pageNavLayoutLinkHoverRotateStyle = css<LayoutStyledProps>`
 export const pageNavLayoutLinkHoverExplodeStyle = css<LayoutStyledProps>`
   &:hover {
     & > span {
-      transform: translate(-50%, 25%) scale(1.5625);
+      transform: translate3d(-50%, 25%, 0) scale(1.5625);
     }
   }
   ${pageNavLayoutLinkHoverCommonStyles}

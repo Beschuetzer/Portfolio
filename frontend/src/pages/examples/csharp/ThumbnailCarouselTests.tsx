@@ -55,7 +55,7 @@ const customButtons = {
 		svgHref: "./sprite.svg#icon-fullscreen",
 		fillColor: getComputedStyleCustom('--color-primary-1'),
 		style: {
-			transform: `translate(25%, 25%) scale(1.25)`,
+			transform: `translate3d(25%, 25%, 0) scale(1.25)`,
 		},
 	},
 	nextButton: {
@@ -2705,7 +2705,7 @@ const viewingModeVideoCurrentStateIndicator = (
 						nonFullscreen: [["./sprite.svg#icon-backward"], ["./sprite.svg#icon-pause", 800]],
 					},
 					style: {
-						transform: 'translate(-10%, 0)',
+						transform: 'translate3d(-10%, 0, 0)',
 					}
 				}
 			},

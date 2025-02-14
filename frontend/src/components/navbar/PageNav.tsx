@@ -75,7 +75,7 @@ const Item = styled(Link)<SiteNavStyledProps>`
   color: ${(props) => hexToRgba(props.colorscheme?.primary4, .75)};
 
   &:hover {
-    transform: translateY(${getFontSizeCustom(-0.25)});
+    transform: translate3d(0, ${getFontSizeCustom(-0.25)}, 0);
     ${getTextShadowPageNavStyle(-2)}
     color: ${(props) => props.colorscheme?.primary4};
   }

@@ -82,7 +82,7 @@ export const QuoteLegacy: React.FC<QuoteProps> = ({
 		clearTimeout(popUpTimeout);
 
 		popUp.classList.remove(HIDDEN_CLASSNAME);
-		popUp.style.transform = `translate(-0%, 00%) scale(1)`;
+		popUp.style.transform = `translate3d(-0%, 0%, 0) scale(1)`;
 
 		popUpTimeout = setTimeout(() => {
 			popUp.style.transform = getComputedStyleCustom(QUOTE_POPUP_TRANSFORM_DEFAULT_CUSTOM_PROPERTY_NAME);
