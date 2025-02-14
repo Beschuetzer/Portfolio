@@ -18,9 +18,7 @@ const Drawer = styled.div<SiteNavStyledProps>`
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  background-color: ${props => hexToRgba(props.colorscheme?.primary1, .5)}; /* Semi-transparent background */
-  backdrop-filter: blur(10px); /* Frosted glass effect */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: ${props => hexToRgba(props.colorscheme?.primary4, .875)}; /* Semi-transparent background */
   transform: translateX(${(props) => (props.isopen ? "0" : "-100%")});
   transition: transform 0.3s ease-in-out;
 `;

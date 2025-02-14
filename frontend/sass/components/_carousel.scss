@@ -344,7 +344,6 @@
 
 				.carousel__item--full-screen & {
 					width: 100vw;
-					backdrop-filter: blur(10px);
 					height: $carousel-full-screen-media-height;
 				}
 			}

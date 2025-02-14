@@ -6,7 +6,7 @@ import { styled } from "styled-components";
 import { SiteNavButton } from "./SiteNavButton";
 import { SiteNavContent } from "./SiteNavContent";
 import { SiteNavProvider } from "./SiteNavContext";
-import SiteNavBackground from "./SiteNavBackground";
+import { SiteNavBackground } from "./SiteNavBackground";
 import { useLocation } from "react-router-dom";
 import { getAbsoluteLeftPosition } from "./helpers";
 import { SiteNavDrawer } from "./drawer/SiteNavDrawer";

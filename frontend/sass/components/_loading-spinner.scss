@@ -7,7 +7,6 @@ $height: 80px;
   width: 100vw;
   height: 100vh;
   z-index: 100;
-  backdrop-filter: blur(10px);
   position: fixed;
   transition: opacity $animation-duration * .5 $animation-easing-standard;
 
