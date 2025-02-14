@@ -30,11 +30,11 @@ export const siteNavLinkStyles = css<SiteNavStyledProps>`
   display: flex;
   align-items: center;
   color: ${(props) => props.colorscheme?.primary1};
-  font-size: ${fontSizeSix};
-  font-weight: 300;
+  font-size: ${fontSizeFive};
+  font-weight: 500;
   height: 100%;
   justify-content: center;
-  padding: ${fontSizeFive} calc(${fontSizeFive} * 2);
+  padding: ${fontSizeFive} calc(${fontSizeFive} * 1.5);
   text-decoration: none;
   transition: padding 0.5s ease, opacity 0.25s ease 0.25s;
   width: 100%;
