@@ -12,7 +12,7 @@ import { StyledPageProps } from "./types";
 
 const Section = styled.section<LayoutStyledProps>`
   width: 100%;
-  border-radius: 0 0 ${getFontSizeCustom(0.33)} ${getFontSizeCustom(0.33)};
+  border-radius: ${getFontSizeCustom(2)};
   background: ${(props) => props.colorscheme?.primary4};
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ const Section = styled.section<LayoutStyledProps>`
   overflow: hidden;
   max-width: ${SECTION_WIDTH_IN_PIXELS}px;
   z-index: 1;
-  box-shadow: 0 4px 8px hsla(0, 0%, 7%, 0.33);
+  box-shadow: rgba(43, 105, 251, 0.06) 0px 0px 1rem 1rem;
 
   ${respond.navSwitch`
     margin: 0 auto ${INTER_SECTION_PADDING} auto;  
