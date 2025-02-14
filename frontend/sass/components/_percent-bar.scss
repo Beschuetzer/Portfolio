@@ -48,24 +48,24 @@
 		&-left {
 			top: 0;
 			left: 0%;
-			transform: translate(-50%, 0%);
+			transform: translate3d(-50%, 0%, 0);
 		}
 		&-center {
 			bottom: 0;
 			left: 50%;
-			transform: translate(-50%, 0%);
+			transform: translate3d(-50%, 0%, 0);
 		}
 		&-right {
 			bottom: 0;
 			right: 0%;
-			transform: translate(0%, 0%);
+			transform: translate3d(0%, 0%, 0);
 		}
 
 		//Styling skills labels
 		& .percent-bar__labels {
 			opacity: 0;
 			display: grid;
-			transform: translate(0);
+			transform: translate3d(0, 0, 0);
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -109,7 +109,7 @@
 		// &:hover {
 		// }
 		&:hover .skills__value {
-			transform: translate(-50%, -50%) scaleY(calc(3 / 5));
+			transform: translate3d(-50%, -50%, 0) scaleY(calc(3 / 5));
 			opacity: 1;
 		}
 	}
@@ -119,7 +119,7 @@
 		position: absolute;
 		top: 50%;
 		right: $default-font-size * 0.25;
-		transform: translate(-0%, -50%);
+		transform: translate3d(-0%, -50%, 0);
 		font-size: $font-size-three;
 		transition: opacity $animation-duration * 1 $animation-easing-standard;
 		backface-visibility: hidden;

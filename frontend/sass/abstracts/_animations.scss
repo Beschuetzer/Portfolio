@@ -4,7 +4,7 @@
 	99% {
 	}
 	100% {
-		transform: translate(0, 0);
+		transform: translate3d(0, 0, 0);
 	}
 }
 
@@ -71,19 +71,19 @@
 
 @keyframes bridge-more {
 	0% {
-		transform: translate(-50%, -50%) scale(1);
+		transform: translate3d(-50%, -50%, 0) scale(1);
 	}
 
 	50% {
-		transform: translate(-50%, -50%) scale(1.5);
+		transform: translate3d(-50%, -50%, 0) scale(1.5);
 	}
 
 	100% {
-		transform: translate(-50%, -50%) scale(1);
+		transform: translate3d(-50%, -50%, 0) scale(1);
 	}
 }
 
-$translate-centering: translate(-50%, -50%);
+$translate-centering: translate3d(-50%, -50%, 0);
 $starting-degrees: 0deg;
 $max-degrees: 2.5deg;
 @keyframes bridge-hero-hover {

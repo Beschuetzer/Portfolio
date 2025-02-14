@@ -176,7 +176,7 @@
   --bridge-page-nav-link-color: var(--color-primary-4);
   --bridge-section-height: 0px;
   --bridge-section-padding: 0;
-  --card-playing-transform: translate(0, 0) scale(1);
+  --card-playing-transform: translate3d(0, 0, 0) scale(1);
   --card-scale-amount: 1;
   --hero-more-y-translate: -50%;
   --carousel-grid-width: calc((74.375rem - 2 * 5.6rem) / 4 + 0.3rem);
@@ -184,7 +184,7 @@
   --diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));
   --aspect-ratio-factor: calc(16 / 9);
   --diamond-fractal-rotation: 45deg;
-  --translate-center: translate(-50%, -50%);
+  --translate-center: translate3d(-50%, -50%, 0);
   --square-root-of-two: 0.707106781;
   --diamond-outer-opacity: 0.05;
   --audio-player-toggler-rotation-closed: 270deg;
@@ -198,7 +198,7 @@
 
 @keyframes translateToZero {
   100% {
-    transform: translate(0, 0);
+    transform: translate3d(0, 0, 0);
   }
 }
 @keyframes black-hole {
@@ -257,36 +257,36 @@
 }
 @keyframes bridge-more {
   0% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate3d(-50%, -50%, 0) scale(1);
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.5);
+    transform: translate3d(-50%, -50%, 0) scale(1.5);
   }
   100% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate3d(-50%, -50%, 0) scale(1);
   }
 }
 @keyframes bridge-hero-hover {
   0% {
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
   }
   17% {
-    transform: translate(-50%, -50%) rotate(2.5deg);
+    transform: translate3d(-50%, -50%, 0) rotate(2.5deg);
   }
   33% {
-    transform: translate(-50%, -50%) rotate(-2.5deg);
+    transform: translate3d(-50%, -50%, 0) rotate(-2.5deg);
   }
   50% {
-    transform: translate(-50%, -50%) rotate(2.5deg);
+    transform: translate3d(-50%, -50%, 0) rotate(2.5deg);
   }
   60% {
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
   }
   85% {
-    transform: translate(-50%, -50%) rotate(2.5deg);
+    transform: translate3d(-50%, -50%, 0) rotate(2.5deg);
   }
   100% {
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
   }
 }
 @keyframes color-change {
@@ -716,7 +716,7 @@ body {
 }
 
 .transform-none, .full-screen {
-  transform: translate(0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
 }
 
 .transform-removed {
@@ -1744,7 +1744,7 @@ body {
   position: absolute;
   top: 50%;
   right: 0%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
 }
 .audio-player__content {
   max-width: 74.375rem;
@@ -1881,7 +1881,7 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   font-size: 0.35rem;
   background-color: rgba(var(--color-primary-4-rgb), 0.95);
   border: 0.1px solid var(--color-primary-1);
@@ -1932,7 +1932,7 @@ body {
   opacity: 0;
   top: 85%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   height: 25%;
   width: 25%;
   fill: #f59229;
@@ -1946,7 +1946,7 @@ body {
 .card__play-parent, .card__pause-parent, .card__close-parent, .card__stop-parent, .card__restart-parent {
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   height: 50%;
   width: 50%;
   position: absolute;
@@ -2763,7 +2763,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   width: 80px;
   height: 80px;
 }
@@ -2898,22 +2898,22 @@ body {
 .percent-bar__outer-left {
   top: 0;
   left: 0%;
-  transform: translate(-50%, 0%);
+  transform: translate3d(-50%, 0%, 0);
 }
 .percent-bar__outer-center {
   bottom: 0;
   left: 50%;
-  transform: translate(-50%, 0%);
+  transform: translate3d(-50%, 0%, 0);
 }
 .percent-bar__outer-right {
   bottom: 0;
   right: 0%;
-  transform: translate(0%, 0%);
+  transform: translate3d(0%, 0%, 0);
 }
 .percent-bar__outer .percent-bar__labels {
   opacity: 0;
   display: grid;
-  transform: translate(0);
+  transform: translate3d(0, 0, 0);
   position: absolute;
   top: 0;
   left: 0;
@@ -2947,7 +2947,7 @@ body {
   transition: opacity 2s ease 0.5s, transform 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 .percent-bar__inner:hover .skills__value {
-  transform: translate(-50%, -50%) scaleY(0.6);
+  transform: translate3d(-50%, -50%, 0) scaleY(0.6);
   opacity: 1;
 }
 .percent-bar__value {
@@ -2955,7 +2955,7 @@ body {
   position: absolute;
   top: 50%;
   right: 0.35rem;
-  transform: translate(0%, -50%);
+  transform: translate3d(0%, -50%, 0);
   font-size: 1.12rem;
   transition: opacity 0.5s ease;
   backface-visibility: hidden;
@@ -3273,7 +3273,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 200%);
+  transform: translate3d(-50%, 200%, 0);
   border-radius: 0.7rem;
   transition: transform 0.75s cubic-bezier(0.68, -0.2, 0.32, 1.2);
 }
@@ -3518,7 +3518,7 @@ body {
   opacity: 0;
   width: 1px;
   height: 5.6rem;
-  transform: translate(0%, -50%);
+  transform: translate3d(0%, -50%, 0);
   z-index: -1;
   transition: opacity 0.125s cubic-bezier(1, 0, 0.25, 0.55) 0.125s, height 0.125s cubic-bezier(1, 0, 0, 1) 0.125s, width 0.125s cubic-bezier(1, 0, 0, 1), border-radius 0.125s ease 0.125s;
 }
@@ -3541,7 +3541,7 @@ body {
   visibility: visible;
 }
 .skills-popup--active .skills-popup__content {
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
 }
 .skills-popup__table-item.skills-popup__link {
   border-bottom: none;
@@ -3622,7 +3622,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   color: var(--bridge-link-text-fill);
   font-size: 1.4rem;
   transition: transform 0.125s cubic-bezier(1, 0, 0, 1);
@@ -3631,7 +3631,7 @@ body {
 }
 .source-link__source:hover .source-link__source-label {
   color: var(--bridge-link-text-fill-hover);
-  transform: translate(4px, 6px);
+  transform: translate3d(4px, 6px, 0);
 }
 .source-link__source:hover svg {
   fill: var(--bridge-link-svg-fill-hover);
@@ -4158,7 +4158,7 @@ body {
 .bridge__current-section:hover {
   cursor: auto;
   color: var(--bridge-page-nav-link-color);
-  transform: scale(1.1) translate(0, 0);
+  transform: scale(1.1) translate3d(0, 0, 0);
 }
 .bridge .hero.bridge {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -4263,7 +4263,7 @@ body {
   position: fixed;
   top: calc(50vh + var(--header-height) / 2);
   left: 49vw;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   color: var(--color-primary-2);
   border-radius: 280rem;
   animation: bridge-more 1s infinite alternate-reverse;
@@ -4286,7 +4286,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   transition: transform 1s ease, opacity 1s ease, fill 0.5s ease;
   fill: var(--color-primary-2);
 }
@@ -4336,7 +4336,7 @@ body {
   height: calc(6.6752rem * 2 - 0.5vw);
   width: calc(6.6752rem * 2 - 0.5vw);
   border-radius: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   background-size: cover;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -4387,7 +4387,7 @@ body {
 #hero__more-checkbox:checked ~ .hero .hero__heading {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
 }
 #hero__more-checkbox:checked ~ .hero .hero__heading:first-of-type {
   animation: bridge-hero-hover 10s infinite;

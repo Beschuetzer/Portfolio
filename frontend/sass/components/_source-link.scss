@@ -74,7 +74,7 @@ $top-offset: 1.25vw;
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%);
+			transform: translate3d(-50%, -50%, 0);
 			color: var(--bridge-link-text-fill);
 			font-size: $font-size-four;
 			transition: transform $animation-duration * 0.25 $animation-easing-modern;
@@ -86,7 +86,7 @@ $top-offset: 1.25vw;
 
 		&:hover &-label {
 			color: var(--bridge-link-text-fill-hover);
-			transform: translate(4px, 6px);
+			transform: translate3d(4px, 6px, 0);
 			@extend %nav-switch-color;
 		}
 

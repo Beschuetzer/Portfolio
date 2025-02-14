@@ -5,7 +5,7 @@
 		// visibility: hidden;
 		top: $card-pause-and-stop-top;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate3d(-50%, -50%, 0);
 		height: $card-pause-and-stop-width;
 		width: $card-pause-and-stop-width;
 		fill: var(--color-primary-2);
@@ -23,7 +23,7 @@
 	&__play-parent, &__pause-parent, &__close-parent, &__stop-parent,	&__restart-parent {
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate3d(-50%, -50%, 0);
 		height: 50%;
 		width: 50%;
 		position: absolute;

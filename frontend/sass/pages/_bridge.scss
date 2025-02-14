@@ -387,7 +387,7 @@
 			// pointer-events: none;
 			cursor: auto;
 			color: var(--bridge-page-nav-link-color);
-			transform: scale($bridge-page-nav-link-scale-amount) translate(0, 0);
+			transform: scale($bridge-page-nav-link-scale-amount) translate3d(0, 0, 0);
 		}
 	}
 
@@ -533,7 +533,7 @@
 		position: fixed;
 		top: calc(50vh + var(--header-height) /2);
 		left: 49vw;
-		transform: translate(-50%, -50%);
+		transform: translate3d(-50%, -50%, 0);
 		color: var(--color-primary-2);
 		border-radius: $default-font-size * 200;
 		animation: bridge-more 1s infinite alternate-reverse;
@@ -558,7 +558,7 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%);
+			transform: translate3d(-50%, -50%, 0);
 			transition: 
 				transform $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard,
 				opacity $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard,
@@ -618,7 +618,7 @@
 		height: calc(#{$navbar__logo-width} * 2 - 0.5vw);
 		width: calc(#{$navbar__logo-width} * 2 - 0.5vw);
 		border-radius: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate3d(-50%, -50%, 0);
 		background-size: cover;
 		opacity: 0;
 		transition: opacity $animation-duration $animation-easing-standard;
@@ -692,7 +692,7 @@
 	&:checked ~ .hero .hero__heading {
 		opacity: 1;
 		visibility: visible;
-		transform: translate(-50%, -50%);
+		transform: translate3d(-50%, -50%, 0);
 
 		&:first-of-type {
 			animation: bridge-hero-hover 10s infinite;
@@ -784,7 +784,7 @@ $padding-nav-switch: $default-font-size * 0.5;
 
 		&:hover svg {
 			fill: var(--bridge-arrow-button-right-fill-hover);
-			// transform: translate(-$default-font-size * .15, ) rotate(-90deg);
+			// transform: translate3d(-$default-font-size * .15, 0) rotate(-90deg);
 		}
 	}
 
