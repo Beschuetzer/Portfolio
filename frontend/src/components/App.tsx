@@ -78,7 +78,7 @@ export const App: React.FC<AppProps> = (props) => {
 
   return (
       <Router history={history}>
-        {/* <SiteNav
+        <SiteNav
           scrollBarWidth={`${SCROLL_BAR_WIDTH_IN_REM}rem`}
           items={[
             {
@@ -163,7 +163,7 @@ export const App: React.FC<AppProps> = (props) => {
               image: contactImage,
             },
           ]}
-        /> */}
+        />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route
