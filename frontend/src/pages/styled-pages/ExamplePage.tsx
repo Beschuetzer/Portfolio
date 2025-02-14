@@ -22,6 +22,7 @@ const Content = styled.div<LayoutStyledProps>`
   flex-direction: column;
   align-items: start;
   width: 100%;
+  font-family: Open Sans, sans-serif;
 `;
 
 const Header = styled.h2<LayoutStyledProps>`

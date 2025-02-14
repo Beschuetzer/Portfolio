@@ -9,6 +9,7 @@ import {
   getFontSizeCustom,
 } from "../styles/constants";
 import { useColorScheme } from "../hooks/useColorScheme";
+import { paragraphMarginTop } from "../styles/styles";
 
 const Container = styled.figure<LayoutStyledProps>`
   width: 100%;
@@ -22,6 +23,7 @@ const Container = styled.figure<LayoutStyledProps>`
   position: relative;
   color: ${(props) => props.colorscheme?.primary1};
   transition: opacity 0.25s ease-in-out;
+  ${paragraphMarginTop}
 
   &:hover > *:not(:first-child) {
     opacity: 0.75;

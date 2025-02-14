@@ -1,4 +1,4 @@
-import React, { HtmlHTMLAttributes, ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { LayoutStyledProps } from "../../layouts/types";

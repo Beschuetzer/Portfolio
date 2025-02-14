@@ -3,10 +3,252 @@ import { ExamplePageParagraph } from "../ExamplePageParagraph";
 import { LayoutStyledProps } from "../../../layouts/types";
 import { Quote } from "../../../components/Quote";
 import { ExamplePageLink } from "../ExamplePageLink";
+import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 
 type AboutProps = {};
 
 const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
+  {
+    name: "Overview",
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <>
+        <Quote
+          author="Henry Ford"
+          text="Anyone who stops learning is old, whether at twenty or eighty. &nbsp;Anyone
+            who keeps learning stays young."
+        />
+        <ExamplePageParagraph>
+          My mind is always working, whether at work or at play. I enjoy
+          learning new things and bring a natural curiosity to everything I
+          encounter. While I enjoy being out in the world, I always look forward
+          to evenings at home with one or two good friends and great
+          conversation. I can also find happiness on my own, working on a
+          project or reading a good book.
+        </ExamplePageParagraph>
+        <ExamplePageParagraph>
+          Learn about my personality{" "}
+          <ExamplePageLink url="/the-big-five">here</ExamplePageLink>.
+        </ExamplePageParagraph>
+      </>
+    ),
+  },
+  {
+    name: "Interests",
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <>
+        <Quote
+          author="Phyllis McGinley"
+          text="A hobby a day keeps the doldrums away."
+        />
+        <ExamplePageTitledParagraph title="Biking">
+          One of the most enjoyable things I do on a regular basis is bike
+          riding.&nbsp; I enjoy it so much, that I even tried using it as my
+          main source of transportation for a year (quite a challenge given I
+          did it in Minnesota).&nbsp;
+        </ExamplePageTitledParagraph>
+        <ExamplePageTitledParagraph title="Hiking">
+          Living in Oregon for two years really fostered a fondness for
+          hiking.&nbsp; I don't plan on hiking Everest anytime soon, but I will
+          definitely enjoy any chance I get to change my elevation by using my
+          feet.
+        </ExamplePageTitledParagraph>
+        <ExamplePageTitledParagraph title="Drums">
+          I've been playing drums since I was 14.&nbsp; I'm not particularly
+          great, but it's a nice way to relieve stress.
+        </ExamplePageTitledParagraph>
+        <ExamplePageTitledParagraph title="Guitar">
+          In high school, a few friends and I started a band.&nbsp; It was
+          during this time that I learned how to play guitar.&nbsp; While not as
+          naturally-inclined to it, playing guitar is something I find
+          rewarding.&nbsp;
+        </ExamplePageTitledParagraph>
+        <ExamplePageTitledParagraph title="Exercise">
+          Sort of a strange thing to put for an 'interest', but going to the gym
+          and exercising is the main way that I maintain a healthy mindset.
+        </ExamplePageTitledParagraph>
+        <ExamplePageTitledParagraph title="Seeing the world">
+          Here are some photos of enjoyable experiences:
+          {/* <Carousel
+            options={{
+              modal: {
+                maintainMinimizedStateAcrossItems: true,
+              },
+              container: {
+                style: {
+                  borderRadius: `${DEFAULT_FONT_SIZE}rem`,
+                },
+              },
+              thumbnail: {
+                size: [[166], [100, 1200, "max-width"]],
+                descriptionOverlay: {
+                  hideDescriptionOverlayUnlessHovered: false,
+                  textColor: CAROUSEL_COLORS.about.primary4,
+                  background: {
+                    gradient: {
+                      start: {
+                        opacity: 0.9,
+                        color: CAROUSEL_COLORS.about.primary1,
+                      },
+                      end: {
+                        opacity: 0.9,
+                        color: CAROUSEL_COLORS.about.primary2,
+                      },
+                      angle: 270,
+                    },
+                  },
+                },
+                currentItemBorder: `2px dashed ${CAROUSEL_COLORS.about.primary4}`,
+              },
+              styling: {
+                colorTheme: {
+                  colorOne: CAROUSEL_COLORS.about.primary1,
+                  colorTwo: CAROUSEL_COLORS.about.primary2,
+                  colorThree: CAROUSEL_COLORS.about.primary3,
+                  colorFour: CAROUSEL_COLORS.about.primary3,
+                  colorFive: CAROUSEL_COLORS.about.primary4,
+                  colorGreyOne: CAROUSEL_COLORS.about.greyOne,
+                },
+                container: {
+                  margin: {
+                    top: 8,
+                  },
+                },
+                itemViewer: {
+                  loadingSpinner: {
+                    options: {
+                      color: CAROUSEL_COLORS.downloader.primary1,
+                    },
+                  },
+                },
+              },
+            }}
+            items={[
+              {
+                srcMain: maui01,
+                srcThumbnail: maui01Thumbnail,
+                description: "Cliff Jumping at Kapalua Cliff House",
+              },
+              {
+                srcMain: maui02,
+                srcThumbnail: maui02Thumbnail,
+                description: "Friendly Turtle Visit",
+              },
+              {
+                srcMain: maui03,
+                srcThumbnail: maui03Thumbnail,
+                description: "Bamboo Forest Waterfall on Maui",
+              },
+              {
+                srcMain: maui04,
+                srcThumbnail: maui04Thumbnail,
+                description: "Stunning Beach, Less than Ideal Sand",
+              },
+              {
+                srcMain: maui05,
+                srcThumbnail: maui05Thumbnail,
+                description: "Haleakalā Sunset",
+              },
+              {
+                srcMain: maui06,
+                srcThumbnail: maui06Thumbnail,
+                description: "Haleakalā Backside",
+              },
+              {
+                srcMain: maui07,
+                srcThumbnail: maui07Thumbnail,
+                description: "Haleakalā Backside 2",
+              },
+              {
+                srcMain: joshuaTree01,
+                srcThumbnail: joshuaTree01Thumbnail,
+                description: "Joshua Tree Sunset",
+              },
+              {
+                srcMain: joshuaTree02,
+                srcThumbnail: joshuaTree02Thumbnail,
+                description: "Joshua Tree Rock Formation",
+              },
+              {
+                srcMain: molokai01,
+                srcThumbnail: molokai01Thumbnail,
+                description: "Molokai Roots",
+              },
+              {
+                srcMain: molokai02,
+                srcThumbnail: molokai02Thumbnail,
+                description: "Make Horse Beach on Molokai",
+              },
+              {
+                srcMain: molokai03,
+                srcThumbnail: molokai03Thumbnail,
+                description: "Kaunakakai Harbor Sunet",
+              },
+              {
+                srcMain: molokai04,
+                srcThumbnail: molokai04Thumbnail,
+                description: "Double the Rainbow, Double the Treasure",
+              },
+              {
+                srcMain: molokai05,
+                srcThumbnail: molokai05Thumbnail,
+                description: "Molokai Biking Requires Preparedness",
+              },
+              {
+                srcMain: oregon01,
+                srcThumbnail: oregon01Thumbnail,
+                description: "Sweet Creek in Oregon",
+              },
+              {
+                srcMain: oregon02,
+                srcThumbnail: oregon02Thumbnail,
+                description: "Oregon Coast",
+              },
+              {
+                srcMain: oregon03,
+                srcThumbnail: oregon03Thumbnail,
+                description: "Another Oregonian Creek",
+              },
+              {
+                srcMain: germany02,
+                srcThumbnail: germany02Thumbnail,
+                description: "Haubinda, Germany",
+              },
+              {
+                srcMain: germany03,
+                srcThumbnail: germany03Thumbnail,
+                description: "Sunset in Hungary on the Balaton See",
+              },
+              {
+                srcMain: germany04,
+                srcThumbnail: germany04Thumbnail,
+                description: "Morning in South Tirol, Italy",
+              },
+              {
+                srcMain: germany05,
+                srcThumbnail: germany05Thumbnail,
+                description: "Not much left of the old city in Nuernberg",
+              },
+              {
+                srcMain: germany07,
+                srcThumbnail: germany07Thumbnail,
+                description: "The pain is real even if the equipment is not",
+              },
+              {
+                srcMain: germany09,
+                srcThumbnail: germany09Thumbnail,
+                description: "Shields only work if you know how to use them",
+              },
+              {
+                srcMain: p2p01,
+                srcThumbnail: p2p01Thumbnail,
+                description: "Abseiling an English Castle",
+              },
+            ]}
+          /> */}
+        </ExamplePageTitledParagraph>
+      </>
+    ),
+  },
   {
     name: "Overview",
     renderContent: (propsToAdd: LayoutStyledProps) => (

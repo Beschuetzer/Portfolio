@@ -211,11 +211,6 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
         <Quote
           author="Charles Kettering"
           text="A problem well-stated is a problem half-solved."
-          containerProps={{
-            style: {
-              marginTop: getFontSizeCustom(2),
-            },
-          }}
         />
         <ExamplePageParagraph {...propsToAdd}>
           It was clear from the experiences others were having that the problem

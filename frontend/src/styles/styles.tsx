@@ -1,6 +1,7 @@
 import { css } from "styled-components";
 import { hexToRgba } from "../components/navbar/sitenav/helpers";
 import { LayoutStyledProps } from "../layouts/types";
+import { SIDE_PADDING } from "../pages/styled-pages/constants";
 
 export const getTextShadowStyle = (x = 0) => css<LayoutStyledProps>`
   text-shadow: ${x}px 4px 3px
@@ -19,8 +20,12 @@ export const linkStyles = css<LayoutStyledProps>`
   font-weight: bold;
   transition: color 0.25s ease-in-out;
   cursor: pointer;
-  color: ${(props) => props.colorscheme?.primary1};
+  color: ${(props) => hexToRgba(props.colorscheme?.primary1, .875)};
   &:hover {
-    color: ${(props) => props.colorscheme?.primary3};
+    color: ${(props) => props.colorscheme?.primary1};
   }
+`;
+
+export const paragraphMarginTop = css<LayoutStyledProps>`
+  margin-top: calc(${SIDE_PADDING} / 2);
 `;
