@@ -1,7 +1,7 @@
 import { css } from "styled-components";
 import { hexToRgba } from "../components/navbar/sitenav/helpers";
 import { LayoutStyledProps } from "../layouts/types";
-import { SIDE_PADDING } from "../pages/styled-pages/constants";
+import { FONT_SIZE } from "../pages/styled-pages/constants";
 import { CarouselOptions } from "react-thumbnail-carousel";
 import { COLORS, ColorScheme } from "./constants";
 
@@ -107,5 +107,5 @@ export const linkStyles = css<LayoutStyledProps>`
 `;
 
 export const paragraphMarginTop = css<LayoutStyledProps>`
-  margin-top: calc(${SIDE_PADDING} / 2);
+  margin-top: ${FONT_SIZE};
 `;

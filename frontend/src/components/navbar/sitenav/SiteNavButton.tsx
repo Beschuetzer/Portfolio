@@ -10,6 +10,7 @@ const StyledNav = styled.button<SiteNavStyledProps>`
   background-color: ${(props) => props.colorscheme?.primary4};
   z-index: 1000;
   width: ${(props) => props.buttonradius};
+  height: ${(props) => props.buttonradius};
   border-radius: 50%;
   border-radius: ${(props) => (props.isopen ? "14rem 0 0 14rem" : "50%")};
   border: none;

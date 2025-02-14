@@ -23,6 +23,7 @@ const Content = styled.div<LayoutStyledProps>`
   align-items: start;
   width: 100%;
   font-family: Open Sans, sans-serif;
+  line-height: 1.6;
 `;
 
 const Header = styled.h2<LayoutStyledProps>`
