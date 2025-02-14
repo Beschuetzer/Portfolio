@@ -5,7 +5,6 @@ import {
   defaultFontSize,
   fontSizeFour,
   fontSizeNine,
-  fontSizeSix,
   getFontSizeCustom,
 } from "../styles/constants";
 import { useColorScheme } from "../hooks/useColorScheme";
@@ -40,26 +39,24 @@ const Container = styled.figure<LayoutStyledProps>`
     font-size: ${fontSizeNine};
     opacity: 0.125;
     position: absolute;
-    top: calc(${fontSizeNine} / 10);
+    top: 0;
   }
 
   &::before {
     content: "“";
     left: 0;
-    top: calc(${fontSizeNine} / 2);
   }
 
   &::after {
     content: "”";
     right: 0;
-    top: calc(-1 * ${fontSizeNine} / 4);
   }
 `;
 
 const BlockQuote = styled.blockquote<LayoutStyledProps>`
   position: relative;
   font-style: italic;
-  font-size: ${fontSizeSix};
+  font-size: ${fontSizeFour};
   font-family: "New Tegomin", serif;
 `;
 
