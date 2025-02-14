@@ -34,7 +34,7 @@ export const siteNavLinkStyles = css<SiteNavStyledProps>`
   font-weight: 300;
   height: 100%;
   justify-content: center;
-  padding: ${fontSizeFive} ${fontSizeSeven};
+  padding: ${fontSizeFive} calc(${fontSizeFive} * 2);
   text-decoration: none;
   transition: padding 0.5s ease, opacity 0.25s ease 0.25s;
   width: 100%;
