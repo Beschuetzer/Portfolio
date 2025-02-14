@@ -4,6 +4,7 @@ import { useSiteNav } from "./SiteNavContext";
 import { SiteNavStyledProps } from "./types";
 import { hexToRgba } from "./helpers";
 import { useColorScheme } from "../../../hooks/useColorScheme";
+import { COLORS } from "../../../styles/constants";
 
 const SiteNavBackgroundStyled = styled.div<SiteNavStyledProps>`
   height: 200vh;
@@ -13,7 +14,11 @@ const SiteNavBackgroundStyled = styled.div<SiteNavStyledProps>`
   visibility: ${(props) => (props.isopen ? "visible" : "hidden")};
   width: 200vw;
   z-index: -1;
-  background-color: ${(props) => hexToRgba(props.colorscheme?.primary1, 0.5)};
+  background: linear-gradient(
+    to bottom,
+    ${(props) => hexToRgba(COLORS.general?.black || "#000", .925)},
+    ${(props) => hexToRgba(props.colorscheme?.primary4, .5)}
+  );
   transition: filter 0.5s ease, -webkit-filter 0.5s ease;
 `;
 

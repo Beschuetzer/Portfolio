@@ -50,6 +50,7 @@ export const bigDesktopMinWidth = "112.5em";
 
 //#region Colors
 export type ColorScheme = {
+    black?: string;
     greyOne?: string;
     primary1: string;
     primary2: string;
