@@ -8,6 +8,7 @@ import { paragraphMarginTop } from "../../styles/styles";
 const Paragraph = styled.p<LayoutStyledProps>`
   font-size: ${FONT_SIZE};
   color: ${(props) => props.colorscheme?.primary1};
+  width: 100%;
   ${paragraphMarginTop}
 `;
 

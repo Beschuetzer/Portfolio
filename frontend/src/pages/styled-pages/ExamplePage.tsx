@@ -15,7 +15,7 @@ import { ExamplePageSection } from "./ExamplePageSection";
 import { ExamplePageSectionContent } from "./ExamplePageSectionContent";
 import { ExamplePageSectionHeader } from "./ExamplePageSectionHeader";
 import { getTextShadowStyle } from "../../styles/styles";
-
+import { capitalize } from "../../helpers";
 
 const Content = styled.div<LayoutStyledProps>`
   display: flex;
@@ -45,8 +45,9 @@ const Header = styled.h2<LayoutStyledProps>`
 `;
 
 type ExamplePageProps = {
-  sections: ExamplePageSectionProps[];
   layoutProps?: Omit<PageNavLayoutProps, 'children'>;
+  sections: ExamplePageSectionProps[];
+  title: string;
 };
 
 export type ExamplePageSectionProps = {
@@ -58,7 +59,7 @@ export type ExamplePageSectionProps = {
 };
 
 export function ExamplePage(props: ExamplePageProps) {
-  const { layoutProps, sections } = props;
+  const { layoutProps, sections, title } = props;
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = useMemo(
     () => ({
@@ -69,7 +70,7 @@ export function ExamplePage(props: ExamplePageProps) {
 
   return (
     <PageNavLayout {...layoutProps}>
-      <Header {...propsToAdd}>Playlist Syncer</Header>
+      <Header {...propsToAdd}>{capitalize(title.trim())}</Header>
       <Content {...propsToAdd}>
         {sections.map((section, index) => {
           const { contentStyle, containerStyle, headerStyle, name, renderContent } =

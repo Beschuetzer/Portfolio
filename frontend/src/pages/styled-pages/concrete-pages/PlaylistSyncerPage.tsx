@@ -184,6 +184,7 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
 export function PlaylistSyncerPage(props: PlaylistSyncerProps) {
   return (
     <ExamplePage
+      title="Playlist Syncer"
       sections={PLAYLIST_SYNCER_SECTIONS}
       layoutProps={{
         links: [

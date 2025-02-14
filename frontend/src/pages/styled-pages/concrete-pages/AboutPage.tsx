@@ -5,6 +5,92 @@ import { Quote } from "../../../components/Quote";
 import { ExamplePageLink } from "../ExamplePageLink";
 import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 
+
+import earlier3 from "../../../music/Earlier_03.mp3";
+import earlier5 from "../../../music/Earlier_05.mp3";
+import earlier6 from "../../../music/Earlier_06.mp3";
+import earlier7 from "../../../music/Earlier_07.mp3";
+import earliest1 from "../../../music/Earliest_01.mp3";
+import earliest2 from "../../../music/Earliest_02.mp3";
+import earliest3 from "../../../music/Earliest_03.mp3";
+import othersEC from "../../../music/Others_EC.mp3";
+import othersLE from "../../../music/Others_LE.mp3";
+import othersQC from "../../../music/Others_QC.mp3";
+import othersReunited from "../../../music/Others_Reunited.mp3";
+import othersSweet from "../../../music/Others_Sweet.mp3";
+import selfHDIJC from "../../../music/Self_HIDJ_C.mp3";
+import selfHU from "../../../music/Self_HU.mp3";
+import selfMario from "../../../music/Self_Mario.mp3";
+import selfRS from "../../../music/Self_RS.mp3";
+import startliteBISM from "../../../music/Starlite_Five_BISM.mp3";
+import startliteJam from "../../../music/Starlite_Five_Jam.mp3";
+import startliteOMB from "../../../music/Starlite_Five_OMB.mp3";
+import startliteTF from "../../../music/Starlite_Five_TF.mp3";
+
+import germany01 from "../../../imgs/about/germany-01.jpg";
+import germany02 from "../../../imgs/about/germany-02.jpg";
+import germany03 from "../../../imgs/about/germany-03.jpg";
+import germany04 from "../../../imgs/about/germany-04.jpg";
+import germany05 from "../../../imgs/about/germany-05.jpg";
+import germany06 from "../../../imgs/about/germany-06.jpg";
+import germany07 from "../../../imgs/about/germany-07.jpg";
+import germany08 from "../../../imgs/about/germany-08.jpg";
+import germany09 from "../../../imgs/about/germany-09.jpg";
+import joshuaTree01 from "../../../imgs/about/joshua-tree-01.jpg";
+import joshuaTree02 from "../../../imgs/about/joshua-tree-02.jpg";
+import maui01 from "../../../imgs/about/maui-01.jpg";
+import maui02 from "../../../imgs/about/maui-02.jpg";
+import maui03 from "../../../imgs/about/maui-03.jpg";
+import maui04 from "../../../imgs/about/maui-04.jpg";
+import maui05 from "../../../imgs/about/maui-05.jpg";
+import maui06 from "../../../imgs/about/maui-06.jpg";
+import maui07 from "../../../imgs/about/maui-07.jpg";
+import molokai01 from "../../../imgs/about/molokai-01.jpg";
+import molokai02 from "../../../imgs/about/molokai-02.jpg";
+import molokai03 from "../../../imgs/about/molokai-03.jpg";
+import molokai04 from "../../../imgs/about/molokai-04.jpg";
+import molokai05 from "../../../imgs/about/molokai-05.jpg";
+import oregon01 from "../../../imgs/about/oregon-01.jpg";
+import oregon02 from "../../../imgs/about/oregon-02.jpg";
+import oregon03 from "../../../imgs/about/oregon-03.jpg";
+import p2p01 from "../../../imgs/about/p2p-01.png";
+import p2p02 from "../../../imgs/about/p2p-02.png";
+import p2p03 from "../../../imgs/about/p2p-03.png";
+import p2p04 from "../../../imgs/about/p2p-04.png";
+
+import germany01Thumbnail from "../../../imgs/about/thumbnails/germany-01-thumbnail.jpg";
+import germany02Thumbnail from "../../../imgs/about/thumbnails/germany-02-thumbnail.jpg";
+import germany03Thumbnail from "../../../imgs/about/thumbnails/germany-03-thumbnail.jpg";
+import germany04Thumbnail from "../../../imgs/about/thumbnails/germany-04-thumbnail.jpg";
+import germany05Thumbnail from "../../../imgs/about/thumbnails/germany-05-thumbnail.jpg";
+import germany06Thumbnail from "../../../imgs/about/thumbnails/germany-06-thumbnail.jpg";
+import germany07Thumbnail from "../../../imgs/about/thumbnails/germany-07-thumbnail.jpg";
+import germany08Thumbnail from "../../../imgs/about/thumbnails/germany-08-thumbnail.jpg";
+import germany09Thumbnail from "../../../imgs/about/thumbnails/germany-09-thumbnail.jpg";
+import joshuaTree01Thumbnail from "../../../imgs/about/thumbnails/joshua-tree-01-thumbnail.jpg";
+import joshuaTree02Thumbnail from "../../../imgs/about/thumbnails/joshua-tree-02-thumbnail.jpg";
+import maui01Thumbnail from "../../../imgs/about/thumbnails/maui-01-thumbnail.jpg";
+import maui02Thumbnail from "../../../imgs/about/thumbnails/maui-02-thumbnail.jpg";
+import maui03Thumbnail from "../../../imgs/about/thumbnails/maui-03-thumbnail.jpg";
+import maui04Thumbnail from "../../../imgs/about/thumbnails/maui-04-thumbnail.jpg";
+import maui05Thumbnail from "../../../imgs/about/thumbnails/maui-05-thumbnail.jpg";
+import maui06Thumbnail from "../../../imgs/about/thumbnails/maui-06-thumbnail.jpg";
+import maui07Thumbnail from "../../../imgs/about/thumbnails/maui-07-thumbnail.jpg";
+import molokai01Thumbnail from "../../../imgs/about/thumbnails/molokai-01-thumbnail.jpg";
+import molokai02Thumbnail from "../../../imgs/about/thumbnails/molokai-02-thumbnail.jpg";
+import molokai03Thumbnail from "../../../imgs/about/thumbnails/molokai-03-thumbnail.jpg";
+import molokai04Thumbnail from "../../../imgs/about/thumbnails/molokai-04-thumbnail.jpg";
+import molokai05Thumbnail from "../../../imgs/about/thumbnails/molokai-05-thumbnail.jpg";
+import oregon01Thumbnail from "../../../imgs/about/thumbnails/oregon-01-thumbnail.jpg";
+import oregon02Thumbnail from "../../../imgs/about/thumbnails/oregon-02-thumbnail.jpg";
+import oregon03Thumbnail from "../../../imgs/about/thumbnails/oregon-03-thumbnail.jpg";
+import p2p01Thumbnail from "../../../imgs/about/thumbnails/p2p-01-thumbnail.png";
+import p2p02Thumbnail from "../../../imgs/about/thumbnails/p2p-02-thumbnail.png";
+import p2p03Thumbnail from "../../../imgs/about/thumbnails/p2p-03-thumbnail.png";
+import p2p04Thumbnail from "../../../imgs/about/thumbnails/p2p-04-thumbnail.png";
+import { Carousel } from "react-thumbnail-carousel";
+import { DEFAULT_FONT_SIZE, CAROUSEL_COLORS, ABOUT_PAGE_NAME } from "../../../components/constants";
+
 type AboutProps = {};
 
 const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
@@ -68,7 +154,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Seeing the world">
           Here are some photos of enjoyable experiences:
-          {/* <Carousel
+          <Carousel
             options={{
               modal: {
                 maintainMinimizedStateAcrossItems: true,
@@ -244,7 +330,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
                 description: "Abseiling an English Castle",
               },
             ]}
-          /> */}
+          />
         </ExamplePageTitledParagraph>
       </>
     ),
@@ -278,6 +364,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
 export function AboutPage(props: AboutProps) {
   return (
     <ExamplePage
+      title="About Me"
       sections={ABOUT_SECTIONS}
       layoutProps={{
         backgroundSvg:
