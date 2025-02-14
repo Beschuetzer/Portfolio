@@ -28,8 +28,8 @@ import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
 import demoVideo_480p from "../../../clips/playlist-syncer/demo-480p.mp4";
 import demoVideoThumbnail from "../../../clips/playlist-syncer/demo-thumbnail.png";
 import { Quote } from "../../../components/Quote";
-import { getFontSizeCustom } from "../../../styles/constants";
 import { ExamplePageLink } from "../ExamplePageLink";
+import { getCarouselStylingOptions } from "../../../styles/styles";
 
 type PlaylistSyncerProps = {};
 
@@ -65,77 +65,7 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <Carousel
-        options={{
-          layout: {
-            itemDisplayLocation: "below",
-          },
-          modal: {
-            maintainMinimizedStateAcrossItems: true,
-          },
-          container: {
-            style: {
-              borderRadius: 0,
-            },
-          },        
-          thumbnail: {
-            size: [[125], [100, 1200, "max-width"], [66, 600, "max-width"]],
-            descriptionOverlay: {
-              hideDescriptionOverlayUnlessHovered: false,
-              textColor: propsToAdd.colorscheme?.primary4,
-              background: {
-                gradient: {
-                  start: {
-                    opacity: 0.9,
-                    color: propsToAdd.colorscheme?.primary1,
-                  },
-                  end: {
-                    opacity: 0.9,
-                    color: propsToAdd.colorscheme?.primary2,
-                  },
-                  angle: 270,
-                },
-              },
-            },
-            currentItemBorder: `2px dotted ${propsToAdd.colorscheme?.primary2}`,
-          },
-          styling: {
-            fontFamily: {
-              all: "Open Sans, sans-serif",
-            },
-            container: {
-              margin: {
-                top: 4,
-              },
-              padding: {
-                right: 25,
-                left: 25,
-              },
-            },
-            colorTheme: {
-              colorOne: propsToAdd.colorscheme?.primary1,
-              colorTwo: propsToAdd.colorscheme?.primary2,
-              colorThree: propsToAdd.colorscheme?.primary3,
-              colorFour: propsToAdd.colorscheme?.primary4,
-              colorFive: propsToAdd.colorscheme?.primary4,
-              colorGreyOne: propsToAdd.colorscheme?.greyOne,
-            },
-            navigation: {
-              backgroundColor: propsToAdd.colorscheme?.primary4,
-              elements: {
-                color: propsToAdd.colorscheme?.primary1,
-              },
-            },
-
-            itemViewer: {
-              backgroundColor: propsToAdd.colorscheme?.primary4,
-              loadingSpinner: {
-                options: {
-                  color: propsToAdd.colorscheme?.primary4,
-                },
-              },
-            },
-          },
-        }}
+        options={getCarouselStylingOptions(propsToAdd.colorscheme)}
         items={[
           {
             srcMain: imgProblem,

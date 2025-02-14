@@ -4,7 +4,7 @@ import { SiteNavStyledProps } from "./sitenav/types";
 import {
   BUTTON_WIDTH,
   fontSizeFive,
-  fontSizeSix,
+  fontSizeFour,
   fontSizeTen,
   getFontSizeCustom,
   SITE_NAV_NAV_SWITCH_TOP,
@@ -62,7 +62,7 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
 `;
 
 const Item = styled(Link)<SiteNavStyledProps>`
-  font-size: ${fontSizeSix};
+  font-size: ${fontSizeFive};
   cursor: pointer;
   transition: all 0.25s ease;
   text-decoration: none;
@@ -72,7 +72,7 @@ const Item = styled(Link)<SiteNavStyledProps>`
   align-items: center;
   justify-content: center;
   transition: color 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
-  color: ${(props) => hexToRgba(props.colorscheme?.primary4, 0.75)};
+  color: ${(props) => hexToRgba(props.colorscheme?.primary4, .75)};
 
   &:hover {
     transform: translateY(${getFontSizeCustom(-0.25)});
@@ -81,7 +81,7 @@ const Item = styled(Link)<SiteNavStyledProps>`
   }
 
   ${respond.navSwitch`
-    font-size: ${fontSizeFive};
+    font-size: ${fontSizeFour};
     height: auto;
     padding: 0;
     color: ${(props: SiteNavStyledProps) =>

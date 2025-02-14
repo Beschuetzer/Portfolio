@@ -2,6 +2,86 @@ import { css } from "styled-components";
 import { hexToRgba } from "../components/navbar/sitenav/helpers";
 import { LayoutStyledProps } from "../layouts/types";
 import { SIDE_PADDING } from "../pages/styled-pages/constants";
+import { CarouselOptions } from "react-thumbnail-carousel";
+import { COLORS, ColorScheme } from "./constants";
+
+export function getCarouselStylingOptions(
+  colorScheme: ColorScheme = COLORS.general
+): CarouselOptions {
+  return {
+    layout: {
+      itemDisplayLocation: "below",
+    },
+    modal: {
+      maintainMinimizedStateAcrossItems: true,
+    },
+    container: {
+      style: {
+        borderRadius: 0,
+      },
+    },
+    thumbnail: {
+      size: [[125], [100, 1200, "max-width"], [66, 600, "max-width"]],
+      descriptionOverlay: {
+        hideDescriptionOverlayUnlessHovered: false,
+        textColor: colorScheme?.primary4,
+        background: {
+          gradient: {
+            start: {
+              opacity: 0.9,
+              color: colorScheme?.primary1,
+            },
+            end: {
+              opacity: 0.9,
+              color: colorScheme?.primary2,
+            },
+            angle: 270,
+          },
+        },
+      },
+      currentItemBorder: `2px dotted ${colorScheme?.primary2}`,
+    },
+    styling: {
+      fontFamily: {
+        all: "Open Sans, sans-serif",
+      },
+      container: {
+        margin: {
+          top: 4,
+        },
+        padding: {
+          right: 25,
+          left: 25,
+          bottom: 0,
+          top: [[10], [8, 600, "max-width"], [24, 1500, "min-width"]],
+        },
+      },
+      colorTheme: {
+        colorOne: colorScheme?.primary1,
+        colorTwo: colorScheme?.primary2,
+        colorThree: colorScheme?.primary3,
+        colorFour: colorScheme?.primary4,
+        colorFive: colorScheme?.primary4,
+        colorGreyOne: colorScheme?.greyOne,
+      },
+      navigation: {
+        backgroundColor: colorScheme?.primary4,
+        elements: {
+          color: colorScheme?.primary1,
+        },
+      },
+
+      itemViewer: {
+        backgroundColor: colorScheme?.primary4,
+        loadingSpinner: {
+          options: {
+            color: colorScheme?.primary4,
+          },
+        },
+      },
+    },
+  };
+}
 
 export const getTextShadowStyle = (x = 0) => css<LayoutStyledProps>`
   text-shadow: ${x}px 4px 3px
@@ -20,7 +100,7 @@ export const linkStyles = css<LayoutStyledProps>`
   font-weight: bold;
   transition: color 0.25s ease-in-out;
   cursor: pointer;
-  color: ${(props) => hexToRgba(props.colorscheme?.primary1, .875)};
+  color: ${(props) => hexToRgba(props.colorscheme?.primary1, 0.875)};
   &:hover {
     color: ${(props) => props.colorscheme?.primary1};
   }
