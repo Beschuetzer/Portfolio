@@ -7,7 +7,7 @@ import { useColorScheme } from "../../../hooks/useColorScheme";
 import { getFontSizeCustom } from "../../../styles/constants";
 import { BREAK_POINTS } from "../../../styles/breakpoints";
 import { SiteNavDropDown } from "./SiteNavDropDown";
-import {SiteNavItem} from "./SiteNavItem";
+import { SiteNavItem } from "./SiteNavItem";
 
 type SiteNavContentProps = {};
 
@@ -18,8 +18,11 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
   transition: all 0.3s ease-in-out;
   transform: ${(props) =>
     props.isopen
-      ? "translateX(0) scaleX(1)"
-      : `translateX(${getFontSizeCustom(-0.5, props.buttonradius)}) scaleX(0)`};
+      ? "translate3d(0, 0, 0) scaleX(1)"
+      : `translate3d(${getFontSizeCustom(
+          -0.5,
+          props.buttonradius
+        )}, 0, 0) scaleX(0)`};
   transform-origin: left;
   border-left: 1px solid ${(props) => props.colorscheme?.primary1};
   column-gap: 1px;

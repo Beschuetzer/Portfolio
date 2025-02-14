@@ -32,8 +32,8 @@ const Item = styled.div<
 
   &:hover {
     box-shadow: -10px 0 10px hsla(0, 0%, 7%, 0.5);
-    /* -webkit-transform: translateX(.56rem) !important; */
-    transform: translateX(0.56rem) !important;
+    /* -webkit-transform: translate3d(.56rem, 0, 0) !important; */
+    transform: translate3d(0.56rem, 0, 0) !important;
     background-color: ${(props) => props.colorscheme?.primary1};
 
     & .item-link {

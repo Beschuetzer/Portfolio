@@ -29,14 +29,15 @@ const StyledNav = styled.button<SiteNavStyledProps>`
     &::before {
       transform: ${(props) =>
         props.isopen
-          ? `rotate(135deg) translate(${defaultFontSize}, -0.1rem)`
-          : "translateY(-33%)"};
+          ? `rotate(135deg) translate3d(${defaultFontSize}, -0.1rem, 0)`
+          : "translate3d(0, -33%, 0)"};
     }
     &::after {
       transform: ${(props) =>
         props.isopen
-          ? `rotate(-135deg) translate(${defaultFontSize}, 0.05rem)`
-          : "translateY(33%)"};
+          ? `rotate(-135deg) translate3d(${defaultFontSize}, 0.05rem, 0)`
+          : "translate3d(0, 33%, 0)"};
+
     }
   }
 
@@ -75,14 +76,14 @@ const Hamburger = styled.div<SiteNavStyledProps>`
     top: ${getFontSizeCustom(-0.75)};
     ${(props) =>
       props.isopen
-        ? ` transform: rotate(105deg) translate(1.253786rem, 1.536576rem);`
+        ? ` transform: rotate(105deg) translate3d(1.253786rem, 1.536576rem, 0);`
         : ""}
   }
 
   &::after {
     top: ${getFontSizeCustom(0.75)};
     ${(props) =>
-      props.isopen ? ` transform: rotate(-105deg) translate(1.353786rem);` : ""}
+      props.isopen ? ` transform: rotate(-105deg) translate3d(1.353786rem, 0, 0);` : ""}
   }
 
   ${respond.navSwitch`

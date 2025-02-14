@@ -12,7 +12,7 @@ const DropDownContainer = styled.div<SiteNavStyledProps>`
   position: relative;
 
   &:hover > .item-container {
-    transform: translateY(0) scaleY(1);
+    transform: translate3d(0, 0, 0) scaleY(1);
     opacity: 1;
   }
 `;
@@ -27,7 +27,7 @@ const DropDownItems = styled.div<SiteNavStyledProps>`
   z-index: -1;
   left: 0;
   right: 0;
-  transform: translateY(${props => getFontSizeCustom(-1, props.buttonradius)}) scaleY(0);
+  transform: translate3d(0, ${props => getFontSizeCustom(-1, props.buttonradius)}, 0) scaleY(0);
   transform-origin: top;
   opacity: 0;
   transition: transform .125s ease-in, -webkit-transform .125s ease-in, opacity .125s ease-in;

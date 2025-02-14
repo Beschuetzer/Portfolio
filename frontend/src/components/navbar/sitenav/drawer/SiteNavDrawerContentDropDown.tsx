@@ -23,8 +23,8 @@ const ItemContainer = styled.div<StyledProps>`
   position: relative;
   padding-bottom: ${SPACING};
   ${itemTransformStyles}
-  transform: translateX(${(props) =>
-    props.isopen ? "0" : `calc(-100% - ${SITE_NAV_NAV_SWITCH_TOP})`});
+  transform: translate3d(${(props) =>
+    props.isopen ? "0" : `calc(-100% - ${SITE_NAV_NAV_SWITCH_TOP})`}, 0, 0);
   user-select: none;
 `;
 
@@ -34,10 +34,7 @@ const ItemContainerItem = styled.div<SiteNavStyledProps>`
   position: relative;
   grid-column: 1 / -1;
   font-weight: 300;
-  ${(props) =>
-    props.issectionopen === "true"
-      ? `margin-bottom: 1px;`
-      : ""}
+  ${(props) => (props.issectionopen === "true" ? `margin-bottom: 1px;` : "")}
 
   ${dropDownContainerItemStyles}
 `;
@@ -56,16 +53,16 @@ const SubItemContainer = styled.div<SiteNavStyledProps>`
 const SubItem = styled.div<StyledProps>`
   height: ${(props) => (props.issectionopen === "true" ? "auto" : "0")};
   ${itemTransformStyles}
-  transform: translateX(
+  transform: translate3d(
     ${(props) =>
     props.issectionopen === "true"
       ? "0"
       : `calc(-${(props.index % 3) + 1}00% - ${SITE_NAV_NAV_SWITCH_TOP} - ${
           props.index % 3
-        } * ${SPACING})`}
+        } * ${SPACING}, 0, 0)`}
   );
   ${respond.phone`
-    transform: translateX(
+    transform: translate3d(
       ${(props: StyledProps) =>
         props.issectionopen === "true"
           ? "0"
@@ -73,7 +70,7 @@ const SubItem = styled.div<StyledProps>`
               (props.index % 2) + 1
             }00% - ${SITE_NAV_NAV_SWITCH_TOP}  - ${
               props.index % 3
-            } * ${SPACING})`}
+            } * ${SPACING}, 0, 0)`}
     );
   `}
 `;

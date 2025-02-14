@@ -3,7 +3,6 @@ import {
   BUTTON_WIDTH,
   defaultFontSize,
   fontSizeFive,
-  fontSizeSeven,
   fontSizeSix,
   getFontSizeCustom,
   SITE_NAV_TOP,
