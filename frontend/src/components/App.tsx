@@ -165,7 +165,6 @@ export const App: React.FC<AppProps> = (props) => {
           ]}
         />
         <Switch>
-          <Route path="/" exact component={Home} />
           <Route
             path={THUMBNAIL_CAROUSEL_URL}
             exact
@@ -206,7 +205,7 @@ export const App: React.FC<AppProps> = (props) => {
           <Route path={ABOUT_URL} exact component={AboutPage} />
           <Route path={RESUME_URL} exact component={Resume} />
           <Route path={PERSONALITY_URL} exact component={BigFive} />
-          <Route path="*" exact component={Home} />
+          <Route path="*" exact component={Resume} />
         </Switch>
 
         <AudioPlayer />
