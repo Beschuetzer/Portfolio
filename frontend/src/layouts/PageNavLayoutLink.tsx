@@ -57,7 +57,7 @@ const Container = styled.div<LayoutStyledProps>`
     left: auto;
     right: ${(props: LayoutStyledProps) => getContainerRight(props)};
     top: ${pageNavLayoutHeaderMarginTopNavSwitch};
-    z-index: 1000000;
+    z-index: 1;
   `}
 `;
 

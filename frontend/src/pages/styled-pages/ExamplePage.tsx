@@ -18,6 +18,7 @@ import { getTextShadowStyle } from "../../styles/styles";
 import { capitalize } from "../../helpers";
 
 const Content = styled.div<LayoutStyledProps>`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: start;
