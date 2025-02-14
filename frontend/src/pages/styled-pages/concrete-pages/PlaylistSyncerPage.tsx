@@ -76,9 +76,9 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
             style: {
               borderRadius: 0,
             },
-          },
+          },        
           thumbnail: {
-            size: [[125], [100, 1200, "max-width"]],
+            size: [[125], [100, 1200, "max-width"], [66, 600, "max-width"]],
             descriptionOverlay: {
               hideDescriptionOverlayUnlessHovered: false,
               textColor: propsToAdd.colorscheme?.primary4,
@@ -99,6 +99,9 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
             currentItemBorder: `2px dotted ${propsToAdd.colorscheme?.primary2}`,
           },
           styling: {
+            fontFamily: {
+              all: "Open Sans, sans-serif",
+            },
             container: {
               margin: {
                 top: 4,
