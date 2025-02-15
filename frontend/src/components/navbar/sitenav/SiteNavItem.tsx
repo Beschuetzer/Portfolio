@@ -109,7 +109,6 @@ export function SiteNavItem(props: SiteNavItemProps) {
     toggleIsOpen();
   }, [toggleIsOpen]);
 
-  console.log({propsToAdd})
   return (
     <Item
       {...propsToAdd}
