@@ -24,7 +24,6 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
           props.buttonradius
         )}, 0, 0) scaleX(0)`};
   transform-origin: left;
-  column-gap: 1px;
   border-radius: 0 14rem 14rem 0;
   user-select: none;
 `;

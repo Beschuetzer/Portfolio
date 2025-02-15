@@ -46,10 +46,6 @@ const Item = styled.div<
     & .item-link {
       color: ${(props) => props.colorscheme?.primary4};
     }
-
-    & + div {
-      border-top: ${SITE_NAV_BORDER_SIZE} solid transparent;
-    }
   }
   transition: background 0.1666666667s ease, transform 0.25s ease,
     box-shadow 0.25s ease, -webkit-transform 0.25s ease, border-top .25s ease;
