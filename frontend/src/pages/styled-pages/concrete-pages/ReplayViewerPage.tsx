@@ -1,6 +1,5 @@
 import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import {
-  OS_10_ISSUE_TRACKER_URL,
   GITHUB_URL,
   LIVE_REPLAYS_URL,
   LIVE_BRIDGE_URL,
@@ -10,9 +9,39 @@ import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";
 
 import { ExamplePageLink } from "../ExamplePageLink";
 import { Quote } from "../../../components/Quote";
+import { Carousel } from "react-thumbnail-carousel";
+import { getCarouselStylingOptions } from "../../../styles/styles";
 import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 
-type ReplayViewerPageProps = {};
+import img1 from "../../../imgs/replay-viewer/img-1.png";
+import img2 from "../../../imgs/replay-viewer/img-2.png";
+import img3 from "../../../imgs/replay-viewer/img-3.png";
+import img4 from "../../../imgs/replay-viewer/img-4.png";
+import img5 from "../../../imgs/replay-viewer/img-5.png";
+import img6 from "../../../imgs/replay-viewer/img-6.png";
+import img7 from "../../../imgs/replay-viewer/img-7.png";
+import imgGame from "../../../imgs/replay-viewer/img-game-1.png";
+import imgMobile1 from "../../../imgs/replay-viewer/img-mobile-1.png";
+import imgMobile2 from "../../../imgs/replay-viewer/img-mobile-2.png";
+import clipNavigations from "../../../clips/replay-viewer/navigation.mp4";
+import clipNavigations_480p from "../../../clips/replay-viewer/navigation-480p.mp4";
+import clipDealPlayer from "../../../clips/replay-viewer/deal-player.mp4";
+import clipDealPlayer_480p from "../../../clips/replay-viewer/deal-player-480p.mp4";
+import clipFilters from "../../../clips/replay-viewer/filters.mp4";
+import clipFilters_480p from "../../../clips/replay-viewer/filters-480p.mp4";
+import img1Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-1-thumbnail.png";
+import img2Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-2-thumbnail.png";
+import img3Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-3-thumbnail.png";
+import img4Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-4-thumbnail.png";
+import img5Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-5-thumbnail.png";
+import img6Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-6-thumbnail.png";
+import img7Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-7-thumbnail.png";
+import imgGameThumbnail from "../../../imgs/replay-viewer/thumbnails/img-game-1-thumbnail.png";
+import imgMobile1Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-mobile-1-thumbnail.png";
+import imgMobile2Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-mobile-2-thumbnail.png";
+import clipNavigationsThumbnail from "../../../clips/replay-viewer/thumbnails/navigation-thumbnail.png";
+import clipDealPlayerThumbnail from "../../../clips/replay-viewer/thumbnails/deal-player-thumbnail.png";
+import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
 
 export const REPLAY_VIEWER_SECTION_NAMES = [
   "Motivation",
@@ -20,6 +49,12 @@ export const REPLAY_VIEWER_SECTION_NAMES = [
   "Features",
   "Notes",
 ];
+
+function getModalHtmlAttributes(propsToAdd: LayoutStyledProps) {
+  return {
+    style: { color: propsToAdd.colorscheme?.primary4 },
+  };
+}
 
 const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
   {
@@ -34,14 +69,14 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
           In March of 2021, I had just finished
           <ExamplePageLink url={LIVE_BRIDGE_URL}>A# Maj Bridge</ExamplePageLink>
           , which store games, deals, and user statistics as MongoDB documents.
-          While playing with my friends, there were multiple times where it would have been nice to review
-          games without having to log into the database and decipher the raw
-          data.
+          While playing with my friends, there were multiple times where it
+          would have been nice to review games without having to log into the
+          database and decipher the raw data.
         </ExamplePageParagraph>
         <ExamplePageParagraph>
-          In addition, I wanted to improve my familiarity with Narwahl's Nx workspace
-          and Angular. What better way to do that than to create a real-world
-          application with a practical use?
+          In addition, I wanted to improve my familiarity with Narwahl's Nx
+          workspace and Angular. What better way to do that than to create a
+          real-world application with a practical use?
         </ExamplePageParagraph>
       </>
     ),
@@ -49,28 +84,214 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
   {
     name: REPLAY_VIEWER_SECTION_NAMES[1],
     renderContent: (propsToAdd: LayoutStyledProps) => (
-      <>
-        <Quote
-          author="Anonymous"
-          text="When the why is clear, the how is easy."
-        />
-        <ExamplePageParagraph>
-          In March of 2021, I had just finished
-          <ExamplePageLink url={LIVE_BRIDGE_URL}>A# Maj Bridge</ExamplePageLink>
-          , which store games, deals, and user statistics as MongoDB documents.
-          While playing with my friends, there were multiple times where it would have been nice to review
-          games without having to log into the database and decipher the raw
-          data.
-        </ExamplePageParagraph>
-        <ExamplePageParagraph>
-          In addition, I wanted to improve my familiarity with Narwahl's Nx workspace
-          and Angular. What better way to do that than to create a real-world
-          application with a practical use?
-        </ExamplePageParagraph>
-      </>
+      <Carousel
+        options={{
+          ...getCarouselStylingOptions(propsToAdd.colorscheme),
+          layout: {
+            itemDisplayLocation: "above",
+          },
+        }}
+        items={[
+          {
+            srcMain: img1,
+            srcThumbnail: img1Thumbnail,
+            description: "First impressions matter.",
+          },
+          {
+            srcMain: {
+              hiRes: clipFilters,
+              loRes: clipFilters_480p,
+            },
+            srcThumbnail: clipFiltersThumbnail,
+            description: "Applying Filters",
+            modal: {
+              children: (
+                <div>
+                  <ExamplePageTitledParagraph
+                    title="Contract is 1&clubs;"
+                    htmlAttributes={getModalHtmlAttributes(propsToAdd)}
+                  >
+                    The first part of the video highlights the process of
+                    applying the contract matching filter.&nbsp; There are two
+                    matches found.
+                  </ExamplePageTitledParagraph>
+                  <ExamplePageTitledParagraph
+                    title="Two Filters = Double the Filtering"
+                    htmlAttributes={getModalHtmlAttributes(propsToAdd)}
+                  >
+                    The second filter applied requires 'Ann' to have the
+                    2&clubs;. In one of the filtered games she does, and in the
+                    other one she doesn't.
+                  </ExamplePageTitledParagraph>
+                </div>
+              ),
+            },
+            video: {
+              autoPlay: false,
+              sections: [
+                ["Login", "02:00"],
+                ["Finding Games where Contract is 1 club", "3:00"],
+                ["Opening First 1st Club Game", "13:00"],
+                ["Viewing 5th Deal of 1st Game", "16:00"],
+                ["Noticing Adam has 2 of Clubs in First Game", "19:00"],
+                ["Opening Second 1 Club Game", "22:500"],
+                ["Viewing 6th Deal of 2nd Game", "25:00"],
+                ["Noticing Ann has 2 of Clubs in Second Game", "29:00"],
+                ["Adding Filter for Ann Having 2 of Clubs", "32:00"],
+                ["Only One Game Remains", "39:500"],
+                [
+                  "Proving Remaining Game is the One Where Ann has 2 of Clubs",
+                  "43:00",
+                ],
+              ],
+            },
+          },
+          {
+            srcMain: {
+              hiRes: clipDealPlayer,
+              loRes: clipDealPlayer_480p,
+            },
+            srcThumbnail: clipDealPlayerThumbnail,
+            description: "Using the deal player",
+            modal: {
+              children: (
+                <div>
+                  <ExamplePageTitledParagraph
+                    title="Critical Analysis"
+                    htmlAttributes={getModalHtmlAttributes(propsToAdd)}
+                  >
+                    One of the main reasons I created the
+                    <ExamplePageLink
+                      url={LIVE_REPLAYS_URL}
+                      htmlAttributes={getModalHtmlAttributes(propsToAdd)}
+                    >
+                      Replay Viewer
+                    </ExamplePageLink>
+                    was to be able to easily review the trick-taking phase of
+                    games completed on
+                    <ExamplePageLink
+                      url={LIVE_BRIDGE_URL}
+                      htmlAttributes={getModalHtmlAttributes(propsToAdd)}
+                    >
+                      A# Maj Bridge
+                    </ExamplePageLink>
+                    .
+                  </ExamplePageTitledParagraph>
+                  <ExamplePageTitledParagraph
+                    title="Viewing Options"
+                    htmlAttributes={getModalHtmlAttributes(propsToAdd)}
+                  >
+                    There are two ways to get to the questionable play:&nbsp; by
+                    turning on auto play or by skipping ahead to the trick in
+                    question.
+                  </ExamplePageTitledParagraph>
+                </div>
+              ),
+            },
+            video: {
+              autoPlay: false,
+              sections: [
+                ["Viewing a Game with Filter Match", ""],
+                ["Viewing the Replay", "3:650"],
+                ["Adjusting the Playback Speed and Card Positioning", "6:00"],
+                ["Using the Buttons", "12:00"],
+              ],
+            },
+          },
+          {
+            srcMain: {
+              hiRes: clipNavigations,
+              loRes: clipNavigations_480p,
+            },
+            srcThumbnail: clipNavigationsThumbnail,
+            description: "Animations and Settings",
+            modal: {
+              children: (
+                <div>
+                  <ExamplePageTitledParagraph
+                    title="Cherry on Top"
+                    htmlAttributes={getModalHtmlAttributes(propsToAdd)}
+                  >
+                    Animations can turn a boring app into an interesting one,
+                    assuming the user experience is good.
+                  </ExamplePageTitledParagraph>
+                </div>
+              ),
+            },
+            video: {
+              autoPlay: false,
+              sections: [
+                ["Logging In", ""],
+                ["Left Pane Animations", "4:250"],
+                ["Right Pane Animations", "12:00"],
+                ["Adjusting the Item Settings", "14:666"],
+                ["Adjusting the Page Enumeration Settings", "19:750"],
+              ],
+            },
+          },
+          {
+            srcMain: img2,
+            srcThumbnail: img2Thumbnail,
+            description: "Overall Layout",
+          },
+          {
+            srcMain: img3,
+            srcThumbnail: img3Thumbnail,
+            description: "Filters en masse",
+          },
+          {
+            srcMain: img4,
+            srcThumbnail: img4Thumbnail,
+            description: "Filters applied and results shown.",
+          },
+          {
+            srcMain: img5,
+            srcThumbnail: img5Thumbnail,
+            description: "Game detail screen collapsed",
+          },
+          {
+            srcMain: img6,
+            srcThumbnail: img6Thumbnail,
+            description: "Game detail screen expanded",
+          },
+          {
+            srcMain: img7,
+            srcThumbnail: img7Thumbnail,
+            description: "Deal player layout",
+          },
+          {
+            srcMain: imgMobile1,
+            srcThumbnail: imgMobile1Thumbnail,
+            description: "Mobile game detail",
+          },
+          {
+            srcMain: imgMobile2,
+            srcThumbnail: imgMobile2Thumbnail,
+            description: "Mobile deal player",
+          },
+          {
+            srcMain: imgGame,
+            srcThumbnail: imgGameThumbnail,
+            description: "Example of a game cached in local storage",
+          },
+          //todo: figure out why these cause a crash?
+          // {
+          //   srcMain: imgDeal,
+          //   srcThumbnail: imgDealThumbnail,
+          //   description: "Example of a deal cached in local storage",
+          // },
+          // {
+          //   srcMain: imgUser,
+          //   srcThumbnail: imgUserThumbnail,
+          //   description: "Example of a user cached in local storage",
+          // },
+        ]}
+      />
     ),
   },
 ];
+
+type ReplayViewerPageProps = {};
 
 export function ReplayViewerPage(props: ReplayViewerPageProps) {
   return (

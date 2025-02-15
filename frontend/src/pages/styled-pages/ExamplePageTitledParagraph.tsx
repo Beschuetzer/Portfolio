@@ -5,6 +5,7 @@ import { useColorScheme } from "../../hooks/useColorScheme";
 import { ExamplePageParagraph } from "./ExamplePageParagraph";
 import { fontSizeFive } from "../../styles/constants";
 import { paragraphMarginTop } from "../../styles/styles";
+import { HTMLAttributes } from "react";
 
 const Container = styled.div<LayoutStyledProps>`
   display: flex;
@@ -24,24 +25,26 @@ const Header = styled.h4<LayoutStyledProps>`
 `;
 
 type ExamplePageTitledParagraphProps = StyledPageProps & {
+  containerStyles?: HTMLAttributes<HTMLDivElement>;
   title: string;
 };
 export function ExamplePageTitledParagraph(
   props: ExamplePageTitledParagraphProps
 ) {
   const colorScheme = useColorScheme();
-  const { children, htmlAttributes, title } = props;
+  const { containerStyles, children, htmlAttributes, title } = props;
   const propsToAdd: LayoutStyledProps = {
     colorscheme: colorScheme,
   };
 
   return (
-    <Container {...propsToAdd}>
+    <Container {...propsToAdd} {...containerStyles} >
       <Header {...propsToAdd} {...htmlAttributes}>
         {title}
       </Header>
       <ExamplePageParagraph {...propsToAdd} htmlAttributes={{style: {
         marginTop: "0",
+        ...htmlAttributes?.style,
       }}}>{children}</ExamplePageParagraph>
     </Container>
   );

@@ -21,7 +21,7 @@ export function getCarouselStylingOptions(
       },
     },
     thumbnail: {
-      size: [[125], [100, 1200, "max-width"], [66, 600, "max-width"]],
+      size: [[100], [75, 1200, "max-width"], [66, 600, "max-width"]],
       descriptionOverlay: {
         hideDescriptionOverlayUnlessHovered: false,
         textColor: colorScheme?.primary4,
@@ -46,9 +46,6 @@ export function getCarouselStylingOptions(
         all: "Open Sans, sans-serif",
       },
       container: {
-        margin: {
-          top: 4,
-        },
         padding: {
           right: 25,
           left: 25,
@@ -57,11 +54,11 @@ export function getCarouselStylingOptions(
         },
       },
       colorTheme: {
-        colorOne: colorScheme?.primary1,
+        colorOne: colorScheme?.primary4,
         colorTwo: colorScheme?.primary2,
         colorThree: colorScheme?.primary3,
-        colorFour: colorScheme?.primary4,
-        colorFive: colorScheme?.primary4,
+        colorFour: colorScheme?.primary1,
+        colorFive: colorScheme?.primary1,
         colorGreyOne: colorScheme?.greyOne,
       },
       navigation: {
