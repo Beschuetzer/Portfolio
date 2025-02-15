@@ -6,10 +6,13 @@ import { useColorScheme } from "../../../hooks/useColorScheme";
 import { useSiteNav } from "./SiteNavContext";
 import { SiteNavDropDownItem } from "./SiteNavDropDownItem";
 import { getFontSizeCustom } from "../../../styles/constants";
+import { SITE_NAV_BORDER_SIZE } from "./styles";
 
 const DropDownContainer = styled.div<SiteNavStyledProps>`
   display: flex;
   position: relative;
+  height: 100%;
+  border-left: ${SITE_NAV_BORDER_SIZE} solid ${(props) => props.colorscheme?.primary1};
 
   &:hover > .item-container {
     transform: translate3d(0, 0, 0) scaleY(1);
@@ -61,7 +64,7 @@ export function SiteNavDropDown(props: SiteNavDropDownProps) {
           return <SiteNavItem key={index} {...item} isLast={isLast} orientation={SiteNaveItemOrientation.vertical} itemProps={{
             onMouseEnter: () => setIsHovering(true),
             onMouseLeave: () => setIsHovering(false),
-          }}/>
+          }} isDropDownItem={true}/>
         })}
       </DropDownItems>
     </DropDownContainer>
