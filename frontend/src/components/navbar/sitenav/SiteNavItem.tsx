@@ -5,6 +5,7 @@ import { useColorScheme } from "../../../hooks/useColorScheme";
 import { Link } from "react-router-dom";
 import { useSiteNav } from "./SiteNavContext";
 import { itemStyles, SITE_NAV_BORDER_SIZE, siteNavLinkStyles } from "./styles";
+import { respond } from "../../../styles/breakpoints";
 
 export enum SiteNaveItemOrientation {
   horizontal = "horizontal",
@@ -58,6 +59,10 @@ const Item = styled.div<
       border-top: ${SITE_NAV_BORDER_SIZE} solid ${props.colorscheme?.primary1};
     `
       : ""}
+
+  ${respond.navSwitch`
+    border-left: none;
+  `}
 `;
 
 const Image = styled.img<SiteNavStyledProps>`
