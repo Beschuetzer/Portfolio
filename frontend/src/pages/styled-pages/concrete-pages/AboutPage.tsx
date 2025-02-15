@@ -5,7 +5,6 @@ import { Quote } from "../../../components/Quote";
 import { ExamplePageLink } from "../ExamplePageLink";
 import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 
-
 import earlier3 from "../../../music/Earlier_03.mp3";
 import earlier5 from "../../../music/Earlier_05.mp3";
 import earlier6 from "../../../music/Earlier_06.mp3";
@@ -89,7 +88,12 @@ import p2p02Thumbnail from "../../../imgs/about/thumbnails/p2p-02-thumbnail.png"
 import p2p03Thumbnail from "../../../imgs/about/thumbnails/p2p-03-thumbnail.png";
 import p2p04Thumbnail from "../../../imgs/about/thumbnails/p2p-04-thumbnail.png";
 import { Carousel } from "react-thumbnail-carousel";
-import { DEFAULT_FONT_SIZE, CAROUSEL_COLORS, ABOUT_PAGE_NAME } from "../../../components/constants";
+import {
+  DEFAULT_FONT_SIZE,
+  CAROUSEL_COLORS,
+  ABOUT_PAGE_NAME,
+} from "../../../components/constants";
+import { AudioList } from "../../../components/AudioPlayer/AudioList";
 
 type AboutProps = {};
 
@@ -128,23 +132,22 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
         />
         <ExamplePageTitledParagraph title="Biking">
           One of the most enjoyable things I do on a regular basis is bike
-          riding. I enjoy it so much, that I even tried using it as my
-          main source of transportation for a year (quite a challenge given I
-          did it in Minnesota).
+          riding. I enjoy it so much, that I even tried using it as my main
+          source of transportation for a year (quite a challenge given I did it
+          in Minnesota).
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Hiking">
-          Living in Oregon for two years really fostered a fondness for
-          hiking. I don't plan on hiking Everest anytime soon, but I will
-          definitely enjoy any chance I get to change my elevation by using my
-          feet.
+          Living in Oregon for two years really fostered a fondness for hiking.
+          I don't plan on hiking Everest anytime soon, but I will definitely
+          enjoy any chance I get to change my elevation by using my feet.
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Drums">
-          I've been playing drums since I was 14. I'm not particularly
-          great, but it's a nice way to relieve stress.
+          I've been playing drums since I was 14. I'm not particularly great,
+          but it's a nice way to relieve stress.
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Guitar">
-          In high school, a few friends and I started a band. It was
-          during this time that I learned how to play guitar. While not as
+          In high school, a few friends and I started a band. It was during this
+          time that I learned how to play guitar. While not as
           naturally-inclined to it, playing guitar is something I find
           rewarding.
         </ExamplePageTitledParagraph>
@@ -336,36 +339,142 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
     ),
   },
   {
-    name: "Overview",
+    name: "Music",
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <Quote
-          author="Henry Ford"
-          text="Anyone who stops learning is old, whether at twenty or eighty. Anyone
-            who keeps learning stays young."
+          author="Leornard Bernstein"
+          text="To achieve great things, two things are needed: a plan, and not quite enough time."
         />
-        <ExamplePageParagraph>
-          My mind is always working, whether at work or at play. I enjoy
-          learning new things and bring a natural curiosity to everything I
-          encounter. While I enjoy being out in the world, I always look forward
-          to evenings at home with one or two good friends and great
-          conversation. I can also find happiness on my own, working on a
-          project or reading a good book.
-        </ExamplePageParagraph>
-        <ExamplePageParagraph>
-          Learn about my personality
-          <ExamplePageLink url="/the-big-five">here</ExamplePageLink>.
-        </ExamplePageParagraph>
+        <ExamplePageTitledParagraph title="A Passion for Sound">
+          Music has been a big part of my life since I was young.&nbsp; Ever
+          since first discovered Fruity Loops, I have been using music as a
+          cathartic outlet.&nbsp; The songs are almost universally of low
+          quality, but the act of getting the idea out of my head into the real
+          world is really the part that brings me joy.&nbsp; Listening to the
+          song reminds me of the process.&nbsp;
+        </ExamplePageTitledParagraph>
+        <ExamplePageTitledParagraph title="Electronic">
+          Here are some of the first songs I made on Fruity Loops
+          <AudioList
+            className="margin-top-1"
+            items={[
+              {
+                name: "Adam - Fruity Loops 1",
+                path: { earliest1 },
+              },
+              {
+                name: "Adam - Fruity Loops 2",
+                path: { earliest2 },
+              },
+              {
+                name: "Adam - Mario Jingle",
+                path: { selfMario },
+              },
+            ]}
+          />
+        </ExamplePageTitledParagraph>
+        <ExamplePageTitledParagraph title="Youthful Aspirations">
+          In high school, some friends and I were in a band:
+          <AudioList
+            className="margin-top-1"
+            items={[
+              {
+                name: "Band - Altus",
+                path: { earlier5 },
+              },
+              {
+                name: "Band - Hey Joe",
+                path: { earlier7 },
+              },
+              {
+                name: "Band - Vodoo Child",
+                path: { earlier3 },
+              },
+              {
+                name: "Band - Washed Away",
+                path: { earlier6 },
+              },
+            ]}
+          />
+        </ExamplePageTitledParagraph>
+        <ExamplePageTitledParagraph title="Real Instruments">
+          As my interest and talent grew, I began trying to learn how to sing
+          and record songs using more than just electronic samples and
+          instruments:
+          <AudioList
+            className="margin-top-1"
+            items={[
+              {
+                name: "Adam - Honeydew in June",
+                path: { selfHDIJC },
+              },
+              {
+                name: "Adam - Hopeful Uncertainty",
+                path: { selfHU },
+              },
+              {
+                name: "Adam - Relentless Sacrifice",
+                path: { selfRS },
+              },
+              {
+                name: "Adam and Linda - Rear-view Mirror",
+                path: { earliest3 },
+              },
+              {
+                name: "Paula - Quiet Condolences",
+                path: { othersQC },
+              },
+              {
+                name: "Paula, and Steve - Luminescent Ether",
+                path: { othersLE },
+              },
+              {
+                name: "Steve - Eerie Correspondence",
+                path: { othersEC },
+              },
+              {
+                name: "Steve - Reunited",
+                path: { othersReunited },
+              },
+              {
+                name: "Steve - Nostalgia",
+                path: { othersSweet },
+              },
+            ]}
+          />
+        </ExamplePageTitledParagraph>
+        <ExamplePageTitledParagraph title="Making the Most of It">
+          For a few years, I whole-heartedly pursued the idea of becoming a
+          recording/mixing engineer.&nbsp; Unfortunately, hard work doesn't
+          always make up for lack of skill and connections:
+          <AudioList
+            className="margin-top-1"
+            items={[
+              {
+                name: "Starlite Five - The Blues is Stalkin' Me",
+                path: { startliteBISM },
+              },
+              {
+                name: "Starlite Five - That feeling",
+                path: { startliteJam },
+              },
+              {
+                name: "Starlite Five - Oldsmobile Blue",
+                path: { startliteOMB },
+              },
+              {
+                name: "Starlite Five - Those Feet",
+                path: { startliteTF },
+              },
+            ]}
+          />
+        </ExamplePageTitledParagraph>
       </>
     ),
   },
 ];
 
 export function AboutPage(props: AboutProps) {
-  return (
-    <ExamplePage
-      title="About Me"
-      sections={ABOUT_SECTIONS}
-    />
-  );
+  return <ExamplePage title="About Me" sections={ABOUT_SECTIONS} />;
 }
