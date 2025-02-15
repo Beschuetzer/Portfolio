@@ -25,13 +25,19 @@ export function ExamplePageLink(props: ExamplePageLinkProps) {
     rel: "noopener noreferrer",
   };
 
-  return isInternal ? (
-    <LinkInternal {...propToAdd} to={url.trim()}>
-      {children}
-    </LinkInternal>
-  ) : (
-    <LinkExternal {...propToAdd} href={url.trim()}>
-      {children}
-    </LinkExternal>
+  return (
+    <>
+      &nbsp;
+      {isInternal ? (
+        <LinkInternal {...propToAdd} to={url.trim()}>
+          {children}
+        </LinkInternal>
+      ) : (
+        <LinkExternal {...propToAdd} href={url.trim()}>
+          {children}
+        </LinkExternal>
+      )}
+      &nbsp;
+    </>
   );
 }

@@ -100,7 +100,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
       <>
         <Quote
           author="Henry Ford"
-          text="Anyone who stops learning is old, whether at twenty or eighty. &nbsp;Anyone
+          text="Anyone who stops learning is old, whether at twenty or eighty. Anyone
             who keeps learning stays young."
         />
         <ExamplePageParagraph>
@@ -112,7 +112,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
           project or reading a good book.
         </ExamplePageParagraph>
         <ExamplePageParagraph>
-          Learn about my personality{" "}
+          Learn about my personality
           <ExamplePageLink url="/the-big-five">here</ExamplePageLink>.
         </ExamplePageParagraph>
       </>
@@ -128,25 +128,25 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
         />
         <ExamplePageTitledParagraph title="Biking">
           One of the most enjoyable things I do on a regular basis is bike
-          riding.&nbsp; I enjoy it so much, that I even tried using it as my
+          riding. I enjoy it so much, that I even tried using it as my
           main source of transportation for a year (quite a challenge given I
-          did it in Minnesota).&nbsp;
+          did it in Minnesota).
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Hiking">
           Living in Oregon for two years really fostered a fondness for
-          hiking.&nbsp; I don't plan on hiking Everest anytime soon, but I will
+          hiking. I don't plan on hiking Everest anytime soon, but I will
           definitely enjoy any chance I get to change my elevation by using my
           feet.
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Drums">
-          I've been playing drums since I was 14.&nbsp; I'm not particularly
+          I've been playing drums since I was 14. I'm not particularly
           great, but it's a nice way to relieve stress.
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Guitar">
-          In high school, a few friends and I started a band.&nbsp; It was
-          during this time that I learned how to play guitar.&nbsp; While not as
+          In high school, a few friends and I started a band. It was
+          during this time that I learned how to play guitar. While not as
           naturally-inclined to it, playing guitar is something I find
-          rewarding.&nbsp;
+          rewarding.
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Exercise">
           Sort of a strange thing to put for an 'interest', but going to the gym
@@ -341,7 +341,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
       <>
         <Quote
           author="Henry Ford"
-          text="Anyone who stops learning is old, whether at twenty or eighty. &nbsp;Anyone
+          text="Anyone who stops learning is old, whether at twenty or eighty. Anyone
             who keeps learning stays young."
         />
         <ExamplePageParagraph>
@@ -353,7 +353,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
           project or reading a good book.
         </ExamplePageParagraph>
         <ExamplePageParagraph>
-          Learn about my personality{" "}
+          Learn about my personality
           <ExamplePageLink url="/the-big-five">here</ExamplePageLink>.
         </ExamplePageParagraph>
       </>
