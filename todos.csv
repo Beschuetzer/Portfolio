@@ -8,6 +8,7 @@ refactor stuff:
   -start BridgeLayout?
    -SiteNavDrawer:
     --how hard would it be to only have one open section at a time (the ones not clicked would transform back to the original position)
+  -figure out bug with SiteNavItem (Item:hover) where the hover effect triggers a wider border when hovering some items and then going back up (it resets when hovering the item below it)
 
 
 -create low-res version of every video?
