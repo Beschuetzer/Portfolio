@@ -405,16 +405,6 @@ html {
     font-size: 56.25%;
   }
 }
-@media only screen and (max-width: 40.9375em) {
-  html {
-    font-size: 52.5%;
-  }
-}
-@media only screen and (max-width: 35.0625em) {
-  html {
-    font-size: 50%;
-  }
-}
 @media only screen and (max-width: 29.3125em) {
   html {
     font-size: 2.33vmin;
