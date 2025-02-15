@@ -56,6 +56,7 @@ import { SCROLL_BAR_WIDTH_IN_REM } from "../styles/constants";
 import { PlaylistSyncerPage } from "../pages/styled-pages/concrete-pages/PlaylistSyncerPage";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import { AboutPage } from "../pages/styled-pages/concrete-pages/AboutPage";
+import { ReplayViewerPage } from "../pages/styled-pages/concrete-pages/ReplayViewerPage";
 
 type AppProps = {};
 
@@ -200,7 +201,7 @@ export const App: React.FC<AppProps> = (props) => {
             exact
             component={PlaylistSyncerPage}
           />
-          <Route path={REPLAY_VIEWER_URL} exact component={ReplayViewer} />
+          <Route path={REPLAY_VIEWER_URL} exact component={ReplayViewerPage} />
           <Route path={AUTO_BID_URL} exact component={AutoBid} />
           <Route path={ABOUT_URL} exact component={AboutPage} />
           <Route path={RESUME_URL} exact component={Resume} />
