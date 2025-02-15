@@ -7,7 +7,7 @@ import { useColorScheme } from "../../../hooks/useColorScheme";
 import { getFontSizeCustom } from "../../../styles/constants";
 import { BREAK_POINTS } from "../../../styles/breakpoints";
 import { SiteNavDropDown } from "./SiteNavDropDown";
-import { SiteNavItem } from "./SiteNavItem";
+import { SiteNaveItemOrientation, SiteNavItem } from "./SiteNavItem";
 
 type SiteNavContentProps = {};
 
@@ -24,10 +24,8 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
           props.buttonradius
         )}, 0, 0) scaleX(0)`};
   transform-origin: left;
-  border-left: 1px solid ${(props) => props.colorscheme?.primary1};
   column-gap: 1px;
   border-radius: 0 14rem 14rem 0;
-  background-color: ${(props) => props.colorscheme?.primary1};
   user-select: none;
 `;
 
@@ -39,17 +37,19 @@ export function SiteNavContent(props: SiteNavContentProps) {
   const itemsToRender = useMemo(() => {
     return items.map((item, index) => {
       const isLast = index === items.length - 1;
-      if (item.isDropdownItem && item.drownDownItems) {
-        return (
-          <SiteNavDropDown
-            key={index}
-            {...item}
-            items={item.drownDownItems}
-            isLast={isLast}
-          />
-        );
-      }
-      return <SiteNavItem key={index} {...item} isLast={isLast} />;
+      return item.isDropdownItem && item.drownDownItems ? (
+        <SiteNavDropDown
+          {...item}
+          items={item.drownDownItems}
+          isLast={isLast}
+        />
+      ) : (
+        <SiteNavItem
+          {...item}
+          isLast={isLast}
+          orientation={SiteNaveItemOrientation.horizontal}
+        />
+      );
     });
   }, [items]);
 

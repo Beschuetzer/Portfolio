@@ -4,7 +4,7 @@ import { SiteNavStyledProps } from "./types";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import { Link } from "react-router-dom";
 import { useSiteNav } from "./SiteNavContext";
-import { itemStyles, siteNavLinkStyles } from "./styles";
+import { itemStyles, SITE_NAV_BORDER_SIZE, siteNavLinkStyles } from "./styles";
 
 export enum SiteNaveItemOrientation {
   horizontal = "horizontal",
@@ -14,17 +14,22 @@ export enum SiteNaveItemOrientation {
 export type SiteNavItemProps = {
   href?: string;
   image?: string;
+  isDropDownItem?: boolean;
   isLast?: boolean;
   itemProps?: Partial<HTMLAttributes<HTMLDivElement>>;
   orientation?: SiteNaveItemOrientation;
   text: string;
   to?: string;
-  isDropDownItem?: boolean;
 };
 
 const Item = styled.div<
-  SiteNavStyledProps & { image: string; isdropdownitem: boolean }
+  SiteNavStyledProps & { image: string; isdropdownitem: string }
 >`
+  ${(props) =>
+    props.isdropdownitem === "true"
+      ? ""
+      : `border-left: ${SITE_NAV_BORDER_SIZE} solid ${props.colorscheme?.primary1};`}
+
   cursor: pointer;
   &:hover .image {
     ${(props) => (props.image ? "opacity: .1;" : "")}
@@ -32,8 +37,10 @@ const Item = styled.div<
 
   &:hover {
     box-shadow: -10px 0 10px hsla(0, 0%, 7%, 0.5);
-    /* -webkit-transform: translate3d(.56rem, 0, 0) !important; */
-    transform: translate3d(0.56rem, 0, 0) !important;
+    transform: ${(props) =>
+      props.orientation === SiteNaveItemOrientation.vertical
+        ? `translate3d(0.56rem, 0, 0);`
+        : `translate3d(0, -0.56rem, 0);`}
     background-color: ${(props) => props.colorscheme?.primary1};
 
     & .item-link {
@@ -41,18 +48,18 @@ const Item = styled.div<
     }
 
     & + div {
-      border-top: 1px solid transparent;
+      border-top: ${SITE_NAV_BORDER_SIZE} solid transparent;
     }
   }
   transition: background 0.1666666667s ease, transform 0.25s ease,
-    box-shadow 0.25s ease, -webkit-transform 0.25s ease;
+    box-shadow 0.25s ease, -webkit-transform 0.25s ease, border-top .25s ease;
 
   ${itemStyles}
 
   ${(props) =>
     props.orientation === SiteNaveItemOrientation.vertical
       ? `
-      border-top: 1px solid ${props.colorscheme?.primary1};
+      border-top: ${SITE_NAV_BORDER_SIZE} solid ${props.colorscheme?.primary1};
     `
       : ""}
 `;
@@ -106,10 +113,11 @@ export function SiteNavItem(props: SiteNavItemProps) {
     toggleIsOpen();
   }, [toggleIsOpen]);
 
+  console.log({propsToAdd})
   return (
     <Item
       {...propsToAdd}
-      isdropdownitem={isDropDownItem}
+      isdropdownitem={isDropDownItem.toString()}
       image={image}
       {...itemProps}
     >

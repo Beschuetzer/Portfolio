@@ -11,7 +11,7 @@ import { SiteNaveItemOrientation } from "./SiteNavItem";
 import { SiteNavStyledProps } from "./types";
 import { respond } from "../../../styles/breakpoints";
 import { SITE_NAV_NAV_SWITCH_TOP } from "../../../styles/constants";
-
+export const SITE_NAV_BORDER_SIZE = ".28rem";
 export const NAVBAR_HEADER_NAV_SWITCH_HEIGHT = `calc(${SITE_NAV_NAV_SWITCH_TOP} * 2 + ${BUTTON_WIDTH})`;
 export const buttonPlacementStyles = css<SiteNavStyledProps>`
   position: absolute;
