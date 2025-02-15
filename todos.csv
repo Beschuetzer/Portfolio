@@ -1,12 +1,12 @@
 
 refactor stuff:
-  -the contact item in the site nav for navSwitch breakpoint needs some styling work
   -use StyledPage to finish the rest of the content
-    --clean up stuff  
-      ---remove no-longer-needed pages
-      ---remove no-longer-needed scss files
-  -start ResumeLayout?
-  -start BridgeLayout?
+  -clean up stuff  
+    --remove no-longer-needed pages and everything related to them
+    --remove no-longer-needed scss files
+
+  -how to handle ResumeLayout?
+  -how to handle BridgeLayout?
    -SiteNavDrawer:
     --how hard would it be to only have one open section at a time (the ones not clicked would transform back to the original position)
     --SiteNavItem is handling too many cases.  Create separate components for each case and centralize the common styles instead.
