@@ -37,6 +37,16 @@ export const siteNavLinkStyles = css<SiteNavStyledProps>`
   text-decoration: none;
   transition: padding 0.5s ease, opacity 0.25s ease 0.25s;
   width: 100%;
+
+  ${respond.navSwitch`
+    ${(props: SiteNavStyledProps) =>
+      props?.ismainitem === "true"
+        ? `
+    font-size: ${fontSizeSix};
+    font-weight: 300;
+    `
+        : ``}
+  `}
 `;
 
 export const itemStyles = css<SiteNavStyledProps>`

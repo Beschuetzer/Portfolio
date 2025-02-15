@@ -4,8 +4,9 @@ import { SiteNaveItemOrientation, SiteNavItemProps } from "./SiteNavItem";
 export type SiteNavStyledProps = {
   buttonradius?: string;
   colorscheme?: ColorScheme;
-  isopen?: boolean;
   islast?: boolean;
+  isopen?: boolean;
+  ismainitem?: string;
   issectionopen?: string;
   minpixelwidth?: string;
   numberofsections?: number;

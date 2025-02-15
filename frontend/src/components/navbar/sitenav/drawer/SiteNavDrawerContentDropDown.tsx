@@ -145,7 +145,7 @@ export function SiteNavDrawerContentItem(props: SiteNavDrawerContextItemProps) {
           {renderItems()}
         </>
       ) : (
-        <SiteNavItem {...props} />
+        <SiteNavItem {...props} isMainItem/>
       )}
     </ItemContainer>
   );

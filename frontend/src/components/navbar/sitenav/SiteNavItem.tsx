@@ -15,6 +15,7 @@ export enum SiteNaveItemOrientation {
 export type SiteNavItemProps = {
   href?: string;
   image?: string;
+  isMainItem?: boolean;
   isDropDownItem?: boolean;
   isLast?: boolean;
   itemProps?: Partial<HTMLAttributes<HTMLDivElement>>;
@@ -92,6 +93,7 @@ export function SiteNavItem(props: SiteNavItemProps) {
   const {
     isDropDownItem = false,
     isLast = false,
+    isMainItem = false,
     itemProps,
     orientation = SiteNaveItemOrientation.horizontal,
     text,
@@ -103,11 +105,12 @@ export function SiteNavItem(props: SiteNavItemProps) {
   const propsToAdd: SiteNavStyledProps = useMemo(
     () => ({
       colorscheme: colorScheme != null ? colorScheme : undefined,
+      ismainitem: isMainItem.toString(),
       isopen: isOpen != null ? isOpen : undefined,
       islast: isLast != null ? isLast : undefined,
       orientation: orientation,
     }),
-    [colorScheme, isOpen, isLast, orientation]
+    [colorScheme, isMainItem, isOpen, isLast, orientation]
   );
 
   const onClickLocal = useCallback(() => {
