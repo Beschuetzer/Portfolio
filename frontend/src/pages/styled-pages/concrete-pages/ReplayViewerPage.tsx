@@ -3,6 +3,7 @@ import {
   OS_10_ISSUE_TRACKER_URL,
   GITHUB_URL,
   LIVE_REPLAYS_URL,
+  LIVE_BRIDGE_URL,
 } from "../../../components/constants";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
 import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";
@@ -30,39 +31,42 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
           text="When the why is clear, the how is easy."
         />
         <ExamplePageParagraph>
-        There are two reasons why I chose to build the
-            <ExamplePageLink
-              url={LIVE_REPLAYS_URL}
-            >
-              A# Maj Replay Viewer
-            </ExamplePageLink>
+          In March of 2021, I had just finished
+          <ExamplePageLink url={LIVE_BRIDGE_URL}>A# Maj Bridge</ExamplePageLink>
+          , which store games, deals, and user statistics as MongoDB documents.
+          While playing with my friends, there were multiple times where it would have been nice to review
+          games without having to log into the database and decipher the raw
+          data.
         </ExamplePageParagraph>
-        {/* <CSharpCardSection title="The Reasons">
-          <Paragraph size="five">
-           
-            .
-          </Paragraph>
-          <Paragraph size="five" classNameToAdd="margin-top-1">
-            First, in March of 2021, I finished
-            <EmbeddedLink
-              addSpaces={false}
-              isLocal={false}
-              href={LIVE_BRIDGE_URL}
-            >
-              A# Maj Bridge
-            </EmbeddedLink>
-            , which saves games, deals, and user statistics into a mongoDB
-            database. There have been multiple times where it would have
-            been nice to review games without having to log into the database
-            and decipher the raw data.
-          </Paragraph>
-
-          <Paragraph size="five" classNameToAdd="margin-top-1">
-            Second, I wanted to improve my familiarity with Narwahl's NX
-            workspace and Angular. What better way to do that than to
-            create a real-world application with a practical use?
-          </Paragraph>
-        </CSharpCardSection> */}
+        <ExamplePageParagraph>
+          In addition, I wanted to improve my familiarity with Narwahl's Nx workspace
+          and Angular. What better way to do that than to create a real-world
+          application with a practical use?
+        </ExamplePageParagraph>
+      </>
+    ),
+  },
+  {
+    name: REPLAY_VIEWER_SECTION_NAMES[1],
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <>
+        <Quote
+          author="Anonymous"
+          text="When the why is clear, the how is easy."
+        />
+        <ExamplePageParagraph>
+          In March of 2021, I had just finished
+          <ExamplePageLink url={LIVE_BRIDGE_URL}>A# Maj Bridge</ExamplePageLink>
+          , which store games, deals, and user statistics as MongoDB documents.
+          While playing with my friends, there were multiple times where it would have been nice to review
+          games without having to log into the database and decipher the raw
+          data.
+        </ExamplePageParagraph>
+        <ExamplePageParagraph>
+          In addition, I wanted to improve my familiarity with Narwahl's Nx workspace
+          and Angular. What better way to do that than to create a real-world
+          application with a practical use?
+        </ExamplePageParagraph>
       </>
     ),
   },
