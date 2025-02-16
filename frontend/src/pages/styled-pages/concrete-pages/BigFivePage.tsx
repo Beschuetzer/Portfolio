@@ -4,6 +4,7 @@ import { LayoutStyledProps } from "../../../layouts/types";
 
 import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 import { ExamplePageBar } from "../ExamplePageBar";
+import { ExamplePageTitledList } from "../ExamplePageTitledList";
 
 const BIG_FIVE_SECTION_NAMES = [
   "Overview",
@@ -18,9 +19,7 @@ const BIG_FIVE_SECTION_NAMES = [
 type BigFiveProps = {};
 
 const BIG_FIVE_PERCENT_BAR_LABELS = ["0", "25", "50", "75", "100"];
-const BIG_FIVE_PERCENT_BAR_VALUES = [
-    85, 75, 70, 55, 35
-];
+const BIG_FIVE_PERCENT_BAR_VALUES = [85, 75, 70, 55, 35];
 
 const BIG_FIVE_SECTIONS: ExamplePageSectionProps[] = [
   {
@@ -62,6 +61,28 @@ const BIG_FIVE_SECTIONS: ExamplePageSectionProps[] = [
           reinforced by my confidence in my own abilities and a wish to do my
           best for myself and for other people.
         </ExamplePageParagraph>
+        <ExamplePageTitledList
+          title="Potential Benefits"
+          items={[
+            "I tend to focus on the task at hand",
+            "I tend to identify key goals",
+            "I have a strong sense of commitment",
+            "I have a structured work style",
+            "I am tolerant of tedious details",
+            "I want to achieve",
+          ]}
+        />
+         <ExamplePageTitledList
+          title="Potential Pitfalls"
+          items={[
+            "I may commit to the wrong objective",
+            "I may not know when to stop",
+            "I may not re-prioritize tasks",
+            "I may set impossibly high standards",
+            "I may settle on goals too early",
+            "I may use an overly rigid approach",
+        ]}
+        />
       </>
     ),
   },
