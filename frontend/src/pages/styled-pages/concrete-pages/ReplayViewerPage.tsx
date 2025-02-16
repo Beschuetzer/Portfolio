@@ -274,19 +274,69 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
             srcThumbnail: imgGameThumbnail,
             description: "Example of a game cached in local storage",
           },
-          //todo: figure out why these cause a crash?
-          // {
-          //   srcMain: imgDeal,
-          //   srcThumbnail: imgDealThumbnail,
-          //   description: "Example of a deal cached in local storage",
-          // },
-          // {
-          //   srcMain: imgUser,
-          //   srcThumbnail: imgUserThumbnail,
-          //   description: "Example of a user cached in local storage",
-          // },
         ]}
       />
+    ),
+  },
+  {
+    name: REPLAY_VIEWER_SECTION_NAMES[2],
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <>
+        <Quote
+          author="Tim Cook"
+          text="A great product isn't just a collection of features. It's how it all works together."
+        />
+        <ExamplePageTitledParagraph title="Filters">
+          <ExamplePageParagraph>
+            There are two type of filters that can be applied: game-level and
+            deal-level.&nbsp; Game-level filters work by checking the games in
+            the current currently-displayed games array.&nbsp; Deal-level
+            filters work by checking the deals of the games that pass the
+            game-level filters.
+          </ExamplePageParagraph>
+          <ExamplePageParagraph>
+            When both types of filters are applied at the same time, games are
+            checked first.&nbsp; If a match is found, that game is added to the
+            filtered games.
+          </ExamplePageParagraph>
+          <ExamplePageParagraph>
+            Thereafter, the game's deals are checked to see if any of them match
+            any of the applied deal-level filters.&nbsp; If a match is found on
+            the deal-level, that deal is sent to an array of deals which is used
+            to highlight that deal when the game detail is opened. &nbsp; If
+            there are no deal-level filters applied, then deal checking is
+            skipped.&nbsp;
+          </ExamplePageParagraph>
+        </ExamplePageTitledParagraph>
+        <ExamplePageTitledParagraph title="Preferences">
+          <ExamplePageParagraph>
+            There are three preferences the user can select from: size, sort,
+            and resultsPerPage.
+          </ExamplePageParagraph>
+          <ExamplePageParagraph>
+            Size refers to the size of the game detail card in the games list
+            view.&nbsp; There are three options: large, medium, and small.
+          </ExamplePageParagraph>
+          <ExamplePageParagraph>
+            Sort refers to whether the matched games are sorted in descending or
+            ascending order based on the completion date.
+          </ExamplePageParagraph>
+          <ExamplePageParagraph>
+            Results per page refers to how many matched games are displayed at
+            one time.&nbsp; The options are: 1, 2, 5, 10, 25, 50, and 100.
+          </ExamplePageParagraph>
+        </ExamplePageTitledParagraph>
+        <ExamplePageTitledParagraph title="Caching">
+          <ExamplePageParagraph>
+            The results of each query are stored in local storage, allowing for
+            faster load times on subsequent queries of the same username as well
+            as any other usernames that were part of any of the cached
+            deals/games.&nbsp; Preferences, users, userIds, deals, and games are
+            all stored in local storage as separate items.&nbsp; The keys are
+            the id of the item and the value is the relevant data for that item.
+          </ExamplePageParagraph>
+        </ExamplePageTitledParagraph>
+      </>
     ),
   },
 ];
@@ -296,7 +346,7 @@ type ReplayViewerPageProps = {};
 export function ReplayViewerPage(props: ReplayViewerPageProps) {
   return (
     <ExamplePage
-      title="Playlist Syncer"
+      title="Replay Viewer"
       sections={REPLAY_VIEWER_SECTIONS}
       layoutProps={{
         links: [
