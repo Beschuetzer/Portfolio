@@ -72,7 +72,7 @@ const BIG_FIVE_SECTIONS: ExamplePageSectionProps[] = [
             "I want to achieve",
           ]}
         />
-         <ExamplePageTitledList
+        <ExamplePageTitledList
           title="Potential Pitfalls"
           items={[
             "I may commit to the wrong objective",
@@ -81,7 +81,52 @@ const BIG_FIVE_SECTIONS: ExamplePageSectionProps[] = [
             "I may set impossibly high standards",
             "I may settle on goals too early",
             "I may use an overly rigid approach",
-        ]}
+          ]}
+        />
+      </>
+    ),
+  },
+  {
+    name: BIG_FIVE_SECTION_NAMES[2],
+    renderHeaderContent: (propsToAdd: LayoutStyledProps) => (
+      <ExamplePageBar
+        percentage={BIG_FIVE_PERCENT_BAR_VALUES[1]}
+        labels={BIG_FIVE_PERCENT_BAR_LABELS}
+      />
+    ),
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <>
+        <ExamplePageParagraph>
+          I generally am accommodating and open to the views of other people. I
+          tend to trust other people, and can be depended on to have a
+          consistent and forgiving viewpoint. I am very loyal, and build
+          relationships with other people based on mutual respect. Other
+          people's needs influence my dealings with them, and I am often the
+          person who is striving for a harmonious outcome. I am tuned in to
+          those around me and am motivated by the ultimate welfare of other
+          people. This guides the way in which I negotiate, and as a rule I am
+          generally avoid unnecessary confrontation whenever possible.
+        </ExamplePageParagraph>
+        <ExamplePageTitledList
+          title="Potential Benefits"
+          items={[
+            "I am accommodating",
+            "I am attuned to others",
+            "I look for a 'win-win' result",
+            "I negotiate through harmony",
+            "I am non-confrontational",
+            "I trust other people",
+          ]}
+        />
+        <ExamplePageTitledList
+          title="Potential Pitfalls"
+          items={[
+            "I may accept a below standard outcome",
+            "I may be naïve about others' motives",
+            "I may be over-influenced by others’ feelings",
+            "I may be too eager to comply",
+            "I may not drive a hard enough bargain",
+          ]}
         />
       </>
     ),
