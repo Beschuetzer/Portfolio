@@ -1,7 +1,11 @@
 
 refactor stuff:
-  -finish the about page content
-  -use StyledPage to finish the rest of the content
+  -Content to finish
+    -resume page
+    -SSK page
+    -Thumbnail Carousel page
+    -bridge page (Create a new HorizontalLayout component that functions like the current bridge page)
+
   -clean up stuff  
     --remove no-longer-needed pages and everything related to them
     --remove no-longer-needed scss files
