@@ -4,13 +4,13 @@ import { LayoutStyledProps } from "../../layouts/types";
 import styled from "styled-components";
 import {
   defaultFontSize,
-  fontSizeFour,
   fontSizeThree,
   getFontSizeCustom,
 } from "../../styles/constants";
 import { hexToRgba } from "../../components/navbar/sitenav/helpers";
 
 const GRADIENT_START_PERCENT = 0.33;
+const GRADIENT_MAX_PERCENT = 0.75;
 
 const Container = styled.div<LayoutStyledProps>`
   position: relative;
@@ -38,7 +38,7 @@ const InnerBar = styled.div<LayoutStyledProps>`
     ${(props) =>
       hexToRgba(
         props.colorscheme?.primary1,
-        Math.max(GRADIENT_START_PERCENT, (props.percentage || 0) / 100)
+        (GRADIENT_MAX_PERCENT - GRADIENT_START_PERCENT) * ((props.percentage || 50) / 100) + GRADIENT_START_PERCENT
       )}
   );
 
@@ -51,7 +51,7 @@ const InnerBar = styled.div<LayoutStyledProps>`
 const Divider = styled.div<LayoutStyledProps>`
   width: 2px;
   height: 100%;
-  background-color: ${(props) => hexToRgba(props.colorscheme?.primary1, 0.5)};
+  background-color: ${(props) => hexToRgba(props.colorscheme?.primary1, GRADIENT_MAX_PERCENT)};
   position: absolute;
   top: 0;
   bottom: 0;
@@ -78,7 +78,7 @@ type ExamplePageBarProps = {
 };
 
 export function ExamplePageBar(props: ExamplePageBarProps) {
-  const { containerProps, percentage, labels = ["0", "25", "50", "75", "100"] } = props;
+  const { containerProps, percentage, labels = ["0", "50", "100"] } = props;
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = {
     colorscheme: colorScheme,

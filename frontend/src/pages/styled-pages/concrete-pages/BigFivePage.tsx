@@ -17,6 +17,11 @@ const BIG_FIVE_SECTION_NAMES = [
 
 type BigFiveProps = {};
 
+const BIG_FIVE_PERCENT_BAR_LABELS = ["0", "25", "50", "75", "100"];
+const BIG_FIVE_PERCENT_BAR_VALUES = [
+    85, 75, 70, 55, 35
+];
+
 const BIG_FIVE_SECTIONS: ExamplePageSectionProps[] = [
   {
     name: BIG_FIVE_SECTION_NAMES[0],
@@ -37,7 +42,10 @@ const BIG_FIVE_SECTIONS: ExamplePageSectionProps[] = [
   {
     name: BIG_FIVE_SECTION_NAMES[1],
     renderHeaderContent: (propsToAdd: LayoutStyledProps) => (
-      <ExamplePageBar percentage={2} />
+      <ExamplePageBar
+        percentage={BIG_FIVE_PERCENT_BAR_VALUES[0]}
+        labels={BIG_FIVE_PERCENT_BAR_LABELS}
+      />
     ),
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
