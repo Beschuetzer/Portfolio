@@ -40,14 +40,10 @@ import about4 from "../imgs/site-nav/personality.jpg";
 import { SiteNav } from "./navbar/sitenav/SiteNav";
 import "../css/style.css";
 import {
-  BigFive,
   AutoBid,
   Bridge,
-  About,
   BridgeDemo,
   Downloader,
-  ReplayViewer,
-  Home,
   Resume,
 } from "../pages";
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
@@ -57,6 +53,7 @@ import { PlaylistSyncerPage } from "../pages/styled-pages/concrete-pages/Playlis
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import { AboutPage } from "../pages/styled-pages/concrete-pages/AboutPage";
 import { ReplayViewerPage } from "../pages/styled-pages/concrete-pages/ReplayViewerPage";
+import { BigFivePage } from "../pages/styled-pages/concrete-pages/BigFivePage";
 
 type AppProps = {};
 
@@ -205,7 +202,7 @@ export const App: React.FC<AppProps> = (props) => {
           <Route path={AUTO_BID_URL} exact component={AutoBid} />
           <Route path={ABOUT_URL} exact component={AboutPage} />
           <Route path={RESUME_URL} exact component={Resume} />
-          <Route path={PERSONALITY_URL} exact component={BigFive} />
+          <Route path={PERSONALITY_URL} exact component={BigFivePage} />
           <Route path="*" exact component={Resume} />
         </Switch>
 
