@@ -53,6 +53,11 @@ type ExamplePageProps = {
 
 export type ExamplePageSectionProps = {
   name: string;
+  
+  /**
+   * This will be added to the header of the section  
+   **/
+  renderHeaderContent?: (propsToAdd: LayoutStyledProps) => ReactNode | ReactNode[];
   renderContent: (propsToAdd: LayoutStyledProps) => ReactNode | ReactNode[];
   contentStyle?: CSSProperties;
   containerStyle?: CSSProperties;
@@ -90,6 +95,7 @@ export function ExamplePage(props: ExamplePageProps) {
                 htmlAttributes={{ style: headerStyle }}
               >
                 {name}
+                {section.renderHeaderContent?.(propsToAdd)}
               </ExamplePageSectionHeader>
               <ExamplePageSectionContent
                 {...propsToAdd}

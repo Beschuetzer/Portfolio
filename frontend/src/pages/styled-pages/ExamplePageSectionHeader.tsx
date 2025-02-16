@@ -16,8 +16,9 @@ const SectionHeader = styled.h3<LayoutStyledProps>`
     ${(props) => props.colorscheme?.primary1}
   );
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 export function ExamplePageSectionHeader(props: StyledPageProps) {

@@ -2,8 +2,8 @@ import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
 import { LayoutStyledProps } from "../../../layouts/types";
 
-import { ExamplePageLink } from "../ExamplePageLink";
 import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
+import { ExamplePageBar } from "../ExamplePageBar";
 
 const BIG_FIVE_SECTION_NAMES = [
   "Overview",
@@ -36,20 +36,23 @@ const BIG_FIVE_SECTIONS: ExamplePageSectionProps[] = [
   },
   {
     name: BIG_FIVE_SECTION_NAMES[1],
+    renderHeaderContent: (propsToAdd: LayoutStyledProps) => (
+      <ExamplePageBar percentage={2} />
+    ),
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <ExamplePageParagraph>
-            I am the sort of person who likes a clear structure organizing what I
-            do. This helps me to focus on what is important. In many
-            ways my concern is with 'how' I approach tasks, and in my case this is
-            likely to be with a strong sense of self-discipline and the ability to
-            work towards longer term goals. I am one who can work steadily
-            towards something and who appreciates that sometimes it can take a
-            considerable amount of time to achieve a meaningful objective. I
-            am likely to pay as much attention to the end of the project as I do to
-            the beginning. This view of how things should be done is likely to
-            be reinforced by my confidence in my own abilities and a wish to do my
-            best for myself and for other people.
+          I am the sort of person who likes a clear structure organizing what I
+          do. This helps me to focus on what is important. In many ways my
+          concern is with 'how' I approach tasks, and in my case this is likely
+          to be with a strong sense of self-discipline and the ability to work
+          towards longer term goals. I am one who can work steadily towards
+          something and who appreciates that sometimes it can take a
+          considerable amount of time to achieve a meaningful objective. I am
+          likely to pay as much attention to the end of the project as I do to
+          the beginning. This view of how things should be done is likely to be
+          reinforced by my confidence in my own abilities and a wish to do my
+          best for myself and for other people.
         </ExamplePageParagraph>
       </>
     ),
