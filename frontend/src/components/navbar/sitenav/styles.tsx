@@ -1,7 +1,6 @@
 import { css } from "styled-components";
 import {
   BUTTON_WIDTH,
-  defaultFontSize,
   fontSizeFive,
   fontSizeSix,
   getFontSizeCustom,
@@ -11,6 +10,7 @@ import { SiteNaveItemOrientation } from "./SiteNavItem";
 import { SiteNavStyledProps } from "./types";
 import { respond } from "../../../styles/breakpoints";
 import { SITE_NAV_NAV_SWITCH_TOP } from "../../../styles/constants";
+import { SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT } from "./SiteNavButton";
 export const SITE_NAV_BORDER_SIZE = ".28rem";
 export const NAVBAR_HEADER_NAV_SWITCH_HEIGHT = `calc(${SITE_NAV_NAV_SWITCH_TOP} * 2 + ${BUTTON_WIDTH})`;
 export const buttonPlacementStyles = css<SiteNavStyledProps>`
@@ -57,8 +57,8 @@ export const itemStyles = css<SiteNavStyledProps>`
   border-radius: ${(props) =>
     props.islast
       ? props.orientation === SiteNaveItemOrientation.horizontal
-        ? `0 14rem 14rem 0`
-        : `0 0 ${defaultFontSize} ${defaultFontSize}`
+        ? `0 ${SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT} ${SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT} 0`
+        : `0 0 ${SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT} ${SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT}`
       : "0"};
   overflow: hidden;
 `;

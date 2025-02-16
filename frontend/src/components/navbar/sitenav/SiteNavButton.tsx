@@ -6,13 +6,18 @@ import { SiteNavStyledProps } from "./types";
 import { useSiteNav } from "./SiteNavContext";
 import { respond } from "../../../styles/breakpoints";
 
+export const SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT = getFontSizeCustom(.5);
+
 const StyledNav = styled.button<SiteNavStyledProps>`
   background-color: ${(props) => props.colorscheme?.primary4};
   z-index: 1000;
   width: ${(props) => props.buttonradius};
   height: ${(props) => props.buttonradius};
   border-radius: 50%;
-  border-radius: ${(props) => (props.isopen ? "14rem 0 0 14rem" : "50%")};
+  border-radius: ${(props) =>
+    props.isopen
+      ? `${SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT} 0 0 ${SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT}`
+      : "50%"};
   border: none;
   cursor: pointer;
   display: flex;
@@ -37,12 +42,11 @@ const StyledNav = styled.button<SiteNavStyledProps>`
         props.isopen
           ? `rotate(-135deg) translate3d(${defaultFontSize}, 0.05rem, 0)`
           : "translate3d(0, 33%, 0)"};
-
     }
   }
 
   ${respond.navSwitch`
-      border-radius: ${defaultFontSize};
+      border-radius: ${SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT};
       background-color: ${(props: SiteNavStyledProps) =>
         props.colorscheme?.primary1};
       opacity: ${(props: SiteNavStyledProps) => (props.isopen ? 1 : 0.5)};
@@ -83,7 +87,9 @@ const Hamburger = styled.div<SiteNavStyledProps>`
   &::after {
     top: ${getFontSizeCustom(0.75)};
     ${(props) =>
-      props.isopen ? ` transform: rotate(-105deg) translate3d(1.353786rem, 0, 0);` : ""}
+      props.isopen
+        ? ` transform: rotate(-105deg) translate3d(1.353786rem, 0, 0);`
+        : ""}
   }
 
   ${respond.navSwitch`
