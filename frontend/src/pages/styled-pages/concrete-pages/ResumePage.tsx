@@ -7,6 +7,7 @@ import { ExamplePageParagraph } from "../ExamplePageParagraph";
 import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";
 
 import { Quote } from "../../../components/Quote";
+import { ResumePageWorkHistory } from "./ResumePageWorkHistory";
 
 export const RESUME_SECTION_TITLES = [
   "Overview",
@@ -25,7 +26,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
           text="You are not your résumé, you are your work."
         />
         <ExamplePageParagraph {...propsToAdd}>
-          Welcome! I am a software engineer with a passion for creating
+          Welcome! I am a developer with a passion for creating
           applications that are both useful and enjoyable to use. Below you will
           find my work history, a summary of my skills, and my references.
         </ExamplePageParagraph>
@@ -37,22 +38,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
   },
   {
     name: RESUME_SECTION_TITLES[1],
-    renderContent: (propsToAdd: LayoutStyledProps) => (
-      <>
-        <Quote
-          author="Seth Godin"
-          text="You are not your résumé, you are your work."
-        />
-        <ExamplePageParagraph {...propsToAdd}>
-          Welcome! I am a software engineer with a passion for creating
-          applications that are both useful and enjoyable to use. Below you will
-          find my work history, a summary of my skills, and my references.
-        </ExamplePageParagraph>
-        <ExamplePageParagraph>
-          Selecting a skill will open a modal with links to the Github repo and a live demo if available.
-        </ExamplePageParagraph>
-      </>
-    ),
+    renderContent: (propsToAdd: LayoutStyledProps) => <ResumePageWorkHistory />,
   },
 ];
 
