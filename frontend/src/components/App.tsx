@@ -44,7 +44,6 @@ import {
   Bridge,
   BridgeDemo,
   Downloader,
-  Resume,
 } from "../pages";
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
 import { Redirect } from "../pages/Redirect";
@@ -54,6 +53,7 @@ import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import { AboutPage } from "../pages/styled-pages/concrete-pages/AboutPage";
 import { ReplayViewerPage } from "../pages/styled-pages/concrete-pages/ReplayViewerPage";
 import { BigFivePage } from "../pages/styled-pages/concrete-pages/BigFivePage";
+import { ResumePage } from "../pages/styled-pages/concrete-pages/ResumePage";
 
 type AppProps = {};
 
@@ -201,9 +201,9 @@ export const App: React.FC<AppProps> = (props) => {
           <Route path={REPLAY_VIEWER_URL} exact component={ReplayViewerPage} />
           <Route path={AUTO_BID_URL} exact component={AutoBid} />
           <Route path={ABOUT_URL} exact component={AboutPage} />
-          <Route path={RESUME_URL} exact component={Resume} />
+          <Route path={RESUME_URL} exact component={ResumePage} />
           <Route path={PERSONALITY_URL} exact component={BigFivePage} />
-          <Route path="*" exact component={Resume} />
+          <Route path="*" exact component={ResumePage} />
         </Switch>
 
         <AudioPlayer />
