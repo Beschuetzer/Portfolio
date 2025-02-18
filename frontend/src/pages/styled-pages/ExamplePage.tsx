@@ -15,7 +15,7 @@ import { ExamplePageSection } from "./ExamplePageSection";
 import { ExamplePageSectionContent } from "./ExamplePageSectionContent";
 import { ExamplePageSectionHeader } from "./ExamplePageSectionHeader";
 import { getTextShadowStyle } from "../../styles/styles";
-import { capitalize } from "../../helpers";
+import { getHeaderName } from "../../helpers";
 
 const Content = styled.div<LayoutStyledProps>`
   position: relative;
@@ -76,7 +76,7 @@ export function ExamplePage(props: ExamplePageProps) {
 
   return (
     <PageNavLayout {...layoutProps}>
-      <Header {...propsToAdd}>{capitalize(title.trim())}</Header>
+      <Header {...propsToAdd}>{getHeaderName(title)}</Header>
       <Content {...propsToAdd}>
         {sections.map((section, index) => {
           const { contentStyle, containerStyle, headerStyle, name, renderContent } =
@@ -94,7 +94,7 @@ export function ExamplePage(props: ExamplePageProps) {
                 {...propsToAdd}
                 htmlAttributes={{ style: headerStyle }}
               >
-                {name}
+                {getHeaderName(name)}
                 {section.renderHeaderContent?.(propsToAdd)}
               </ExamplePageSectionHeader>
               <ExamplePageSectionContent

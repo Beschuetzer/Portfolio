@@ -1,42 +1,62 @@
 import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import {
-  OS_10_ISSUE_TRACKER_URL,
   GITHUB_URL,
   PLAYLIST_SYNCER_PAGE_NAME,
 } from "../../../components/constants";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
 import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";
 
+import { Quote } from "../../../components/Quote";
 
-import { ExamplePageLink } from "../ExamplePageLink";
-
-type ResmueProps = {};
+export const RESUME_SECTION_TITLES = [
+  "Overview",
+  "Work-history",
+  "Education",
+  "References",
+];
 
 const RESUME_SECTIONS: ExamplePageSectionProps[] = [
   {
-    name: "Background",
+    name: RESUME_SECTION_TITLES[0],
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
+        <Quote
+          author="Seth Godin"
+          text="You are not your résumé, you are your work."
+        />
         <ExamplePageParagraph {...propsToAdd}>
-          Around the end of Febraury 2020, Samsung updated their Android OS to
-          version 10. Eager to check out the newest Android OS, I promptly
-          updated. Unfortunately, the update
-          <ExamplePageLink url={OS_10_ISSUE_TRACKER_URL}>
-            broke my ability to sync music and playlists
-          </ExamplePageLink>
-          to my Galaxy S9+ phone.         </ExamplePageParagraph>
+          Welcome! I am a software engineer with a passion for creating
+          applications that are both useful and enjoyable to use. Below you will
+          find my work history, a summary of my skills, and my references.
+        </ExamplePageParagraph>
+        <ExamplePageParagraph>
+          Selecting a skill will open a modal with links to the Github repo and a live demo if available.
+        </ExamplePageParagraph>
+      </>
+    ),
+  },
+  {
+    name: RESUME_SECTION_TITLES[1],
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <>
+        <Quote
+          author="Seth Godin"
+          text="You are not your résumé, you are your work."
+        />
         <ExamplePageParagraph {...propsToAdd}>
-          Thinking it would get resolved in a prompt manner, I waited a few
-          months. In the meantime, I looked into other ways of easily
-          syncing music/playlists to my phone. After looking for over a
-          month to no avail and realizing Google was in no hurry to fix the bug,
-          I decided it would be an interesting programming exercise to create a
-          simple application that could sync music and playlists to my phone.
+          Welcome! I am a software engineer with a passion for creating
+          applications that are both useful and enjoyable to use. Below you will
+          find my work history, a summary of my skills, and my references.
+        </ExamplePageParagraph>
+        <ExamplePageParagraph>
+          Selecting a skill will open a modal with links to the Github repo and a live demo if available.
         </ExamplePageParagraph>
       </>
     ),
   },
 ];
+
+type ResmueProps = {};
 
 export function ResumePage(props: ResmueProps) {
   return (

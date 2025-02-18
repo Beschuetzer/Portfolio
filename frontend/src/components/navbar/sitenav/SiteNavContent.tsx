@@ -39,12 +39,14 @@ export function SiteNavContent(props: SiteNavContentProps) {
       return item.isDropdownItem && item.drownDownItems ? (
         <SiteNavDropDown
           {...item}
+          key={index}
           items={item.drownDownItems}
           isLast={isLast}
         />
       ) : (
         <SiteNavItem
           {...item}
+          key={index}
           isLast={isLast}
           orientation={SiteNaveItemOrientation.horizontal}
         />
