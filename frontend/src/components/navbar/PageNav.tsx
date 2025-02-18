@@ -10,7 +10,7 @@ import {
   SITE_NAV_NAV_SWITCH_TOP,
   SITE_NAV_TOP,
 } from "../../styles/constants";
-import { capitalize, ensureMaxLength } from "../../helpers";
+import { capitalize, ensureMaxLength, getHeaderName } from "../../helpers";
 import { Link } from "react-router-dom";
 import { respond } from "../../styles/breakpoints";
 import { useColorScheme } from "../../hooks/useColorScheme";
@@ -146,7 +146,7 @@ export function PageNav(props: PageNavProps) {
             to={`${window.location.pathname}#${section.id}`}
             {...propsToAdd}
           >
-            {ensureMaxLength(capitalize(section.id), 18)}
+            {ensureMaxLength(getHeaderName(section.id), 18)}
           </Item>
         ))}
       </ContentContainer>
