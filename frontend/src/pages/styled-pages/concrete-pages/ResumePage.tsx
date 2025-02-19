@@ -18,7 +18,7 @@ import { ExamplePageLink } from "../ExamplePageLink";
 
 export const RESUME_SECTION_TITLES = [
   "Overview",
-  "Work-history",
+  "Experience",
   "Education",
   "References",
 ];
@@ -101,10 +101,9 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             jobTitle: "Barriers to Entry Java Full Stack Program",
           },
           {
-            employer: {
-              name: "Free Lance Web Developer",
-              url: YORK_B2E_URL,
-            },
+            dateStart: "03/20",
+            dateEnd: "11/21",
+            jobTitle: "Developer in Training",
             achievements: [
               () => (
                 <div>
@@ -138,9 +137,6 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
                 </div>
               ),
             ],
-            dateEnd: "03/20",
-            dateStart: "11/21",
-            jobTitle: "Barriers to Entry Java Full Stack Program",
           },
         ]}
       />

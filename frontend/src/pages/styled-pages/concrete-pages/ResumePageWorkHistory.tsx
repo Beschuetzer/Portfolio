@@ -31,13 +31,18 @@ const Container = styled.div<LayoutStyledProps>`
   justify-content: center;
 `;
 
-const ItemContainer = styled.div<LayoutStyledProps>`
+const ItemContainer = styled.div<LayoutStyledProps & { isLast?: string }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  border-bottom: 1px solid ${(props) => props.colorscheme?.primary1};
-  margin-bottom: ${defaultFontSize};
+  ${(props) =>
+    props.isLast !== "true"
+      ? `
+        margin-bottom: ${defaultFontSize};
+        border-bottom: 1px solid ${props.colorscheme?.primary1};
+      `
+      : ""}
 `;
 
 const EmployerName = styled.div<LayoutStyledProps>`
@@ -79,7 +84,7 @@ type ResumePageWorkHistoryItem = {
   )[];
   dateEnd: string;
   dateStart: string;
-  employer: {
+  employer?: {
     name: string;
     url?: string;
   };
@@ -97,11 +102,16 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
   const propsToAdd: LayoutStyledProps = {
     colorscheme: colorScheme,
   };
+
   return (
     <Container {...propsToAdd} {...containerProps}>
       {items.map((item, index) => {
         return (
-          <ItemContainer key={index} {...propsToAdd}>
+          <ItemContainer
+            key={index}
+            {...propsToAdd}
+            isLast={index === items.length - 1 ? "true" : undefined}
+          >
             <Header>
               <HeaderTop>
                 <JobTitle>{item.jobTitle}</JobTitle>
@@ -111,15 +121,17 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
                   <time dateTime={item.dateEnd}>{item.dateEnd}</time>
                 </TimeRange>
               </HeaderTop>
-              <EmployerName {...propsToAdd}>
-                <ExamplePageLink
-                  {...propsToAdd}
-                  url={item.employer.url}
-                  includeSpaces={false}
-                >
-                  {item.employer.name}
-                </ExamplePageLink>
-              </EmployerName>
+              {item.employer ? (
+                <EmployerName {...propsToAdd}>
+                  <ExamplePageLink
+                    {...propsToAdd}
+                    url={item.employer.url}
+                    includeSpaces={false}
+                  >
+                    {item.employer.name}
+                  </ExamplePageLink>
+                </EmployerName>
+              ) : null}
             </Header>
             <Achievements {...propsToAdd}>
               {item.achievements.map((achievement, index) => {
@@ -132,7 +144,9 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
                         : undefined
                     }
                   >
-                    {typeof achievement !== "string" ? achievement(propsToAdd) : null}
+                    {typeof achievement !== "string"
+                      ? achievement(propsToAdd)
+                      : null}
                   </AchievementItem>
                 );
               })}
