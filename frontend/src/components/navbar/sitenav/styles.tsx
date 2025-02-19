@@ -55,7 +55,7 @@ export const itemStyles = css<SiteNavStyledProps>`
   position: relative;
   width: 100%;
   border-radius: ${(props) =>
-    props.islast
+    props.islast === 'true'
       ? props.orientation === SiteNaveItemOrientation.horizontal
         ? `0 ${SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT} ${SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT} 0`
         : `0 0 ${SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT} ${SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT}`

@@ -1,15 +1,16 @@
 import { styled } from "styled-components";
-import { LayoutStyledProps } from "../../../layouts/types";
-import { useColorScheme } from "../../../hooks/useColorScheme";
+import { LayoutStyledProps } from "../../../../layouts/types";
+import { useColorScheme } from "../../../../hooks/useColorScheme";
 import {
   defaultFontSize,
   fontSizeFive,
   fontSizeFour,
   fontSizeThree,
   getFontSizeCustom,
-} from "../../../styles/constants";
+} from "../../../../styles/constants";
 import { HTMLAttributes, ReactNode } from "react";
-import { ExamplePageLink } from "../ExamplePageLink";
+import { ExamplePageLink } from "../../ExamplePageLink";
+import { resumeContainerStyles } from "./styles";
 
 const Achievements = styled.ul<LayoutStyledProps>`
   display: flex;
@@ -31,18 +32,12 @@ const Container = styled.div<LayoutStyledProps>`
   justify-content: center;
 `;
 
-const ItemContainer = styled.div<LayoutStyledProps & { isLast?: string }>`
+const ItemContainer = styled.div<LayoutStyledProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  ${(props) =>
-    props.isLast !== "true"
-      ? `
-        margin-bottom: ${defaultFontSize};
-        border-bottom: 1px solid ${props.colorscheme?.primary1};
-      `
-      : ""}
+  ${resumeContainerStyles}
 `;
 
 const EmployerName = styled.div<LayoutStyledProps>`
@@ -110,7 +105,7 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
           <ItemContainer
             key={index}
             {...propsToAdd}
-            isLast={index === items.length - 1 ? "true" : undefined}
+            islast={index === items.length - 1 ? "true" : undefined}
           >
             <Header>
               <HeaderTop>

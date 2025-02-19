@@ -30,6 +30,9 @@ export function ExamplePageLink(props: ExamplePageLinkProps) {
     url: url.trim(),
   };
 
+  if (!url) {
+    return <>{children}</>;
+  }
   return (
     <>
       {includeSpaces && <>&nbsp;</>}
