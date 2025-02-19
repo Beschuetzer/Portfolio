@@ -4,19 +4,24 @@ import { useColorScheme } from "../../../hooks/useColorScheme";
 import {
   defaultFontSize,
   fontSizeFive,
-  fontSizeSix,
+  fontSizeFour,
   fontSizeThree,
   getFontSizeCustom,
 } from "../../../styles/constants";
 import { linkStyles } from "../../../styles/styles";
 import { HTMLAttributes } from "react";
+import { get } from "http";
 
 const Achievements = styled.ul<LayoutStyledProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding: ${defaultFontSize} 0;
+  padding: ${defaultFontSize} 0 ${defaultFontSize} ${getFontSizeCustom(2)};
+`;
+
+const AchievementItem = styled.li<LayoutStyledProps>`
+  font-size: ${fontSizeFour};
 `;
 
 const Container = styled.div<LayoutStyledProps>`
@@ -32,6 +37,8 @@ const ItemContainer = styled.div<LayoutStyledProps>`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  border-bottom: 1px solid ${(props) => props.colorscheme?.primary1};
+  margin-bottom: ${defaultFontSize};
 `;
 
 const EmployerName = styled.a<LayoutStyledProps>`
@@ -94,7 +101,7 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
     <Container {...propsToAdd} {...containerProps}>
       {items.map((item, index) => {
         return (
-          <ItemContainer key={index}>
+          <ItemContainer key={index} {...propsToAdd}>
             <Header>
               <HeaderTop>
                 <JobTitle>{item.jobTitle}</JobTitle>
@@ -111,7 +118,12 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
 
             <Achievements {...propsToAdd}>
               {item.achievements.map((achievement, index) => {
-                return <li key={index}>{achievement}</li>;
+                return (
+                  <AchievementItem
+                    key={index}
+                    dangerouslySetInnerHTML={{ __html: achievement }}
+                  />
+                );
               })}
             </Achievements>
           </ItemContainer>

@@ -46,8 +46,8 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
       <ResumePageWorkHistory
         containerProps={{
           style: {
-            paddingTop: defaultFontSize
-          }
+            paddingTop: defaultFontSize,
+          },
         }}
         items={[
           {
@@ -56,20 +56,24 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               url: BEST_BUY_URL,
             },
             achievements: [
-              `Part of the Solution Sidekick (add link) team responsible for building a selling tool used by in-store employees.`,
-              `Played a decisive role in the development of the following features/enhancements: leads, accessory attachment, PDP, voice notes, caching, and displaying combo items in the basket.`,
-              `Discovered and fixed numerous bugs.`,
+              "Implemented a .NET (C#) backend service for auto-adding protection plans, resulting in over <b>10% growth in sales</b> of these plans.",
+              "Leveraged my React and Redux skills to implement a new feature, which allowed in-store employees to create re-useable baskets and schedule consultations in store, leading to a <b>sales increase of 12%</b>.",
+              "Created a paginated, (infinite scroll) React component which leveraged Redux to display the re-usable baskets, allowing employees to easily access saved baskets.",
+              "Created the QuantitySelector, a re-usable React component for displaying the quantity of a product in the cart as well as adding a variable number to the cart.",
+              "Created multiple libraries typescript libraries in order to streamline interactions with the authorization service (OPS).",
+              "Contributed to the development, documentation, testing, and growth of the Solution Sidekick app, which in-store employees use as a selling tool.",
+              "Collaborated with cross-functional teams in an Agile environment, actively participating in daily stand-ups, sprint planning, and retrospectives to ensure the delivery of high-quality software solutions.",
             ],
             dateEnd: "11/22",
             dateStart: "02/22",
-            jobTitle: "Engineer Associate (Contract)",
+            jobTitle: "Engineer Associate",
           },
           {
             employer: {
               name: "York Solutions",
               url: YORK_B2E_URL,
             },
-            achievements:  [
+            achievements: [
               `Learned Java (Spring Boot), Agile methodology, and improved React.js skills with the intent of starting a contract at Best Buy as a full`,
               `Created a "Movie Night Recommendation" app leveraging Best Buy APIs in Spring Boot and React as
               well as a team project.`,
