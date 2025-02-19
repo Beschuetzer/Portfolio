@@ -15,4 +15,5 @@ export type LayoutStyledProps = {
   textcolor?: string;
   svgfillcolor?: string;
   hovereffecttype?: HoverEffect;
+  url?: string;
 };

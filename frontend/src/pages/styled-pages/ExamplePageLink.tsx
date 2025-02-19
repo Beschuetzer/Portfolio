@@ -14,21 +14,25 @@ const LinkExternal = styled.a<LayoutStyledProps>`
   ${linkStyles}
 `;
 
-type ExamplePageLinkProps = StyledPageProps & { url: string };
+type ExamplePageLinkProps = StyledPageProps & {
+  includeSpaces?: boolean;
+  url?: string;
+};
 
 export function ExamplePageLink(props: ExamplePageLinkProps) {
-  const { children, htmlAttributes, url } = props;
+  const { children, htmlAttributes, includeSpaces = true, url = "" } = props;
   const colorScheme = useColorScheme();
   const isInternal = useMemo(() => url.startsWith("/"), [url]);
   const propToAdd: LayoutStyledProps & { target: string; rel: string } = {
     colorscheme: colorScheme,
     target: "_blank",
     rel: "noopener noreferrer",
+    url: url.trim(),
   };
 
   return (
     <>
-      &nbsp;
+      {includeSpaces && <>&nbsp;</>}
       {isInternal ? (
         <LinkInternal {...propToAdd} to={url.trim()} {...htmlAttributes}>
           {children}
@@ -38,7 +42,7 @@ export function ExamplePageLink(props: ExamplePageLinkProps) {
           {children}
         </LinkExternal>
       )}
-      &nbsp;
+      {includeSpaces && <>&nbsp;</>}
     </>
   );
 }

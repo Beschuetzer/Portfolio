@@ -8,9 +8,8 @@ import {
   fontSizeThree,
   getFontSizeCustom,
 } from "../../../styles/constants";
-import { linkStyles } from "../../../styles/styles";
 import { HTMLAttributes } from "react";
-import { get } from "http";
+import { ExamplePageLink } from "../ExamplePageLink";
 
 const Achievements = styled.ul<LayoutStyledProps>`
   display: flex;
@@ -41,10 +40,8 @@ const ItemContainer = styled.div<LayoutStyledProps>`
   margin-bottom: ${defaultFontSize};
 `;
 
-const EmployerName = styled.a<LayoutStyledProps>`
-  font-style: italic;
+const EmployerName = styled.div<LayoutStyledProps>`
   font-size: ${fontSizeThree};
-  ${linkStyles}
 `;
 
 const Header = styled.div<LayoutStyledProps>`
@@ -111,11 +108,16 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
                   <time dateTime={item.dateEnd}>{item.dateEnd}</time>
                 </TimeRange>
               </HeaderTop>
-              <EmployerName {...propsToAdd} href={item.employer.url}>
-                {item.employer.name}
+              <EmployerName {...propsToAdd}>
+                <ExamplePageLink
+                  {...propsToAdd}
+                  url={item.employer.url}
+                  includeSpaces={false}
+                >
+                  {item.employer.name}
+                </ExamplePageLink>
               </EmployerName>
             </Header>
-
             <Achievements {...propsToAdd}>
               {item.achievements.map((achievement, index) => {
                 return (

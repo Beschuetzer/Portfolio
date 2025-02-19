@@ -56,6 +56,20 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               url: BEST_BUY_URL,
             },
             achievements: [
+              "Assisted in the migration from Azure to AWS (Stratus) for the omnichannel mobile platform deployment product (ADAPT), <b>reducing maintenance costs by 5%</b>.",
+              "Identified and resolved bugs in the React.js client apps as well as the .NET (C#) backend apps, enhancing functionality and significantly improving user experience.",
+              "Created a fully-customizable batch service using .NET 8 (C#), Entity Framework, and Marten (future enhancement) in order to pull Twillio attributes at a pre-defined interval and store them in a PostgreSQL database, allowing the authorization service to evaluate policies based on Twillio attributes."
+            ],
+            dateEnd: "02/25",
+            dateStart: "09/24",
+            jobTitle: "Engineer I",
+          },
+          {
+            employer: {
+              name: "Best Buy",
+              url: BEST_BUY_URL,
+            },
+            achievements: [
               "Implemented a .NET (C#) backend service for auto-adding protection plans, resulting in over <b>10% growth in sales</b> of these plans.",
               "Leveraged my React and Redux skills to implement a new feature, which allowed in-store employees to create re-useable baskets and schedule consultations in store, leading to a <b>sales increase of 12%</b>.",
               "Created a paginated, (infinite scroll) React component which leveraged Redux to display the re-usable baskets, allowing employees to easily access saved baskets.",
@@ -64,8 +78,8 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               "Contributed to the development, documentation, testing, and growth of the Solution Sidekick app, which in-store employees use as a selling tool.",
               "Collaborated with cross-functional teams in an Agile environment, actively participating in daily stand-ups, sprint planning, and retrospectives to ensure the delivery of high-quality software solutions.",
             ],
-            dateEnd: "11/22",
-            dateStart: "02/22",
+            dateEnd: "02/22",
+            dateStart: "09/24",
             jobTitle: "Engineer Associate",
           },
           {

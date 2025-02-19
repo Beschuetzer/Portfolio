@@ -93,7 +93,7 @@ export const getTextShadowPageNavStyle = (x = 0) => css<LayoutStyledProps>`
 `;
 
 export const linkStyles = css<LayoutStyledProps>`
-  text-decoration: underline;
+  ${(props) => (props.url ? ` text-decoration: underline;` : "")}
   font-weight: bold;
   transition: color 0.25s ease-in-out;
   cursor: pointer;

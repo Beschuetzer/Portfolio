@@ -67,7 +67,7 @@ export const UDEMY_BOOTCAMP_URL = "https://www.udemy.com/course/the-web-develope
 export const WIKIPEDIA_BRIDGE_URL = "https://en.wikipedia.org/wiki/Contract_bridge";
 export const WIKIPEDIA_DRM_URL = "https://en.wikipedia.org/wiki/Windows_Media_DRM";
 export const WIKIPEDIA_MTP_URL = "https://en.wikipedia.org/wiki/Media_Transfer_Protocol";
-export const YORK_B2E_URL = "https://yorksolutions.net/b2e-career-seekers/"
+export const YORK_B2E_URL = "https://yorksolutions.net/talent/emerging-talent/"
 //#endregion
 
 //#region Globally-relevant Constants
