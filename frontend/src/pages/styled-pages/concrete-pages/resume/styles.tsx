@@ -7,6 +7,7 @@ export const resumeContainerStyles = css<LayoutStyledProps>`
     props.islast !== "true"
       ? `
         margin-bottom: ${defaultFontSize};
+        padding-bottom: ${defaultFontSize};
         border-bottom: 1px solid ${props.colorscheme?.primary1};
       `
       : ""}

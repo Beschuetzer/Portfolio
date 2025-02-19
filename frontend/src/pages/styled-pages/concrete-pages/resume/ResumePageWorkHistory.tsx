@@ -17,7 +17,7 @@ const Achievements = styled.ul<LayoutStyledProps>`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding: ${defaultFontSize} 0 ${defaultFontSize} ${getFontSizeCustom(2)};
+  padding: ${defaultFontSize} 0 0 ${getFontSizeCustom(2)};
 `;
 
 const AchievementItem = styled.li<LayoutStyledProps>`
@@ -70,6 +70,7 @@ const TimeRange = styled.div<LayoutStyledProps>`
 
 const JobTitle = styled.h6<LayoutStyledProps>`
   font-size: ${fontSizeFive};
+  padding-right: ${defaultFontSize};
 `;
 
 type ResumePageWorkHistoryItem = {

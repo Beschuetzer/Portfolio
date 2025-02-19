@@ -7,7 +7,6 @@ const Container = styled.ol`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-    margin-left: ${defaultFontSize};
   margin-top: ${defaultFontSize};
   font-size: ${fontSizeFour};
 `;
@@ -21,7 +20,11 @@ export default function EducationList(props: EducationListProps) {
   return (
     <Container>
       {items.map((item, index) => (
-        <EducationItem key={index} {...item} />
+        <EducationItem
+          key={index}
+          {...item}
+          isLast={index === items.length - 1}
+        />
       ))}
     </Container>
   );
