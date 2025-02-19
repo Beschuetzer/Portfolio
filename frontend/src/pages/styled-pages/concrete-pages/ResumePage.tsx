@@ -15,6 +15,7 @@ import { Quote } from "../../../components/Quote";
 import { ResumePageWorkHistory } from "./ResumePageWorkHistory";
 import { defaultFontSize } from "../../../styles/constants";
 import { ExamplePageLink } from "../ExamplePageLink";
+import EducationList from "./education/EducationList";
 
 export const RESUME_SECTION_TITLES = [
   "Overview",
@@ -137,6 +138,27 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
                 </div>
               ),
             ],
+          },
+        ]}
+      />
+    ),
+  },
+  {
+    name: RESUME_SECTION_TITLES[2],
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <EducationList
+        items={[
+          {
+            location: "University of Minnesota Twin Cities",
+            degree: "B.A. in Linguistics ",
+            gpa: "3.701",
+            href: "/transcript.pdf",
+          },
+          {
+            location: "Century College",
+            degree: "Minnesota Transfer Curriculum (PSEO)",
+            gpa: "3.86",
+            href: "/transcriptPSEO.pdf",
           },
         ]}
       />
