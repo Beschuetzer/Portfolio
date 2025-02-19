@@ -1,8 +1,11 @@
 import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import {
   BEST_BUY_URL,
+  BRIDGE_URL,
   GITHUB_URL,
   PLAYLIST_SYNCER_PAGE_NAME,
+  PLAYLIST_SYNCER_URL,
+  REPLAY_VIEWER_URL,
   YORK_B2E_URL,
 } from "../../../components/constants";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
@@ -11,6 +14,7 @@ import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";
 import { Quote } from "../../../components/Quote";
 import { ResumePageWorkHistory } from "./ResumePageWorkHistory";
 import { defaultFontSize } from "../../../styles/constants";
+import { ExamplePageLink } from "../ExamplePageLink";
 
 export const RESUME_SECTION_TITLES = [
   "Overview",
@@ -58,7 +62,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             achievements: [
               "Assisted in the migration from Azure to AWS (Stratus) for the omnichannel mobile platform deployment product (ADAPT), <b>reducing maintenance costs by 5%</b>.",
               "Identified and resolved bugs in the React.js client apps as well as the .NET (C#) backend apps, enhancing functionality and significantly improving user experience.",
-              "Created a fully-customizable batch service using .NET 8 (C#), Entity Framework, and Marten (future enhancement) in order to pull Twillio attributes at a pre-defined interval and store them in a PostgreSQL database, allowing the authorization service to evaluate policies based on Twillio attributes."
+              "Created a fully-customizable batch service using .NET 8 (C#), Entity Framework, and Marten (future enhancement) in order to pull Twillio attributes at a pre-defined interval and store them in a PostgreSQL database, allowing the authorization service to evaluate policies based on Twillio attributes.",
             ],
             dateEnd: "02/25",
             dateStart: "09/24",
@@ -93,6 +97,48 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               well as a team project.`,
             ],
             dateEnd: "02/22",
+            dateStart: "11/21",
+            jobTitle: "Barriers to Entry Java Full Stack Program",
+          },
+          {
+            employer: {
+              name: "Free Lance Web Developer",
+              url: YORK_B2E_URL,
+            },
+            achievements: [
+              () => (
+                <div>
+                  Built a socket.io-based multiplayer
+                  <ExamplePageLink url={BRIDGE_URL}>
+                    contract bridge app
+                  </ExamplePageLink>
+                  that allows four players to play bridge online.
+                </div>
+              ),
+              () => (
+                <div>
+                  Built an
+                  <ExamplePageLink url={REPLAY_VIEWER_URL}>
+                    angular 12 replay viewer app
+                  </ExamplePageLink>
+                  utilizing redux, nest.js, and mongoDB. The app pulls from the
+                  mongoDB collection used in the aforementioned bridge app,
+                  allowing for easy reviewing of games played as well as insight
+                  into the statistics surrounding their games.
+                </div>
+              ),
+              () => (
+                <div>
+                  Built a
+                  <ExamplePageLink url={PLAYLIST_SYNCER_URL}>
+                    c# desktop application
+                  </ExamplePageLink>
+                  to synchronize music playlists after an Andriod OS update that
+                  rendered my previous playlist syncing app unusable.
+                </div>
+              ),
+            ],
+            dateEnd: "03/20",
             dateStart: "11/21",
             jobTitle: "Barriers to Entry Java Full Stack Program",
           },

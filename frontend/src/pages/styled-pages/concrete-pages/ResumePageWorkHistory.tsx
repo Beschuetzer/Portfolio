@@ -8,7 +8,7 @@ import {
   fontSizeThree,
   getFontSizeCustom,
 } from "../../../styles/constants";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import { ExamplePageLink } from "../ExamplePageLink";
 
 const Achievements = styled.ul<LayoutStyledProps>`
@@ -73,7 +73,10 @@ const JobTitle = styled.h6<LayoutStyledProps>`
 `;
 
 type ResumePageWorkHistoryItem = {
-  achievements: string[];
+  achievements: (
+    | string
+    | ((propsToAdd: LayoutStyledProps) => ReactNode | ReactNode[])
+  )[];
   dateEnd: string;
   dateStart: string;
   employer: {
@@ -123,8 +126,14 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
                 return (
                   <AchievementItem
                     key={index}
-                    dangerouslySetInnerHTML={{ __html: achievement }}
-                  />
+                    dangerouslySetInnerHTML={
+                      typeof achievement === "string"
+                        ? { __html: achievement }
+                        : undefined
+                    }
+                  >
+                    {typeof achievement !== "string" ? achievement(propsToAdd) : null}
+                  </AchievementItem>
                 );
               })}
             </Achievements>
