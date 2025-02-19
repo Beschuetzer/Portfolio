@@ -2,35 +2,52 @@ import { useColorScheme } from "../../../../hooks/useColorScheme";
 import styled from "styled-components";
 import { LayoutStyledProps } from "../../../../layouts/types";
 import { ExamplePageLink } from "../../ExamplePageLink";
+import { resumeContainerStyles } from "./styles";
+import { defaultFontSize } from "../../../../styles/constants";
 
-const Relation = styled.div<LayoutStyledProps>``;
+const Item = styled.div<LayoutStyledProps>`
+  ${resumeContainerStyles}
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-right: ${defaultFontSize};
+  margin-bottom: 0;
+  padding-bottom: 0;
+`;
 
 export type ReferenceItemProps = {
   email: string;
   href?: string;
   name: string;
-  number: number;
+  isLast: boolean;
   phone?: string;
   relation: string;
 };
 
 export function ReferenceItem(props: ReferenceItemProps) {
-  const { email, href, name, number, phone, relation } = props;
+  const { email, href, name, isLast, phone, relation } = props;
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = {
     colorscheme: colorScheme,
+    islast: isLast ? "true" : "false",
   };
   return (
     <>
-      <ExamplePageLink url={href}>{name}</ExamplePageLink>
-      <Relation>{relation}</Relation>
-      <Relation>{phone}</Relation>
+      <Item {...propsToAdd}>
+        <ExamplePageLink url={href}>{name}</ExamplePageLink>
+      </Item>
+      <Item {...propsToAdd}>{relation}</Item>
+      <Item {...propsToAdd}>{phone}</Item>
       {email ? (
-
+        <Item {...propsToAdd}>
           <ExamplePageLink includeSpaces={false} url={`mailto:${email}`}>
-        {email}
-      </ExamplePageLink>
-    ) : <div/>}
+            {email}
+          </ExamplePageLink>
+        </Item>
+      ) : (
+        <Item {...propsToAdd} />
+      )}
     </>
   );
 }

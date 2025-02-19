@@ -167,6 +167,9 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
   },
   {
     name: RESUME_SECTION_TITLES[3],
+    contentStyle: {
+      paddingBottom: 0,
+    },
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <ResumeItems
         items={[
