@@ -50,7 +50,7 @@ import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import { AboutPage } from "../pages/styled-pages/concrete-pages/AboutPage";
 import { ReplayViewerPage } from "../pages/styled-pages/concrete-pages/ReplayViewerPage";
 import { BigFivePage } from "../pages/styled-pages/concrete-pages/BigFivePage";
-import { ResumePage } from "../pages/styled-pages/concrete-pages/ResumePage";
+import { RESUME_PAGE_HEADER_NAME, RESUME_SECTION_TITLES, ResumePage } from "../pages/styled-pages/concrete-pages/ResumePage";
 import { DownloaderPage } from "../pages/styled-pages/concrete-pages/DownloaderPage";
 import { BridgePage } from "../pages/styled-pages/concrete-pages/BridgePage";
 
@@ -79,33 +79,28 @@ export const App: React.FC<AppProps> = (props) => {
           scrollBarWidth={`${SCROLL_BAR_WIDTH_IN_REM}rem`}
           items={[
             {
-              text: "Résumé",
+              text: RESUME_PAGE_HEADER_NAME,
               isDropdownItem: true,
               drownDownItems: [
                 {
-                  text: "Overview",
-                  to: `${RESUME_URL}#overview`,
+                  text: RESUME_SECTION_TITLES[0],
+                  to: `${RESUME_URL}#${RESUME_SECTION_TITLES[0]}`,
                   image: resume1,
                 },
                 {
-                  text: "Skills",
-                  to: `${RESUME_URL}#skills`,
+                  text: RESUME_SECTION_TITLES[1],
+                  to: `${RESUME_URL}#${RESUME_SECTION_TITLES[1]}`,
                   image: resume2,
                 },
                 {
-                  text: "Work History",
-                  to: `${RESUME_URL}#work-history`,
+                  text: RESUME_SECTION_TITLES[2],
+                  to: `${RESUME_URL}#${RESUME_SECTION_TITLES[2]}`,
                   image: resume3,
                 },
                 {
-                  text: "Education",
-                  to: `${RESUME_URL}#education`,
+                  text: RESUME_SECTION_TITLES[3],
+                  to: `${RESUME_URL}#${RESUME_SECTION_TITLES[3]}`,
                   image: resume4,
-                },
-                {
-                  text: "References",
-                  to: `${RESUME_URL}#references`,
-                  image: resume5,
                 },
               ],
             },

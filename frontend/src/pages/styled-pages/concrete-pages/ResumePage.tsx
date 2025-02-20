@@ -16,6 +16,7 @@ import { ExamplePageLink } from "../ExamplePageLink";
 import EducationList from "./resume/EducationList";
 import ResumeItems from "./resume/ResumeItems";
 
+export const RESUME_PAGE_HEADER_NAME = "Résumé";
 export const RESUME_SECTION_TITLES = [
   "Overview",
   "Experience",
@@ -211,7 +212,7 @@ type ResmueProps = {};
 export function ResumePage(props: ResmueProps) {
   return (
     <ExamplePage
-      title="Résumé"
+      title={RESUME_PAGE_HEADER_NAME}
       sections={RESUME_SECTIONS}
       layoutProps={{
         links: [
