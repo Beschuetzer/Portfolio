@@ -260,8 +260,8 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
   },
 ];
 
-type AboutProps = {};
-export function DownloaderPage(props: AboutProps) {
+type DownloaderPageProps = {};
+export function DownloaderPage(props: DownloaderPageProps) {
   return (
     <ExamplePage title="Batch Downloader" sections={DOWNLOADER_SECTIONS} />
   );

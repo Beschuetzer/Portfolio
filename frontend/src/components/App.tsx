@@ -41,7 +41,6 @@ import { SiteNav } from "./navbar/sitenav/SiteNav";
 import "../css/style.css";
 import {
   AutoBid,
-  Bridge,
   BridgeDemo,
 } from "../pages";
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
@@ -54,6 +53,7 @@ import { ReplayViewerPage } from "../pages/styled-pages/concrete-pages/ReplayVie
 import { BigFivePage } from "../pages/styled-pages/concrete-pages/BigFivePage";
 import { ResumePage } from "../pages/styled-pages/concrete-pages/ResumePage";
 import { DownloaderPage } from "../pages/styled-pages/concrete-pages/DownloaderPage";
+import { BridgePage } from "../pages/styled-pages/concrete-pages/BridgePage";
 
 type AppProps = {};
 
@@ -190,7 +190,7 @@ export const App: React.FC<AppProps> = (props) => {
               );
             }}
           />
-          <Route path={BRIDGE_URL} exact component={Bridge} />
+          <Route path={BRIDGE_URL} exact component={BridgePage} />
           <Route path={BRIDGE_DEMO_URL} exact component={BridgeDemo} />
           <Route path={DOWNLOADER_URL} exact component={DownloaderPage} />
           <Route
