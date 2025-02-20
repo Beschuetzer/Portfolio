@@ -126,11 +126,11 @@ export const App: React.FC<AppProps> = (props) => {
                 to: `${ABOUT_URL}#${ABOUT_SECTION_NAMES[2]}`,
                 image: musicPic,
               },
-              {
-                text: "Personality",
-                to: `${PERSONALITY_URL}`,
-                image: personalityPic,
-              },
+              // {
+              //   text: "Personality",
+              //   to: `${PERSONALITY_URL}`,
+              //   image: personalityPic,
+              // },
             ],
           },
           {

@@ -34,13 +34,13 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
           text="You are not your résumé, you are your work."
         />
         <ExamplePageParagraph>
-          Welcome! I am a developer with a passion for creating applications
-          that are both useful and enjoyable to use. Below you will find my experience, education, and my references.
+          Welcome! I am a developer with a passion for creating things
+          that are both perfomant and seamless. Below you will find my experience, education, and my references.
         </ExamplePageParagraph>
-        <ExamplePageParagraph>
+        {/* <ExamplePageParagraph>
           Selecting a skill will open a modal with links to the Github repo and
           a live demo if available.
-        </ExamplePageParagraph>
+        </ExamplePageParagraph> */}
       </>
     ),
   },

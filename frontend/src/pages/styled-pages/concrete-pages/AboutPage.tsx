@@ -104,10 +104,10 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
           conversation. I can also find happiness on my own, working on a
           project or reading a good book.
         </ExamplePageParagraph>
-        <ExamplePageParagraph>
+        {/* <ExamplePageParagraph>
           Learn about my personality
           <ExamplePageLink url="/the-big-five">here</ExamplePageLink>.
-        </ExamplePageParagraph>
+        </ExamplePageParagraph> */}
       </>
     ),
   },
