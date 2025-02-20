@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { LayoutStyledProps } from "../../layouts/types";
 import { respond } from "../../styles/breakpoints";
 import {
+  defaultFontSize,
   SECTION_WIDTH_IN_PIXELS,
 } from "../../styles/constants";
 import { INTER_SECTION_PADDING } from "./constants";
@@ -12,6 +13,7 @@ import { hexToRgba } from "../../components/navbar/sitenav/helpers";
 import { SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT } from "../../components/navbar/sitenav/SiteNavButton";
 
 const Section = styled.section<LayoutStyledProps>`
+  font-size: ${defaultFontSize};
   width: 100%;
   border-radius: calc(${SITE_NAV_BUTTON_OPEN_BORDER_RADIUS_AMOUNT} / 2);
   border: 1px solid ${(props) => hexToRgba(props.colorscheme?.primary1, 0.33)};

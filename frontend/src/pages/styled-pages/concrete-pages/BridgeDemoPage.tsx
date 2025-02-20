@@ -1,7 +1,6 @@
 import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
 import { LayoutStyledProps } from "../../../layouts/types";
-import { Quote } from "../../../components/Quote";
 
 import video1 from "../../../clips/bridge-demo/1.mp4";
 import video1_480p from "../../../clips/bridge-demo/1-480p.mp4";
@@ -15,6 +14,8 @@ import video3Thumbnail from "../../../clips/bridge-demo/3-thumbnail.png";
 import { ExamplePageTitledList } from "../ExamplePageTitledList";
 import { ExamplePageLink } from "../ExamplePageLink";
 import { LIVE_BRIDGE_URL } from "../../../components/constants";
+import { Carousel } from "react-thumbnail-carousel";
+import { getCarouselStylingOptions } from "../../../styles/styles";
 
 type BridgeDemoProps = {};
 
@@ -83,6 +84,102 @@ const BRIDGE_DEMO_SECTIONS: ExamplePageSectionProps[] = [
           ]}
         />
       </>
+    ),
+  },
+  {
+    name: BRIDGE_DEMO_SECTION_NAMES[2],
+    contentStyle: {
+      padding:0
+    },
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <Carousel
+        options={getCarouselStylingOptions(propsToAdd.colorscheme)}
+        items={[
+          {
+            srcMain: {
+              hiRes: video1,
+              loRes: video1_480p,
+            },
+            srcThumbnail: video1Thumbnail,
+            description: "Setting Up",
+            modal: {
+              sections: [
+                {
+                  title: "Four Windows at Once",
+                  text: "This video show you how to open Chrome and Firefox and create private session windows",
+                },
+              ],
+            },
+            video: {
+              sections: [
+                ["Opening First Browser", 6500],
+                ["Opening Icognito Mode in First Browser ", 4500],
+                ["Opening Second Browser", 4200],
+                ["Opening Icognito Mode in Second Browser ", 1],
+              ],
+              autoPlay: false,
+            },
+          },
+          {
+            srcMain: {
+              hiRes: video2,
+              loRes: video2_480p,
+            },
+            srcThumbnail: video2Thumbnail,
+            description: "Logging In",
+            modal: {
+              sections: [
+                {
+                  title: "Test is the Password",
+                  text: " Notice how each window uses a separate username but the password is the same.",
+                },
+              ],
+            },
+            video: {
+              sections: [
+                ["Logging in as 'test'", ""],
+                ["Logging in as 'Test'", "8:00"],
+                ["Logging in as 'TEST'", "12:00"],
+                ["Logging in as 'tesT'", "15:00"],
+              ],
+              autoPlay: false,
+            },
+          },
+          {
+            srcMain: {
+              hiRes: video3,
+              loRes: video3_480p,
+            },
+            srcThumbnail: video3Thumbnail,
+            description: "Starting a Game",
+            modal: {
+              sections: [
+                {
+                  title: "Create a Lobby",
+                  text: "After logging in, create a lobby by entering a name and clicking 'Go'.",
+                },
+                {
+                  title: "Join the Lobby",
+                  text: "Clicking 'Go' with a lobby name that is open will join that lobby.",
+                },
+                {
+                  title: "Bidding",
+                  text: "Bidding continues until three passes in a row are made.  Then the trick taking part of the game begins.",
+                },
+              ],
+            },
+            video: {
+              sections: [
+                ["Creating a Lobby", ""],
+                ["Setting up the Lobby", "15:00"],
+                ["Starting the Game", "21:00"],
+                ["Bidding", "24:00"],
+              ],
+              autoPlay: false,
+            },
+          },
+        ]}
+      />
     ),
   },
 ];
