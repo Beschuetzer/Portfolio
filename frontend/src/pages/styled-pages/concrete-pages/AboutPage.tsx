@@ -335,7 +335,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
           author="Leornard Bernstein"
           text="To achieve great things, two things are needed: a plan, and not quite enough time."
         />
-        <ExamplePageTitledParagraph title="A Passion for Sound">
+        <ExamplePageTitledParagraph title="An Innate Passion">
           Music has been a big part of my life since I was young.&nbsp; Ever
           since first discovered Fruity Loops, I have been using music as a
           cathartic outlet.&nbsp; The songs are almost universally of low

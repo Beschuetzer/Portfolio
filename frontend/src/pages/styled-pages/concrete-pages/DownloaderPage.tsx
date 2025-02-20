@@ -1,6 +1,5 @@
 import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
-import { ExamplePageParagraph } from "../ExamplePageParagraph";
-import { LayoutStyledProps } from "../../../layouts/types";
+import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";
 import { Quote } from "../../../components/Quote";
 import { ExamplePageLink } from "../ExamplePageLink";
 
@@ -27,8 +26,9 @@ import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 import {
   OC_REMIX_URL,
   KH_INSIDER_URL,
-  CAROUSEL_COLORS,
   PLAYLIST_SYNCER_URL,
+  DOWNLOADER_PAGE_NAME,
+  GITHUB_URL,
 } from "../../../components/constants";
 import { Carousel } from "react-thumbnail-carousel";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
@@ -263,6 +263,23 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
 type DownloaderPageProps = {};
 export function DownloaderPage(props: DownloaderPageProps) {
   return (
-    <ExamplePage title="Batch Downloader" sections={DOWNLOADER_SECTIONS} />
+    <ExamplePage
+      title="Batch Downloader"
+      sections={DOWNLOADER_SECTIONS}
+      layoutProps={{
+        links: [
+          {
+            title: {
+              text: "Code",
+            },
+            url: `${GITHUB_URL}/${DOWNLOADER_PAGE_NAME}`,
+            svg: {
+              xlinkHref: `/sprite.svg#icon-code`,
+            },
+            hoverEffectType: HoverEffect.explode,
+          },
+        ],
+      }}
+    />
   );
 }
