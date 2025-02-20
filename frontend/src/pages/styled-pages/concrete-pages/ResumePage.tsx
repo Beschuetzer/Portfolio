@@ -36,8 +36,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
         />
         <ExamplePageParagraph {...propsToAdd}>
           Welcome! I am a developer with a passion for creating applications
-          that are both useful and enjoyable to use. Below you will find my work
-          history, a summary of my skills, and my references.
+          that are both useful and enjoyable to use. Below you will find my experience, education, and my references.
         </ExamplePageParagraph>
         <ExamplePageParagraph>
           Selecting a skill will open a modal with links to the Github repo and
