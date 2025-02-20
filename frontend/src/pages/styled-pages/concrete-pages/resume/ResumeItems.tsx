@@ -3,6 +3,7 @@ import { ReferenceItem, ReferenceItemProps } from "./ReferenceItem";
 import styled from "styled-components";
 import { LayoutStyledProps } from "../../../../layouts/types";
 import { defaultFontSize } from "../../../../styles/constants";
+import { respond } from "../../../../styles/breakpoints";
 
 const Container = styled.div<LayoutStyledProps>`
   display: grid;
@@ -18,6 +19,25 @@ const Container = styled.div<LayoutStyledProps>`
       padding-right: 0;
     }
   }
+
+  ${respond.phone`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    & > * {
+      border: none;
+
+      &:first-child {
+        margin-top: ${defaultFontSize};
+      }
+
+      &:nth-child(4n + 4) {
+        margin-bottom: ${defaultFontSize};
+      }
+    }
+  `}
 `;
 
 type ResumeItemsProps = {

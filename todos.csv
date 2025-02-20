@@ -2,8 +2,6 @@
 refactor stuff:
   -Content to finish
     -bridge page: (Create a new HorizontalLayout component that functions like the current bridge page)
-    -resume page
-      --finish references section when below ~600px (phone)
     -SSK page
     -Grocify page
     -Thumbnail Carousel page
