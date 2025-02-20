@@ -129,7 +129,7 @@ export function PageNavLayoutLink(props: PageNavLayoutLinkProps) {
   } = props;
   const { xlinkHref, fill = colorScheme.primary4 } = svg;
   const { color = colorScheme.primary4, text } = title;
-  const isInternal = useMemo(() => url.startsWith("/"), [url]);
+  const isInternal = useMemo(() => url.startsWith("/") && !url.match(/\..+$/ig), [url]);
   const [siteNavRight, setSiteNavRight] = useState(getAbsoluteRightPosition());
   const propsToAdd: LayoutStyledProps = useMemo(
     () => ({

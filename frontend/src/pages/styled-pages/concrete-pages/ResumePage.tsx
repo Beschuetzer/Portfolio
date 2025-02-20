@@ -219,9 +219,9 @@ export function ResumePage(props: ResmueProps) {
         links: [
           {
             title: {
-              text: "Code",
+              text: "Download",
             },
-            url: `${GITHUB_URL}/${PLAYLIST_SYNCER_PAGE_NAME}`,
+            url: `/resume.pdf`,
             svg: {
               xlinkHref: `/sprite.svg#icon-code`,
             },
