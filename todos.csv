@@ -6,8 +6,7 @@ refactor stuff:
     -Grocify page
     -Thumbnail Carousel page
 
-  -fix:
-    --clicking page nav item doesn't close the site nav when in nav switch mode
+ 
 
   -clean up stuff  
     --remove no-longer-needed pages and everything related to them
