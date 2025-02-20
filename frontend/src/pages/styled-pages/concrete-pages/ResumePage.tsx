@@ -178,6 +178,12 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             email: "troymccabe@gmail.com",
           },        
           {
+            name: "Alissa Monroe",
+            relation: "Best Buy Co-worker",
+            phone: "507-616-6133",
+            email: "aalissamonroee@gmail.com",
+          },
+          {
             name: "Kayla Otterness",
             relation: "Best Buy Co-worker",
             phone: "612-720-4675",
