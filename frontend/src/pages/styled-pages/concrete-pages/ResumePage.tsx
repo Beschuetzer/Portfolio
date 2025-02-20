@@ -2,8 +2,6 @@ import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import {
   BEST_BUY_URL,
   BRIDGE_URL,
-  GITHUB_URL,
-  PLAYLIST_SYNCER_PAGE_NAME,
   PLAYLIST_SYNCER_URL,
   REPLAY_VIEWER_URL,
   YORK_B2E_URL,
@@ -34,7 +32,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
           author="Seth Godin"
           text="You are not your résumé, you are your work."
         />
-        <ExamplePageParagraph {...propsToAdd}>
+        <ExamplePageParagraph>
           Welcome! I am a developer with a passion for creating applications
           that are both useful and enjoyable to use. Below you will find my experience, education, and my references.
         </ExamplePageParagraph>

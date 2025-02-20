@@ -24,6 +24,7 @@ const Content = styled.div<LayoutStyledProps>`
   align-items: start;
   width: 100%;
   font-family: Open Sans, sans-serif;
+  color: ${(props) => props.colorscheme?.primary1};
   line-height: 1.6;
 `;
 
