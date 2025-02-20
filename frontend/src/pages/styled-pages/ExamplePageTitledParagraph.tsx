@@ -26,7 +26,7 @@ const Header = styled.h4<LayoutStyledProps>`
 
 type ExamplePageTitledParagraphProps = StyledPageProps & {
   containerStyles?: HTMLAttributes<HTMLDivElement>;
-  title: string;
+  title?: string;
 };
 export function ExamplePageTitledParagraph(
   props: ExamplePageTitledParagraphProps
@@ -38,14 +38,23 @@ export function ExamplePageTitledParagraph(
   };
 
   return (
-    <Container {...propsToAdd} {...containerStyles} >
-      <Header {...propsToAdd} {...htmlAttributes}>
-        {title}
-      </Header>
-      <ExamplePageParagraph {...propsToAdd} htmlAttributes={{style: {
-        marginTop: "0",
-        ...htmlAttributes?.style,
-      }}}>{children}</ExamplePageParagraph>
+    <Container {...propsToAdd} {...containerStyles}>
+      {title ? (
+        <Header {...propsToAdd} {...htmlAttributes}>
+          {title}
+        </Header>
+      ) : null}
+      <ExamplePageParagraph
+        {...propsToAdd}
+        htmlAttributes={{
+          style: {
+            marginTop: "0",
+            ...htmlAttributes?.style,
+          },
+        }}
+      >
+        {children}
+      </ExamplePageParagraph>
     </Container>
   );
 }

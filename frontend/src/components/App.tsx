@@ -38,7 +38,7 @@ import personalityPic from "../imgs/site-nav/personality.jpg";
 
 import { SiteNav } from "./navbar/sitenav/SiteNav";
 import "../css/style.css";
-import { AutoBid, BridgeDemo } from "../pages";
+import { AutoBid } from "../pages";
 import { Redirect } from "../pages/Redirect";
 import { SCROLL_BAR_WIDTH_IN_REM } from "../styles/constants";
 import { PlaylistSyncerPage } from "../pages/styled-pages/concrete-pages/PlaylistSyncerPage";
@@ -56,6 +56,7 @@ import {
 } from "../pages/styled-pages/concrete-pages/ResumePage";
 import { DownloaderPage } from "../pages/styled-pages/concrete-pages/DownloaderPage";
 import { BridgePage } from "../pages/styled-pages/concrete-pages/BridgePage";
+import { BridgeDemoPage } from "../pages/styled-pages/concrete-pages/BridgeDemoPage";
 
 type AppProps = {};
 
@@ -187,7 +188,7 @@ export const App: React.FC<AppProps> = (props) => {
           }}
         />
         <Route path={BRIDGE_URL} exact component={BridgePage} />
-        <Route path={BRIDGE_DEMO_URL} exact component={BridgeDemo} />
+        <Route path={BRIDGE_DEMO_URL} exact component={BridgeDemoPage} />
         <Route path={DOWNLOADER_URL} exact component={DownloaderPage} />
         <Route
           path={PLAYLIST_SYNCER_URL}

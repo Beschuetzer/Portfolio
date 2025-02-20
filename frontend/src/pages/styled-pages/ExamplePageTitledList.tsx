@@ -1,12 +1,14 @@
 import { ExamplePageTitledParagraph } from "./ExamplePageTitledParagraph";
 import { styled } from "styled-components";
-import { getFontSizeCustom } from "../../styles/constants";
+import { defaultFontSize, getFontSizeCustom } from "../../styles/constants";
 
 const ListContainer = styled.ol`
-    list-style-type: none;
+    list-style-type: decimal;
+    padding-left: ${defaultFontSize};
 `;
 
 const ListItem = styled.li`
+  padding-left: ${getFontSizeCustom(.5)};
 `;
 
 const ListItemText = styled.span`
@@ -15,7 +17,7 @@ const ListItemText = styled.span`
 
 type ExamplePageTitledListProps = {
   items: string[];
-  title: string;
+  title?: string;
 };
 
 export function ExamplePageTitledList(props: ExamplePageTitledListProps) {
@@ -26,7 +28,7 @@ export function ExamplePageTitledList(props: ExamplePageTitledListProps) {
       <ListContainer>
         {items.map((item, index) => (
           <ListItem key={index}>
-            <ListItemText>{index + 1}).&nbsp;&nbsp;{item}</ListItemText>
+            <ListItemText>{item}</ListItemText>
           </ListItem>
         ))}
       </ListContainer>

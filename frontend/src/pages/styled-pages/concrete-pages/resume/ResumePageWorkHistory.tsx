@@ -11,13 +11,18 @@ import {
 import { HTMLAttributes, ReactNode } from "react";
 import { ExamplePageLink } from "../../ExamplePageLink";
 import { resumeContainerStyles } from "./styles";
+import { respond } from "../../../../styles/breakpoints";
 
 const Achievements = styled.ul<LayoutStyledProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding: ${defaultFontSize} 0 0 ${getFontSizeCustom(2)};
+  padding: ${defaultFontSize} 0 0 ${getFontSizeCustom(2.5)};
+
+  ${respond.phone`
+    padding-left: ${getFontSizeCustom(1.25)};
+  `}
 `;
 
 const AchievementItem = styled.li<LayoutStyledProps>`
