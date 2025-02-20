@@ -26,14 +26,11 @@ import startliteJam from "../../../music/Starlite_Five_Jam.mp3";
 import startliteOMB from "../../../music/Starlite_Five_OMB.mp3";
 import startliteTF from "../../../music/Starlite_Five_TF.mp3";
 
-import germany01 from "../../../imgs/about/germany-01.jpg";
 import germany02 from "../../../imgs/about/germany-02.jpg";
 import germany03 from "../../../imgs/about/germany-03.jpg";
 import germany04 from "../../../imgs/about/germany-04.jpg";
 import germany05 from "../../../imgs/about/germany-05.jpg";
-import germany06 from "../../../imgs/about/germany-06.jpg";
 import germany07 from "../../../imgs/about/germany-07.jpg";
-import germany08 from "../../../imgs/about/germany-08.jpg";
 import germany09 from "../../../imgs/about/germany-09.jpg";
 import joshuaTree01 from "../../../imgs/about/joshua-tree-01.jpg";
 import joshuaTree02 from "../../../imgs/about/joshua-tree-02.jpg";
@@ -53,18 +50,12 @@ import oregon01 from "../../../imgs/about/oregon-01.jpg";
 import oregon02 from "../../../imgs/about/oregon-02.jpg";
 import oregon03 from "../../../imgs/about/oregon-03.jpg";
 import p2p01 from "../../../imgs/about/p2p-01.png";
-import p2p02 from "../../../imgs/about/p2p-02.png";
-import p2p03 from "../../../imgs/about/p2p-03.png";
-import p2p04 from "../../../imgs/about/p2p-04.png";
 
-import germany01Thumbnail from "../../../imgs/about/thumbnails/germany-01-thumbnail.jpg";
 import germany02Thumbnail from "../../../imgs/about/thumbnails/germany-02-thumbnail.jpg";
 import germany03Thumbnail from "../../../imgs/about/thumbnails/germany-03-thumbnail.jpg";
 import germany04Thumbnail from "../../../imgs/about/thumbnails/germany-04-thumbnail.jpg";
 import germany05Thumbnail from "../../../imgs/about/thumbnails/germany-05-thumbnail.jpg";
-import germany06Thumbnail from "../../../imgs/about/thumbnails/germany-06-thumbnail.jpg";
 import germany07Thumbnail from "../../../imgs/about/thumbnails/germany-07-thumbnail.jpg";
-import germany08Thumbnail from "../../../imgs/about/thumbnails/germany-08-thumbnail.jpg";
 import germany09Thumbnail from "../../../imgs/about/thumbnails/germany-09-thumbnail.jpg";
 import joshuaTree01Thumbnail from "../../../imgs/about/thumbnails/joshua-tree-01-thumbnail.jpg";
 import joshuaTree02Thumbnail from "../../../imgs/about/thumbnails/joshua-tree-02-thumbnail.jpg";
@@ -84,22 +75,20 @@ import oregon01Thumbnail from "../../../imgs/about/thumbnails/oregon-01-thumbnai
 import oregon02Thumbnail from "../../../imgs/about/thumbnails/oregon-02-thumbnail.jpg";
 import oregon03Thumbnail from "../../../imgs/about/thumbnails/oregon-03-thumbnail.jpg";
 import p2p01Thumbnail from "../../../imgs/about/thumbnails/p2p-01-thumbnail.png";
-import p2p02Thumbnail from "../../../imgs/about/thumbnails/p2p-02-thumbnail.png";
-import p2p03Thumbnail from "../../../imgs/about/thumbnails/p2p-03-thumbnail.png";
-import p2p04Thumbnail from "../../../imgs/about/thumbnails/p2p-04-thumbnail.png";
 import { Carousel } from "react-thumbnail-carousel";
 import {
   DEFAULT_FONT_SIZE,
   CAROUSEL_COLORS,
-  ABOUT_PAGE_NAME,
 } from "../../../components/constants";
 import { AudioList } from "../../../components/AudioPlayer/AudioList";
 
 type AboutProps = {};
 
+export const ABOUT_SECTION_NAMES = ["Overview", "Interests", "Music"];
+
 const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
   {
-    name: "Overview",
+    name: ABOUT_SECTION_NAMES[0],
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <Quote
@@ -123,7 +112,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
     ),
   },
   {
-    name: "Interests",
+    name: ABOUT_SECTION_NAMES[1],
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <Quote
@@ -339,7 +328,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
     ),
   },
   {
-    name: "Music",
+    name: ABOUT_SECTION_NAMES[2],
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <Quote

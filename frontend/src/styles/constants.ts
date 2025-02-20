@@ -162,16 +162,16 @@ export const COLORS: Colors = {
     primaryRed: "#7B5028",
   },
   [RESUME_URL]: {
-    primary4: "#E4ECEF", // Dark Blue
-    primary2: "#B27C66", // Medium Blue
-    primary3: "#42253B", // Very Light Grey
-    primary1: "#336699", // Medium Grey
-    primaryRed: "#E74C3C", // Red for accents
-    // primary1: "#0A3D62", // Dark Blue
-    // primary2: "#3C6382", // Medium Blue
-    // primary3: "#F5F5F5", // Very Light Grey
-    // primary4: "#BDC3C7", // Medium Grey
-    // primaryRed: "#E74C3C", // Red for accents
+    primary4: "#E4ECEF",
+    primary2: "#B27C66",
+    primary3: "#42253B",
+    primary1: "#336699",
+    primaryRed: "#E74C3C",
+    // primary1: "#0A3D62",
+    // primary2: "#3C6382",
+    // primary3: "#F5F5F5",
+    // primary4: "#BDC3C7",
+    // primaryRed: "#E74C3C",
   },
 };
 //#endregion

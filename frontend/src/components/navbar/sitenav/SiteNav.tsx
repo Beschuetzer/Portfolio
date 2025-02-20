@@ -30,7 +30,6 @@ export function SiteNav(props: SiteNavProps) {
   const [siteNavleft, setSiteNavleft] = useState(getAbsoluteLeftPosition());
 
   useEffect(() => {
-    if (!location?.hash) return;
     const element = document.getElementById(location.hash?.replace("#", ""));
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
