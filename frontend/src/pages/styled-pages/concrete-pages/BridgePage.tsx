@@ -22,11 +22,13 @@ import animationCardPlayVideo from "../../../clips/bridge/animation-roundEndDumm
 import claimSomeVideo from "../../../clips/bridge/claim-some-declarer-initial.mp4";
 import claimAllVideo from "../../../clips/bridge/claim-all.mp4";
 import resizingVideo from "../../../clips/bridge/resizing.mp4";
+import resizingVideoThumbnail from "../../../clips/bridge/thumbnails/resizing.png";
 import playingACardVideo from "../../../clips/bridge/cardPlayOptions.mp4";
 import cardPlayAndRoundEndVideo from "../../../clips/bridge/animation-roundEndDummy.mp4";
 import preferencesVideo from "../../../clips/bridge/preferences.mp4";
 import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
+import saveGameVideoThumbnail from "../../../clips/bridge/thumbnails/save-game.png";
 import { Carousel } from "react-thumbnail-carousel";
 import { get } from "http";
 import { getCarouselStylingOptions } from "../../../styles/styles";
@@ -143,6 +145,32 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
                 {
                   title: "How did they do that?",
                   text: "This animation appears for other players when someone else plays a card.",
+                },
+              ],
+            },
+          },
+          {
+            srcMain: saveGameVideo,
+            srcThumbnail: saveGameVideoThumbnail,
+            description: "Have no fear!  MongoDB is here!",
+            modal: {
+              sections: [
+                {
+                  title: "Save Game",
+                  text: "The server saves each play and bid automatically, allowing players to resume playing at a later time without having to worry about losing the game state.",
+                },
+              ],
+            },
+          },
+          {
+            srcMain: resizingVideo,
+            srcThumbnail: resizingVideoThumbnail,
+            description: "All viewport are welcome!",
+            modal: {
+              sections: [
+                {
+                  title: "Dynamic Resizing",
+                  text: "The playing screen dynamically adjusts to the viewport, allowing users to play on their Android phone or with the window only taking up a fraction of the screen.",
                 },
               ],
             },
