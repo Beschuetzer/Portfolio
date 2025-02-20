@@ -1,10 +1,12 @@
 import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import {
+    BRIDGE_DEMO_URL,
+    GITHUB_URL,
   LIVE_BRIDGE_URL,
   WIKIPEDIA_BRIDGE_URL,
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
-import { LayoutStyledProps } from "../../../layouts/types";
+import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";
 import { ExamplePageLink } from "../ExamplePageLink";
 import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
@@ -237,5 +239,44 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
 
 type BridgePageProps = {};
 export function BridgePage(props: BridgePageProps) {
-  return <ExamplePage title="A# Major Bridge" sections={DOWNLOADER_SECTIONS} />;
+  return (
+    <ExamplePage
+      title="A# Major Bridge"
+      sections={DOWNLOADER_SECTIONS}
+      layoutProps={{
+        links: [
+          {
+            title: {
+              text: "Code",
+            },
+            url: `${GITHUB_URL}/bridge`,
+            svg: {
+              xlinkHref: `/sprite.svg#icon-code`,
+            },
+            hoverEffectType: HoverEffect.explode,
+          },
+          {
+            title: {
+              text: "Demo",
+            },
+            url: `${BRIDGE_DEMO_URL}`,
+            svg: {
+              xlinkHref: `/sprite.svg#icon-code`,
+            },
+            hoverEffectType: HoverEffect.explode,
+          },
+          {
+            title: {
+              text: "Live Site",
+            },
+            url: `${LIVE_BRIDGE_URL}`,
+            svg: {
+              xlinkHref: `/sprite.svg#icon-code`,
+            },
+            hoverEffectType: HoverEffect.explode,
+          },
+        ],
+      }}
+    />
+  );
 }
