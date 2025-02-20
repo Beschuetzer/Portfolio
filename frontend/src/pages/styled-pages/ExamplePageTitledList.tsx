@@ -1,36 +1,45 @@
 import { ExamplePageTitledParagraph } from "./ExamplePageTitledParagraph";
 import { styled } from "styled-components";
 import { defaultFontSize, getFontSizeCustom } from "../../styles/constants";
+import { CSSProperties, ReactNode } from "react";
 
 const ListContainer = styled.ol`
-    list-style-type: decimal;
-    padding-left: ${defaultFontSize};
+  padding-left: ${defaultFontSize};
 `;
 
 const ListItem = styled.li`
-  padding-left: ${getFontSizeCustom(.5)};
+  padding-left: ${getFontSizeCustom(0.5)};
 `;
 
 const ListItemText = styled.span`
-    font-size: ${getFontSizeCustom(1)};
+  font-size: ${getFontSizeCustom(1)};
 `;
 
 type ExamplePageTitledListProps = {
-  items: string[];
+  items: (string | (() => ReactNode | ReactNode[]))[];
+  listContainerStyles?: CSSProperties;
   title?: string;
 };
 
 export function ExamplePageTitledList(props: ExamplePageTitledListProps) {
-  const { items, title } = props;
+  const { items, listContainerStyles, title } = props;
 
   return (
     <ExamplePageTitledParagraph title={title}>
-      <ListContainer>
-        {items.map((item, index) => (
-          <ListItem key={index}>
-            <ListItemText>{item}</ListItemText>
-          </ListItem>
-        ))}
+      <ListContainer style={listContainerStyles}>
+        {items.map((item, index) => {
+          return (
+            <ListItem key={index}>
+              <ListItemText
+                dangerouslySetInnerHTML={
+                  typeof item === "string" ? { __html: item } : undefined
+                }
+              >
+                {typeof item !== "string" ? item() : null}
+              </ListItemText>
+            </ListItem>
+          );
+        })}
       </ListContainer>
     </ExamplePageTitledParagraph>
   );
