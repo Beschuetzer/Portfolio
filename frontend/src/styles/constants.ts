@@ -139,12 +139,20 @@ export const COLORS: Colors = {
     grey80: "#cccccc",
     white: "#ffffff",
 
-    primary1: "#28537b",
+    // original colors
+    // primary1: "#28537b",
+    // primary1Light: "#999999",
+    // primary2: "#8ac6d0",
+    // primary3: "#f4d262",
+    // primary4: "#fbeeac",
+    // primaryRed: "#7B2853",
+
+    primary1: "#336699",
     primary1Light: "#999999",
-    primary2: "#8ac6d0",
-    primary3: "#f4d262",
-    primary4: "#fbeeac",
-    primaryRed: "#7B2853",
+    primary2: "#B27C66",
+    primary3: "#42253B",
+    primary4: "#E4ECEF",
+    primaryRed: "#E74C3C",
     resumeColorOpacity: 0.95,
   },
   [PLAYLIST_SYNCER_URL]: {
@@ -162,10 +170,10 @@ export const COLORS: Colors = {
     primaryRed: "#7B5028",
   },
   [RESUME_URL]: {
-    primary4: "#E4ECEF",
+    primary1: "#336699",
     primary2: "#B27C66",
     primary3: "#42253B",
-    primary1: "#336699",
+    primary4: "#E4ECEF",
     primaryRed: "#E74C3C",
     // primary1: "#0A3D62",
     // primary2: "#3C6382",
