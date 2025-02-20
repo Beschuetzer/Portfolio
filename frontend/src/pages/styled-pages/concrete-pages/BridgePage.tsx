@@ -15,8 +15,10 @@ import dealSummaryVideo from "../../../clips/bridge/dealSummary.mp4";
 import dealSummaryVideoThumbnail from "../../../clips/bridge/thumbnails/deal-summary.png";
 import undoVideo from "../../../clips/bridge/undo.mp4";
 import undoVideoThumbnail from "../../../clips/bridge/thumbnails/save-game.png";
-import animationsVideo from "../../../clips/bridge/animation-roundEnd.mp4";
-import animationsVideoThumbnail from "../../../clips/bridge/thumbnails/animation-round-end.png";
+import animationRoundEndVideo from "../../../clips/bridge/animation-roundEnd.mp4";
+import animationRoundEndVideoThumbnail from "../../../clips/bridge/thumbnails/animation-round-end.png";
+import animationCardPlayVideo from "../../../clips/bridge/animation-roundEndDummy.mp4";
+
 import claimSomeVideo from "../../../clips/bridge/claim-some-declarer-initial.mp4";
 import claimAllVideo from "../../../clips/bridge/claim-all.mp4";
 import resizingVideo from "../../../clips/bridge/resizing.mp4";
@@ -120,9 +122,9 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
         }}
         items={[
           {
-            srcMain: animationsVideo,
-            srcThumbnail: animationsVideoThumbnail,
-            description: "Animations spice things up.",
+            srcMain: animationRoundEndVideo,
+            srcThumbnail: animationRoundEndVideoThumbnail,
+            description: "Up up and away!",
             modal: {
               sections: [
                 {
@@ -133,16 +135,43 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
             },
           },
           {
+            srcMain: animationCardPlayVideo,
+            srcThumbnail: animationRoundEndVideoThumbnail,
+            description: "The perfect throw",
+            modal: {
+              sections: [
+                {
+                  title: "How did they do that?",
+                  text: "This animation appears for other players when someone else plays a card.",
+                },
+              ],
+            },
+          },
+          {
             srcMain: undoVideo,
             srcThumbnail: undoVideoThumbnail,
-            description:
-              "A summary of the deal is shown at the beginning of each hand.",
+            description: "We can fix this.",
+            modal: {
+              sections: [
+                {
+                  title: "Undo",
+                  text: " Players are able to undo during the bidding phase as well as the playing phase.",
+                },
+              ],
+            },
           },
           {
             srcMain: dealSummaryVideo,
             srcThumbnail: dealSummaryVideoThumbnail,
-            description:
-              "A summary of the deal is shown at the beginning of each hand.",
+            description: "Good to know!",
+            modal: {
+              sections: [
+                {
+                  title: "Deal Summary",
+                  text: "The Deal Summary screen allows players to review the last hand.  It shows who had which cards, how the bidding went, and which cards each player had at any given point in the hand.",
+                },
+              ],
+            },
           },
           //   {
           //     srcMain: dealSummaryVideo,
