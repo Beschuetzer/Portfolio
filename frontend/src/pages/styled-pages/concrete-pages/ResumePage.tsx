@@ -176,31 +176,37 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             relation: "Best Buy Manager",
             phone: "913-209-2823",
             email: "troymccabe@gmail.com",
-          },         
+          },        
+          {
+            name: "Kayla Otterness",
+            relation: "Best Buy Co-worker",
+            phone: "612-720-4675",
+            email: "KaylaAnnOtterness@gmail.com",
+          },  
           {
             name: "Scott Helland",
             relation: "Former Supervisor",
             phone: "651-325-5416",
             email: "shelland@isd622.org",
           },
-          {
-            name: "Rita Bulger",
-            relation: "Former Co-worker",
-            phone: "651-325-7633",
-            email: "rbulger@isd622.org",
-          },
-          {
-            name: "Helen Dougherty-Wakeman",
-            relation: "Former Co-worker",
-            phone: "651-748-6223",
-            email: "hdougherty-wakeman@isd622.org",
-          },
-          {
-            name: "Andrew Cleland",
-            relation: "Friend",
-            phone: "612-388-8986",
-            email: "clel0011@umn.edu",
-          }
+          // {
+          //   name: "Rita Bulger",
+          //   relation: "Former Co-worker",
+          //   phone: "651-325-7633",
+          //   email: "rbulger@isd622.org",
+          // },
+          // {
+          //   name: "Helen Dougherty-Wakeman",
+          //   relation: "Former Co-worker",
+          //   phone: "651-748-6223",
+          //   email: "hdougherty-wakeman@isd622.org",
+          // },
+          // {
+          //   name: "Andrew Cleland",
+          //   relation: "Friend",
+          //   phone: "612-388-8986",
+          //   email: "clel0011@umn.edu",
+          // }
         ]}
       />
     ),
