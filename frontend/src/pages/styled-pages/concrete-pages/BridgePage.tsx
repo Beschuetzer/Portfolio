@@ -8,19 +8,21 @@ import { LayoutStyledProps } from "../../../layouts/types";
 import { ExamplePageLink } from "../ExamplePageLink";
 import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
-import { Card } from "../../../components/Card/Card";
-import { CardManager } from "../../../components/Card/CardManager";
 
 import dealSummaryVideo from "../../../clips/bridge/dealSummary.mp4";
 import dealSummaryVideoThumbnail from "../../../clips/bridge/thumbnails/deal-summary.png";
 import undoVideo from "../../../clips/bridge/undo.mp4";
-import undoVideoThumbnail from "../../../clips/bridge/thumbnails/save-game.png";
+import undoVideoThumbnail from "../../../clips/bridge/thumbnails/undo.png";
 import animationRoundEndVideo from "../../../clips/bridge/animation-roundEnd.mp4";
-import animationRoundEndVideoThumbnail from "../../../clips/bridge/thumbnails/animation-round-end.png";
-import animationCardPlayVideo from "../../../clips/bridge/animation-roundEndDummy.mp4";
+import animationRoundEndVideoThumbnail from "../../../clips/bridge/thumbnails/animation-round.png";
+import animationCardPlayVideo from "../../../clips/bridge/animation-play.mp4";
+import animationCardPlayVideoThumbnail from "../../../clips/bridge/thumbnails/animation-play.png";
 
 import claimSomeVideo from "../../../clips/bridge/claim-some-declarer-initial.mp4";
+import claimSomeVideoThumbnail from "../../../clips/bridge/thumbnails/claim-some.png";
+
 import claimAllVideo from "../../../clips/bridge/claim-all.mp4";
+import claimAllVideoThumbnail from "../../../clips/bridge/thumbnails/claim-all.png";
 import resizingVideo from "../../../clips/bridge/resizing.mp4";
 import resizingVideoThumbnail from "../../../clips/bridge/thumbnails/resizing.png";
 import playingACardVideo from "../../../clips/bridge/cardPlayOptions.mp4";
@@ -138,7 +140,7 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           },
           {
             srcMain: animationCardPlayVideo,
-            srcThumbnail: animationRoundEndVideoThumbnail,
+            srcThumbnail: animationCardPlayVideoThumbnail,
             description: "The perfect throw",
             modal: {
               sections: [
@@ -152,7 +154,7 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           {
             srcMain: saveGameVideo,
             srcThumbnail: saveGameVideoThumbnail,
-            description: "Have no fear!  MongoDB is here!",
+            description: "Have no fear!  MongoDB is here.",
             modal: {
               sections: [
                 {
@@ -178,7 +180,7 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           {
             srcMain: undoVideo,
             srcThumbnail: undoVideoThumbnail,
-            description: "We can fix this.",
+            description: "We can fix this",
             modal: {
               sections: [
                 {
@@ -201,16 +203,32 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
               ],
             },
           },
-          //   {
-          //     srcMain: dealSummaryVideo,
-          //     description:
-          //       "A summary of the deal is shown at the beginning of each hand.",
-          //   },
-          //   {
-          //     srcMain: dealSummaryVideo,
-          //     description:
-          //       "A summary of the deal is shown at the beginning of each hand.",
-          //   },
+          {
+            srcMain: claimSomeVideo,
+            srcThumbnail: claimSomeVideoThumbnail,
+            description: "When you know you've got X tricks",
+            modal: {
+              sections: [
+                {
+                  title: "Claim Some",
+                  text: "The 'Claim Some' feature speeds up gameplay in some scenarios by allowing the declarer (person playing the contract) to claim some number of tricks less than or equal to the number of tricks remaining.  The UI guides players through the selection process by disabling invalid choices and displaying the choices made in a table.",
+                },
+              ],
+            },
+          },
+          {
+            srcMain: claimAllVideo,
+            srcThumbnail: claimAllVideoThumbnail,
+            description: "When you know you've won",
+            modal: {
+              sections: [
+                {
+                  title: "Claim All",
+                  text: "'Claim All' allows players to claim the rest of the tricks rather than play them out.  It does this by showing he claimer's cards to the two defensive players.  If both players accept the claim, the claimer gets the rest of the tricks and the game moves to the deal summary screen.",
+                },
+              ],
+            },
+          },
         ]}
       />
     ),

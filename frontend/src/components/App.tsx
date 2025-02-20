@@ -43,7 +43,6 @@ import {
   AutoBid,
   BridgeDemo,
 } from "../pages";
-import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
 import { Redirect } from "../pages/Redirect";
 import { SCROLL_BAR_WIDTH_IN_REM } from "../styles/constants";
 import { PlaylistSyncerPage } from "../pages/styled-pages/concrete-pages/PlaylistSyncerPage";
@@ -163,11 +162,6 @@ export const App: React.FC<AppProps> = (props) => {
           ]}
         />
         <Switch>
-          <Route
-            path={THUMBNAIL_CAROUSEL_URL}
-            exact
-            component={ThumbnailCarouselTests}
-          />
           <Route
             path={BRIDGE_LIVE_URL}
             component={() => {
