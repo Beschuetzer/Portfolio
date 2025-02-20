@@ -103,7 +103,7 @@ $home-content-header-gradient-colors: var(--color-primary-4),
 
 //#region Resume
 $resume-section-padding-top: $default-font-size * 2;
-$resume-card-width-full: $default-font-size * 53.125;
+$resume-card-width-full: 600px;
 $resume-header-text-shadow: getTextShadow(
 	close,
 	var(--color-primary-3-rgb),
