@@ -82,8 +82,8 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               "Contributed to the development, documentation, testing, and growth of the Solution Sidekick app, which in-store employees use as a selling tool.",
               "Collaborated with cross-functional teams in an Agile environment, actively participating in daily stand-ups, sprint planning, and retrospectives to ensure the delivery of high-quality software solutions.",
             ],
-            dateEnd: "02/22",
-            dateStart: "09/24",
+            dateStart: "02/22",
+            dateEnd: "09/24",
             jobTitle: "Engineer Associate",
           },
           {
