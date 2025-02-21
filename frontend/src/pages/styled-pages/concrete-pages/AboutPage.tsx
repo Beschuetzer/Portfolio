@@ -131,8 +131,8 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
           enjoy any chance I get to change my elevation by using my feet.
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Drums">
-          I've been playing drums since I was 14. I'm not particularly great,
-          but it's a nice way to relieve stress.
+          I've been playing drums since I was 14. I'm not the best drummer in
+          the world, but it's a nice way to relieve stress.
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Guitar">
           In high school, a few friends and I started a band. It was during this
@@ -436,7 +436,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
         <ExamplePageTitledParagraph title="Making the Most of It">
           For a few years, I whole-heartedly pursued the idea of becoming a
           recording/mixing engineer.&nbsp; Unfortunately, hard work doesn't
-          always make up for lack of skill and connections:
+          always make up for lack of connections:
           <AudioList
             className="margin-top-1"
             items={[
