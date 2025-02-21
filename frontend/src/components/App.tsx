@@ -37,6 +37,7 @@ import aboutOverviewPic from "../imgs/site-nav/overview-2.jpg";
 import interestsPic from "../imgs/site-nav/interests.jpg";
 import musicPic from "../imgs/site-nav/music.jpg";
 import personalityPic from "../imgs/site-nav/personality.jpg";
+import carouselPic from "../imgs/site-nav/carousel.jpg";
 
 import { SiteNav } from "./navbar/sitenav/SiteNav";
 import "../css/style.css";
@@ -144,7 +145,7 @@ export const App: React.FC<AppProps> = (props) => {
               {
                 text: THUMBNAIL_CAROUSEL_NAME,
                 to: THUMBNAIL_CAROUSEL_URL,
-                // image: replayImage,
+                image: carouselPic,
               },
               { text: "A# Maj Bridge", to: BRIDGE_URL, image: bridgeImage },
               {
