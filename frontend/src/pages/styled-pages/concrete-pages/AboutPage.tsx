@@ -97,12 +97,13 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
             who keeps learning stays young."
         />
         <ExamplePageParagraph>
-          My mind is always working, whether at work or at play. I enjoy
-          learning new things and bring a natural curiosity to everything I
-          encounter. While I enjoy being out in the world, I always look forward
-          to evenings at home with one or two good friends and great
-          conversation. I can also find happiness on my own, working on a
-          project or reading a good book.
+          My mind is always active, whether at work or at play. I have a passion
+          for learning new things and bring a natural curiosity to everything I
+          encounter. While I often enjoy being out in the world, I always look forward
+          to evenings at home with others, engaging in great
+          conversation or playing a board game. I also find happiness in
+          solitary activities, such as working on a project, reading a good
+          book, or diving into a challenging problem.
         </ExamplePageParagraph>
         {/* <ExamplePageParagraph>
           Learn about my personality
@@ -122,13 +123,12 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
         <ExamplePageTitledParagraph title="Biking">
           One of the most enjoyable things I do on a regular basis is bike
           riding. I enjoy it so much, that I even tried using it as my main
-          source of transportation for a year (quite a challenge given I did it
-          in Minnesota).
+          source of transportation for a year.
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Hiking">
-          Living in Oregon for two years really fostered a fondness for hiking.
-          I don't plan on hiking Everest anytime soon, but I will definitely
-          enjoy any chance I get to change my elevation by using my feet.
+          Living in Oregon for two years really awakened a fondness for hiking.
+          I don't plan on hiking Everest anytime soon, but I definitely
+          enjoy any chance I get to explore the outdoors.
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Drums">
           I've been playing drums since I was 14. I'm not the best drummer in
