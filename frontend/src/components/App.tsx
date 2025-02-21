@@ -17,6 +17,8 @@ import {
   REPLAY_LIVE_URL,
   REPLAY_VIEWER_URL,
   RESUME_URL,
+  THUMBNAIL_CAROUSEL_NAME,
+  THUMBNAIL_CAROUSEL_URL,
 } from "./constants";
 
 import bridgeImage from "../imgs/site-nav/bridge.jpg";
@@ -57,6 +59,7 @@ import {
 import { DownloaderPage } from "../pages/styled-pages/concrete-pages/DownloaderPage";
 import { BridgePage } from "../pages/styled-pages/concrete-pages/BridgePage";
 import { BridgeDemoPage } from "../pages/styled-pages/concrete-pages/BridgeDemoPage";
+import { ThumbnailCarouselPage } from "../pages/styled-pages/concrete-pages/ThumbnailCarouselPage";
 
 type AppProps = {};
 
@@ -138,6 +141,11 @@ export const App: React.FC<AppProps> = (props) => {
             text: "Projects",
             isDropdownItem: true,
             drownDownItems: [
+              {
+                text: THUMBNAIL_CAROUSEL_NAME,
+                to: THUMBNAIL_CAROUSEL_URL,
+                // image: replayImage,
+              },
               { text: "A# Maj Bridge", to: BRIDGE_URL, image: bridgeImage },
               {
                 text: "Replay Viewer",
@@ -200,6 +208,7 @@ export const App: React.FC<AppProps> = (props) => {
         <Route path={ABOUT_URL} exact component={AboutPage} />
         <Route path={RESUME_URL} exact component={ResumePage} />
         <Route path={PERSONALITY_URL} exact component={BigFivePage} />
+        <Route path={THUMBNAIL_CAROUSEL_URL} exact component={ThumbnailCarouselPage} />
         <Route path="*" exact component={ResumePage} />
       </Switch>
 

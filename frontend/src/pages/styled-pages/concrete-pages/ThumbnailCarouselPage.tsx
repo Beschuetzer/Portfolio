@@ -1,28 +1,29 @@
 import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
-import { LayoutStyledProps } from "../../../layouts/types";
-import { Quote } from "../../../components/Quote";
+import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";
+import { THUMBNAIL_CAROUSEL_PACKAGE_URL } from "../../../components/constants";
+import { ExamplePageLink } from "../ExamplePageLink";
 
-
-export const THUMBNAIL_CAROUSEL_SECTION_NAMES = ["Overview", "Use Case 1", "Use Case 2", "Use Case 3"];
+export const THUMBNAIL_CAROUSEL_SECTION_NAMES = [
+  "Overview",
+  "Use Case 1",
+  "Use Case 2",
+  "Use Case 3",
+];
 
 const SECTIONS: ExamplePageSectionProps[] = [
   {
     name: THUMBNAIL_CAROUSEL_SECTION_NAMES[0],
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
-        <Quote
-          author="Henry Ford"
-          text="Anyone who stops learning is old, whether at twenty or eighty. Anyone
-            who keeps learning stays young."
-        />
         <ExamplePageParagraph>
-          My mind is always working, whether at work or at play. I enjoy
-          learning new things and bring a natural curiosity to everything I
-          encounter. While I enjoy being out in the world, I always look forward
-          to evenings at home with one or two good friends and great
-          conversation. I can also find happiness on my own, working on a
-          project or reading a good book.
+          <ExamplePageLink url={THUMBNAIL_CAROUSEL_PACKAGE_URL}>
+            react-thumbnail-carousel
+          </ExamplePageLink>
+          is an npm package that offers a simple and customizable thumbnail
+          carousel component for React applications. The goal was to develop a
+          fully customizable component with no dependencies, serving as a
+          comprehensive solution for displaying and playing videos.
         </ExamplePageParagraph>
       </>
     ),
@@ -32,5 +33,24 @@ const SECTIONS: ExamplePageSectionProps[] = [
 type ThumbnailCarouselProps = {};
 
 export function ThumbnailCarouselPage(props: ThumbnailCarouselProps) {
-  return <ExamplePage title="Thumbnail Carousel" sections={SECTIONS} />;
+  return (
+    <ExamplePage
+      title="Thumbnail Carousel"
+      sections={SECTIONS}
+      layoutProps={{
+        links: [
+          {
+            title: {
+              text: "npm",
+            },
+            url: THUMBNAIL_CAROUSEL_PACKAGE_URL,
+            svg: {
+              xlinkHref: `/sprite.svg#icon-code`,
+            },
+            hoverEffectType: HoverEffect.explode,
+          },
+        ],
+      }}
+    />
+  );
 }

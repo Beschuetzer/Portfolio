@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useSiteNav } from "./SiteNavContext";
 import { itemStyles, SITE_NAV_BORDER_SIZE, siteNavLinkStyles } from "./styles";
 import { respond } from "../../../styles/breakpoints";
+import { getHeaderName } from "../../../helpers";
 
 export enum SiteNaveItemOrientation {
   horizontal = "horizontal",
@@ -101,6 +102,7 @@ export function SiteNavItem(props: SiteNavItemProps) {
     href = "",
     image = "",
   } = props;
+  const textToUse = useMemo(() => getHeaderName(text), [text]);
 
   const propsToAdd: SiteNavStyledProps = useMemo(
     () => ({
@@ -124,7 +126,7 @@ export function SiteNavItem(props: SiteNavItemProps) {
       image={image}
       {...itemProps}
     >
-      <Image {...propsToAdd} src={image} alt={text} className="image" />
+      <Image {...propsToAdd} src={image} alt={textToUse} className="image" />
       {href ? (
         <ExternalLink
           {...propsToAdd}
@@ -132,7 +134,7 @@ export function SiteNavItem(props: SiteNavItemProps) {
           className="item-link"
           onClick={onClickLocal}
         >
-          {text}
+          {textToUse}
         </ExternalLink>
       ) : (
         <StyledLink
@@ -141,7 +143,7 @@ export function SiteNavItem(props: SiteNavItemProps) {
           className="item-link"
           onClick={onClickLocal}
         >
-          {text}
+          {textToUse}
         </StyledLink>
       )}
     </Item>

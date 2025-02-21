@@ -40,7 +40,7 @@ export const PLAYLIST_SYNCER_URL = `/examples/${PLAYLIST_SYNCER_PAGE_NAME}`;
 export const REPLAY_VIEWER_URL = `/examples/${REPLAY_PAGE_NAME}`;
 export const REPLAY_LIVE_URL = `/${REPLAY_PAGE_NAME}`;
 export const RESUME_URL = `/${RESUME_PAGE_NAME}`;
-export const THUMBNAIL_CAROUSEL_URL = `/${THUMBNAIL_CAROUSEL_NAME}`;
+export const THUMBNAIL_CAROUSEL_URL = `/examples/${THUMBNAIL_CAROUSEL_NAME}`;
 //#endregion
 
 //#region External URLs
@@ -63,6 +63,7 @@ export const OS_10_ISSUE_TRACKER_URL = "https://issuetracker.google.com/issues/1
 export const POWERSHELL_URL = `${GITHUB_URL}/powerShell`;
 export const RICOH_URL = "https://www.ricoh-usa.com/en";
 export const TOYS_R_US_RUL = "https://www.toysrus.com/";
+export const THUMBNAIL_CAROUSEL_PACKAGE_URL = "https://www.npmjs.com/package/react-thumbnail-carousel";
 export const UDEMY_BOOTCAMP_URL = "https://www.udemy.com/course/the-web-developer-bootcamp/";
 export const WIKIPEDIA_BRIDGE_URL = "https://en.wikipedia.org/wiki/Contract_bridge";
 export const WIKIPEDIA_DRM_URL = "https://en.wikipedia.org/wiki/Windows_Media_DRM";
