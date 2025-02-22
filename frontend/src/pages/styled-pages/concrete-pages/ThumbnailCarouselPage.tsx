@@ -12,12 +12,13 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
 import aspectRatioGif from "../../../clips/react-thumbnail-carousel/aspectRatio.gif";
 import descriptionModalGif from "../../../clips/react-thumbnail-carousel/descriptionModal.gif";
 import descriptionModalBuilderGif from "../../../clips/react-thumbnail-carousel/descriptionModalBuilder.gif";
-import { get } from "http";
 import { SECTION_WIDTH_IN_PIXELS } from "../../../styles/constants";
+import { CodeDisplayer } from "./CodeDisplayer";
+import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 
 export const THUMBNAIL_CAROUSEL_SECTION_NAMES = [
   "Overview",
-  "Use Case 1",
+  "Use Case 1 (No Item Viewer)",
   "Use Case 2",
   "Use Case 3",
 ];
@@ -52,8 +53,8 @@ const SECTIONS: ExamplePageSectionProps[] = [
       <>
         <ExamplePageParagraph>
           The first use case for the thumbnail carousel is to display a gallery
-          of images in a row. This is useful for showcasing a collection of images in a
-          visually appealing way:
+          of images in a row. This is useful for showcasing a collection of
+          images in a visually appealing way:
         </ExamplePageParagraph>
         <Carousel
           options={{
@@ -83,10 +84,54 @@ const SECTIONS: ExamplePageSectionProps[] = [
           ]}
         />
         <ExamplePageParagraph>
+          Here is what the code looks like for the above: <br />
+          <CodeDisplayer
+            code={`import { Carousel } from "react-thumbnail-carousel";
+import defaultGif from "../../../clips/react-thumbnail-carousel/Default.gif";
+import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gif";
+
+<Carousel
+  options={{
+    thumbnail: {
+      size: [[100], [75, 1200, "max-width"], [66, 600, "max-width"]],
+      descriptionOverlay: {
+        hideDescriptionOverlayUnlessHovered: false,
+        textColor: colorScheme?.primary4,
+        background: {
+          gradient: {
+            start: {
+              opacity: 0.9,
+              color: colorScheme?.primary1,
+            },
+            end: {
+              opacity: 0.9,
+              color: colorScheme?.primary2,
+            },
+            angle: 270,
+          },
+        },
+      },
+    },
+  }}
+  items={[
+    {
+      srcMain: defaultGif,
+      description: "Default layout navigation",
+    },
+    {
+      srcMain: fullscreenGif,
+      description: "Fullscreen Feature",
+    },
+  ]}
+/>
+            `}
+          />
+        </ExamplePageParagraph>
+        <ExamplePageTitledParagraph title="Navigation">
           If all of the items can't fit into the width of the parent, a
           navigation bar will appear, allowing the user to navigate through the
           items by pressing the left and right arrows or swiping:
-        </ExamplePageParagraph>
+        </ExamplePageTitledParagraph>
         <Carousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
@@ -106,7 +151,14 @@ const SECTIONS: ExamplePageSectionProps[] = [
             },
             thumbnail: {
               ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
-              size: [[SECTION_WIDTH_IN_PIXELS / 2 - 50], [window.innerWidth / 2 - 50, parseInt(BREAK_POINTS.phone, 10), "max-width"]],
+              size: [
+                [SECTION_WIDTH_IN_PIXELS / 2 - 50],
+                [
+                  window.innerWidth / 2 - 50,
+                  parseInt(BREAK_POINTS.phone, 10),
+                  "max-width",
+                ],
+              ],
             },
           }}
           items={[
