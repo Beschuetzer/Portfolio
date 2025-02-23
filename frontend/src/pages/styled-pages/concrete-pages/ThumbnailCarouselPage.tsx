@@ -12,15 +12,22 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
 import aspectRatioGif from "../../../clips/react-thumbnail-carousel/aspectRatio.gif";
 import descriptionModalGif from "../../../clips/react-thumbnail-carousel/descriptionModal.gif";
 import descriptionModalBuilderGif from "../../../clips/react-thumbnail-carousel/descriptionModalBuilder.gif";
-import { SECTION_WIDTH_IN_PIXELS } from "../../../styles/constants";
+import aboveGif from "../../../clips/react-thumbnail-carousel/above.gif";
+import dymanicAllGif from "../../../clips/react-thumbnail-carousel/dynamicAll.gif";
+import dymanicViewingModeGif from "../../../clips/react-thumbnail-carousel/dynamicViewingMode.gif";
+import dynamicViewportWidth from "../../../clips/react-thumbnail-carousel/dynamicViewportWidth.gif";
+import {
+  defaultFontSize,
+  SECTION_WIDTH_IN_PIXELS,
+} from "../../../styles/constants";
 import { CodeDisplayer } from "./CodeDisplayer";
 import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 
 export const THUMBNAIL_CAROUSEL_SECTION_NAMES = [
   "Overview",
-  "Use Case 1 (No Item Viewer)",
-  "Use Case 2",
-  "Use Case 3",
+  "No Item Viewer",
+  "Item Above",
+  "Item Below",
 ];
 
 const SECTIONS: ExamplePageSectionProps[] = [
@@ -173,6 +180,99 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
             {
               srcMain: descriptionModalBuilderGif,
               description: "Building a description modal",
+            },
+          ]}
+        />
+      </>
+    ),
+  },
+  {
+    name: THUMBNAIL_CAROUSEL_SECTION_NAMES[2],
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <>
+        <ExamplePageParagraph>
+          This use case is useful if you want to display the first item and have
+          it auto-play when the user scrolls down the page:
+        </ExamplePageParagraph>
+        <Carousel
+          options={{
+            ...getCarouselStylingOptions(propsToAdd.colorscheme),
+            layout: {
+              itemDisplayLocation: "above",
+            },
+            styling: {
+              ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
+              container: {
+                margin: {
+                  top: 0
+                },
+                padding: {
+                  bottom: 0,
+                  top: defaultFontSize,
+                  left: 0,
+                  right: 0
+                }
+              },
+            },
+            thumbnail: {
+              ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
+              size: [
+                [SECTION_WIDTH_IN_PIXELS / 2 - 50],
+                [
+                  window.innerWidth / 2 - 50,
+                  parseInt(BREAK_POINTS.phone, 10),
+                  "max-width",
+                ],
+              ],
+            },
+          }}
+          items={[
+            {
+              srcMain: aboveGif,
+              description: "Current item is displayed at the top",
+            },
+            {
+              srcMain: dymanicAllGif,
+              description: "Dynamic values",
+              modal: {
+                sections: [
+                  {
+                    text: "Most values are dynamic and can be changed based on the viewport width and whether the user is in fullscreen mode.  Here is how the values are set for this example:",
+                  },
+                  {
+                    text: "",
+                  },
+                  {
+                    codeSection: {
+                      tabSpacing: 4,
+                      startTabCount: 4,
+                      lines: [
+                        `options: {`,
+                        `  styling: {`,
+                        `    colorTheme: {`,
+                        `      colorOne: {`,
+                        `        fullscreen: [['red'], ['green', 800]],`,
+                        `        nonFullscreen: [['blue'], ['purple', 800]],`,
+                        `      }`,
+                        `    },`,
+                        `  }`,
+                        `},`,
+                      ],
+                    },
+                  },
+                  {
+                    text: `The above translates to use "green" when fullscreen and viewport <= 800, use "red" when fullscreen otherwise, use "purple" when not fullscreen and viewport <= 800, and use "blue" when not fullscreen otherwise.`,
+                  },
+                ],
+              },
+            },
+            {
+              srcMain: dynamicViewportWidth,
+              description: "Dynamic viewport width",
+            },
+            {
+              srcMain: dymanicViewingModeGif,
+              description: "Dynamic viewing mode",
             },
           ]}
         />
