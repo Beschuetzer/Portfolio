@@ -34,8 +34,6 @@ import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import saveGameVideoThumbnail from "../../../clips/bridge/thumbnails/save-game.png";
 import { Carousel } from "react-thumbnail-carousel";
-import { get } from "http";
-import { getCarouselStylingOptions } from "../../../styles/styles";
 
 const SECTION_NAMES = ["Overview", "Features", "Details", "Lessons"];
 const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
@@ -77,18 +75,13 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
       <Carousel
         options={{
           layout: {
-            itemDisplayLocation: "above",
+            itemDisplayLocation: "below",
           },
           modal: {
             maintainMinimizedStateAcrossItems: true,
           },
-          container: {
-            style: {
-              borderRadius: 0,
-            },
-          },
           thumbnail: {
-            size: [[150], [100, 1200, "max-width"]],
+            size: [[100], [100, 1200, "max-width"]],
             descriptionOverlay: {
               hideDescriptionOverlayUnlessHovered: false,
               textColor: propsToAdd.colorscheme?.primary4,
@@ -110,11 +103,11 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           },
           styling: {
             colorTheme: {
-              colorOne: propsToAdd.colorscheme?.primary1,
-              colorTwo: propsToAdd.colorscheme?.primary2,
+              colorOne: propsToAdd.colorscheme?.primary4,
+              colorTwo: propsToAdd.colorscheme?.primary3,
               colorThree: propsToAdd.colorscheme?.primary3,
-              colorFour: propsToAdd.colorscheme?.primary3,
-              colorFive: propsToAdd.colorscheme?.primary4,
+              colorFour: propsToAdd.colorscheme?.primary2,
+              colorFive: propsToAdd.colorscheme?.primary1,
               colorGreyOne: propsToAdd.colorscheme?.greyOne,
             },
             itemViewer: {

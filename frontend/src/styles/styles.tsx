@@ -15,11 +15,6 @@ export function getCarouselStylingOptions(
     modal: {
       maintainMinimizedStateAcrossItems: true,
     },
-    container: {
-      style: {
-        borderRadius: 0,
-      },
-    },
     thumbnail: {
       size: [[100], [75, 1200, "max-width"], [66, 600, "max-width"]],
       descriptionOverlay: {
@@ -44,14 +39,6 @@ export function getCarouselStylingOptions(
     styling: {
       fontFamily: {
         all: "Open Sans, sans-serif",
-      },
-      container: {
-        padding: {
-          right: 25,
-          left: 25,
-          bottom: 0,
-          top: [[10], [8, 600, "max-width"], [24, 1500, "min-width"]],
-        },
       },
       colorTheme: {
         colorOne: colorScheme?.primary4,
