@@ -56,6 +56,9 @@ const SECTIONS: ExamplePageSectionProps[] = [
   },
   {
     name: THUMBNAIL_CAROUSEL_SECTION_NAMES[1],
+    contentStyle: {
+      paddingBottom: 0,
+    },
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <ExamplePageParagraph>
@@ -191,8 +194,8 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <ExamplePageParagraph>
-          This use case is useful if you want to display the first item and have
-          it auto-play when the user scrolls down the page:
+          This layout allows you to display the selected item above the
+          carousel:
         </ExamplePageParagraph>
         <Carousel
           options={{
@@ -203,23 +206,18 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
             styling: {
               ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
               container: {
-                margin: {
-                  top: 0
-                },
                 padding: {
                   bottom: 0,
                   top: defaultFontSize,
-                  left: 0,
-                  right: 0
-                }
+                },
               },
             },
             thumbnail: {
               ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
               size: [
-                [SECTION_WIDTH_IN_PIXELS / 2 - 50],
+                [SECTION_WIDTH_IN_PIXELS / 4 - 50],
                 [
-                  window.innerWidth / 2 - 50,
+                  window.innerWidth / 4 - 50,
                   parseInt(BREAK_POINTS.phone, 10),
                   "max-width",
                 ],
