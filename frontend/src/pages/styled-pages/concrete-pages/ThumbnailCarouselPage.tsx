@@ -13,6 +13,7 @@ import aspectRatioGif from "../../../clips/react-thumbnail-carousel/aspectRatio.
 import descriptionModalGif from "../../../clips/react-thumbnail-carousel/descriptionModal.gif";
 import descriptionModalBuilderGif from "../../../clips/react-thumbnail-carousel/descriptionModalBuilder.gif";
 import aboveGif from "../../../clips/react-thumbnail-carousel/above.gif";
+import belowGif from "../../../clips/react-thumbnail-carousel/below.gif";
 import dymanicAllGif from "../../../clips/react-thumbnail-carousel/dynamicAll.gif";
 import dymanicViewingModeGif from "../../../clips/react-thumbnail-carousel/dynamicViewingMode.gif";
 import dynamicViewportWidth from "../../../clips/react-thumbnail-carousel/dynamicViewportWidth.gif";
@@ -227,7 +228,94 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
           items={[
             {
               srcMain: aboveGif,
-              description: "Current item is displayed at the top",
+              description: "Current item is displayed above the thumbnails",
+            },
+            {
+              srcMain: dymanicAllGif,
+              description: "Dynamic values",
+              modal: {
+                sections: [
+                  {
+                    text: "Most values are dynamic and can be changed based on the viewport width and whether the user is in fullscreen mode.  Here is how the values are set for this example:",
+                  },
+                  {
+                    text: "",
+                  },
+                  {
+                    codeSection: {
+                      tabSpacing: 4,
+                      startTabCount: 4,
+                      lines: [
+                        `options: {`,
+                        `  styling: {`,
+                        `    colorTheme: {`,
+                        `      colorOne: {`,
+                        `        fullscreen: [['red'], ['green', 800]],`,
+                        `        nonFullscreen: [['blue'], ['purple', 800]],`,
+                        `      }`,
+                        `    },`,
+                        `  }`,
+                        `},`,
+                      ],
+                    },
+                  },
+                  {
+                    text: `The above translates to use "green" when fullscreen and viewport <= 800, use "red" when fullscreen otherwise, use "purple" when not fullscreen and viewport <= 800, and use "blue" when not fullscreen otherwise.`,
+                  },
+                ],
+              },
+            },
+            {
+              srcMain: dynamicViewportWidth,
+              description: "Dynamic viewport width",
+            },
+            {
+              srcMain: dymanicViewingModeGif,
+              description: "Dynamic viewing mode",
+            },
+          ]}
+        />
+      </>
+    ),
+  },
+  {
+    name: THUMBNAIL_CAROUSEL_SECTION_NAMES[3],
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <>
+        <ExamplePageParagraph>
+          This layout allows you to display the selected item below the
+          carousel:
+        </ExamplePageParagraph>
+        <Carousel
+          options={{
+            ...getCarouselStylingOptions(propsToAdd.colorscheme),
+            layout: {
+              itemDisplayLocation: "below",
+            },
+            styling: {
+              ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
+              container: {
+                padding: {
+                  top: defaultFontSize,
+                },
+              },
+            },
+            thumbnail: {
+              ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
+              size: [
+                [SECTION_WIDTH_IN_PIXELS / 4 - 50],
+                [
+                  window.innerWidth / 4 - 50,
+                  parseInt(BREAK_POINTS.phone, 10),
+                  "max-width",
+                ],
+              ],
+            },
+          }}
+          items={[
+            {
+              srcMain: belowGif,
+              description: "Current item is displayed below the thumbnails",
             },
             {
               srcMain: dymanicAllGif,
