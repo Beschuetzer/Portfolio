@@ -10,6 +10,7 @@ type CodeDisplayerProps = {
 export const CodeDisplayer = (props: CodeDisplayerProps) => {
   const { code, language = "javascript", styleProps } = props;
   return (
+    //@ts-ignore
     <SyntaxHighlighter style={dark} language={language} wrapLines={true} {...styleProps}>
       {code}
     </SyntaxHighlighter>
