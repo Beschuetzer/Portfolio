@@ -34,7 +34,7 @@ export function getCarouselStylingOptions(
           },
         },
       },
-      currentItemBorder: `2px dotted ${colorScheme?.primary2}`,
+      currentItemBorder: `1px solid ${colorScheme?.primary1}`,
     },
     styling: {
       fontFamily: {
