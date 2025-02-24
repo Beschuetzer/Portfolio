@@ -86,7 +86,6 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
     name: REPLAY_VIEWER_SECTION_NAMES[1],
     contentStyle: {
       paddingTop: defaultFontSize,
-      paddingBottom: 0,
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <Carousel
