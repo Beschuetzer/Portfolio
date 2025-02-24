@@ -30,6 +30,7 @@ import demoVideoThumbnail from "../../../clips/playlist-syncer/demo-thumbnail.pn
 import { Quote } from "../../../components/Quote";
 import { ExamplePageLink } from "../ExamplePageLink";
 import { getCarouselStylingOptions } from "../../../styles/styles";
+import { defaultFontSize } from "../../../styles/constants";
 
 type PlaylistSyncerProps = {};
 
@@ -60,7 +61,7 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
   {
     name: "Media",
     contentStyle: {
-      padding: 0,
+      paddingTop: defaultFontSize,
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <Carousel

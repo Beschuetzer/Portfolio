@@ -42,6 +42,7 @@ import imgMobile2Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-mobi
 import clipNavigationsThumbnail from "../../../clips/replay-viewer/thumbnails/navigation-thumbnail.png";
 import clipDealPlayerThumbnail from "../../../clips/replay-viewer/thumbnails/deal-player-thumbnail.png";
 import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
+import { defaultFontSize } from "../../../styles/constants";
 
 export const REPLAY_VIEWER_SECTION_NAMES = [
   "Motivation",
@@ -83,6 +84,10 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
   },
   {
     name: REPLAY_VIEWER_SECTION_NAMES[1],
+    contentStyle: {
+      paddingTop: defaultFontSize,
+      paddingBottom: 0,
+    },
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <Carousel
         options={{
@@ -112,8 +117,8 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
                     htmlAttributes={getModalHtmlAttributes(propsToAdd)}
                   >
                     The first part of the video highlights the process of
-                    applying the contract matching filter. There are two
-                    matches found.
+                    applying the contract matching filter. There are two matches
+                    found.
                   </ExamplePageTitledParagraph>
                   <ExamplePageTitledParagraph
                     title="Two Filters = Double the Filtering"
@@ -289,10 +294,9 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
         <ExamplePageTitledParagraph title="Filters">
           <ExamplePageParagraph>
             There are two type of filters that can be applied: game-level and
-            deal-level. Game-level filters work by checking the games in
-            the current currently-displayed games array. Deal-level
-            filters work by checking the deals of the games that pass the
-            game-level filters.
+            deal-level. Game-level filters work by checking the games in the
+            current currently-displayed games array. Deal-level filters work by
+            checking the deals of the games that pass the game-level filters.
           </ExamplePageParagraph>
           <ExamplePageParagraph>
             When both types of filters are applied at the same time, games are
@@ -301,11 +305,10 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
           </ExamplePageParagraph>
           <ExamplePageParagraph>
             Thereafter, the game's deals are checked to see if any of them match
-            any of the applied deal-level filters. If a match is found on
-            the deal-level, that deal is sent to an array of deals which is used
-            to highlight that deal when the game detail is opened. If
-            there are no deal-level filters applied, then deal checking is
-            skipped.
+            any of the applied deal-level filters. If a match is found on the
+            deal-level, that deal is sent to an array of deals which is used to
+            highlight that deal when the game detail is opened. If there are no
+            deal-level filters applied, then deal checking is skipped.
           </ExamplePageParagraph>
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Preferences">
@@ -331,9 +334,9 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
             The results of each query are stored in local storage, allowing for
             faster load times on subsequent queries of the same username as well
             as any other usernames that were part of any of the cached
-            deals/games. Preferences, users, userIds, deals, and games are
-            all stored in local storage as separate items. The keys are
-            the id of the item and the value is the relevant data for that item.
+            deals/games. Preferences, users, userIds, deals, and games are all
+            stored in local storage as separate items. The keys are the id of
+            the item and the value is the relevant data for that item.
           </ExamplePageParagraph>
         </ExamplePageTitledParagraph>
       </>
@@ -353,9 +356,8 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
           </ExamplePageParagraph>
           <ExamplePageParagraph>
             However, given that the most deals any user has is less than six
-            hundred at this time, this concern is currently secondary in
-            nature. It would be fairly easy to fix though by adding
-            pagination.
+            hundred at this time, this concern is currently secondary in nature.
+            It would be fairly easy to fix though by adding pagination.
           </ExamplePageParagraph>
         </ExamplePageTitledParagraph>
       </>

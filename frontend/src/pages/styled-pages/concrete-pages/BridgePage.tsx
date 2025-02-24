@@ -1,7 +1,7 @@
 import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import {
-    BRIDGE_DEMO_URL,
-    GITHUB_URL,
+  BRIDGE_DEMO_URL,
+  GITHUB_URL,
   LIVE_BRIDGE_URL,
   WIKIPEDIA_BRIDGE_URL,
 } from "../../../components/constants";
@@ -34,6 +34,8 @@ import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import saveGameVideoThumbnail from "../../../clips/bridge/thumbnails/save-game.png";
 import { Carousel } from "react-thumbnail-carousel";
+import { getCarouselStylingOptions } from "../../../styles/styles";
+import { defaultFontSize } from "../../../styles/constants";
 
 const SECTION_NAMES = ["Overview", "Features", "Details", "Lessons"];
 const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
@@ -69,56 +71,11 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
   {
     name: SECTION_NAMES[1],
     contentStyle: {
-      padding: 0,
+      paddingTop: defaultFontSize,
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <Carousel
-        options={{
-          layout: {
-            itemDisplayLocation: "below",
-          },
-          modal: {
-            maintainMinimizedStateAcrossItems: true,
-          },
-          thumbnail: {
-            size: [[100], [100, 1200, "max-width"]],
-            descriptionOverlay: {
-              hideDescriptionOverlayUnlessHovered: false,
-              textColor: propsToAdd.colorscheme?.primary4,
-              background: {
-                gradient: {
-                  start: {
-                    opacity: 0.9,
-                    color: propsToAdd.colorscheme?.primary1,
-                  },
-                  end: {
-                    opacity: 0.9,
-                    color: propsToAdd.colorscheme?.primary2,
-                  },
-                  angle: 270,
-                },
-              },
-            },
-            currentItemBorder: `thick double ${propsToAdd.colorscheme?.primary4}`,
-          },
-          styling: {
-            colorTheme: {
-              colorOne: propsToAdd.colorscheme?.primary4,
-              colorTwo: propsToAdd.colorscheme?.primary3,
-              colorThree: propsToAdd.colorscheme?.primary3,
-              colorFour: propsToAdd.colorscheme?.primary2,
-              colorFive: propsToAdd.colorscheme?.primary1,
-              colorGreyOne: propsToAdd.colorscheme?.greyOne,
-            },
-            itemViewer: {
-              loadingSpinner: {
-                options: {
-                  color: propsToAdd.colorscheme?.primary4,
-                },
-              },
-            },
-          },
-        }}
+        options={getCarouselStylingOptions(propsToAdd.colorscheme)}
         items={[
           {
             srcMain: animationRoundEndVideo,

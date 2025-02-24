@@ -33,6 +33,8 @@ import {
 import { Carousel } from "react-thumbnail-carousel";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { CSharpCardSection } from "../../examples";
+import { getCarouselStylingOptions } from "../../../styles/styles";
+import { defaultFontSize } from "../../../styles/constants";
 
 const SECTION_NAMES = ["Description", "Media", "Notes"];
 const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
@@ -71,61 +73,11 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
   {
     name: SECTION_NAMES[1],
     contentStyle: {
-      padding: 0,
+      paddingTop: defaultFontSize,
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <Carousel
-        options={{
-          layout: {
-            itemDisplayLocation: "above",
-          },
-          modal: {
-            maintainMinimizedStateAcrossItems: true,
-          },
-          container: {
-            style: {
-              borderRadius: 0,
-            },
-          },
-          thumbnail: {
-            size: [[150], [100, 1200, "max-width"]],
-            descriptionOverlay: {
-              hideDescriptionOverlayUnlessHovered: false,
-              textColor: propsToAdd.colorscheme?.primary4,
-              background: {
-                gradient: {
-                  start: {
-                    opacity: 0.9,
-                    color: propsToAdd.colorscheme?.primary1,
-                  },
-                  end: {
-                    opacity: 0.9,
-                    color: propsToAdd.colorscheme?.primary2,
-                  },
-                  angle: 270,
-                },
-              },
-            },
-            currentItemBorder: `thick double ${propsToAdd.colorscheme?.primary4}`,
-          },
-          styling: {
-            colorTheme: {
-              colorOne: propsToAdd.colorscheme?.primary1,
-              colorTwo: propsToAdd.colorscheme?.primary2,
-              colorThree: propsToAdd.colorscheme?.primary3,
-              colorFour: propsToAdd.colorscheme?.primary3,
-              colorFive: propsToAdd.colorscheme?.primary4,
-              colorGreyOne: propsToAdd.colorscheme?.greyOne,
-            },
-            itemViewer: {
-              loadingSpinner: {
-                options: {
-                  color: propsToAdd.colorscheme?.primary4,
-                },
-              },
-            },
-          },
-        }}
+        options={getCarouselStylingOptions(propsToAdd.colorscheme)}
         items={[
           {
             srcMain: {
