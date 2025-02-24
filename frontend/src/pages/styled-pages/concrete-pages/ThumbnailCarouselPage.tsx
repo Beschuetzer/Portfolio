@@ -3,7 +3,7 @@ import { ExamplePageParagraph } from "../ExamplePageParagraph";
 import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";
 import { THUMBNAIL_CAROUSEL_PACKAGE_URL } from "../../../components/constants";
 import { ExamplePageLink } from "../ExamplePageLink";
-import { Carousel } from "react-thumbnail-carousel";
+import { Carousel, CarouselItemProps } from "react-thumbnail-carousel";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import { BREAK_POINTS } from "../../../styles/breakpoints";
 
@@ -29,6 +29,91 @@ export const THUMBNAIL_CAROUSEL_SECTION_NAMES = [
   "No Item Viewer",
   "Item Above",
   "Item Below",
+];
+
+const FIRST_CAROUSEL_ITEMS: CarouselItemProps[] = [
+  {
+    srcMain: defaultGif,
+    description: "Default layout navigation",
+  },
+  {
+    srcMain: fullscreenGif,
+    description: "Fullscreen Feature",
+  },
+];
+
+const SECOND_CAROUSEL_ITEMS: CarouselItemProps[] = [
+  {
+    srcMain: aspectRatioGif,
+    description: "Different aspect ratios",
+  },
+  {
+    srcMain: descriptionModalGif,
+    description: "Description modal",
+  },
+  {
+    srcMain: descriptionModalBuilderGif,
+    description: "Building a description modal",
+  },
+];
+
+const THIRD_CAROUSEL_ITEMS: CarouselItemProps[] = [
+  {
+    srcMain: aboveGif,
+    description: "Current item is displayed above the thumbnails",
+  },
+  {
+    srcMain: dymanicAllGif,
+    description: "Dynamic values",
+    modal: {
+      sections: [
+        {
+          text: "Most values are dynamic and can be changed based on the viewport width and whether the user is in fullscreen mode.  Here is how the values are set for this example:",
+        },
+        {
+          text: "",
+        },
+        {
+          codeSection: {
+            tabSpacing: 4,
+            startTabCount: 4,
+            lines: [
+              `options: {`,
+              `  styling: {`,
+              `    colorTheme: {`,
+              `      colorOne: {`,
+              `        fullscreen: [['red'], ['green', 800]],`,
+              `        nonFullscreen: [['blue'], ['purple', 800]],`,
+              `      }`,
+              `    },`,
+              `  }`,
+              `},`,
+            ],
+          },
+        },
+        {
+          text: `The above translates to use "green" when fullscreen and viewport <= 800, use "red" when fullscreen otherwise, use "purple" when not fullscreen and viewport <= 800, and use "blue" when not fullscreen otherwise.`,
+        },
+      ],
+    },
+  },
+  {
+    srcMain: dynamicViewportWidth,
+    description: "Dynamic viewport width",
+  },
+  {
+    srcMain: dymanicViewingModeGif,
+    description: "Dynamic viewing mode",
+  },
+];
+
+const FOURTH_CAROUSEL_ITEMS: CarouselItemProps[] = [
+  {
+    srcMain: belowGif,
+    description: "Current item is displayed below the thumbnails",
+  },
+  ...SECOND_CAROUSEL_ITEMS,
+  ...THIRD_CAROUSEL_ITEMS
 ];
 
 const SECTIONS: ExamplePageSectionProps[] = [
@@ -57,9 +142,6 @@ const SECTIONS: ExamplePageSectionProps[] = [
   },
   {
     name: THUMBNAIL_CAROUSEL_SECTION_NAMES[1],
-    contentStyle: {
-      paddingBottom: 0,
-    },
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <ExamplePageParagraph>
@@ -83,16 +165,7 @@ const SECTIONS: ExamplePageSectionProps[] = [
               ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
             },
           }}
-          items={[
-            {
-              srcMain: defaultGif,
-              description: "Default layout navigation",
-            },
-            {
-              srcMain: fullscreenGif,
-              description: "Fullscreen Feature",
-            },
-          ]}
+          items={FIRST_CAROUSEL_ITEMS}
         />
         <ExamplePageParagraph>
           Here is what the code looks like for the above: <br />
@@ -172,20 +245,7 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
               ],
             },
           }}
-          items={[
-            {
-              srcMain: aspectRatioGif,
-              description: "Different aspect ratios",
-            },
-            {
-              srcMain: descriptionModalGif,
-              description: "Description modal",
-            },
-            {
-              srcMain: descriptionModalBuilderGif,
-              description: "Building a description modal",
-            },
-          ]}
+          items={SECOND_CAROUSEL_ITEMS}
         />
       </>
     ),
@@ -225,55 +285,7 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
               ],
             },
           }}
-          items={[
-            {
-              srcMain: aboveGif,
-              description: "Current item is displayed above the thumbnails",
-            },
-            {
-              srcMain: dymanicAllGif,
-              description: "Dynamic values",
-              modal: {
-                sections: [
-                  {
-                    text: "Most values are dynamic and can be changed based on the viewport width and whether the user is in fullscreen mode.  Here is how the values are set for this example:",
-                  },
-                  {
-                    text: "",
-                  },
-                  {
-                    codeSection: {
-                      tabSpacing: 4,
-                      startTabCount: 4,
-                      lines: [
-                        `options: {`,
-                        `  styling: {`,
-                        `    colorTheme: {`,
-                        `      colorOne: {`,
-                        `        fullscreen: [['red'], ['green', 800]],`,
-                        `        nonFullscreen: [['blue'], ['purple', 800]],`,
-                        `      }`,
-                        `    },`,
-                        `  }`,
-                        `},`,
-                      ],
-                    },
-                  },
-                  {
-                    text: `The above translates to use "green" when fullscreen and viewport <= 800, use "red" when fullscreen otherwise, use "purple" when not fullscreen and viewport <= 800, and use "blue" when not fullscreen otherwise.`,
-                  },
-                ],
-              },
-            },
-            {
-              srcMain: dynamicViewportWidth,
-              description: "Dynamic viewport width",
-            },
-            {
-              srcMain: dymanicViewingModeGif,
-              description: "Dynamic viewing mode",
-            },
-          ]}
+          items={THIRD_CAROUSEL_ITEMS}
         />
       </>
     ),
@@ -312,55 +324,7 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
               ],
             },
           }}
-          items={[
-            {
-              srcMain: belowGif,
-              description: "Current item is displayed below the thumbnails",
-            },
-            {
-              srcMain: dymanicAllGif,
-              description: "Dynamic values",
-              modal: {
-                sections: [
-                  {
-                    text: "Most values are dynamic and can be changed based on the viewport width and whether the user is in fullscreen mode.  Here is how the values are set for this example:",
-                  },
-                  {
-                    text: "",
-                  },
-                  {
-                    codeSection: {
-                      tabSpacing: 4,
-                      startTabCount: 4,
-                      lines: [
-                        `options: {`,
-                        `  styling: {`,
-                        `    colorTheme: {`,
-                        `      colorOne: {`,
-                        `        fullscreen: [['red'], ['green', 800]],`,
-                        `        nonFullscreen: [['blue'], ['purple', 800]],`,
-                        `      }`,
-                        `    },`,
-                        `  }`,
-                        `},`,
-                      ],
-                    },
-                  },
-                  {
-                    text: `The above translates to use "green" when fullscreen and viewport <= 800, use "red" when fullscreen otherwise, use "purple" when not fullscreen and viewport <= 800, and use "blue" when not fullscreen otherwise.`,
-                  },
-                ],
-              },
-            },
-            {
-              srcMain: dynamicViewportWidth,
-              description: "Dynamic viewport width",
-            },
-            {
-              srcMain: dymanicViewingModeGif,
-              description: "Dynamic viewing mode",
-            },
-          ]}
+          items={FOURTH_CAROUSEL_ITEMS}
         />
       </>
     ),
