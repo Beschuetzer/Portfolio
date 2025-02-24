@@ -42,9 +42,9 @@ export function getCarouselStylingOptions(
       },
       colorTheme: {
         colorOne: colorScheme?.primary4,
-        colorTwo: colorScheme?.primary2,
-        colorThree: colorScheme?.primary3,
-        colorFour: colorScheme?.primary1,
+        colorTwo: colorScheme?.primary3,
+        colorThree: colorScheme?.primary2,
+        colorFour: colorScheme?.primary2,
         colorFive: colorScheme?.primary1,
         colorGreyOne: colorScheme?.greyOne,
       },
