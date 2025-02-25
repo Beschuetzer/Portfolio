@@ -7,6 +7,7 @@ import {
   PLAYLIST_SYNCER_URL,
   REPLAY_VIEWER_URL,
   RESUME_URL,
+  SSK_URL,
 } from "../components/constants";
 
 //#region Font Sizes and Text Stuff
@@ -180,6 +181,13 @@ export const COLORS: Colors = {
     // primary3: "#F5F5F5",
     // primary4: "#BDC3C7",
     // primaryRed: "#E74C3C",
+  },
+  [SSK_URL]: {
+    primary1: "#001e73",
+    primary2: "#1d252c",
+    primary3: "#fff200",
+    primary4: "#f0f2f4",
+    primaryRed: "#E74C3C",
   },
 };
 //#endregion
