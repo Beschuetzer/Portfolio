@@ -3,8 +3,9 @@ import { styled } from "styled-components";
 import { defaultFontSize, getFontSizeCustom } from "../../styles/constants";
 import { CSSProperties, ReactNode } from "react";
 
-const ListContainer = styled.ol`
-  padding-left: ${defaultFontSize};
+const ListContainer = styled.ol<{ tabcount?: number }>`
+  padding-left: calc(${defaultFontSize} * ${props => props.tabcount});
+  padding-right: calc(${defaultFontSize} * ${props => props.tabcount});
 `;
 
 const ListItem = styled.li`
@@ -18,15 +19,16 @@ const ListItemText = styled.span`
 type ExamplePageTitledListProps = {
   items: (string | (() => ReactNode | ReactNode[]))[];
   listContainerStyles?: CSSProperties;
+  tabCount?: number;
   title?: string;
 };
 
 export function ExamplePageTitledList(props: ExamplePageTitledListProps) {
-  const { items, listContainerStyles, title } = props;
+  const { items, listContainerStyles, tabCount = 1, title } = props;
 
   return (
     <ExamplePageTitledParagraph title={title}>
-      <ListContainer style={listContainerStyles}>
+      <ListContainer style={listContainerStyles} tabcount={tabCount}>
         {items.map((item, index) => {
           return (
             <ListItem key={index}>
