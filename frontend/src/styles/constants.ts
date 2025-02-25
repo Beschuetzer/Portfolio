@@ -8,6 +8,7 @@ import {
   REPLAY_VIEWER_URL,
   RESUME_URL,
   SSK_URL,
+  THUMBNAIL_CAROUSEL_URL,
 } from "../components/constants";
 
 //#region Font Sizes and Text Stuff
@@ -27,7 +28,10 @@ export const fontSizeTwelve = `calc(${defaultFontSize} * 5.96)`;
 export const fontSizeThirteen = `calc(${defaultFontSize} * 7.451)`;
 export const fontSizeFourteen = `calc(${defaultFontSize} * 9.313)`;
 
-export function getFontSizeCustom(factor = 1, startingFontSize = defaultFontSize) {
+export function getFontSizeCustom(
+  factor = 1,
+  startingFontSize = defaultFontSize
+) {
   return `calc(${startingFontSize} * ${factor})`;
 }
 
@@ -51,35 +55,37 @@ export const bigDesktopMinWidth = "112.5em";
 
 //#region Colors
 export type ColorScheme = {
-    black?: string;
-    greyOne?: string;
-    primary1: string;
-    primary2: string;
-    primary3: string;
-    primary4: string;
-    primaryRed: string;
-    sectionSvg1?: string;
-    sectionSvg2?: string;
-    sectionSvg3?: string;
-    sectionSvg4?: string;
-  }
-  
-  // Define the Colors type
-  export type Colors = {
-    [key: string]: ColorScheme | {
-      greyLight1: string;
-      greyLight2: string;
-      greyLight3: string;
-      primary1Light: string;
-      resumeColorOpacity: number;
-      black: string;
-      grey20: string;
-      grey40: string;
-      grey60: string;
-      grey80: string;
-      white: string;
-    } & ColorScheme;
-  };
+  black?: string;
+  greyOne?: string;
+  primary1: string;
+  primary2: string;
+  primary3: string;
+  primary4: string;
+  primaryRed: string;
+  sectionSvg1?: string;
+  sectionSvg2?: string;
+  sectionSvg3?: string;
+  sectionSvg4?: string;
+};
+
+// Define the Colors type
+export type Colors = {
+  [key: string]:
+    | ColorScheme
+    | ({
+        greyLight1: string;
+        greyLight2: string;
+        greyLight3: string;
+        primary1Light: string;
+        resumeColorOpacity: number;
+        black: string;
+        grey20: string;
+        grey40: string;
+        grey60: string;
+        grey80: string;
+        white: string;
+      } & ColorScheme);
+};
 
 export const COLORS: Colors = {
   [ABOUT_URL]: {
@@ -89,7 +95,6 @@ export const COLORS: Colors = {
     primary4: "#ecdbba",
     primaryRed: "#c84b31",
     greyOne: "#ddd",
-
   },
   [AUTO_BID_URL]: {
     primary1: "#e6e6e6",
@@ -188,6 +193,18 @@ export const COLORS: Colors = {
     primary3: "#fff200",
     primary4: "#f0f2f4",
     primaryRed: "#E74C3C",
+  },
+  [THUMBNAIL_CAROUSEL_URL]: {
+    primary1: "#004225",
+    primary2: "#007A33",
+    primary3: "#66CC99",
+    primary4: "#FFFFFF",
+    primaryRed: "#FFCC00",
+    // primary1: "#0A3D62",
+    // primary2: "#3C6382",
+    // primary3: "#F5F5F5",
+    // primary4: "#BDC3C7",
+    // primaryRed: "#E74C3C",
   },
 };
 //#endregion
