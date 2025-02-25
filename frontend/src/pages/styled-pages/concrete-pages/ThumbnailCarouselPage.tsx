@@ -23,6 +23,7 @@ import {
 } from "../../../styles/constants";
 import { CodeDisplayer } from "./CodeDisplayer";
 import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
+import { Quote } from "../../../components/Quote";
 
 export const THUMBNAIL_CAROUSEL_SECTION_NAMES = [
   "Overview",
@@ -121,6 +122,7 @@ const SECTIONS: ExamplePageSectionProps[] = [
     name: THUMBNAIL_CAROUSEL_SECTION_NAMES[0],
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
+        <Quote author="Lao Tzu" text="The journey of a thousand miles begins with one step." />
         <ExamplePageParagraph>
           <ExamplePageLink
             url={THUMBNAIL_CAROUSEL_PACKAGE_URL}

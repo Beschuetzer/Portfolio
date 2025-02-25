@@ -39,6 +39,7 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
     name: "Background",
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
+        <Quote author="Steve Jobs" text="The only way to do great work is to love what you do." />
         <ExamplePageParagraph {...propsToAdd}>
           Around the end of Febraury 2020, Samsung updated their Android OS to
           version 10. Eager to check out the newest Android OS, I promptly
