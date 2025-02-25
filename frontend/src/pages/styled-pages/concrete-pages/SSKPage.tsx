@@ -1,7 +1,6 @@
 import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import {
-  LIVE_BRIDGE_URL,
-  WIKIPEDIA_BRIDGE_URL,
+    BEST_BUY_SSK_INFO_ONE_URL,
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
 import { LayoutStyledProps } from "../../../layouts/types";
@@ -19,23 +18,13 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
           author="Seneca"
           text="Every new beginning comes from some other beginning’s end."
         />
-        <ExamplePageTitledParagraph title="What is A#Maj Bridge?">
-          <ExamplePageLink includeSpaces={false} url={LIVE_BRIDGE_URL}>
-            A# Maj Bridge
-          </ExamplePageLink>{" "}
-          is a web application I created to play
-          <ExamplePageLink url={WIKIPEDIA_BRIDGE_URL}>
-            contract bridge
-          </ExamplePageLink>
-          online during the pandemic. I started serious coding of the project in
-          August of 2020 and completed the main code base in January of 2021.
-        </ExamplePageTitledParagraph>
         <ExamplePageParagraph>
-          It is also the first web app I ever created. For that reason it was
-          written in Vanilla Html, CSS, and Javascript. The backend end uses
-          Express, socket.io, and MongoDb to achieve a real-time bridge
-          experience with saving and replaying. Paper.js was used to make the
-          cards feel more real.
+            Solution Sidekick is a mobile app used by Best Buy associates that offers selling assistance acroll all departments and channels as well as a way to  
+          <ExamplePageLink url={BEST_BUY_SSK_INFO_ONE_URL}>
+            increase their customer NPS
+          </ExamplePageLink>.
+          I started on the team in February of 2022 and contributed to various features, bug fixes, and enhancements.
+          Below you will find a list of the biggest features I worked on while working on the front end of the app.
         </ExamplePageParagraph>
       </>
     ),
