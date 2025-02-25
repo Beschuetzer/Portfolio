@@ -11,6 +11,7 @@ export const DOWNLOADER_PAGE_NAME = "downloader";
 export const PLAYLIST_SYNCER_PAGE_NAME = "playlist-syncer";
 export const REPLAY_PAGE_NAME = "replay";
 export const RESUME_PAGE_NAME = "resume";
+export const SSK_NAME = "solution-sidekick";
 export const THUMBNAIL_CAROUSEL_NAME = "thumbnail-carousel";
 
 //note: and here
@@ -40,11 +41,13 @@ export const PLAYLIST_SYNCER_URL = `/examples/${PLAYLIST_SYNCER_PAGE_NAME}`;
 export const REPLAY_VIEWER_URL = `/examples/${REPLAY_PAGE_NAME}`;
 export const REPLAY_LIVE_URL = `/${REPLAY_PAGE_NAME}`;
 export const RESUME_URL = `/${RESUME_PAGE_NAME}`;
+export const SSK_URL = `/examples/${SSK_NAME}`;
 export const THUMBNAIL_CAROUSEL_URL = `/examples/${THUMBNAIL_CAROUSEL_NAME}`;
 //#endregion
 
 //#region External URLs
 export const BEST_BUY_URL = "http://www.bestbuy.com";
+export const BEST_BUY_SSK_INFO_ONE_URL = "https://www.customerexperiencedive.com/news/best-buy-associates-training-sidekick-q3-nps/700909/";
 export const BOOK_TRUST_URL = "https://www.booktrust.org";
 export const GERMANY_APP_URL = "/germany-application-letter.pdf";
 export const GITHUB_URL = "http://github.com/beschuetzer";

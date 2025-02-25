@@ -123,7 +123,10 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
                     angular 12 replay viewer app
                   </ExamplePageLink>
                   utilizing redux, nest.js, and mongoDB. The app pulls from the
-                  mongoDB collection used in the aforementioned bridge app,
+                  mongoDB collection used in the aforementioned
+                  <ExamplePageLink url={BRIDGE_URL}>
+                    bridge app
+                  </ExamplePageLink>
                   allowing for easy reviewing of games played as well as insight
                   into the statistics surrounding their games.
                 </div>

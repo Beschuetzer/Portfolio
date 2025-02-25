@@ -4,7 +4,6 @@ import history from "./history";
 
 import {
   ABOUT_URL,
-  AUTO_BID_URL,
   BRIDGE_DEMO_URL,
   BRIDGE_LIVE_URL,
   BRIDGE_URL,
@@ -17,6 +16,8 @@ import {
   REPLAY_LIVE_URL,
   REPLAY_VIEWER_URL,
   RESUME_URL,
+  SSK_NAME,
+  SSK_URL,
   THUMBNAIL_CAROUSEL_NAME,
   THUMBNAIL_CAROUSEL_URL,
 } from "./constants";
@@ -29,6 +30,7 @@ import replayImage from "../imgs/site-nav/replay.jpg";
 
 import resumeOverviewPic from "../imgs/site-nav/overview.jpg";
 import skillsPic from "../imgs/site-nav/skills.jpg";
+import sskPic from "../imgs/site-nav/ssk.jpg";
 import experiencePic from "../imgs/site-nav/work-history.jpg";
 import educationPic from "../imgs/site-nav/education.jpg";
 import referencesPic from "../imgs/site-nav/references.jpg";
@@ -41,7 +43,6 @@ import carouselPic from "../imgs/site-nav/carousel.jpg";
 
 import { SiteNav } from "./navbar/sitenav/SiteNav";
 import "../css/style.css";
-import { AutoBid } from "../pages";
 import { Redirect } from "../pages/Redirect";
 import { SCROLL_BAR_WIDTH_IN_REM } from "../styles/constants";
 import { PlaylistSyncerPage } from "../pages/styled-pages/concrete-pages/PlaylistSyncerPage";
@@ -61,6 +62,7 @@ import { DownloaderPage } from "../pages/styled-pages/concrete-pages/DownloaderP
 import { BridgePage } from "../pages/styled-pages/concrete-pages/BridgePage";
 import { BridgeDemoPage } from "../pages/styled-pages/concrete-pages/BridgeDemoPage";
 import { ThumbnailCarouselPage } from "../pages/styled-pages/concrete-pages/ThumbnailCarouselPage";
+import { SSKPage } from "../pages/styled-pages/concrete-pages/SSKPage";
 
 type AppProps = {};
 
@@ -143,6 +145,11 @@ export const App: React.FC<AppProps> = (props) => {
             isDropdownItem: true,
             drownDownItems: [
               {
+                text: SSK_NAME,
+                to: SSK_URL,
+                image: sskPic,
+              },
+              {
                 text: THUMBNAIL_CAROUSEL_NAME,
                 to: THUMBNAIL_CAROUSEL_URL,
                 image: carouselPic,
@@ -205,7 +212,7 @@ export const App: React.FC<AppProps> = (props) => {
           component={PlaylistSyncerPage}
         />
         <Route path={REPLAY_VIEWER_URL} exact component={ReplayViewerPage} />
-        <Route path={AUTO_BID_URL} exact component={AutoBid} />
+        <Route path={SSK_URL} exact component={SSKPage} />
         <Route path={ABOUT_URL} exact component={AboutPage} />
         <Route path={RESUME_URL} exact component={ResumePage} />
         <Route path={PERSONALITY_URL} exact component={BigFivePage} />
