@@ -54,7 +54,17 @@ export function getCarouselStylingOptions(
           color: colorScheme?.primary1,
         },
       },
-
+      toolbar: {
+        progressBar: {
+          backgroundColor: hexToRgba(colorScheme?.primary1, .25),
+          seekColor: hexToRgba(colorScheme?.primary1, .5),
+          textOrForegroundColor: colorScheme?.primary1,
+        }
+      },
+      modal: {
+        backgroundColor: colorScheme?.primary1,
+        textColor: colorScheme?.primary4,
+      },
       itemViewer: {
         backgroundColor: colorScheme?.primary4,
         loadingSpinner: {
