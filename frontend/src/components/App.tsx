@@ -9,6 +9,8 @@ import {
   BRIDGE_URL,
   DOWNLOADER_URL,
   EMAIL,
+  GROCIFY_PAGE_NAME,
+  GROCIFY_URL,
   LIVE_BRIDGE_URL,
   LIVE_REPLAYS_URL,
   PERSONALITY_URL,
@@ -31,6 +33,7 @@ import replayImage from "../imgs/site-nav/replay.jpg";
 import resumeOverviewPic from "../imgs/site-nav/overview.jpg";
 import skillsPic from "../imgs/site-nav/skills.jpg";
 import sskPic from "../imgs/site-nav/ssk.jpg";
+import grocifyPic from "../imgs/site-nav/grocify.png";
 import experiencePic from "../imgs/site-nav/work-history.jpg";
 import educationPic from "../imgs/site-nav/education.jpg";
 import referencesPic from "../imgs/site-nav/references.jpg";
@@ -63,6 +66,7 @@ import { BridgePage } from "../pages/styled-pages/concrete-pages/BridgePage";
 import { BridgeDemoPage } from "../pages/styled-pages/concrete-pages/BridgeDemoPage";
 import { ThumbnailCarouselPage } from "../pages/styled-pages/concrete-pages/ThumbnailCarouselPage";
 import { SSKPage } from "../pages/styled-pages/concrete-pages/SSKPage";
+import { GrocifyPage } from "../pages/styled-pages/concrete-pages/GrocifyPage";
 
 type AppProps = {};
 
@@ -145,9 +149,9 @@ export const App: React.FC<AppProps> = (props) => {
             isDropdownItem: true,
             drownDownItems: [
               {
-                text: SSK_NAME,
-                to: SSK_URL,
-                image: sskPic,
+                text: GROCIFY_PAGE_NAME,
+                to: GROCIFY_URL,
+                image: grocifyPic,
               },
               {
                 text: THUMBNAIL_CAROUSEL_NAME,
@@ -212,7 +216,8 @@ export const App: React.FC<AppProps> = (props) => {
           component={PlaylistSyncerPage}
         />
         <Route path={REPLAY_VIEWER_URL} exact component={ReplayViewerPage} />
-        <Route path={SSK_URL} exact component={SSKPage} />
+        {/* <Route path={SSK_URL} exact component={SSKPage} /> */}
+        <Route path={GROCIFY_URL} exact component={GrocifyPage} />
         <Route path={ABOUT_URL} exact component={AboutPage} />
         <Route path={RESUME_URL} exact component={ResumePage} />
         <Route path={PERSONALITY_URL} exact component={BigFivePage} />
