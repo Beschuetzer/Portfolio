@@ -5,9 +5,19 @@ import {
 import { Quote } from "../../../components/Quote";
 import { LayoutStyledProps } from "../../../layouts/types";
 import { ExamplePageLink } from "../ExamplePageLink";
-import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
 import { ExamplePageTitledList } from "../ExamplePageTitledList";
+import { Carousel } from "react-thumbnail-carousel";
+
+import leadTypes from "../../../clips/ssk/lead-types.mp4";
+import leadTypesThumbnail from "../../../clips/ssk/thumbnails/lead-types.png";
+import leadAttachmentView from "../../../clips/ssk/lead-attachment-view.mp4";
+import leadAttachmentViewThumbnail from "../../../clips/ssk/thumbnails/lead-attachment-view.png";
+import leadScheduling from "../../../clips/ssk/lead-scheduling.mp4";
+import leadSchedulingThumbnail from "../../../clips/ssk/thumbnails/lead-scheduling.png";
+import leadAddress from "../../../clips/ssk/lead-address.mp4";
+import leadAddressThumbnail from "../../../clips/ssk/thumbnails/lead-address.png";
+import { getCarouselStylingOptions } from "../../../styles/styles";
 
 const SECTION_NAMES = ["Overview", "Leads", "Details", "Lessons"];
 const SSK_SECTIONS: ExamplePageSectionProps[] = [
@@ -42,7 +52,72 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
                 "Provide a way to schedule a follow-up appointment with the customer"
             ]}/>
         </ExamplePageParagraph>
-        
+        <Carousel 
+            options={{
+                ...getCarouselStylingOptions(propsToAdd.colorscheme),
+                itemViewer: {
+                    aspectRatio: .8
+                },
+                styling: {
+                    ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
+                    container: {
+                        margin: {
+                            top: 14
+                        }
+                    }
+                },
+                thumbnail: {
+                    ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
+                    spacingStrategy: "max"
+                }
+            }}
+            items={[
+                {
+                    srcMain: leadScheduling,
+                    srcThumbnail: leadSchedulingThumbnail,
+                    description: "Scheduling a lead",
+                    modal: {
+                        sections: [
+                            {
+                                title: "Scheduling",
+                                text: "Scheduling involves selecting a location and time for the appointment. The location may be a store, virtual, or at the client's home."
+                            },
+                            {
+                                title: "Note on Development Environment",
+                                text: "The call to the backend service that retrieves the available appointment times is significantly slower than in prod."
+                            }
+                        ]
+                    }
+                },
+                {
+                    srcMain: leadAttachmentView,
+                    srcThumbnail: leadAttachmentViewThumbnail,
+                    description: "A bottom sheet that displays the lead details",
+                    modal: {
+                        sections: [
+                            {
+                                title: "Lead Details",
+                                text: "Each lead contains some number of products, the customer details, the associates notes, and the appointment time. The bottom sheet is used to view and edit the products associated with the lead."
+                            }
+                        ]
+                    }
+                },
+                {
+                    srcMain: leadAddress,
+                    srcThumbnail: leadAddressThumbnail,
+                    description: "Adding the customer's address",
+                    modal: {
+                        sections: [
+                            {
+                                title: "Validation",
+                                text: "Each field is validated using regular expressions."
+                            }
+                        ]
+                    }
+                },
+               
+            ]}
+        />
 
       </>
     ),
