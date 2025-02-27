@@ -56,10 +56,6 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
                         }
                     }
                 },
-                thumbnail: {
-                    ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
-                    spacingStrategy: "max"
-                }
             }}
             items={[
                 {
@@ -78,12 +74,12 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
                 {
                     srcMain: quickAddNewItemVideo,
                     srcThumbnail: quickAddNewItemVideoThumbnail,
-                    description: "Quick add flow",
+                    description: "Items not found",
                     modal: {
                         sections: [
                             {
-                                title: "ChatGPT Integration",
-                                text: "The image is sent to the ChatGPT API which returns a list of items it thinks are in the image. The user can then save the items to the cart.",
+                                title: "Adding a new item",
+                                text: "If the item is not in the database, the user can add it by adding the details in the item form.",
                             },
                         ]
                     }
