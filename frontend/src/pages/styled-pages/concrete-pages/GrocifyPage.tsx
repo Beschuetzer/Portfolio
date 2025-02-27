@@ -37,7 +37,7 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
           purchased items, and convert images to lists. Being able to give items
           store specific values allows me to customize my route through the
           store and view pictures of the items in question. The app is still in
-          development and I plan to add more features in the future.
+          development, and I plan to add more features in the future.
         </ExamplePageParagraph>
       </>
     ),
