@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { ReactNode, useCallback, useMemo, useState } from "react";
 import { useColorScheme } from "../hooks/useColorScheme";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import {
   BUTTON_WIDTH,
   defaultFontSize,
   SITE_NAV_NAV_SWITCH_TOP,
+  ColorScheme,
 } from "../styles/constants";
 import {
   getAbsoluteRightPosition,
@@ -108,10 +109,11 @@ export type PageNavLayoutLinkProps = {
   index: number;
   hoverEffectType?: HoverEffect;
   svg: {
-    xlinkHref: string;
+    xlinkHref?: string;
     fill?: string;
+    jsx?: (colorScheme: ColorScheme) => ReactNode | ReactNode[];
   };
-  title: {
+  title?: {
     color?: string;
     text: string;
   };
@@ -128,8 +130,11 @@ export function PageNavLayoutLink(props: PageNavLayoutLinkProps) {
     url,
   } = props;
   const { xlinkHref, fill = colorScheme.primary4 } = svg;
-  const { color = colorScheme.primary4, text } = title;
-  const isInternal = useMemo(() => url.startsWith("/") && !url.match(/\..+$/ig), [url]);
+  const { color = colorScheme.primary4, text = "" } = title || {};
+  const isInternal = useMemo(
+    () => url.startsWith("/") && !url.match(/\..+$/gi),
+    [url]
+  );
   const [siteNavRight, setSiteNavRight] = useState(getAbsoluteRightPosition());
   const propsToAdd: LayoutStyledProps = useMemo(
     () => ({
@@ -160,10 +165,10 @@ export function PageNavLayoutLink(props: PageNavLayoutLinkProps) {
 
   return (
     <Container {...propsToAdd}>
-      <Title {...propsToAdd}>{text}</Title>
+      {title ? <Title {...propsToAdd}>{text}</Title> : null}
       {isInternal ? (
         <LinkInternal {...propsToAdd} to={url.trim()}>
-          {renderSvg()}
+          {svg.jsx ? svg.jsx(colorScheme) : renderSvg()}
         </LinkInternal>
       ) : (
         <LinkExternal
@@ -172,7 +177,7 @@ export function PageNavLayoutLink(props: PageNavLayoutLinkProps) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {renderSvg()}
+          {svg.jsx ? svg.jsx(colorScheme) : renderSvg()}
         </LinkExternal>
       )}
     </Container>

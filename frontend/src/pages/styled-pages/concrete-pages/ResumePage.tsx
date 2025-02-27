@@ -2,6 +2,7 @@ import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import {
   BEST_BUY_URL,
   BRIDGE_URL,
+  LINKED_IN_URL,
   PLAYLIST_SYNCER_URL,
   REPLAY_VIEWER_URL,
   YORK_B2E_URL,
@@ -15,6 +16,7 @@ import { defaultFontSize } from "../../../styles/constants";
 import { ExamplePageLink } from "../ExamplePageLink";
 import EducationList from "./resume/EducationList";
 import ResumeItems from "./resume/ResumeItems";
+import { LinkedInIcon } from "../icons/LinkedInIcon";
 
 export const RESUME_PAGE_HEADER_NAME = "Résumé";
 export const RESUME_SECTION_TITLES = [
@@ -252,6 +254,13 @@ export function ResumePage(props: ResmueProps) {
             url: `/resume.pdf`,
             svg: {
               xlinkHref: `/sprite.svg#icon-code`,
+            },
+            hoverEffectType: HoverEffect.explode,
+          },
+          {
+            url: LINKED_IN_URL,
+            svg: {
+              jsx: (colorScheme) => <LinkedInIcon />
             },
             hoverEffectType: HoverEffect.explode,
           },

@@ -60,6 +60,7 @@ export const KH_INSIDER_URL = "https://downloads.khinsider.com";
 export const KUALAPUU_URL = "https://www.kualapuucharterschool.org/";
 export const LIVE_BRIDGE_URL = "https://adammajorbridge-9715f4d2160d.herokuapp.com/";
 export const LIVE_REPLAYS_URL = "https://amajreplays.herokuapp.com";
+export const LINKED_IN_URL = "https://www.linkedin.com/in/adam-jeffrey-major/";
 export const OC_REMIX_URL = "https://www.ocremix.org";
 export const ODIN_PROJECT_URL = "https://www.theodinproject.com/";
 export const OS_10_ISSUE_TRACKER_URL = "https://issuetracker.google.com/issues/150054563";
