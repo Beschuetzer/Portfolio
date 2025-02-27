@@ -23,7 +23,6 @@ const Section = styled.section<LayoutStyledProps>`
   align-items: flex-start;
   justify-content: center;
   margin-bottom: ${INTER_SECTION_PADDING};
-  overflow: hidden;
   max-width: ${SECTION_WIDTH_IN_PIXELS}px;
   z-index: 1;
   box-shadow: ${(props) => hexToRgba(props.colorscheme?.primary4, 0.06)} 0px 0px
