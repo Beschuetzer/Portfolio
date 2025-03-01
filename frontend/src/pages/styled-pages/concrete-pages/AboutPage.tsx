@@ -341,7 +341,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
           song reminds me of the process.&nbsp;
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Electronic">
-          Here are some of the first songs I made on Fruity Loops
+          Here are some of the first songs I made on Fruity Loops:
           <AudioList
             className="margin-top-1"
             items={[
@@ -385,9 +385,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
           />
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Real Instruments">
-          As my interest and talent grew, I began trying to learn how to sing
-          and record songs using more than just electronic samples and
-          instruments:
+          As time went on, I tried out different genres of music:
           <AudioList
             className="margin-top-1"
             items={[

@@ -1,8 +1,6 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setIsLoadingSound, setCurrentlyPlayingSound, isLoadingSoundSelector } from "../../slices/soundsSlice";
-import { HIDDEN_CLASSNAME, TRANSFORM_NONE_CLASSNAME } from "../constants";
-import { AUDIO_PLAYER_CLASSNAME } from "./AudioPlayer";
 
 export const AUDIO_LIST_CLASSNAME = "audio-list";
 export const AUDIO_LIST_ITEM_CLASSNAME = `${AUDIO_LIST_CLASSNAME}__item`;
