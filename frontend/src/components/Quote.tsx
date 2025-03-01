@@ -77,7 +77,7 @@ const Popup = styled.div<LayoutStyledProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: ${(props) => (props.ispopupvisible ? 1 : 0)};
+  opacity: ${(props) => (props.ispopupvisible === 'true' ? 1 : 0)};
   transition: opacity 0.25s ease-in-out;
   font-size: ${fontSizeFour};
   z-index: 1000;
@@ -102,7 +102,7 @@ export function Quote(props: QuoteProps) {
 
   const propsToAdd: LayoutStyledProps = {
     colorscheme: colorScheme != null ? colorScheme : undefined,
-    ispopupvisible: popupMessage.length > 0,
+    ispopupvisible: popupMessage.length > 0 ? "true" : "false",
   };
 
   const copyToClipboard = async () => {

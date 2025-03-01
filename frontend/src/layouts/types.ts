@@ -10,7 +10,7 @@ export type LayoutStyledProps = {
   colorscheme?: ColorScheme;
   index?: number;
   islast?: string;
-  ispopupvisible?: boolean;
+  ispopupvisible?: string;
   percentage?: number;
   sitenavright?: string;
   textcolor?: string;
