@@ -80,9 +80,9 @@ export const dropDownContainerItemStyles = css<SiteNavStyledProps>`
 `;
 
 export const itemTransformStyles = css<SiteNavStyledProps & { index: number }>`
-  ${(props) => (props.isopen ? `transition: transform 0.5s ease;` : "")}
+  ${(props) => (props.isopen === 'true' ? `transition: transform 0.5s ease;` : "")}
   transition-delay: ${(props) =>
-    props.isopen ? `${props.index * 0.05 + 0}s` : "0"};
+    props.isopen === 'true' ? `${props.index * 0.05 + 0}s` : "0"};
 `;
 
 export const navbarHeaderNavSwitchHeightStyles = css<SiteNavStyledProps>`

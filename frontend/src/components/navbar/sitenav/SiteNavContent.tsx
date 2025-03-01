@@ -17,7 +17,7 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
   flex-direction: row;
   transition: all 0.3s ease-in-out;
   transform: ${(props) =>
-    props.isopen
+    props.isopen === 'true'
       ? "translate3d(0, 0, 0) scaleX(1)"
       : `translate3d(${getFontSizeCustom(
           -0.5,
@@ -57,7 +57,7 @@ export function SiteNavContent(props: SiteNavContentProps) {
   const propsToAdd: SiteNavStyledProps = useMemo(
     () => ({
       buttonradius: buttonRadius != null ? buttonRadius : undefined,
-      isopen: isOpen != null ? isOpen && isRelevant : undefined,
+      isopen: isOpen && isRelevant ? "true" : undefined,
       colorscheme: colorScheme != null ? colorScheme : undefined,
     }),
     [buttonRadius, colorScheme, isOpen, isRelevant]

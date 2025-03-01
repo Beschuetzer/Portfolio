@@ -24,7 +24,7 @@ const ItemContainer = styled.div<StyledProps>`
   padding-bottom: ${SPACING};
   ${itemTransformStyles}
   transform: translate3d(${(props) =>
-    props.isopen ? "0" : `calc(-100% - ${SITE_NAV_NAV_SWITCH_TOP})`}, 0, 0);
+    props.isopen === 'true' ? "0" : `calc(-100% - ${SITE_NAV_NAV_SWITCH_TOP})`}, 0, 0);
   user-select: none;
 `;
 
@@ -88,7 +88,7 @@ export function SiteNavDrawerContentItem(props: SiteNavDrawerContextItemProps) {
       scrollbarwidth: scrollBarWidth != null ? scrollBarWidth : undefined,
       colorscheme: colorScheme != null ? colorScheme : undefined,
       issectionopen: isSectionOpen.toString(),
-      isopen: isOpen != null ? isOpen : undefined,
+      isopen: isOpen === true ? "true" : undefined,
     }),
     [colorScheme, isOpen, isSectionOpen, scrollBarWidth]
   );

@@ -50,7 +50,7 @@ const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
       right: ${SITE_NAV_NAV_SWITCH_TOP};
       color: ${(props: SiteNavStyledProps) => props.colorscheme?.primary4};
 
-      ${(props: SiteNavStyledProps) => (props.isopen ? "" : `opacity: .5;`)}
+      ${(props: SiteNavStyledProps) => (props.isopen === 'true' ? "" : `opacity: .5;`)}
       &:hover {
         opacity: 1;
       }
@@ -100,7 +100,7 @@ export function GithubButton(props: GithubButtonProps) {
       colorscheme: colorScheme != null ? colorScheme : undefined,
       sitenavnavswitchtop: SITE_NAV_NAV_SWITCH_TOP,
       sitenavright: siteNavRight,
-      isopen: isOpen != null ? isOpen : undefined,
+      isopen: isOpen === true ? "true" : undefined,
     }),
     [colorScheme, isOpen, siteNavRight]
   );

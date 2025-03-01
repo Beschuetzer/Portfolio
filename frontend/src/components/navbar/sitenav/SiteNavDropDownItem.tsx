@@ -32,7 +32,7 @@ export function SiteNavDropDownItem(props: SiteNavDropDownProps) {
   const colorScheme = useColorScheme();
   const propsToAdd: SiteNavStyledProps = useMemo(() => ({
     colorscheme: colorScheme != null ? colorScheme : undefined,
-    isopen: isOpen != null ? isOpen : undefined,
+    isopen: isOpen ? "true" : undefined,
     orientation: isHovering ? SiteNaveItemOrientation.vertical : SiteNaveItemOrientation.horizontal,
   }), [colorScheme, isHovering, isOpen]);
 

@@ -50,7 +50,7 @@ export function SiteNavDropDown(props: SiteNavDropDownProps) {
 
   const propsToAdd: SiteNavStyledProps = useMemo(() => ({
     colorscheme: colorScheme != null ? colorScheme : undefined,
-    isopen: isOpen != null ? isOpen : undefined,
+    isopen: isOpen ? "true" : undefined,
     islast: isLast ? "true" : "false",
     buttonradius: buttonRadius != null ? buttonRadius : undefined,
   }), [buttonRadius, colorScheme, isOpen, isLast]);

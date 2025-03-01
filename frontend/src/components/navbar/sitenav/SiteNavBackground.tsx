@@ -11,7 +11,7 @@ const SiteNavBackgroundStyled = styled.div<SiteNavStyledProps>`
   left: 0;
   position: fixed;
   top: 0;
-  visibility: ${(props) => (props.isopen ? "visible" : "hidden")};
+  visibility: ${(props) => (props.isopen === 'true' ? "visible" : "hidden")};
   width: 200vw;
   z-index: -1;
   background: linear-gradient(
@@ -31,7 +31,7 @@ export function SiteNavBackground(props: SiteNavBackgroundProps) {
     <SiteNavBackgroundStyled
       colorscheme={colorScheme}
       onClick={toggleIsOpen}
-      isopen={isOpen}
+      isopen={isOpen ? "true" : "false"}
     />
   );
 }

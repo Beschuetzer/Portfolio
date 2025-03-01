@@ -19,7 +19,7 @@ const Drawer = styled.div<SiteNavStyledProps>`
   height: 100vh;
   z-index: 1;
   background-color: ${props => hexToRgba(props.colorscheme?.primary4, .875)};
-  transform: translate3d(${(props) => (props.isopen ? "0" : "-100%")}, 0, 0);
+  transform: translate3d(${(props) => (props.isopen === 'true' ? "0" : "-100%")}, 0, 0);
   transition: transform 0.3s ease-in-out;
 `;
 
@@ -30,7 +30,7 @@ export function SiteNavDrawer(props: SiteNavDrawerProps) {
   const propsToAdd: SiteNavStyledProps = useMemo(
     () => ({
       colorscheme: colorScheme != null ? colorScheme : undefined,
-      isopen: isOpen != null ? isOpen && isRelevant : undefined,
+      isopen: isOpen && isRelevant ? "true" : undefined,
     }),
     [colorScheme, isOpen, isRelevant]
   );

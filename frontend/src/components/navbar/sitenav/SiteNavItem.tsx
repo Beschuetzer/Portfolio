@@ -108,7 +108,7 @@ export function SiteNavItem(props: SiteNavItemProps) {
     () => ({
       colorscheme: colorScheme != null ? colorScheme : undefined,
       ismainitem: isMainItem.toString(),
-      isopen: isOpen != null ? isOpen : undefined,
+      isopen: isOpen ? "true" : undefined,
       islast: isLast ? "true" : "false",
       orientation: orientation,
     }),

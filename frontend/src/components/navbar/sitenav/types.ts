@@ -5,7 +5,7 @@ export type SiteNavStyledProps = {
   buttonradius?: string;
   colorscheme?: ColorScheme;
   islast?: string;
-  isopen?: boolean;
+  isopen?: string;
   ismainitem?: string;
   issectionopen?: string;
   minpixelwidth?: string;

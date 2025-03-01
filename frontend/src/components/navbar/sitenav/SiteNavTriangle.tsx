@@ -1,11 +1,10 @@
-import React, { useMemo } from 'react'
-import styled from 'styled-components';
-import { triangleRotateStyles } from './styles';
-import { SiteNavStyledProps } from './types';
-import { useColorScheme } from '../../../hooks/useColorScheme';
-import { useSiteNav } from './SiteNavContext';
-import { SiteNaveItemOrientation as SiteNavItemOrientation } from './SiteNavItem';
-
+import React, { useMemo } from "react";
+import styled from "styled-components";
+import { triangleRotateStyles } from "./styles";
+import { SiteNavStyledProps } from "./types";
+import { useColorScheme } from "../../../hooks/useColorScheme";
+import { useSiteNav } from "./SiteNavContext";
+import { SiteNaveItemOrientation as SiteNavItemOrientation } from "./SiteNavItem";
 
 const Triangle = styled.div<SiteNavStyledProps & { ishovering?: boolean }>`
   border-color: transparent transparent transparent
@@ -20,19 +19,20 @@ const Triangle = styled.div<SiteNavStyledProps & { ishovering?: boolean }>`
 `;
 
 type SiteNavTriangleProps = {
-    orientation?: SiteNavItemOrientation;
-}
+  orientation?: SiteNavItemOrientation;
+};
 
 export default function SiteNavTriangle(props: SiteNavTriangleProps) {
-    const { orientation = SiteNavItemOrientation.horizontal } = props;
-     const { isOpen } = useSiteNav();
-      const colorScheme = useColorScheme();
-     const propsToAdd: SiteNavStyledProps = useMemo(() => ({
-        colorscheme: colorScheme != null ? colorScheme : undefined,
-        isopen: isOpen != null ? isOpen : undefined,
-        ishovering: orientation === SiteNavItemOrientation.vertical,
-      }), [colorScheme, isOpen, orientation]);
-  return (
-    <Triangle {...propsToAdd} className='triangle'/>
-  )
+  const { orientation = SiteNavItemOrientation.horizontal } = props;
+  const { isOpen } = useSiteNav();
+  const colorScheme = useColorScheme();
+  const propsToAdd: SiteNavStyledProps = useMemo(
+    () => ({
+      colorscheme: colorScheme != null ? colorScheme : undefined,
+      isopen: isOpen ? "true" : undefined,
+      ishovering: orientation === SiteNavItemOrientation.vertical,
+    }),
+    [colorScheme, isOpen, orientation]
+  );
+  return <Triangle {...propsToAdd} className="triangle" />;
 }
