@@ -22,6 +22,13 @@ import itemNavigationVideoThumbnail from "../../../clips/grocify/thumbnails/item
 import storeLookupVideo from "../../../clips/grocify/store-lookup.mp4";
 import storeLookupVideoThumbnail from "../../../clips/grocify/thumbnails/store-lookup.png";
 
+import optionsPic from "../../../imgs/grocify/options.jpg";
+import previouslyPurchasedPic from "../../../imgs/grocify/previously-purchased.jpg";
+import scanOnePic from "../../../imgs/grocify/scan-1.jpg";
+import scanTwoPic from "../../../imgs/grocify/scan-2.jpg";
+import scanThreePic from "../../../imgs/grocify/scan-3.jpg";
+import storesListPic from "../../../imgs/grocify/stores-list.jpg";
+
 const SECTION_NAMES = [
   "Overview",
   "ChatGPT Integration",
@@ -161,6 +168,30 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: storeLookupVideo,
               srcThumbnail: storeLookupVideoThumbnail,
               description: "Store Lookup via external API",
+            },
+            {
+              srcMain: optionsPic,
+              description: "Options",
+            },
+            {
+              srcMain: previouslyPurchasedPic,
+              description: "Previously Purchased Items",
+            },
+            {
+              srcMain: scanOnePic,
+              description: "Scanning Start",
+            },
+            {
+              srcMain: scanTwoPic,
+              description: "Scanning Middle",
+            },
+            {
+              srcMain: scanThreePic,
+              description: "Scanning End",
+            },
+            {
+              srcMain: storesListPic,
+              description: "Stores List",
             },
           ]}
         />
