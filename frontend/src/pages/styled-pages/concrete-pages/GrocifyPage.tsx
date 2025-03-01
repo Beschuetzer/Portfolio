@@ -15,11 +15,13 @@ import quickAddQuantityVideoThumbnail from "../../../clips/grocify/quick-add/thu
 import quickAddRowChangesVideo from "../../../clips/grocify/quick-add/row-changes.mp4";
 import quickAddRowChangesVideoThumbnail from "../../../clips/grocify/quick-add/thumbnails/row-changes.png";
 
+import addItemFlowVideo from "../../../clips/grocify/add-item-flow.mp4";
+import addItemFlowVideoThumbnail from "../../../clips/grocify/thumbnails/add-item-flow.png";
+
 const SECTION_NAMES = [
   "Overview",
   "ChatGPT Integration",
-  "S3 Integration",
-  "Other Features",
+  "Media",
 ];
 const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
   {
@@ -46,22 +48,14 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
     name: SECTION_NAMES[1],
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
-        <ExamplePageParagraph>
-          ChatGPT is leveraged to convert images to shopping lists via the "Quick Add" feature:
-        </ExamplePageParagraph>
         <Carousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {
               aspectRatio: 0.8,
             },
-            styling: {
-              ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
-              container: {
-                margin: {
-                  top: 14,
-                },
-              },
+            container: {
+              text: "Leveraging ChatGPT to convert images to shopping lists:"
             },
           }}
           items={[
@@ -108,6 +102,39 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: quickAddQuantityVideo,
               srcThumbnail: quickAddQuantityVideoThumbnail,
               description: "Changing Quantity",
+            },
+          ]}
+        />
+      </>
+    ),
+  },
+  {
+    name: SECTION_NAMES[2],
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <>
+        <Carousel
+          options={{
+            ...getCarouselStylingOptions(propsToAdd.colorscheme),
+            itemViewer: {
+              aspectRatio: 0.8,
+            },
+            container: {
+              text: "Some more features:",
+            },
+          }}
+          items={[
+            {
+              srcMain: addItemFlowVideo,
+              srcThumbnail: addItemFlowVideoThumbnail,
+              description: "Adding a new item",
+              modal: {
+                sections: [
+                  {
+                    title: "S3 Integration",
+                    text: "Images are uploaded to an S3 bucket and the URL is saved in the database on success.",
+                  },
+                ],
+              },
             },
           ]}
         />
