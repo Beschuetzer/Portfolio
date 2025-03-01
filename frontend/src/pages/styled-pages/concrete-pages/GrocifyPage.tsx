@@ -70,6 +70,9 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: quickAddFlowVideo,
               srcThumbnail: quickAddFlowVideoThumbnail,
               description: "Quick add flow",
+               video: {
+                autoPlay: false,
+              },
               modal: {
                 sections: [
                   {
@@ -83,6 +86,9 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: quickAddNewItemVideo,
               srcThumbnail: quickAddNewItemVideoThumbnail,
               description: "When no item is found",
+               video: {
+                autoPlay: false,
+              },
               modal: {
                 sections: [
                   {
@@ -96,6 +102,9 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: quickAddRowChangesVideo,
               srcThumbnail: quickAddRowChangesVideoThumbnail,
               description: "Adding a row",
+               video: {
+                autoPlay: false,
+              },
               modal: {
                 sections: [
                   {
@@ -109,6 +118,9 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: quickAddQuantityVideo,
               srcThumbnail: quickAddQuantityVideoThumbnail,
               description: "Changing Quantity",
+               video: {
+                autoPlay: false,
+              },
             },
           ]}
         />
@@ -134,7 +146,9 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: addItemFlowVideo,
               srcThumbnail: addItemFlowVideoThumbnail,
               description: "Adding a new item",
-
+              video: {
+                autoPlay: false,
+              },
               modal: {
                 sections: [
                   {
@@ -148,7 +162,9 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: itemNavigationVideo,
               srcThumbnail: itemNavigationVideoThumbnail,
               description: "Navigating items",
-
+              video: {
+                autoPlay: false,
+              },
               modal: {
                 sections: [
                   {
@@ -166,6 +182,9 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: storeLookupVideo,
               srcThumbnail: storeLookupVideoThumbnail,
               description: "Store Lookup via external API",
+              video: {
+                autoPlay: false,
+              },
             },
             {
               srcMain: optionsPic,
