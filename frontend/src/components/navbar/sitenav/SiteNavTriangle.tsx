@@ -6,7 +6,7 @@ import { useColorScheme } from "../../../hooks/useColorScheme";
 import { useSiteNav } from "./SiteNavContext";
 import { SiteNaveItemOrientation as SiteNavItemOrientation } from "./SiteNavItem";
 
-const Triangle = styled.div<SiteNavStyledProps & { ishovering?: boolean }>`
+const Triangle = styled.div<SiteNavStyledProps>`
   border-color: transparent transparent transparent
     ${(props) => props.colorscheme?.primary1};
   border-style: solid;
@@ -15,7 +15,7 @@ const Triangle = styled.div<SiteNavStyledProps & { ishovering?: boolean }>`
   margin-left: 0.7rem;
   width: 0;
   transition: transform 0.25s ease, -webkit-transform 0.25s ease;
-  ${(props) => (props.ishovering ? triangleRotateStyles : "")}
+  ${(props) => (props.ishovering === 'true' ? triangleRotateStyles : "")}
 `;
 
 type SiteNavTriangleProps = {
@@ -30,7 +30,7 @@ export default function SiteNavTriangle(props: SiteNavTriangleProps) {
     () => ({
       colorscheme: colorScheme != null ? colorScheme : undefined,
       isopen: isOpen ? "true" : undefined,
-      ishovering: orientation === SiteNavItemOrientation.vertical,
+      ishovering: orientation === SiteNavItemOrientation.vertical ? "true" : undefined,
     }),
     [colorScheme, isOpen, orientation]
   );

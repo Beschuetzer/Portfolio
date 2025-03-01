@@ -8,7 +8,7 @@ import { itemStyles, siteNavLinkStyles, triangleRotateStyles } from "./styles";
 import SiteNavTriangle from "./SiteNavTriangle";
 
 type SiteNavDropDownProps = Pick<SiteNavItemProps, "text"> & {
-  isHovering?: boolean;
+  isHovering?: string;
 };
 
 const DropdownContainer = styled.div<SiteNavStyledProps>`

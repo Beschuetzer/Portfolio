@@ -57,7 +57,7 @@ export function SiteNavDropDown(props: SiteNavDropDownProps) {
 
   return (
     <DropDownContainer {...propsToAdd}>
-      <SiteNavDropDownItem {...propsToAdd} text={text} isHovering={isHovering}/>
+      <SiteNavDropDownItem {...propsToAdd} text={text} isHovering={isHovering ? "true" : undefined}/>
       <DropDownItems {...propsToAdd} className="item-container">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
