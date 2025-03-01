@@ -19,7 +19,8 @@ import addItemFlowVideo from "../../../clips/grocify/add-item-flow.mp4";
 import addItemFlowVideoThumbnail from "../../../clips/grocify/thumbnails/add-item-flow.png";
 import itemNavigationVideo from "../../../clips/grocify/item-navigation.mp4";
 import itemNavigationVideoThumbnail from "../../../clips/grocify/thumbnails/item-navigation.png";
-
+import storeLookupVideo from "../../../clips/grocify/store-lookup.mp4";
+import storeLookupVideoThumbnail from "../../../clips/grocify/thumbnails/store-lookup.png";
 
 const SECTION_NAMES = [
   "Overview",
@@ -157,21 +158,9 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               },
             },
             {
-              srcMain: itemNavigationVideo,
-              srcThumbnail: itemNavigationVideoThumbnail,
-              description: "Navigating items",
-              modal: {
-                sections: [
-                  {
-                    title: "Flashlist",
-                    text: "The shopify component 'flashlist' is used to display the items in the cart in order to handle large lists of items efficiently.",
-                  },
-                  {
-                    title: "Alpabetical Navigation",
-                    text: "Pressing one of the letters at the right side of the screen scrolls to the first item starting with that letter.",
-                  },
-                ],
-              },
+              srcMain: storeLookupVideo,
+              srcThumbnail: storeLookupVideoThumbnail,
+              description: "Store Lookup via external API",
             },
           ]}
         />
