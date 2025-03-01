@@ -73,6 +73,10 @@ const TimeRange = styled.div<LayoutStyledProps>`
   font-style: italic;
 `;
 
+const JobDescription = styled.p<LayoutStyledProps>`
+  padding-top: ${defaultFontSize};
+`;
+
 const JobTitle = styled.h6<LayoutStyledProps>`
   font-size: ${fontSizeFive};
   padding-right: ${defaultFontSize};
@@ -90,6 +94,7 @@ type ResumePageWorkHistoryItem = {
     url?: string;
   };
   jobTitle: string;
+  jobDescription?: string;
 };
 
 type ResumePageWorkHistoryProps = {
@@ -134,6 +139,9 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
                 </EmployerName>
               ) : null}
             </Header>
+            {item.jobDescription ? (
+              <JobDescription>{item.jobDescription}</JobDescription>
+            ) : null}
             <Achievements {...propsToAdd}>
               {item.achievements.map((achievement, index) => {
                 return (

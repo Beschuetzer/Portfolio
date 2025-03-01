@@ -62,12 +62,13 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               url: BEST_BUY_URL,
             },
             achievements: [
-              "Assisted in the migration from Azure to AWS (Stratus) for the omnichannel mobile platform deployment product (ADAPT), <b>reducing maintenance costs by 5%</b>.",
+              "Assisted in the migration from Azure to AWS (Stratus) for the in-house app store, <b>reducing maintenance costs by 5%</b>.",
               "Identified and resolved bugs in the React.js client apps as well as the .NET (C#) backend apps, enhancing functionality and significantly improving user experience.",
-              "Created a fully-customizable batch service using .NET 8 (C#), Entity Framework, and Marten (future enhancement) in order to pull Twillio attributes at a pre-defined interval and store them in a PostgreSQL database, allowing the authorization service to evaluate policies based on Twillio attributes.",
+              "Created a fully-customizable batch service using .NET 8 (C#) and Entity Framework in order to pull Twillio attributes at a pre-defined interval and store them in a PostgreSQL database, allowing the authorization service to evaluate policies based on Twillio attributes while still maintaining quick response times.",
             ],
+            jobDescription: "Continued contributions to the in-house app store and started contributing to the authorization service.",
             dateEnd: "02/25",
-            dateStart: "09/24",
+            dateStart: "12/24",
             jobTitle: "Engineer I",
           },
           {
@@ -77,18 +78,30 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             },
             achievements: [
               "Implemented a .NET (C#) backend service for auto-adding protection plans, resulting in over <b>10% growth in sales</b> of these plans.",
-              "Leveraged my React and Redux skills to implement a new feature, which allowed in-store employees to create re-useable baskets and schedule consultations in store, leading to a <b>sales increase of 12%</b>.",
-              "Created a paginated, (infinite scroll) React component which leveraged Redux to display the re-usable baskets, allowing employees to easily access saved baskets.",
-              "Created the QuantitySelector, a re-usable React component for displaying the quantity of a product in the cart as well as adding a variable number to the cart.",
               "Built a typescript(Node.js and Frontend compatible) library which streamlines interactions with the on-site authorization service (OPS).",
               "Built a typescript(Node.js and Frontend compatible) authentication library which simplified setup to the employee OAuth2 provider.",
               "Built a typescript(Node.js and Frontend compatible) library which wrapped the native fetch function to provide de-duplication, caching, circuit-breaking, retrying, and token management.",
-              "Contributed to the development, documentation, testing, and growth of the Solution Sidekick app, which in-store employees use as a selling tool.",
-              "Collaborated with cross-functional teams in an Agile environment, actively participating in daily stand-ups, sprint planning, and retrospectives to ensure the delivery of high-quality software solutions.",
+            ],
+            dateStart: "11/22",
+            dateEnd: "09/24",
+            jobTitle: "Engineer Associate (FTE)",
+            jobDescription: "Continued contributions to the Solution Sidekick mobile app but shifted focus to its Backend for Frontend service.  Eventually was moved to the in-store app store team where I supported multiple .NET and React projects."
+          },
+          {
+            employer: {
+              name: "Best Buy",
+              url: BEST_BUY_URL,
+            },
+            jobDescription: "Contributed primarily to the development, documentation, testing, and growth of the Solution Sidekick mobile app.",
+            achievements: [
+              "Leveraged my React and Redux skills to implement a new feature, which allowed in-store employees to create re-useable baskets and schedule consultations in store, leading to a <b>sales increase of 12%</b>.",
+              "Created a paginated, (infinite scroll) React component which leveraged Redux to display the re-usable baskets, allowing employees to easily access saved baskets.",
+              "Created the QuantitySelector, a re-usable React component for displaying the quantity of a product in the cart as well as adding a variable number to the cart.",
+              "Collaborated with cross-functional teams in an Agile environment, actively participating in daily stand-ups, sprint planning, and retrospectives to ensure the delivery of high-quality software solutions."
             ],
             dateStart: "02/22",
-            dateEnd: "09/24",
-            jobTitle: "Engineer Associate",
+            dateEnd: "11/22",
+            jobTitle: "Engineer Associate (CW)",
           },
           {
             employer: {
@@ -96,7 +109,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               url: YORK_B2E_URL,
             },
             achievements: [
-              `Learned Java (Spring Boot), Agile methodology, and improved React.js skills with the intent of starting a contract at Best Buy as a full`,
+              `Learned Java (Spring Boot), Agile methodology, and improved React.js skills with the intent of starting a contract at Best Buy.`,
               `Created a "Movie Night Recommendation" app leveraging Best Buy APIs in Spring Boot and React as
               well as a team project.`,
             ],
