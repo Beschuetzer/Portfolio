@@ -36,7 +36,7 @@ export function SiteNav(props: SiteNavProps) {
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [location?.hash]);
+  }, [location]);
 
   useEffect(() => {
     function onResize() {
