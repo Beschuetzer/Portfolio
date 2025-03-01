@@ -76,10 +76,7 @@ import oregon02Thumbnail from "../../../imgs/about/thumbnails/oregon-02-thumbnai
 import oregon03Thumbnail from "../../../imgs/about/thumbnails/oregon-03-thumbnail.jpg";
 import p2p01Thumbnail from "../../../imgs/about/thumbnails/p2p-01-thumbnail.png";
 import { Carousel } from "react-thumbnail-carousel";
-import {
-  DEFAULT_FONT_SIZE,
-  CAROUSEL_COLORS,
-} from "../../../components/constants";
+import { defaultFontSize } from "../../../styles/constants";
 import { AudioList } from "../../../components/AudioPlayer/AudioList";
 
 type AboutProps = {};
@@ -153,38 +150,38 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
               },
               container: {
                 style: {
-                  borderRadius: `${DEFAULT_FONT_SIZE}rem`,
+                  borderRadius: defaultFontSize,
                 },
               },
               thumbnail: {
                 size: [[166], [100, 1200, "max-width"]],
                 descriptionOverlay: {
                   hideDescriptionOverlayUnlessHovered: false,
-                  textColor: CAROUSEL_COLORS.about.primary4,
+                  textColor: propsToAdd.colorscheme?.primary4,
                   background: {
                     gradient: {
                       start: {
                         opacity: 0.9,
-                        color: CAROUSEL_COLORS.about.primary1,
+                        color: propsToAdd.colorscheme?.primary1,
                       },
                       end: {
                         opacity: 0.9,
-                        color: CAROUSEL_COLORS.about.primary2,
+                        color: propsToAdd.colorscheme?.primary2,
                       },
                       angle: 270,
                     },
                   },
                 },
-                currentItemBorder: `2px dashed ${CAROUSEL_COLORS.about.primary4}`,
+                currentItemBorder: `2px dashed ${propsToAdd.colorscheme?.primary4}`,
               },
               styling: {
                 colorTheme: {
-                  colorOne: CAROUSEL_COLORS.about.primary1,
-                  colorTwo: CAROUSEL_COLORS.about.primary2,
-                  colorThree: CAROUSEL_COLORS.about.primary3,
-                  colorFour: CAROUSEL_COLORS.about.primary3,
-                  colorFive: CAROUSEL_COLORS.about.primary4,
-                  colorGreyOne: CAROUSEL_COLORS.about.greyOne,
+                  colorOne: propsToAdd.colorscheme?.primary1,
+                  colorTwo: propsToAdd.colorscheme?.primary2,
+                  colorThree: propsToAdd.colorscheme?.primary3,
+                  colorFour: propsToAdd.colorscheme?.primary3,
+                  colorFive: propsToAdd.colorscheme?.primary4,
+                  colorGreyOne: propsToAdd.colorscheme?.greyOne,
                 },
                 container: {
                   margin: {
@@ -194,7 +191,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
                 itemViewer: {
                   loadingSpinner: {
                     options: {
-                      color: CAROUSEL_COLORS.downloader.primary1,
+                      color: propsToAdd.colorscheme?.primary1,
                     },
                   },
                 },

@@ -5,17 +5,15 @@ import history from "./history";
 import {
   ABOUT_URL,
   BRIDGE_DEMO_URL,
-  BRIDGE_LIVE_URL,
   BRIDGE_URL,
   DOWNLOADER_URL,
-  EMAIL,
   GROCIFY_PAGE_NAME,
   GROCIFY_URL,
   LIVE_BRIDGE_URL,
   LIVE_REPLAYS_URL,
+  MAIL_TO_STRING,
   PERSONALITY_URL,
   PLAYLIST_SYNCER_URL,
-  REPLAY_LIVE_URL,
   REPLAY_VIEWER_URL,
   RESUME_URL,
   SSK_NAME,
@@ -46,7 +44,6 @@ import carouselPic from "../imgs/site-nav/carousel.jpg";
 
 import { SiteNav } from "./navbar/sitenav/SiteNav";
 import "../css/style.css";
-import { Redirect } from "../pages/Redirect";
 import { SCROLL_BAR_WIDTH_IN_REM } from "../styles/constants";
 import { PlaylistSyncerPage } from "../pages/styled-pages/concrete-pages/PlaylistSyncerPage";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
@@ -191,7 +188,7 @@ export const App: React.FC<AppProps> = (props) => {
           },
           {
             text: "Contact",
-            href: `mailto:${EMAIL}`,
+            href: `mailto:${MAIL_TO_STRING}`,
             isDropdownItem: false,
             image: contactImage,
           },

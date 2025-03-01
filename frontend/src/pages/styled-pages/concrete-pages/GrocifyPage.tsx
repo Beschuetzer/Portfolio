@@ -29,11 +29,7 @@ import scanTwoPic from "../../../imgs/grocify/scan-2.jpg";
 import scanThreePic from "../../../imgs/grocify/scan-3.jpg";
 import storesListPic from "../../../imgs/grocify/stores-list.jpg";
 
-const SECTION_NAMES = [
-  "Overview",
-  "ChatGPT Integration",
-  "Media",
-];
+const SECTION_NAMES = ["Overview", "ChatGPT Integration", "Media"];
 const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
   {
     name: SECTION_NAMES[0],
@@ -66,7 +62,7 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               aspectRatio: 0.8,
             },
             container: {
-              text: "Leveraging ChatGPT to convert images to shopping lists:"
+              text: "Leveraging ChatGPT to convert images to shopping lists:",
             },
           }}
           items={[
@@ -138,6 +134,7 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: addItemFlowVideo,
               srcThumbnail: addItemFlowVideoThumbnail,
               description: "Adding a new item",
+
               modal: {
                 sections: [
                   {
@@ -151,6 +148,7 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: itemNavigationVideo,
               srcThumbnail: itemNavigationVideoThumbnail,
               description: "Navigating items",
+
               modal: {
                 sections: [
                   {

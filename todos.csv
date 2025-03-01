@@ -1,8 +1,6 @@
 
 refactor stuff:
-  -Content to finish
-    -SSK page
-    -Grocify page
+  -do all items need to have autoPlay specified or can it be made in the carousel package?
 
   -clean up stuff  
     --remove no-longer-needed pages and everything related to them

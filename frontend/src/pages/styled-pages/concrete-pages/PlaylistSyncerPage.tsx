@@ -8,7 +8,6 @@ import {
   GITHUB_URL,
   PLAYLIST_SYNCER_PAGE_NAME,
 } from "../../../components/constants";
-import { CSharpCardSection } from "../../examples";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
 import { HoverEffect, LayoutStyledProps } from "../../../layouts/types";
 
@@ -31,6 +30,7 @@ import { Quote } from "../../../components/Quote";
 import { ExamplePageLink } from "../ExamplePageLink";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import { defaultFontSize } from "../../../styles/constants";
+import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 
 type PlaylistSyncerProps = {};
 
@@ -83,14 +83,14 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
             modal: {
               children: (
                 <div>
-                  <CSharpCardSection title="Transferring Files">
+                  <ExamplePageTitledParagraph title="Transferring Files">
                     The playlist syncer has the ability to transfer songs to
                     either an SD card or the phone's internal memory.
                     Files in the playlist that are not found in the destination
                     are copied to '/destination/music'. After that .m3u
                     playlist file is transferred to
                     'destination/music/playlists'.
-                  </CSharpCardSection>
+                  </ExamplePageTitledParagraph>
                 </div>
               ),
             },

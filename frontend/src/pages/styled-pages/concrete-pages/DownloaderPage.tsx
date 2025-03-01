@@ -31,8 +31,6 @@ import {
   GITHUB_URL,
 } from "../../../components/constants";
 import { Carousel } from "react-thumbnail-carousel";
-import { EmbeddedLink } from "../../../components/EmbeddedLink";
-import { CSharpCardSection } from "../../examples";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import { defaultFontSize } from "../../../styles/constants";
 
@@ -89,17 +87,17 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
             modal: {
               children: (
                 <div>
-                  <CSharpCardSection title="The Problem">
+                  <ExamplePageTitledParagraph title="The Problem">
                     Downloading new releases from{" "}
-                    <EmbeddedLink isLocal={false} href={OC_REMIX_URL}>
+                    <ExamplePageLink url={OC_REMIX_URL}>
                       ocremix.org
-                    </EmbeddedLink>{" "}
+                    </ExamplePageLink>{" "}
                     is exciting, but having to download a few months worth is
                     more of a chore.&nbsp;
-                  </CSharpCardSection>
-                  <CSharpCardSection title="Reality Check">
+                  </ExamplePageTitledParagraph>
+                  <ExamplePageTitledParagraph title="Reality Check">
                     This is what it takes to download one song.
-                  </CSharpCardSection>
+                  </ExamplePageTitledParagraph>
                 </div>
               ),
             },
@@ -122,15 +120,15 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
             modal: {
               children: (
                 <div>
-                  <CSharpCardSection title="Embedded Links">
+                  <ExamplePageTitledParagraph title="Embedded Links">
                     The downloader app not only downloads links it finds
                     matching the given criteria, but will do the same for any
                     embedded links it finds.
-                  </CSharpCardSection>
-                  <CSharpCardSection title="Buggy but functional">
+                  </ExamplePageTitledParagraph>
+                  <ExamplePageTitledParagraph title="Buggy but functional">
                     The download logs aren't always correct, but there's no
                     denying the result.
-                  </CSharpCardSection>
+                  </ExamplePageTitledParagraph>
                 </div>
               ),
             },
