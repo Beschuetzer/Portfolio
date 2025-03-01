@@ -3,29 +3,22 @@ import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./sitenav/types";
 import {
   BUTTON_WIDTH,
-  fontSizeFive,
-  fontSizeFour,
-  fontSizeTen,
-  getFontSizeCustom,
+  PAGE_NAV_ITEM_HEIGHT,
   SITE_NAV_NAV_SWITCH_TOP,
   SITE_NAV_TOP,
 } from "../../styles/constants";
-import { capitalize, ensureMaxLength, getHeaderName } from "../../helpers";
-import { Link } from "react-router-dom";
 import { respond } from "../../styles/breakpoints";
 import { useColorScheme } from "../../hooks/useColorScheme";
 import { navbarHeaderNavSwitchHeightStyles } from "./sitenav/styles";
 import { useOnWindowResize } from "../../hooks/useOnWindowResize";
-import { hexToRgba } from "./sitenav/helpers";
-import { getTextShadowPageNavStyle } from "../../styles/styles";
 import { AUDIO_PLAYER_TOGGLER_CLASSNAME } from "../AudioPlayer/AudioPlayer";
+import { PageNavItem } from "./PageNavItem";
 
-const ITEM_HEIGHT = fontSizeTen;
 
 const PaddingOffset = styled.div<SiteNavStyledProps>`
   ${(props) =>
     props.numberofsections != null
-      ? `padding-top: calc(50vh - ${ITEM_HEIGHT} * ${
+      ? `padding-top: calc(50vh - ${PAGE_NAV_ITEM_HEIGHT} * ${
           props.numberofsections / 2
         });`
       : ""}
@@ -42,7 +35,7 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
   justify-content: center;
   border-radius: 1rem;
   position: sticky;
-  top: calc(${SITE_NAV_TOP} * 2 + ${BUTTON_WIDTH} - ${ITEM_HEIGHT} / 2.75);
+  top: calc(${SITE_NAV_TOP} * 2 + ${BUTTON_WIDTH} - ${PAGE_NAV_ITEM_HEIGHT} / 2.75);
   text-align: center;
   user-select: none;
 
@@ -61,37 +54,6 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
   `}
 `;
 
-const Item = styled(Link)<SiteNavStyledProps>`
-  font-size: ${fontSizeFive};
-  cursor: pointer;
-  transition: all 0.25s ease;
-  text-decoration: none;
-  font-weight: bold;
-  height: ${ITEM_HEIGHT};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
-  color: ${(props) => hexToRgba(props.colorscheme?.primary4, .75)};
-
-  &:hover {
-    transform: translate3d(0, ${getFontSizeCustom(-0.25)}, 0);
-    ${getTextShadowPageNavStyle(-2)}
-    color: ${(props) => props.colorscheme?.primary4};
-  }
-
-  ${respond.navSwitch`
-    font-size: ${fontSizeFour};
-    height: auto;
-    padding: 0;
-    color: ${(props: SiteNavStyledProps) =>
-      hexToRgba(props.colorscheme?.primary1, 0.75)};
-
-    &:hover {
-      color: ${(props: SiteNavStyledProps) => props.colorscheme?.primary1};
-    }
-  `}
-`;
 
 type PageNavProps = {};
 
@@ -111,15 +73,6 @@ export function PageNav(props: PageNavProps) {
   );
 
   const onResize = useCallback(() => {
-    ////old approach
-    // setMinPixelWidth(
-    //   `calc((${window.innerWidth}px - ${BUTTON_WIDTH} * 2 - ${SITE_NAV_NAV_SWITCH_TOP} * 2) / ${sections.length})`
-    // );
-    ////old column style
-    // grid-template-columns: repeat(auto-fill, minmax(${(
-    //   props: SiteNavStyledProps
-    // ) => props.minpixelwidth}, 1fr));
-
     setMinPixelWidth(`${Math.ceil(sections.length / 2)}`);
   }, [sections.length]);
 
@@ -140,15 +93,7 @@ export function PageNav(props: PageNavProps) {
   return (
     <PaddingOffset {...propsToAdd}>
       <ContentContainer {...propsToAdd}>
-        {sections.map((section: Element, index: number) => (
-          <Item
-            key={index}
-            to={`${window.location.pathname}#${section.id}`}
-            {...propsToAdd}
-          >
-            {ensureMaxLength(getHeaderName(section.id), 18)}
-          </Item>
-        ))}
+        {sections.map((section: Element, index: number) => <PageNavItem key={index} section={section}/>)}
       </ContentContainer>
     </PaddingOffset>
   );
