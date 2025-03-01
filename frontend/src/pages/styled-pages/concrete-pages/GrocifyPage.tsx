@@ -17,6 +17,9 @@ import quickAddRowChangesVideoThumbnail from "../../../clips/grocify/quick-add/t
 
 import addItemFlowVideo from "../../../clips/grocify/add-item-flow.mp4";
 import addItemFlowVideoThumbnail from "../../../clips/grocify/thumbnails/add-item-flow.png";
+import itemNavigationVideo from "../../../clips/grocify/item-navigation.mp4";
+import itemNavigationVideoThumbnail from "../../../clips/grocify/thumbnails/item-navigation.png";
+
 
 const SECTION_NAMES = [
   "Overview",
@@ -132,6 +135,40 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
                   {
                     title: "S3 Integration",
                     text: "Images are uploaded to an S3 bucket and the URL is saved in the database on success.",
+                  },
+                ],
+              },
+            },
+            {
+              srcMain: itemNavigationVideo,
+              srcThumbnail: itemNavigationVideoThumbnail,
+              description: "Navigating items",
+              modal: {
+                sections: [
+                  {
+                    title: "Flashlist",
+                    text: "The shopify component 'flashlist' is used to display the items in the cart in order to handle large lists of items efficiently.",
+                  },
+                  {
+                    title: "Alpabetical Navigation",
+                    text: "Pressing one of the letters at the right side of the screen scrolls to the first item starting with that letter.",
+                  },
+                ],
+              },
+            },
+            {
+              srcMain: itemNavigationVideo,
+              srcThumbnail: itemNavigationVideoThumbnail,
+              description: "Navigating items",
+              modal: {
+                sections: [
+                  {
+                    title: "Flashlist",
+                    text: "The shopify component 'flashlist' is used to display the items in the cart in order to handle large lists of items efficiently.",
+                  },
+                  {
+                    title: "Alpabetical Navigation",
+                    text: "Pressing one of the letters at the right side of the screen scrolls to the first item starting with that letter.",
                   },
                 ],
               },
