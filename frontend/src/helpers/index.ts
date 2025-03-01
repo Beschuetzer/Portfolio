@@ -162,7 +162,6 @@ export function getComputedStyleCustom(propertyName: string) {
 
 export function getHeaderName(header: string) {
   if (!header) return "";
-  console.log({header});
   return capitalize(header.replace(/[_-]+/gi, " ").trim());
 }
 
