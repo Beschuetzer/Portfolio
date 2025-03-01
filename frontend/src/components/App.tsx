@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
 
@@ -86,6 +86,19 @@ export const App: React.FC<AppProps> = (props) => {
   // 	});
   // 	dispatch(setSounds(sounds as unknown as LoadedSounds));
   // }, [setSounds]);
+
+  useEffect(() => {
+    (async () => {
+      // Trigger a call to the URL behind the scenes
+      const bridgeUrlPromise = fetch(LIVE_BRIDGE_URL, {
+        mode: "no-cors",
+      });
+      const replaysUrlPromise = fetch(LIVE_REPLAYS_URL, {
+        mode: "no-cors",
+      });
+      await Promise.all([bridgeUrlPromise, replaysUrlPromise]);
+    })();
+  }, []);
 
   return (
     <Router history={history}>
@@ -185,28 +198,6 @@ export const App: React.FC<AppProps> = (props) => {
         ]}
       />
       <Switch>
-        <Route
-          path={BRIDGE_LIVE_URL}
-          component={() => {
-            return (
-              <Redirect
-                texts={[`Waking the heroku container at`, LIVE_BRIDGE_URL]}
-                url={LIVE_BRIDGE_URL}
-              />
-            );
-          }}
-        />
-        <Route
-          path={REPLAY_LIVE_URL}
-          component={() => {
-            return (
-              <Redirect
-                texts={[`Waking the heroku container at`, LIVE_REPLAYS_URL]}
-                url={LIVE_REPLAYS_URL}
-              />
-            );
-          }}
-        />
         <Route path={BRIDGE_URL} exact component={BridgePage} />
         <Route path={BRIDGE_DEMO_URL} exact component={BridgeDemoPage} />
         <Route path={DOWNLOADER_URL} exact component={DownloaderPage} />
@@ -221,7 +212,11 @@ export const App: React.FC<AppProps> = (props) => {
         <Route path={ABOUT_URL} exact component={AboutPage} />
         <Route path={RESUME_URL} exact component={ResumePage} />
         <Route path={PERSONALITY_URL} exact component={BigFivePage} />
-        <Route path={THUMBNAIL_CAROUSEL_URL} exact component={ThumbnailCarouselPage} />
+        <Route
+          path={THUMBNAIL_CAROUSEL_URL}
+          exact
+          component={ThumbnailCarouselPage}
+        />
         <Route path="*" exact component={ResumePage} />
       </Switch>
 
