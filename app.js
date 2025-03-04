@@ -4,7 +4,9 @@ const routes = require('./routes/gitHubRoute');
 const path = require('path');
 require('dotenv').config();
 
-app.use('/github', routes);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/repos', routes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));
