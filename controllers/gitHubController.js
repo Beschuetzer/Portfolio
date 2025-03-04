@@ -2,17 +2,18 @@
 const { GraphQLClient, gql } = require('graphql-request');
 
 exports.githubController = async (req, res) => {
-  const endpoint = 'https://api.github.com/graphql'
+  console.log({req, res});
+  const endpoint = 'https://api.github.com/graphql';
   const graphQLClient = new GraphQLClient(endpoint, {
     headers: {
-      Authorization: `Bearer ${process.env.REACT_APP_GITHUB}`,
-    },
-  })
+      Authorization: `Bearer ${process.env.REACT_APP_GITHUB}`
+    }
+  });
   try {
-    const data = await graphQLClient.request(gql`${req.query.query}`)
+    const data = await graphQLClient.request(gql`${req.query.query}`);
+    console.log({ data, query: req.query.query });
     res.send(data);
-  }
-  catch (err) {
+  } catch (err) {
     console.log('err =', err);
   }
 };

@@ -64,6 +64,7 @@ import { BridgeDemoPage } from "../pages/styled-pages/concrete-pages/BridgeDemoP
 import { ThumbnailCarouselPage } from "../pages/styled-pages/concrete-pages/ThumbnailCarouselPage";
 import { SSKPage } from "../pages/styled-pages/concrete-pages/SSKPage";
 import { GrocifyPage } from "../pages/styled-pages/concrete-pages/GrocifyPage";
+import { useGithubData } from "../hooks/useGithubData";
 
 type AppProps = {};
 
@@ -96,6 +97,9 @@ export const App: React.FC<AppProps> = (props) => {
       await Promise.all([bridgeUrlPromise, replaysUrlPromise]);
     })();
   }, []);
+
+  const {data, error, loading } = useGithubData();
+  console.log({data, error, loading});
 
   return (
     <Router history={history}>
