@@ -4,18 +4,26 @@ import styled from "styled-components";
 import { LayoutStyledProps } from "../../../../layouts/types";
 import { defaultFontSize } from "../../../../styles/constants";
 import { respond } from "../../../../styles/breakpoints";
+import { resumeContainerStyles } from "./styles";
 
 const Container = styled.div<LayoutStyledProps>`
   display: grid;
-  grid-template-columns: repeat(2, minmax(min-content, 17.5rem)) max-content 1fr;
-  grid-auto-rows: minmax(5.6rem, 8.4rem);
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  margin-top: ${defaultFontSize};
   font-size: ${defaultFontSize};
 
   & > * {
+    &:nth-child(4n + 3),
     &:nth-child(4n + 4) {
+      ${resumeContainerStyles}
+      margin-bottom: 0;
+    }
+
+    &:nth-child(4n + 2), &:nth-child(4n + 4) {
+      justify-content: flex-end;
       padding-right: 0;
     }
   }
@@ -35,6 +43,11 @@ const Container = styled.div<LayoutStyledProps>`
 
       &:nth-child(4n + 4) {
         margin-bottom: ${defaultFontSize};
+      }
+
+      &:nth-child(4n + 3),
+      &:nth-child(4n + 4) {
+        padding-bottom: 0;
       }
     }
   `}

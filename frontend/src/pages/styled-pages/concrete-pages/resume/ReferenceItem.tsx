@@ -2,11 +2,9 @@ import { useColorScheme } from "../../../../hooks/useColorScheme";
 import styled from "styled-components";
 import { LayoutStyledProps } from "../../../../layouts/types";
 import { ExamplePageLink } from "../../ExamplePageLink";
-import { resumeContainerStyles } from "./styles";
 import { defaultFontSize } from "../../../../styles/constants";
 
 const Item = styled.div<LayoutStyledProps>`
-  ${resumeContainerStyles}
   height: 100%;
   display: flex;
   align-items: center;
@@ -37,8 +35,8 @@ export function ReferenceItem(props: ReferenceItemProps) {
       <Item {...propsToAdd}>
         <ExamplePageLink url={href}>{name}</ExamplePageLink>
       </Item>
-      <Item {...propsToAdd}>{relation}</Item>
       <Item {...propsToAdd}>{phone}</Item>
+      <Item {...propsToAdd}>{relation}</Item>
       {email ? (
         <Item {...propsToAdd}>
           <ExamplePageLink includeSpaces={false} url={`mailto:${email}`}>
