@@ -78,6 +78,8 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             },
             achievements: [
               "Implemented a .NET (C#) backend service for auto-adding protection plans, resulting in over <b>10% growth in sales</b> of these plans.",
+              "Created a .NET hosted service to migrate Azure storage data to AWS S3, simplifying the migration of the in-house app store to AWS.",
+              "Created a Node.js script to convert the MS SQL .csv files into PostgreSQL .sql files, allowing for a seamless transition to the new database.",
               "Built a typescript(Node.js and Frontend compatible) library which streamlines interactions with the on-site authorization service (OPS).",
               "Built a typescript(Node.js and Frontend compatible) authentication library which simplified setup to the employee OAuth2 provider.",
               "Built a typescript(Node.js and Frontend compatible) library which wrapped the native fetch function to provide de-duplication, caching, circuit-breaking, retrying, and token management.",
