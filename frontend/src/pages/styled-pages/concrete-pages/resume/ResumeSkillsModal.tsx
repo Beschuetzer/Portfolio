@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { LayoutStyledProps } from "../../../../layouts/types";
 import { selectedSkillSelector, setSelectedSkill } from "../../../../slices";
@@ -13,7 +13,7 @@ import {
   useGithubRepos,
   UseGithubReposResponse,
 } from "../../../../hooks/useGithubRepos";
-import { GithubPageInfo } from "../../../../apis/github";
+import { GithubPageInfo, GithubRepository } from "../../../../apis/github";
 
 const Container = styled.div<LayoutStyledProps>`
   position: fixed;
@@ -97,6 +97,7 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
   const dispatch = useAppDispatch();
   const colorScheme = useColorScheme();
   const selectedSkill = useAppSelector(selectedSkillSelector);
+  const [reposToDisplay, setReposToDisplay] = useState<GithubRepository[]>([]);
   const [endCursor, setEndCursor] = useState("");
   const lastPageInfo = useRef<GithubPageInfo | null>(null);
   console.log("rendering modal");
@@ -118,22 +119,32 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
       console.log("no more pages");
       return;
     }
+    console.log({lastPageInfo: lastPageInfo.current});
     setEndCursor(lastPageInfo.current?.endCursor || "");
-  }, []); 
+  }, []);
 
   const onSuccessfulFetch = useCallback((data: UseGithubReposResponse) => {
     if (data?.search.pageInfo.hasNextPage) {
       lastPageInfo.current = data.search.pageInfo;
     }
+    setReposToDisplay((current) => [
+      ...current,
+      ...(data?.search?.nodes || []),
+    ]);
   }, []);
 
   const { data, error, isLoading } = useGithubRepos({
     topic: selectedSkill,
-    pageSize: 3,
+    pageSize: 5,
     endCursor,
     onSuccess: onSuccessfulFetch,
   });
-  console.log({data, error, isLoading});
+
+  useEffect(() => {
+    console.log({ reposToDisplay});
+  }, [reposToDisplay]);
+
+  console.log({ data, error, isLoading });
   return (
     <Container {...propsToAdd} onClick={onContainerClick}>
       <Content {...propsToAdd} onClick={onConentClick}>
@@ -142,7 +153,9 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
           <CloseButton {...propsToAdd} onClick={onContainerClick}>
             <CloseButtonUse {...propsToAdd} href="/sprite.svg#icon-close" />
           </CloseButton>
-          <HeaderSubTitle>* click the project name to view a working demo (when possible)</HeaderSubTitle>
+          <HeaderSubTitle>
+            * click the project name to view a working demo (when possible)
+          </HeaderSubTitle>
         </Header>
         <TableHeaders />
         <NextButton onClick={onLoadNextBatch}>Next</NextButton>
