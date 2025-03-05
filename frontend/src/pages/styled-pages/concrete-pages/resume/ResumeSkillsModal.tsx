@@ -5,8 +5,10 @@ import { selectedSkillSelector, setSelectedSkill } from "../../../../slices";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import {
   defaultFontSize,
+  fontSizeSix,
   fontSizeThree,
   getFontSizeCustom,
+  SECTION_WIDTH_IN_PIXELS,
 } from "../../../../styles/constants";
 import { useColorScheme } from "../../../../hooks/useColorScheme";
 import {
@@ -34,6 +36,7 @@ const Container = styled.div<LayoutStyledProps>`
 const Content = styled.div<LayoutStyledProps>`
   overflow-y: scroll;
   width: 80%;
+  max-width: ${SECTION_WIDTH_IN_PIXELS * 1.25}px;
   height: 80%;
   position: relative;
   background-color: ${(props) => props.colorscheme?.primary4};
@@ -69,7 +72,7 @@ const Header = styled.div<LayoutStyledProps>`
 `;
 
 const HeaderTitle = styled.div<LayoutStyledProps>`
-  font-size: ${getFontSizeCustom(2)};
+  font-size: ${fontSizeSix};
   font-weight: bold;
   color: ${(props) => props.colorscheme?.primary1};
 `;

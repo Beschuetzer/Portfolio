@@ -1,11 +1,10 @@
-import React from "react";
+import { useEffect, useRef } from "react";
 import { GithubRepository } from "../../../../apis/github";
 import styled from "styled-components";
 import {
   BUTTON_WIDTH,
   defaultFontSize,
-  fontSizeEleven,
-  fontSizeSix,
+  fontSizeFive,
   fontSizeThree,
 } from "../../../../styles/constants";
 import { LayoutStyledProps } from "../../../../layouts/types";
@@ -17,14 +16,22 @@ const Container = styled.div<LayoutStyledProps>`
   flex-direction: column;
   flex: 1;
   padding: ${defaultFontSize};
+
+  & > div {
+    padding: ${defaultFontSize} 0;
+    &:first-child {
+      padding-top: 0;
+    }
+    &:not(:last-child) {
+      border-bottom: 1px solid ${(props) => props.colorscheme?.primary1};
+    }
+  }
 `;
 
 const ItemContainer = styled.div<LayoutStyledProps>`
   display: grid;
   grid-template-columns: 1fr;
 
-  padding: ${defaultFontSize};
-  margin-bottom: ${fontSizeEleven};
   font-size: ${fontSizeThree};
 `;
 
@@ -42,7 +49,7 @@ const ItemRowOneColumnTwo = styled.div<LayoutStyledProps>`
 `;
 
 const ItemName = styled.div<LayoutStyledProps>`
-  font-size: ${fontSizeSix};
+  font-size: ${fontSizeFive};
 `;
 
 const ItemDescription = styled.div<LayoutStyledProps>`
@@ -85,12 +92,21 @@ export function ResumeSkillsModalReposList(
   props: ResumeSkillsModalReposListProps
 ) {
   const { repos, isLoading } = props;
+  const containerRef = useRef<HTMLDivElement>(null);
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = {
     colorscheme: colorScheme,
   };
+
+  useEffect(() => {
+    //scroll to the bottom of the list
+    if (containerRef.current) {
+      containerRef.current.scrollTo(-1000, -1000);
+    }
+  }, [isLoading]);
+
   return (
-    <Container {...propsToAdd}>
+    <Container {...propsToAdd} ref={containerRef}>
       {repos.map((repo) => (
         <ItemContainer key={repo.name}>
           <ItemRowOne>
@@ -113,7 +129,9 @@ export function ResumeSkillsModalReposList(
               </ItemUpdatedAt>
             </ItemRowOneColumnTwo>
           </ItemRowOne>
-          <ItemDescription>{repo.description}</ItemDescription>
+          <ItemDescription
+            dangerouslySetInnerHTML={{ __html: repo.description || "" }}
+          />
           <div>{repo.url}</div>
         </ItemContainer>
       ))}
