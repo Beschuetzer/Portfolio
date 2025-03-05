@@ -2,6 +2,7 @@ import React from "react";
 import { GithubRepository } from "../../../../apis/github";
 import styled from "styled-components";
 import {
+  BUTTON_WIDTH,
   defaultFontSize,
   fontSizeEleven,
   fontSizeSix,
@@ -41,7 +42,7 @@ const ItemRowOneColumnTwo = styled.div<LayoutStyledProps>`
 `;
 
 const ItemName = styled.div<LayoutStyledProps>`
-    font-size: ${fontSizeSix};
+  font-size: ${fontSizeSix};
 `;
 
 const ItemDescription = styled.div<LayoutStyledProps>`
@@ -52,14 +53,38 @@ const ItemCreatedAt = styled.div<LayoutStyledProps>``;
 
 const ItemUpdatedAt = styled.div<LayoutStyledProps>``;
 
+const LoadingContainer = styled.div<LayoutStyledProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: ${defaultFontSize};
+  font-size: ${fontSizeThree};
+  width: 100%;
+  height: 100%;
+  color: ${(props) => props.colorscheme?.primary1};
+`;
+
+const LoadingSpinner = styled.div<LayoutStyledProps>`
+  width: ${BUTTON_WIDTH};
+  height: ${BUTTON_WIDTH};
+  border: calc(${BUTTON_WIDTH} / 6) solid
+    ${(props) => props.colorscheme?.primary1};
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+`;
+
 type ResumeSkillsModalReposListProps = {
   repos: GithubRepository[];
+  isLoading: boolean;
 };
 
 export function ResumeSkillsModalReposList(
   props: ResumeSkillsModalReposListProps
 ) {
-  const { repos } = props;
+  const { repos, isLoading } = props;
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = {
     colorscheme: colorScheme,
@@ -92,6 +117,11 @@ export function ResumeSkillsModalReposList(
           <div>{repo.url}</div>
         </ItemContainer>
       ))}
+      {isLoading ? (
+        <LoadingContainer {...propsToAdd}>
+          <LoadingSpinner {...propsToAdd} />
+        </LoadingContainer>
+      ) : null}
     </Container>
   );
 }

@@ -81,7 +81,6 @@ const HeaderSubTitle = styled.div<LayoutStyledProps>`
 `;
 
 const ShowMoreButton = styled.button<LayoutStyledProps>`
-  font-size: ${fontSizeThree};
   align-self: center;
   padding: ${defaultFontSize} ${getFontSizeCustom(2)};
   border-radius: ${defaultFontSize};
@@ -161,6 +160,7 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
   const { data, error, isLoading } = useGithubRepos({
     topic: selectedSkill,
     endCursor,
+    pageSize: 2,
     onSuccess: onSuccessfulFetch,
   });
 
@@ -185,7 +185,10 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
           </HeaderSubTitle>
         </Header>
         <TableHeaders />
-        <ResumeSkillsModalReposList repos={reposToDisplay} />
+        <ResumeSkillsModalReposList
+          repos={reposToDisplay}
+          isLoading={isLoading}
+        />
         {shouldShowMore ? (
           <ShowMoreContainer {...propsToAdd}>
             <ShowMoreButton onClick={onLoadNextBatch}>Show More</ShowMoreButton>
