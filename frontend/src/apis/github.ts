@@ -40,6 +40,9 @@ export async function getGithubRepos(input: GetGithubReposInput): Promise<GetGit
   try {
     const { endCursor = GITHUB_END_CURSOR_DEFAULT, pageSize = GITHUB_REPOS_PAGE_SIZE_DEFAULT, topic } = input;
     const response = await fetch(`/repos?pageSize=${pageSize}&topic=${topic}&endCursor=${endCursor}`);  
+    if (!response.ok) {
+      throw new Error(`getGithubRepos failed with status ${response.status}`);
+    }
     const data = await response.json();
     return data as GetGithubReposResponse;
   }
