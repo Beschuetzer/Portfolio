@@ -12,16 +12,39 @@ export type GetGithubReposInput = {
    topic: string;
 };
 
+export type GithubRepository = {
+  createdAt: string;
+  description: string;
+  name: string;
+  updatedAt: string;
+  homepageUrl: string;
+  url: string;
+}
+
+export type GithubPageInfo = {
+  endCursor: string;
+  hasNextPage: boolean;
+}
+
+export type GetGithubReposResponse = {
+  search: {
+    nodes: GithubRepository[];
+    pageInfo: GithubPageInfo;
+  };
+}
+
 export const GITHUB_REPOS_PAGE_SIZE_DEFAULT = 10;
 export const GITHUB_END_CURSOR_DEFAULT = "";
 
-export async function getGithubRepos(input: GetGithubReposInput) {
+export async function getGithubRepos(input: GetGithubReposInput): Promise<GetGithubReposResponse | null> {
   try {
     const { endCursor = GITHUB_END_CURSOR_DEFAULT, pageSize = GITHUB_REPOS_PAGE_SIZE_DEFAULT, topic } = input;
-    const repos = await axios.get(`/repos?pageSize=${pageSize}&topic=${topic}&endCursor=${endCursor}`);  
-    return repos;
+    const response = await fetch(`/repos?pageSize=${pageSize}&topic=${topic}&endCursor=${endCursor}`);  
+    const data = await response.json();
+    return data as GetGithubReposResponse;
   }
   catch (err) {
     console.warn('error fetching github repos', err);
+    return null;
   }
 }
