@@ -64,13 +64,10 @@ import { BridgeDemoPage } from "../pages/styled-pages/concrete-pages/BridgeDemoP
 import { ThumbnailCarouselPage } from "../pages/styled-pages/concrete-pages/ThumbnailCarouselPage";
 import { SSKPage } from "../pages/styled-pages/concrete-pages/SSKPage";
 import { GrocifyPage } from "../pages/styled-pages/concrete-pages/GrocifyPage";
-import { useAwakenSleepingContainers } from "../hooks/useAwakenSleepingContainers";
 
 type AppProps = {};
 
 export const App: React.FC<AppProps> = (props) => {
-  useAwakenSleepingContainers();
-
   // //Loading Sounds, etc
   // useEffect(() => {
   // 	const sounds = new Howl({
