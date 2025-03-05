@@ -113,10 +113,13 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
     e.stopPropagation();
   }, []);
 
-  const onNextClick = useCallback(() => {
-    if (!lastPageInfo.current?.hasNextPage) return;
+  const onLoadNextBatch = useCallback(() => {
+    if (!lastPageInfo.current?.hasNextPage) {
+      console.log("no more pages");
+      return;
+    }
     setEndCursor(lastPageInfo.current?.endCursor || "");
-  }, []);
+  }, []); 
 
   const onSuccessfulFetch = useCallback((data: UseGithubReposResponse) => {
     if (data?.search.pageInfo.hasNextPage) {
@@ -142,10 +145,7 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
           <HeaderSubTitle></HeaderSubTitle>
         </Header>
         <TableHeaders />
-        {lastPageInfo.current?.hasNextPage ? (
-
-          <NextButton onClick={onNextClick}>Next</NextButton>
-        ) : null}
+        <NextButton onClick={onLoadNextBatch}>Next</NextButton>
       </Content>
     </Container>
   );
