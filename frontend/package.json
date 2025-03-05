@@ -5,7 +5,7 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.2",
-    "@tanstack/react-query": "^5.67.1",
+    "@tanstack/react-query": "5.67.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",

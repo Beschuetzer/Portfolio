@@ -1,23 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
-export type GeneralSliceState = {}
-
-export const generalSliceInitialState: GeneralSliceState = {};
-
-//#region Payloads and other Types
-export type SetIsMobilePayload = {
-  isMobile: boolean;
-  viewPortWidth: number;
+export type GeneralSliceState = {
+  selectedSkill: string;
 }
-//#endregion
+
+export const generalSliceInitialState: GeneralSliceState = {
+  selectedSkill: "",
+};
 
 export const generalSlice = createSlice({
   name: 'general',
   initialState: generalSliceInitialState,
-  reducers: {},
+  reducers: {
+    setSelectedSkill: (state, action) => {
+      state.selectedSkill = action.payload
+    }
+  },
  });
 
 //#region Selectors
 //#endregion
 
-export const {} = generalSlice.actions;
+export const {
+  setSelectedSkill
+} = generalSlice.actions;
+
+export const selectedSkillSelector = (state: RootState) => state[generalSlice.name].selectedSkill;

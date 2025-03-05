@@ -19,7 +19,6 @@ const SiteNavBackgroundStyled = styled.div<SiteNavStyledProps>`
     ${(props) => hexToRgba(COLORS.general?.black || "#000", .925)},
     ${(props) => hexToRgba(props.colorscheme?.primary4, .5)}
   );
-  transition: filter 0.5s ease, -webkit-filter 0.5s ease;
 `;
 
 type SiteNavBackgroundProps = {};

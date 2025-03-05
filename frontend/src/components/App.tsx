@@ -65,10 +65,15 @@ import { ThumbnailCarouselPage } from "../pages/styled-pages/concrete-pages/Thum
 import { SSKPage } from "../pages/styled-pages/concrete-pages/SSKPage";
 import { GrocifyPage } from "../pages/styled-pages/concrete-pages/GrocifyPage";
 import { getGithubRepos } from "../apis/github";
+import { useAppDispatch } from "../hooks";
+import { setSelectedSkill } from "../slices";
+import { useAwakenSleepingContainers } from "../hooks/useAwakenSleepingContainers";
 
 type AppProps = {};
 
 export const App: React.FC<AppProps> = (props) => {
+  useAwakenSleepingContainers();
+
   // //Loading Sounds, etc
   // useEffect(() => {
   // 	const sounds = new Howl({
@@ -85,25 +90,18 @@ export const App: React.FC<AppProps> = (props) => {
   // 	dispatch(setSounds(sounds as unknown as LoadedSounds));
   // }, [setSounds]);
 
+  //todo: delete this when done with skills stuff
+  const dispatch = useAppDispatch();
   useEffect(() => {
     (async () => {
-      // Trigger a call to the URL behind the scenes
-      const bridgeUrlPromise = fetch(LIVE_BRIDGE_URL, {
-        mode: "no-cors",
-      });
-      const replaysUrlPromise = fetch(LIVE_REPLAYS_URL, {
-        mode: "no-cors",
-      });
-      await Promise.all([bridgeUrlPromise, replaysUrlPromise]);
+      const response = await getGithubRepos({ topic: "javascript" });
+      setTimeout(() => {
+        dispatch(setSelectedSkill("javascript"));
+      }, 1000);
+      console.log({ response });
     })();
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      const response = await getGithubRepos({topic: "javascript"});
-      console.log({response});
-    })();
-  }, []);
 
   return (
     <Router history={history}>

@@ -17,6 +17,7 @@ import { ExamplePageLink } from "../ExamplePageLink";
 import EducationList from "./resume/EducationList";
 import ResumeItems from "./resume/ResumeItems";
 import { LinkedInIcon } from "../icons/LinkedInIcon";
+import { ResumeSkillsModal } from "./resume/ResumeSkillsModal";
 
 export const RESUME_PAGE_HEADER_NAME = "Résumé";
 export const RESUME_SECTION_TITLES = [
@@ -36,8 +37,9 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
           text="You are not your résumé, you are your work."
         />
         <ExamplePageParagraph>
-          Welcome! I am a developer with a passion for creating things
-          that are both perfomant and seamless. Below you will find my experience, education, and my references.
+          Welcome! I am a developer with a passion for creating things that are
+          both perfomant and seamless. Below you will find my experience,
+          education, and my references.
         </ExamplePageParagraph>
         {/* <ExamplePageParagraph>
           Selecting a skill will open a modal with links to the Github repo and
@@ -66,7 +68,8 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               "Identified and resolved bugs in the React.js client apps as well as the .NET (C#) backend apps, enhancing functionality and significantly improving user experience.",
               "Created a fully-customizable batch service using .NET 8 (C#) and Entity Framework in order to pull Twillio attributes at a pre-defined interval and store them in a PostgreSQL database, allowing the authorization service to evaluate policies based on Twillio attributes while still maintaining quick response times.",
             ],
-            jobDescription: "Continued contributions to the in-house app store and started contributing to the authorization service.",
+            jobDescription:
+              "Continued contributions to the in-house app store and started contributing to the authorization service.",
             dateEnd: "02/25",
             dateStart: "12/24",
             jobTitle: "Engineer I",
@@ -87,19 +90,21 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             dateStart: "11/22",
             dateEnd: "09/24",
             jobTitle: "Engineer Associate (FTE)",
-            jobDescription: "Continued contributions to the Solution Sidekick mobile app but shifted focus to its Backend for Frontend service.  Eventually was moved to the in-store app store team where I supported multiple .NET and React projects."
+            jobDescription:
+              "Continued contributions to the Solution Sidekick mobile app but shifted focus to its Backend for Frontend service.  Eventually was moved to the in-store app store team where I supported multiple .NET and React projects.",
           },
           {
             employer: {
               name: "Best Buy",
               url: BEST_BUY_URL,
             },
-            jobDescription: "Contributed primarily to the development, documentation, testing, and growth of the Solution Sidekick mobile app.",
+            jobDescription:
+              "Contributed primarily to the development, documentation, testing, and growth of the Solution Sidekick mobile app.",
             achievements: [
               "Leveraged my React and Redux skills to implement a new feature, which allowed in-store employees to create re-useable baskets and schedule consultations in store, leading to a <b>sales increase of 12%</b>.",
               "Created a paginated, (infinite scroll) React component which leveraged Redux to display the re-usable baskets, allowing employees to easily access saved baskets.",
               "Created the QuantitySelector, a re-usable React component for displaying the quantity of a product in the cart as well as adding a variable number to the cart.",
-              "Collaborated with cross-functional teams in an Agile environment, actively participating in daily stand-ups, sprint planning, and retrospectives to ensure the delivery of high-quality software solutions."
+              "Collaborated with cross-functional teams in an Agile environment, actively participating in daily stand-ups, sprint planning, and retrospectives to ensure the delivery of high-quality software solutions.",
             ],
             dateStart: "02/22",
             dateEnd: "11/22",
@@ -141,9 +146,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
                   </ExamplePageLink>
                   utilizing redux, nest.js, and mongoDB. The app pulls from the
                   mongoDB collection used in the aforementioned
-                  <ExamplePageLink url={BRIDGE_URL}>
-                    bridge app
-                  </ExamplePageLink>
+                  <ExamplePageLink url={BRIDGE_URL}>bridge app</ExamplePageLink>
                   allowing for easy reviewing of games played as well as insight
                   into the statistics surrounding their games.
                 </div>
@@ -198,7 +201,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             relation: "Best Buy Manager",
             phone: "913-209-2823",
             email: "troymccabe@gmail.com",
-          },        
+          },
           {
             name: "Alissa Monroe",
             relation: "Best Buy Co-worker",
@@ -210,18 +213,18 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             relation: "Best Buy Co-worker",
             phone: "612-720-4675",
             email: "KaylaAnnOtterness@gmail.com",
-          },  
+          },
           {
             name: "Brian Thompson",
             relation: "Best Buy Co-worker",
             phone: "612-616-5904",
-            email: "elephantium@gmail.com"
+            email: "elephantium@gmail.com",
           },
           {
             name: "Jeff Wallen",
             relation: "Best Buy Product Manager",
             phone: "612-867-5333",
-            email: "jeffwallen27@gmail.com"
+            email: "jeffwallen27@gmail.com",
           },
           {
             name: "Scott Helland",
@@ -257,34 +260,36 @@ type ResmueProps = {};
 
 export function ResumePage(props: ResmueProps) {
   return (
-    <ExamplePage
-      title={RESUME_PAGE_HEADER_NAME}
-      sections={RESUME_SECTIONS}
-      layoutProps={{
-        links: [
-          {
-            title: {
-              text: "Download",
+    <>
+      <ExamplePage
+        title={RESUME_PAGE_HEADER_NAME}
+        sections={RESUME_SECTIONS}
+        layoutProps={{
+          links: [
+            {
+              title: {
+                text: "Download",
+              },
+              url: `/resume.pdf`,
+              svg: {
+                xlinkHref: `/sprite.svg#icon-code`,
+              },
+              hoverEffectType: HoverEffect.explode,
             },
-            url: `/resume.pdf`,
-            svg: {
-              xlinkHref: `/sprite.svg#icon-code`,
+            {
+              url: LINKED_IN_URL,
+              svg: {
+                jsx: (colorScheme) => <LinkedInIcon />,
+              },
+              hoverEffectType: HoverEffect.explode,
             },
-            hoverEffectType: HoverEffect.explode,
-          },
-          {
-            url: LINKED_IN_URL,
-            svg: {
-              jsx: (colorScheme) => <LinkedInIcon />
-            },
-            hoverEffectType: HoverEffect.explode,
-          },
-        ],
-      }}
-    />
+          ],
+        }}
+      />
+      <ResumeSkillsModal />
+    </>
   );
 }
-
 
 //todo: add skills section using this data
 // const RESUME_SKILLS_SECTIONS = [
