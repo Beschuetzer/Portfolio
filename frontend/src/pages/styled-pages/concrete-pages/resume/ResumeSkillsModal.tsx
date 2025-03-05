@@ -32,7 +32,7 @@ const Container = styled.div<LayoutStyledProps>`
 `;
 
 const Content = styled.div<LayoutStyledProps>`
-  overflow: scroll;
+  overflow-y: scroll;
   width: 80%;
   height: 80%;
   position: relative;
@@ -55,7 +55,8 @@ const CloseButtonUse = styled.use<LayoutStyledProps>`
 const Header = styled.div<LayoutStyledProps>`
   grid-template-columns: 1fr min-content;
   color: ${(props) => props.colorscheme?.primary1};
-  padding: ${defaultFontSize} ${defaultFontSize} ${defaultFontSize} ${getFontSizeCustom(2)};
+  padding: ${defaultFontSize} ${defaultFontSize} ${defaultFontSize}
+    ${getFontSizeCustom(2)};
   background-color: ${(props) => props.colorscheme?.primary4};
   border-bottom: 1px solid ${(props) => props.colorscheme?.primary1};
   display: grid;
@@ -81,13 +82,23 @@ const HeaderSubTitle = styled.div<LayoutStyledProps>`
 
 const ShowMoreButton = styled.button<LayoutStyledProps>`
   font-size: ${fontSizeThree};
-  margin-top: ${defaultFontSize};
   align-self: center;
   padding: ${defaultFontSize} ${getFontSizeCustom(2)};
   border-radius: ${defaultFontSize};
   background-color: ${(props) => props.colorscheme?.primary2};
   color: ${(props) => props.colorscheme?.primary1};
   cursor: pointer;
+`;
+
+const ShowMoreContainer = styled.div<LayoutStyledProps>`
+  display: flex;
+  justify-content: center;
+  padding: ${defaultFontSize};
+  border-top: 1px solid ${(props) => props.colorscheme?.primary1};
+  width: 100%;
+  background-color: ${(props) => props.colorscheme?.primary4};
+  position: sticky;
+  bottom: 0;
 `;
 
 const TableHeaders = styled.div<LayoutStyledProps>`
@@ -149,7 +160,7 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
 
   const { data, error, isLoading } = useGithubRepos({
     topic: selectedSkill,
-    pageSize: 5,
+    pageSize: 2,
     endCursor,
     onSuccess: onSuccessfulFetch,
   });
@@ -164,18 +175,22 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
     <Container {...propsToAdd} onClick={onContainerClick}>
       <Content {...propsToAdd} onClick={onConentClick}>
         <Header {...propsToAdd}>
-          <HeaderTitle {...propsToAdd}>{selectedSkill}</HeaderTitle>
+          <HeaderTitle {...propsToAdd}>
+            '{selectedSkill}' Repositories
+          </HeaderTitle>
           <CloseButton {...propsToAdd} onClick={onContainerClick}>
             <CloseButtonUse {...propsToAdd} href="/sprite.svg#icon-close" />
           </CloseButton>
           <HeaderSubTitle {...propsToAdd}>
-            * click the project name to view a working demo (when possible)
+            * click the name to view a working demo (when possible)
           </HeaderSubTitle>
         </Header>
         <TableHeaders />
         <ResumeSkillsModalReposList repos={reposToDisplay} />
         {shouldShowMore ? (
-          <ShowMoreButton onClick={onLoadNextBatch}>Show More</ShowMoreButton>
+          <ShowMoreContainer {...propsToAdd}>
+            <ShowMoreButton onClick={onLoadNextBatch}>Show More</ShowMoreButton>
+          </ShowMoreContainer>
         ) : null}
       </Content>
     </Container>
