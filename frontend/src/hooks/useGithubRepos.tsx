@@ -5,9 +5,9 @@ import {
   GetGithubReposResponse,
 } from "../apis/github";
 
-type UseGithubReposResponse = GetGithubReposResponse | null;
+export type UseGithubReposResponse = GetGithubReposResponse | null;
 
-type UseGithubReposInput = GetGithubReposInput & {
+export type UseGithubReposInput = GetGithubReposInput & {
   onSuccess?: (data: UseGithubReposResponse) => void;
   onError?: (error: Error) => void;
 };
