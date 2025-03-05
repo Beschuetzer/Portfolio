@@ -65,6 +65,7 @@ import { ThumbnailCarouselPage } from "../pages/styled-pages/concrete-pages/Thum
 import { SSKPage } from "../pages/styled-pages/concrete-pages/SSKPage";
 import { GrocifyPage } from "../pages/styled-pages/concrete-pages/GrocifyPage";
 import { useGithubData } from "../hooks/useGithubData";
+import { getGithubRepos } from "../apis/github";
 
 type AppProps = {};
 
@@ -98,8 +99,12 @@ export const App: React.FC<AppProps> = (props) => {
     })();
   }, []);
 
-  const {data, error, loading } = useGithubData();
-  console.log({data, error, loading});
+  useEffect(() => {
+    (async () => {
+      const response = await getGithubRepos({topic: "javascript"});
+      console.log({response});
+    })();
+  }, []);
 
   return (
     <Router history={history}>
