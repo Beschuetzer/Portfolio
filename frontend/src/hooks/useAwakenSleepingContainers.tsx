@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { LIVE_BRIDGE_URL, LIVE_REPLAYS_URL } from "../components/constants";
 
-const NUMBER_OF_MINUTES = 10;
+const NUMBER_OF_MINUTES = 5;
 const PING_INTERVAL = 60 * 1000 * NUMBER_OF_MINUTES;
 const GROCIFY_BFF_URL = "https://grocify-bff-ac27c2662495.herokuapp.com/";
 const URLS_TO_PING = [
-  GROCIFY_BFF_URL,
+  `${GROCIFY_BFF_URL}/ping`,
   LIVE_BRIDGE_URL,
   LIVE_REPLAYS_URL,
 ];
