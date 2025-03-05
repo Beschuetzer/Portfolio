@@ -14,6 +14,8 @@ import {
   UseGithubReposResponse,
 } from "../../../../hooks/useGithubRepos";
 import { GithubPageInfo, GithubRepository } from "../../../../apis/github";
+import { ResumeSkillsModalReposList } from "./ResumeSkillsModalReposList";
+import { useHideMainScrollbar } from "../../../../hooks/useHideMainScrollbar";
 
 const Container = styled.div<LayoutStyledProps>`
   position: fixed;
@@ -30,6 +32,7 @@ const Container = styled.div<LayoutStyledProps>`
 `;
 
 const Content = styled.div<LayoutStyledProps>`
+  overflow: scroll;
   width: 80%;
   height: 80%;
   position: relative;
@@ -37,7 +40,6 @@ const Content = styled.div<LayoutStyledProps>`
   border-radius: ${defaultFontSize};
   display: flex;
   flex-direction: column;
-  padding: ${defaultFontSize} ${getFontSizeCustom(2)};
 `;
 
 const CloseButton = styled.svg<LayoutStyledProps>`
@@ -53,6 +55,9 @@ const CloseButtonUse = styled.use<LayoutStyledProps>`
 const Header = styled.div<LayoutStyledProps>`
   grid-template-columns: 1fr min-content;
   color: ${(props) => props.colorscheme?.primary1};
+  padding: ${defaultFontSize} ${defaultFontSize} ${defaultFontSize} ${getFontSizeCustom(2)};
+  background-color: ${(props) => props.colorscheme?.primary4};
+  border-bottom: 1px solid ${(props) => props.colorscheme?.primary1};
   display: grid;
   align-items: center;
   justify-content: center;
@@ -74,7 +79,7 @@ const HeaderSubTitle = styled.div<LayoutStyledProps>`
   grid-column: 1 / -1;
 `;
 
-const NextButton = styled.button<LayoutStyledProps>`
+const ShowMoreButton = styled.button<LayoutStyledProps>`
   font-size: ${fontSizeThree};
   margin-top: ${defaultFontSize};
   align-self: center;
@@ -98,6 +103,7 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
   const colorScheme = useColorScheme();
   const selectedSkill = useAppSelector(selectedSkillSelector);
   const [reposToDisplay, setReposToDisplay] = useState<GithubRepository[]>([]);
+  const [shouldShowMore, setSetshouldShowMore] = useState(true);
   const [endCursor, setEndCursor] = useState("");
   const lastPageInfo = useRef<GithubPageInfo | null>(null);
   console.log("rendering modal");
@@ -106,9 +112,16 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
     colorscheme: colorScheme,
   };
 
+  const reset = useCallback(() => {
+    setReposToDisplay([]);
+    setEndCursor("");
+    lastPageInfo.current = null;
+  }, []);
+
   const onContainerClick = useCallback(() => {
     dispatch(setSelectedSkill(""));
-  }, [dispatch]);
+    reset();
+  }, [dispatch, reset]);
 
   const onConentClick = useCallback((e: any) => {
     e.stopPropagation();
@@ -119,12 +132,13 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
       console.log("no more pages");
       return;
     }
-    console.log({lastPageInfo: lastPageInfo.current});
+    console.log({ lastPageInfo: lastPageInfo.current });
     setEndCursor(lastPageInfo.current?.endCursor || "");
   }, []);
 
+  useHideMainScrollbar(!selectedSkill);
   const onSuccessfulFetch = useCallback((data: UseGithubReposResponse) => {
-    if (data?.search.pageInfo.hasNextPage) {
+    if (data?.search) {
       lastPageInfo.current = data.search.pageInfo;
     }
     setReposToDisplay((current) => [
@@ -141,24 +155,28 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
   });
 
   useEffect(() => {
-    console.log({ reposToDisplay});
+    console.log({ lastPageInfo: lastPageInfo.current });
+    setSetshouldShowMore(lastPageInfo.current?.hasNextPage || false);
   }, [reposToDisplay]);
 
   console.log({ data, error, isLoading });
   return (
     <Container {...propsToAdd} onClick={onContainerClick}>
       <Content {...propsToAdd} onClick={onConentClick}>
-        <Header>
-          <HeaderTitle>{selectedSkill}</HeaderTitle>
+        <Header {...propsToAdd}>
+          <HeaderTitle {...propsToAdd}>{selectedSkill}</HeaderTitle>
           <CloseButton {...propsToAdd} onClick={onContainerClick}>
             <CloseButtonUse {...propsToAdd} href="/sprite.svg#icon-close" />
           </CloseButton>
-          <HeaderSubTitle>
+          <HeaderSubTitle {...propsToAdd}>
             * click the project name to view a working demo (when possible)
           </HeaderSubTitle>
         </Header>
         <TableHeaders />
-        <NextButton onClick={onLoadNextBatch}>Next</NextButton>
+        <ResumeSkillsModalReposList repos={reposToDisplay} />
+        {shouldShowMore ? (
+          <ShowMoreButton onClick={onLoadNextBatch}>Show More</ShowMoreButton>
+        ) : null}
       </Content>
     </Container>
   );
