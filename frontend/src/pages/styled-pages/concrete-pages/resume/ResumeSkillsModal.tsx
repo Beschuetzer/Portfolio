@@ -142,7 +142,7 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
           <CloseButton {...propsToAdd} onClick={onContainerClick}>
             <CloseButtonUse {...propsToAdd} href="/sprite.svg#icon-close" />
           </CloseButton>
-          <HeaderSubTitle></HeaderSubTitle>
+          <HeaderSubTitle>* click the project name to view a working demo (when possible)</HeaderSubTitle>
         </Header>
         <TableHeaders />
         <NextButton onClick={onLoadNextBatch}>Next</NextButton>
