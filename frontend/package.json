@@ -9,15 +9,6 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
-    "@types/howler": "^2.2.2",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^17.0.45",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "@types/react-redux": "^7.1.16",
-    "@types/react-router-dom": "^5.1.7",
-    "@types/styled-components": "^5.1.34",
-    "@types/three": "^0.128.0",
     "axios": "^0.21.1",
     "detect-browser": "5.3.0",
     "final-form": "^4.20.2",
@@ -36,6 +27,25 @@
     "three": "^0.126.1",
     "web-vitals": "^2.1.4"
   },
+  "devDependencies": {
+    "@types/howler": "^2.2.2",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^17.0.45",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@types/react-redux": "^7.1.16",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/styled-components": "^5.1.34",
+    "@types/three": "^0.128.0",
+    "autoprefixer": "^10.4.13",
+    "concat": "^1.0.3",
+    "concurrently": "7.6.0",
+    "live-server": "^1.2.2",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^10.1.0",
+    "sass": "^1.69.5",
+    "typescript": "^4.9.5"
+  },
   "scripts": {
     "start": "concurrently -k \"react-scripts start --openssl-legacy-provider\" \"sass sass/main.scss src/css/style.css --watch\"",
     "build": "react-scripts build --openssl-legacy-provider",
@@ -47,16 +57,6 @@
     "compress:css": "sass src/css/style.prefix.css src/css/style.css --style compressed",
     "build:css": "npm-run-all compile:sass concat:css prefix:css compress:css",
     "watch:sass": "sass sass/main.scss src/css/style.css --watch"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.13",
-    "concat": "^1.0.3",
-    "concurrently": "7.6.0",
-    "live-server": "^1.2.2",
-    "npm-run-all": "^4.1.5",
-    "postcss-cli": "^10.1.0",
-    "sass": "^1.69.5",
-    "typescript": "^4.9.5"
   },
   "eslintConfig": {
     "extends": [
