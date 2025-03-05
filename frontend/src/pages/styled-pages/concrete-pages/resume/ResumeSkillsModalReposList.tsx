@@ -5,11 +5,13 @@ import {
   BUTTON_WIDTH,
   defaultFontSize,
   fontSizeFive,
+  fontSizeNine,
   fontSizeThree,
 } from "../../../../styles/constants";
-import { LayoutStyledProps } from "../../../../layouts/types";
+import { HoverEffect, LayoutStyledProps } from "../../../../layouts/types";
 import { useColorScheme } from "../../../../hooks/useColorScheme";
 import { ExamplePageLink } from "../../ExamplePageLink";
+import { PageNavLayoutLink } from "../../../../layouts/PageNavLayoutLink";
 
 const Container = styled.div<LayoutStyledProps>`
   display: flex;
@@ -37,14 +39,21 @@ const ItemContainer = styled.div<LayoutStyledProps>`
 
 const ItemRowOne = styled.div<LayoutStyledProps>`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+`;
+
+const ItemRowOneColumnOne = styled.div<LayoutStyledProps>`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 `;
 
 const ItemRowOneColumnTwo = styled.div<LayoutStyledProps>`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
 `;
 
@@ -110,15 +119,31 @@ export function ResumeSkillsModalReposList(
       {repos.map((repo) => (
         <ItemContainer key={repo.name}>
           <ItemRowOne>
-            <ItemName>
-              {repo.homepageUrl ? (
-                <ExamplePageLink url={repo.homepageUrl}>
-                  {repo.name}
-                </ExamplePageLink>
-              ) : (
-                <>{repo.name}</>
-              )}
-            </ItemName>
+            <ItemRowOneColumnOne>
+              <ItemName>
+                {repo.homepageUrl ? (
+                  <ExamplePageLink url={repo.homepageUrl}>
+                    {repo.name}
+                  </ExamplePageLink>
+                ) : (
+                  <>{repo.name}</>
+                )}
+              </ItemName>
+              <PageNavLayoutLink
+                url={repo.url || ""}
+                hoverEffectType={HoverEffect.rotate}
+                title={{
+                  text: "View",
+                  color: colorScheme?.primary1,
+                }}
+                size={fontSizeNine}
+                svg={{
+                  xlinkHref: "/sprite.svg#icon-code",
+                  fill: colorScheme?.primary1,
+                }}
+                isFixed={false}
+              />
+            </ItemRowOneColumnOne>
             <ItemRowOneColumnTwo>
               <ItemCreatedAt>
                 <b>Created:</b> {new Date(repo.createdAt).toLocaleDateString()}
@@ -132,7 +157,6 @@ export function ResumeSkillsModalReposList(
           <ItemDescription
             dangerouslySetInnerHTML={{ __html: repo.description || "" }}
           />
-          <div>{repo.url}</div>
         </ItemContainer>
       ))}
       {isLoading ? (

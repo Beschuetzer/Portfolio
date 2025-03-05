@@ -9,12 +9,14 @@ export type LayoutStyledProps = {
   backgroundsvg?: string;
   colorscheme?: ColorScheme;
   index?: number;
+  isfixed?: string;
   islast?: string;
   isopen?: string;
   ispopupvisible?: string;
   percentage?: number;
   sitenavright?: string;
   textcolor?: string;
+  size?: string;
   svgfillcolor?: string;
   hovereffecttype?: HoverEffect;
   url?: string;

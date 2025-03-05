@@ -18,6 +18,7 @@ import {
 import { GithubPageInfo, GithubRepository } from "../../../../apis/github";
 import { ResumeSkillsModalReposList } from "./ResumeSkillsModalReposList";
 import { useHideMainScrollbar } from "../../../../hooks/useHideMainScrollbar";
+import { hexToRgba } from "../../../../components/navbar/sitenav/helpers";
 
 const Container = styled.div<LayoutStyledProps>`
   position: fixed;
@@ -68,7 +69,7 @@ const Header = styled.div<LayoutStyledProps>`
   position: sticky;
   text-align: center;
   top: 0;
-  z-index: 5;
+  z-index: 10000000000000000;
 `;
 
 const HeaderTitle = styled.div<LayoutStyledProps>`
@@ -84,11 +85,10 @@ const HeaderSubTitle = styled.div<LayoutStyledProps>`
 `;
 
 const ShowMoreButton = styled.button<LayoutStyledProps>`
-  align-self: center;
   padding: ${defaultFontSize} ${getFontSizeCustom(2)};
   border-radius: ${defaultFontSize};
-  background-color: ${(props) => props.colorscheme?.primary2};
-  color: ${(props) => props.colorscheme?.primary1};
+  background-color: ${(props) => hexToRgba(props.colorscheme?.primary1, .66)};
+  color: ${(props) => props.colorscheme?.primary4};
   cursor: pointer;
 `;
 
@@ -101,12 +101,7 @@ const ShowMoreContainer = styled.div<LayoutStyledProps>`
   background-color: ${(props) => props.colorscheme?.primary4};
   position: sticky;
   bottom: 0;
-`;
-
-const TableHeaders = styled.div<LayoutStyledProps>`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: ${defaultFontSize};
+  z-index: 100000000000000000;
 `;
 
 type ResumeSkillsModalProps = {};
@@ -178,7 +173,7 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
       <Content {...propsToAdd} onClick={onConentClick}>
         <Header {...propsToAdd}>
           <HeaderTitle {...propsToAdd}>
-            Repos with '{selectedSkill}' topic:
+            '{selectedSkill}' repos:
           </HeaderTitle>
           <CloseButton {...propsToAdd} onClick={onContainerClick}>
             <CloseButtonUse {...propsToAdd} href="/sprite.svg#icon-close" />
@@ -187,14 +182,13 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
             * click the name to view a working demo (when possible)
           </HeaderSubTitle>
         </Header>
-        <TableHeaders />
         <ResumeSkillsModalReposList
           repos={reposToDisplay}
           isLoading={isLoading}
         />
         {shouldShowMore ? (
           <ShowMoreContainer {...propsToAdd}>
-            <ShowMoreButton onClick={onLoadNextBatch}>Show More</ShowMoreButton>
+            <ShowMoreButton {...propsToAdd} onClick={onLoadNextBatch}>Show More</ShowMoreButton>
           </ShowMoreContainer>
         ) : null}
       </Content>

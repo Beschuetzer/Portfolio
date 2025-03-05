@@ -42,11 +42,14 @@ function getContainerRight(props: LayoutStyledProps) {
 }
 
 const Container = styled.div<LayoutStyledProps>`
-  position: fixed;
-  top: ${(props) => getContainerTop(props)};
-  left: ${(props) => props.sitenavright || SITE_NAV_TOP};
-  width: ${BUTTON_WIDTH};
-  height: ${BUTTON_WIDTH};
+  ${(props) =>
+    props.isfixed === "true"
+      ? `position: fixed;
+    top: ${getContainerTop(props)};
+    left: ${props.sitenavright || SITE_NAV_TOP};`
+      : "position: relative;"}
+  width: ${(props) => props.size};
+  height: ${(props) => props.size};
   user-select: none;
 
   ${(props) =>
@@ -55,9 +58,14 @@ const Container = styled.div<LayoutStyledProps>`
       : pageNavLayoutLinkHoverExplodeStyle}
 
   ${respond.navSwitch`
-    left: auto;
-    right: ${(props: LayoutStyledProps) => getContainerRight(props)};
-    top: ${pageNavLayoutHeaderMarginTopNavSwitch};
+    ${(props: LayoutStyledProps) =>
+      props.isfixed === "true"
+        ? `
+          top: ${pageNavLayoutHeaderMarginTopNavSwitch};
+          right: ${getContainerRight(props)};
+          left: auto;
+         `
+        : ""}
     z-index: 1;
   `}
 `;
@@ -106,8 +114,10 @@ const Title = styled.span<LayoutStyledProps>`
 `;
 
 export type PageNavLayoutLinkProps = {
-  index: number;
+  index?: number;
+  isFixed?: boolean;
   hoverEffectType?: HoverEffect;
+  size?: string;
   svg: {
     xlinkHref?: string;
     fill?: string;
@@ -124,7 +134,9 @@ export function PageNavLayoutLink(props: PageNavLayoutLinkProps) {
   const colorScheme = useColorScheme();
   const {
     hoverEffectType = HoverEffect.explode,
-    index,
+    index = 0,
+    isFixed = true,
+    size = BUTTON_WIDTH,
     svg,
     title,
     url,
@@ -140,12 +152,23 @@ export function PageNavLayoutLink(props: PageNavLayoutLinkProps) {
     () => ({
       colorscheme: colorScheme != null ? colorScheme : undefined,
       index: index,
+      isfixed: isFixed ? "true" : "false",
+      size,
       sitenavright: siteNavRight,
       textcolor: color,
       svgfillcolor: fill,
       hovereffecttype: hoverEffectType,
     }),
-    [color, colorScheme, fill, hoverEffectType, index, siteNavRight]
+    [
+      color,
+      colorScheme,
+      fill,
+      hoverEffectType,
+      index,
+      isFixed,
+      siteNavRight,
+      size,
+    ]
   );
 
   const onResize = useCallback(() => {
