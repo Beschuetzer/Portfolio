@@ -64,7 +64,6 @@ import { BridgeDemoPage } from "../pages/styled-pages/concrete-pages/BridgeDemoP
 import { ThumbnailCarouselPage } from "../pages/styled-pages/concrete-pages/ThumbnailCarouselPage";
 import { SSKPage } from "../pages/styled-pages/concrete-pages/SSKPage";
 import { GrocifyPage } from "../pages/styled-pages/concrete-pages/GrocifyPage";
-import { useGithubData } from "../hooks/useGithubData";
 import { getGithubRepos } from "../apis/github";
 
 type AppProps = {};
