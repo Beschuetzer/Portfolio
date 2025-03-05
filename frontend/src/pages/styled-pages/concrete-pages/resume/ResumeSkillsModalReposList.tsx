@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {
   defaultFontSize,
   fontSizeEleven,
+  fontSizeSix,
   fontSizeThree,
 } from "../../../../styles/constants";
 import { LayoutStyledProps } from "../../../../layouts/types";
@@ -39,7 +40,9 @@ const ItemRowOneColumnTwo = styled.div<LayoutStyledProps>`
   align-items: flex-end;
 `;
 
-const ItemName = styled.div<LayoutStyledProps>``;
+const ItemName = styled.div<LayoutStyledProps>`
+    font-size: ${fontSizeSix};
+`;
 
 const ItemDescription = styled.div<LayoutStyledProps>`
   padding-top: ${defaultFontSize};
@@ -86,6 +89,7 @@ export function ResumeSkillsModalReposList(
             </ItemRowOneColumnTwo>
           </ItemRowOne>
           <ItemDescription>{repo.description}</ItemDescription>
+          <div>{repo.url}</div>
         </ItemContainer>
       ))}
     </Container>

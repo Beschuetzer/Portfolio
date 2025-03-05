@@ -14,7 +14,7 @@ exports.githubController = async (req, res) => {
     const endCursorToUse = endCursor === '' ? '' : endCursor.replace(/"/g, '');
     const data = await graphQLClient.request(gql`
       query() {
-        search(query: "user:beschuetzer topic:${topic}", type: REPOSITORY, first: ${pageSize}, after:"${endCursorToUse}") {
+        search(query: "user:beschuetzer topic:${topic} sort:updated-desc", type: REPOSITORY, first: ${pageSize}, after:"${endCursorToUse}") {
             nodes {
                 ... on Repository {
                     createdAt
