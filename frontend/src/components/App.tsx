@@ -97,7 +97,7 @@ export const App: React.FC<AppProps> = (props) => {
       const response = await getGithubRepos({ topic: "javascript" });
       setTimeout(() => {
         dispatch(setSelectedSkill("javascript"));
-      }, 1000);
+      }, 100);
       console.log({ response });
     })();
   }, []);
