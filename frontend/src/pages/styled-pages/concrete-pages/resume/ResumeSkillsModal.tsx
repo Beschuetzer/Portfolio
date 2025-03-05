@@ -178,7 +178,7 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
       <Content {...propsToAdd} onClick={onConentClick}>
         <Header {...propsToAdd}>
           <HeaderTitle {...propsToAdd}>
-            '{selectedSkill}' Repositories
+            Repos with '{selectedSkill}' topic:
           </HeaderTitle>
           <CloseButton {...propsToAdd} onClick={onContainerClick}>
             <CloseButtonUse {...propsToAdd} href="/sprite.svg#icon-close" />
