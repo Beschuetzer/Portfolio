@@ -14,11 +14,11 @@ export type GetGithubReposInput = {
 
 export type GithubRepository = {
   createdAt: string;
-  description: string;
+  description?: string;
   name: string;
   updatedAt: string;
-  homepageUrl: string;
-  url: string;
+  homepageUrl?: string;
+  url?: string;
 }
 
 export type GithubPageInfo = {

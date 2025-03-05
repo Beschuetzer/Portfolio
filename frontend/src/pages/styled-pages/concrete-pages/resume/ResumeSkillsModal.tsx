@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { LayoutStyledProps } from "../../../../layouts/types";
 import { selectedSkillSelector, setSelectedSkill } from "../../../../slices";
@@ -9,6 +9,7 @@ import {
   getFontSizeCustom,
 } from "../../../../styles/constants";
 import { useColorScheme } from "../../../../hooks/useColorScheme";
+import { useGithubRepos } from "../../../../hooks/useGithubRepos";
 
 const Container = styled.div<LayoutStyledProps>`
   position: fixed;
@@ -32,6 +33,8 @@ const Content = styled.div<LayoutStyledProps>`
   border-radius: ${defaultFontSize};
   display: flex;
   flex-direction: column;
+  padding: ${defaultFontSize} ${getFontSizeCustom(2)};
+
 `;
 
 const CloseButton = styled.svg<LayoutStyledProps>`
@@ -50,7 +53,6 @@ const Header = styled.div<LayoutStyledProps>`
   display: grid;
   align-items: center;
   justify-content: center;
-  padding: ${defaultFontSize} ${getFontSizeCustom(2)};
   position: sticky;
   text-align: center;
   top: 0;
@@ -69,14 +71,22 @@ const HeaderSubTitle = styled.div<LayoutStyledProps>`
   grid-column: 1 / -1;
 `;
 
+const TableHeaders = styled.div<LayoutStyledProps>`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: ${defaultFontSize};
+`;
+
 type ResumeSkillsModalProps = {};
 
 export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
   const dispatch = useAppDispatch();
   const colorScheme = useColorScheme();
   const selectedSkill = useAppSelector(selectedSkillSelector);
-  console.log({ selectedSkill });
-
+  const [endCursor, setEndCursor] = useState("");
+  const { data, error, isLoading } = useGithubRepos({ topic: selectedSkill, pageSize: 3, endCursor, onSuccess: (data) => console.log(data) });
+  console.log({ data, error, isLoading });
+  console.log("rendering modal")
   const propsToAdd: LayoutStyledProps = {
     isopen: selectedSkill ? "true" : "false",
     colorscheme: colorScheme,
@@ -90,6 +100,11 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
     e.stopPropagation();
   }, []);
 
+  useEffect(() => {
+    if (!selectedSkill) return;
+
+  }, [selectedSkill]);
+
   return (
     <Container {...propsToAdd} onClick={onContainerClick}>
       <Content {...propsToAdd} onClick={onConentClick}>
@@ -99,9 +114,10 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
             <CloseButtonUse {...propsToAdd} href="/sprite.svg#icon-close" />
           </CloseButton>
           <HeaderSubTitle>
-            * click the project name to view a working demo (when available)
+           
           </HeaderSubTitle>
         </Header>
+        <TableHeaders/>
       </Content>
     </Container>
   );

@@ -64,9 +64,6 @@ import { BridgeDemoPage } from "../pages/styled-pages/concrete-pages/BridgeDemoP
 import { ThumbnailCarouselPage } from "../pages/styled-pages/concrete-pages/ThumbnailCarouselPage";
 import { SSKPage } from "../pages/styled-pages/concrete-pages/SSKPage";
 import { GrocifyPage } from "../pages/styled-pages/concrete-pages/GrocifyPage";
-import { getGithubRepos } from "../apis/github";
-import { useAppDispatch } from "../hooks";
-import { setSelectedSkill } from "../slices";
 import { useAwakenSleepingContainers } from "../hooks/useAwakenSleepingContainers";
 
 type AppProps = {};
@@ -89,19 +86,6 @@ export const App: React.FC<AppProps> = (props) => {
   // 	});
   // 	dispatch(setSounds(sounds as unknown as LoadedSounds));
   // }, [setSounds]);
-
-  //todo: delete this when done with skills stuff
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    (async () => {
-      const response = await getGithubRepos({ topic: "javascript" });
-      setTimeout(() => {
-        dispatch(setSelectedSkill("javascript"));
-      }, 100);
-      console.log({ response });
-    })();
-  }, []);
-
 
   return (
     <Router history={history}>

@@ -16,6 +16,8 @@ import { ExamplePageSectionContent } from "./ExamplePageSectionContent";
 import { ExamplePageSectionHeader } from "./ExamplePageSectionHeader";
 import { getTextShadowStyle } from "../../styles/styles";
 import { getHeaderName } from "../../helpers";
+import { AnyAction, Dispatch } from "redux";
+import { useDispatch } from "react-redux";
 
 const Content = styled.div<LayoutStyledProps>`
   position: relative;
@@ -59,7 +61,7 @@ export type ExamplePageSectionProps = {
    * This will be added to the header of the section  
    **/
   renderHeaderContent?: (propsToAdd: LayoutStyledProps) => ReactNode | ReactNode[];
-  renderContent: (propsToAdd: LayoutStyledProps) => ReactNode | ReactNode[];
+  renderContent: (propsToAdd: LayoutStyledProps, dispatch: Dispatch<AnyAction>) => ReactNode | ReactNode[];
   contentStyle?: CSSProperties;
   containerStyle?: CSSProperties;
   headerStyle?: CSSProperties;
@@ -67,6 +69,7 @@ export type ExamplePageSectionProps = {
 
 export function ExamplePage(props: ExamplePageProps) {
   const { layoutProps, sections, title } = props;
+  const dispatch = useDispatch();
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = useMemo(
     () => ({
@@ -102,7 +105,7 @@ export function ExamplePage(props: ExamplePageProps) {
                 {...propsToAdd}
                 htmlAttributes={{ style: contentStyle }}
               >
-                {renderContent(propsToAdd)}
+                {renderContent(propsToAdd, dispatch)}
               </ExamplePageSectionContent>
             </ExamplePageSection>
           );

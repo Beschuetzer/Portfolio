@@ -18,11 +18,13 @@ import EducationList from "./resume/EducationList";
 import ResumeItems from "./resume/ResumeItems";
 import { LinkedInIcon } from "../icons/LinkedInIcon";
 import { ResumeSkillsModal } from "./resume/ResumeSkillsModal";
+import { setSelectedSkill } from "../../../slices";
 
 export const RESUME_PAGE_HEADER_NAME = "Résumé";
 export const RESUME_SECTION_TITLES = [
   "Overview",
   "Experience",
+  "Skills",
   "Education",
   "References",
 ];
@@ -169,6 +171,15 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
   },
   {
     name: RESUME_SECTION_TITLES[2],
+    renderContent: (propsToAdd: LayoutStyledProps, dispatch) => (
+      <div>
+        <button onClick={() => dispatch(setSelectedSkill("javascript"))}>javascript</button>
+        <button onClick={() => dispatch(setSelectedSkill("typescript"))}>typescript</button>
+      </div>
+    ),
+  },
+  {
+    name: RESUME_SECTION_TITLES[3],
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <EducationList
         items={[
@@ -189,7 +200,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
     ),
   },
   {
-    name: RESUME_SECTION_TITLES[3],
+    name: RESUME_SECTION_TITLES[4],
     contentStyle: {
       paddingBottom: 0,
     },
