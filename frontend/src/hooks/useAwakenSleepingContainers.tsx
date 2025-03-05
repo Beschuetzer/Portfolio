@@ -20,7 +20,7 @@ export const useAwakenSleepingContainers = () => {
             mode: "no-cors",
           }));
         }
-        await Promise.all(promises);
+        await Promise.allSettled(promises);
       })();
     }, PING_INTERVAL);
   }, []);
