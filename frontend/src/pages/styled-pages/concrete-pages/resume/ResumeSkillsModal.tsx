@@ -19,6 +19,7 @@ import { GithubPageInfo, GithubRepository } from "../../../../apis/github";
 import { ResumeSkillsModalReposList } from "./ResumeSkillsModalReposList";
 import { useHideMainScrollbar } from "../../../../hooks/useHideMainScrollbar";
 import { hexToRgba } from "../../../../components/navbar/sitenav/helpers";
+import { resumeButtonHoverStyles as resumeButtonStyles } from "./styles";
 
 const Container = styled.div<LayoutStyledProps>`
   position: fixed;
@@ -50,11 +51,14 @@ const CloseButton = styled.svg<LayoutStyledProps>`
   width: ${getFontSizeCustom(2)};
   height: ${getFontSizeCustom(2)};
   cursor: pointer;
+  fill: ${(props) => hexToRgba(props.colorscheme?.primary1, 0.75)};
+
+  &:hover {
+    fill: ${(props) => props.colorscheme?.primary1};
+  }
 `;
 
-const CloseButtonUse = styled.use<LayoutStyledProps>`
-  fill: ${(props) => props.colorscheme?.primary1};
-`;
+const CloseButtonUse = styled.use<LayoutStyledProps>``;
 
 const Header = styled.div<LayoutStyledProps>`
   grid-template-columns: 1fr min-content;
@@ -87,9 +91,15 @@ const HeaderSubTitle = styled.div<LayoutStyledProps>`
 const ShowMoreButton = styled.button<LayoutStyledProps>`
   padding: ${defaultFontSize} ${getFontSizeCustom(2)};
   border-radius: ${defaultFontSize};
-  background-color: ${(props) => hexToRgba(props.colorscheme?.primary1, .66)};
-  color: ${(props) => props.colorscheme?.primary4};
   cursor: pointer;
+  border: none;
+  transition: background-color 0.33s;
+  background-color: ${(props) => hexToRgba(props.colorscheme?.primary1, 0.75)};
+  color: ${(props) => props.colorscheme?.primary4};
+
+  &:hover {
+    background-color: ${(props) => props.colorscheme?.primary1};
+  }
 `;
 
 const ShowMoreContainer = styled.div<LayoutStyledProps>`
@@ -172,9 +182,7 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
     <Container {...propsToAdd} onClick={onContainerClick}>
       <Content {...propsToAdd} onClick={onConentClick}>
         <Header {...propsToAdd}>
-          <HeaderTitle {...propsToAdd}>
-            '{selectedSkill}' repos:
-          </HeaderTitle>
+          <HeaderTitle {...propsToAdd}>'{selectedSkill}' repos:</HeaderTitle>
           <CloseButton {...propsToAdd} onClick={onContainerClick}>
             <CloseButtonUse {...propsToAdd} href="/sprite.svg#icon-close" />
           </CloseButton>
@@ -188,7 +196,9 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
         />
         {shouldShowMore ? (
           <ShowMoreContainer {...propsToAdd}>
-            <ShowMoreButton {...propsToAdd} onClick={onLoadNextBatch}>Show More</ShowMoreButton>
+            <ShowMoreButton {...propsToAdd} onClick={onLoadNextBatch}>
+              Show More
+            </ShowMoreButton>
           </ShowMoreContainer>
         ) : null}
       </Content>
