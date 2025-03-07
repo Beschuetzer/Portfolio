@@ -38,7 +38,9 @@ const InnerBar = styled.div<LayoutStyledProps>`
     ${(props) =>
       hexToRgba(
         props.colorscheme?.primary1,
-        (GRADIENT_MAX_PERCENT - GRADIENT_START_PERCENT) * ((props.percentage || 50) / 100) + GRADIENT_START_PERCENT
+        (GRADIENT_MAX_PERCENT - GRADIENT_START_PERCENT) *
+          ((props.percentage || 50) / 100) +
+          GRADIENT_START_PERCENT
       )}
   );
 
@@ -51,7 +53,8 @@ const InnerBar = styled.div<LayoutStyledProps>`
 const Divider = styled.div<LayoutStyledProps>`
   width: 2px;
   height: 100%;
-  background-color: ${(props) => hexToRgba(props.colorscheme?.primary1, GRADIENT_MAX_PERCENT)};
+  background-color: ${(props) =>
+    hexToRgba(props.colorscheme?.primary1, GRADIENT_MAX_PERCENT)};
   position: absolute;
   top: 0;
   bottom: 0;
@@ -68,13 +71,14 @@ const Labels = styled.div<LayoutStyledProps>`
 `;
 
 const LabelItem = styled.div<LayoutStyledProps>`
-  transform: translate3d(${props => props.percentage}%, 0, 0);
+  transform: translate3d(${(props) => props.transformationPercent}%, 0, 0);
 `;
 
 type ExamplePageBarProps = {
   containerProps?: HtmlHTMLAttributes<HTMLDivElement>;
-  labels?: string[];
+  labels?: ([string, string | number] | string)[];
   percentage?: number;
+  shouldTransformLabels?: boolean;
 };
 
 export function ExamplePageBar(props: ExamplePageBarProps) {
@@ -85,17 +89,32 @@ export function ExamplePageBar(props: ExamplePageBarProps) {
     percentage: percentage,
   };
 
-  const getPercentage = useCallback((index: number) => {
-    if (index === labels.length - 1 || index === 0) return 0;
-    return (index / (labels.length - 1)) * 100;
-    }, [labels.length]);
+  const getPercentage = useCallback(
+    (index: number) => {
+      if (index === labels.length - 1 || index === 0) return 0;
+      return (index / (labels.length - 1)) * 100;
+    },
+    [labels.length]
+  );
 
   if (!percentage) return null;
   return (
     <Container {...propsToAdd} {...containerProps}>
       <Labels>
         {labels.map((label, i) => {
-            return <LabelItem percentage={getPercentage(i)} key={i}>{label}</LabelItem>
+          return (
+            <LabelItem
+              percentage={getPercentage(i)}
+              key={i}
+              transformationPercent={
+                !Array.isArray(label)
+                  ? `${getPercentage(i)}`
+                  : String(label[1]).replaceAll("%", "")
+              }
+            >
+              {Array.isArray(label) ? label[0] : label}
+            </LabelItem>
+          );
         })}
       </Labels>
       <OuterBar {...propsToAdd}>
@@ -104,7 +123,9 @@ export function ExamplePageBar(props: ExamplePageBarProps) {
           if (i === labels.length - 1 || i === 0) {
             return null;
           }
-          return <Divider {...propsToAdd} key={i} percentage={getPercentage(i)} />;
+          return (
+            <Divider {...propsToAdd} key={i} percentage={getPercentage(i)} />
+          );
         })}
       </OuterBar>
     </Container>

@@ -168,7 +168,6 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
   const { data, error, isLoading } = useGithubRepos({
     topic: selectedSkill,
     endCursor,
-    pageSize: 2,
     onSuccess: onSuccessfulFetch,
   });
 

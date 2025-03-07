@@ -1,18 +1,79 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { LayoutStyledProps } from "../../../../layouts/types";
 import { defaultFontSize } from "../../../../styles/constants";
+import { ExamplePageParagraph } from "../../ExamplePageParagraph";
+import { ExamplePageBar } from "../../ExamplePageBar";
+import { linkStyles } from "../../../../styles/styles";
+import { useColorScheme } from "../../../../hooks/useColorScheme";
+import { useAppDispatch } from "../../../../hooks";
+import { setSelectedSkill } from "../../../../slices";
 
-const Container = styled.div<LayoutStyledProps>`
-  display: flex;
-  flex-direction: column;
-  padding: ${defaultFontSize};
+const SkillContainer = styled.div<LayoutStyledProps>`
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  column-gap: ${defaultFontSize};
+  width: 100%;
+`;
+
+const SkillName = styled.a<LayoutStyledProps>`
+  ${linkStyles}
 `;
 
 type ResumeSkillsSectionProps = {};
 
 export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
-  return <Container></Container>;
+  const colorScheme = useColorScheme();
+  const dispatch = useAppDispatch();
+  const propToAdd: LayoutStyledProps & { target: string; rel: string } = {
+    colorscheme: colorScheme,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    url: "",
+  };
+
+  const onSkillClick = useCallback(
+    (skillName: string) => {
+      dispatch(setSelectedSkill(skillName));
+    },
+    [dispatch]
+  );
+
+  return (
+    <>
+      <ExamplePageParagraph>
+        Click on any of the skills below to see a list of the public repos I have created that pertain
+        to it:
+      </ExamplePageParagraph>
+      <SkillContainer>
+        {Object.entries(SKILLS)
+          .sort((a, b) =>
+            a[0].toUpperCase() > b[0].toUpperCase()
+              ? 1
+              : a[0].toUpperCase() < b[0].toUpperCase()
+              ? -1
+              : 0
+          )
+          .map(([skillName, details], index) => {
+            return (
+              <React.Fragment key={index}>
+                <SkillName
+                  {...propToAdd}
+                  onClick={() => onSkillClick(skillName)}
+                >
+                  {skillName}:
+                </SkillName>
+                <ExamplePageBar
+                  percentage={details.level}
+                  labels={["Beginner", ["Intermediate", "-7"], "Master"]}
+                />
+              </React.Fragment>
+            );
+          })}
+      </SkillContainer>
+    </>
+  );
 }
 
 type Skills = {
@@ -86,13 +147,6 @@ const SKILLS: Skills = {
     level: 70,
   },
   GraphQL: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
-    level: 60,
-  },
-  Redux: {
     experience: {
       professionalMonths: 48,
       personalMonths: 48,

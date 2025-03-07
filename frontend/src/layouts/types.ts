@@ -16,6 +16,7 @@ export type LayoutStyledProps = {
   percentage?: number;
   sitenavright?: string;
   textcolor?: string;
+  transformationPercent?: string;
   size?: string;
   svgfillcolor?: string;
   hovereffecttype?: HoverEffect;
