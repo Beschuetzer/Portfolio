@@ -17,14 +17,15 @@ const Item = styled.div<LayoutStyledProps>`
 export type ReferenceItemProps = {
   email: string;
   href?: string;
-  name: string;
   isLast: boolean;
+  linkedInUrl?: string;
+  name: string;
   phone?: string;
   relation: string;
 };
 
 export function ReferenceItem(props: ReferenceItemProps) {
-  const { email, href, name, isLast, phone, relation } = props;
+  const { email, href, name, isLast, linkedInUrl, phone, relation } = props;
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = {
     colorscheme: colorScheme,
@@ -33,7 +34,7 @@ export function ReferenceItem(props: ReferenceItemProps) {
   return (
     <>
       <Item {...propsToAdd}>
-        <ExamplePageLink url={href}>{name}</ExamplePageLink>
+        <ExamplePageLink url={linkedInUrl || href} includeSpaces={false}>{name}</ExamplePageLink>
       </Item>
       <Item {...propsToAdd}>{phone}</Item>
       <Item {...propsToAdd}>{relation}</Item>
