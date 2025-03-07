@@ -15,7 +15,7 @@ import { ResumePageWorkHistory } from "./resume/ResumePageWorkHistory";
 import { defaultFontSize } from "../../../styles/constants";
 import { ExamplePageLink } from "../ExamplePageLink";
 import EducationList from "./resume/EducationList";
-import ResumeItems from "./resume/ResumeItems";
+import ReferenceItems from "./resume/ReferenceItems";
 import { LinkedInIcon } from "../icons/LinkedInIcon";
 import { ResumeSkillsModal } from "./resume/ResumeSkillsModal";
 import { ResumeSkillsSection } from "./resume/ResumeSkillsSection";
@@ -202,7 +202,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
       paddingBottom: 0,
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
-      <ResumeItems
+      <ReferenceItems
         items={[
           {
             name: "Troy McCabe",

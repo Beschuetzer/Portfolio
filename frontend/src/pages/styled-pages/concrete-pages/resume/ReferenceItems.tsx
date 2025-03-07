@@ -37,10 +37,6 @@ const Container = styled.div<LayoutStyledProps>`
     & > * {
       border: none;
 
-      &:first-child {
-        margin-top: ${defaultFontSize};
-      }
-
       &:nth-child(4n + 4) {
         margin-bottom: ${defaultFontSize};
       }
@@ -53,11 +49,11 @@ const Container = styled.div<LayoutStyledProps>`
   `}
 `;
 
-type ResumeItemsProps = {
+type ReferenceItemsProps = {
   items: Omit<ReferenceItemProps, "isLast">[];
 };
 
-export default function ResumeItems(props: ResumeItemsProps) {
+export default function ReferenceItems(props: ReferenceItemsProps) {
   const { items } = props;
 
   return (
