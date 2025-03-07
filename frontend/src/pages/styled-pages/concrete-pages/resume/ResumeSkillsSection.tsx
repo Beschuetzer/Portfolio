@@ -129,7 +129,7 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
               <React.Fragment key={index}>
                 <SkillName
                   {...propToAdd}
-                  onClick={() => onSkillClick(skillName)}
+                  onClick={() => onSkillClick(details.apiTopic || skillName)}
                 >
                   {skillName}:
                 </SkillName>
@@ -253,7 +253,7 @@ const SKILLS: Skills = {
     },
     level: 60,
   },
-  CSS: {
+  CSS3: {
     experience: {
       professionalMonths: 48,
       personalMonths: 48,
@@ -296,13 +296,13 @@ const SKILLS: Skills = {
     apiTopic: "csharp",
     level: 60,
   },
-  ".NET": {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
-    level: 70,
-  },
+//   ".NET": {
+//     experience: {
+//       professionalMonths: 48,
+//       personalMonths: 48,
+//     },
+//     level: 70,
+//   },
 };
 
 //todo: add skills section using this data
