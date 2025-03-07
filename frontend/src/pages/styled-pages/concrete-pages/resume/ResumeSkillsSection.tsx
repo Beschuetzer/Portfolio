@@ -9,6 +9,51 @@ import { useAppDispatch } from "../../../../hooks";
 import { setSelectedSkill } from "../../../../slices";
 import { ResumeSkillsSectionBar } from "./ResumeSkillsSectionBar";
 
+const CONTAINER_MARKER_WIDTH = 2;
+
+const BarContainer = styled.div<LayoutStyledProps>`
+  position: relative;
+  width: 100%;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -${CONTAINER_MARKER_WIDTH / 2}px;
+    left: 0;
+    background-color: ${(props) => props.colorscheme?.primary1};
+    height: calc(100% + ${CONTAINER_MARKER_WIDTH}px);
+    width: ${CONTAINER_MARKER_WIDTH}px;
+    z-index: 10000000000;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: -${CONTAINER_MARKER_WIDTH / 2}px;
+    right: 0;
+    background-color: ${(props) => props.colorscheme?.primary1};
+    height: calc(100% + ${CONTAINER_MARKER_WIDTH}px);
+    width: ${CONTAINER_MARKER_WIDTH}px;
+    z-index: 10000000000;
+  }
+`;
+
+const BarInnerContainer = styled.div<LayoutStyledProps>`
+  position: relative;
+  width: 100%;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -${CONTAINER_MARKER_WIDTH / 2}px;
+    left: 50%;
+    background-color: ${(props) => props.colorscheme?.primary1};
+    height: calc(100% + ${CONTAINER_MARKER_WIDTH}px);
+    width: ${CONTAINER_MARKER_WIDTH}px;
+    z-index: 10000000000;
+  }
+`;
+
 const SkillContainer = styled.div<LayoutStyledProps>`
   display: grid;
   grid-template-columns: max-content 1fr;
@@ -88,9 +133,13 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
                 >
                   {skillName}:
                 </SkillName>
-                <ResumeSkillsSectionBar
-                  examplePageBarProps={{ percentage: details.level }}
-                />
+                <BarContainer {...propToAdd}>
+                  <BarInnerContainer {...propToAdd}>
+                    <ResumeSkillsSectionBar
+                      examplePageBarProps={{ percentage: details.level }}
+                    />
+                  </BarInnerContainer>
+                </BarContainer>
               </React.Fragment>
             );
           })}
