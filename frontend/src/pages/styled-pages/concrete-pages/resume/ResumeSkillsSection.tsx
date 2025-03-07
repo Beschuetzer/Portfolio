@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { LayoutStyledProps } from "../../../../layouts/types";
 import { defaultFontSize } from "../../../../styles/constants";
 import { ExamplePageParagraph } from "../../ExamplePageParagraph";
-import { ExamplePageBar } from "../../ExamplePageBar";
 import { linkStyles } from "../../../../styles/styles";
 import { useColorScheme } from "../../../../hooks/useColorScheme";
 import { useAppDispatch } from "../../../../hooks";
 import { setSelectedSkill } from "../../../../slices";
+import { ResumeSkillsSectionBar } from "./ResumeSkillsSectionBar";
 
 const SkillContainer = styled.div<LayoutStyledProps>`
   display: grid;
@@ -43,8 +43,8 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
   return (
     <>
       <ExamplePageParagraph>
-        Click on any of the skills below to see a list of the public repos I have created that pertain
-        to it:
+        Click on any of the skills below to see a list of the public repos I
+        have created that pertain to it:
       </ExamplePageParagraph>
       <SkillContainer>
         {Object.entries(SKILLS)
@@ -64,10 +64,7 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
                 >
                   {skillName}:
                 </SkillName>
-                <ExamplePageBar
-                  percentage={details.level}
-                  labels={["Beginner", ["Intermediate", "-7"], "Master"]}
-                />
+               <ResumeSkillsSectionBar examplePageBarProps={{ percentage: details.level }} />
               </React.Fragment>
             );
           })}

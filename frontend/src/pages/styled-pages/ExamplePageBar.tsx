@@ -74,15 +74,16 @@ const LabelItem = styled.div<LayoutStyledProps>`
   transform: translate3d(${(props) => props.transformationPercent}%, 0, 0);
 `;
 
-type ExamplePageBarProps = {
+export type ExamplePageBarProps = {
   containerProps?: HtmlHTMLAttributes<HTMLDivElement>;
+  hideLabels?: boolean;
   labels?: ([string, string | number] | string)[];
   percentage?: number;
   shouldTransformLabels?: boolean;
 };
 
 export function ExamplePageBar(props: ExamplePageBarProps) {
-  const { containerProps, percentage, labels = ["0", "50", "100"] } = props;
+  const { containerProps, percentage, labels = props.hideLabels ? [] : ["0", "50", "100"] } = props;
   const colorScheme = useColorScheme();
   const propsToAdd: LayoutStyledProps = {
     colorscheme: colorScheme,

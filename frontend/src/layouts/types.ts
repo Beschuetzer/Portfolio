@@ -13,6 +13,7 @@ export type LayoutStyledProps = {
   islast?: string;
   isopen?: string;
   ispopupvisible?: string;
+  isvisible?: string;
   percentage?: number;
   sitenavright?: string;
   textcolor?: string;
