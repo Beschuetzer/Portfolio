@@ -19,6 +19,24 @@ const SkillContainer = styled.div<LayoutStyledProps>`
 
 const SkillName = styled.a<LayoutStyledProps>`
   ${linkStyles}
+  text-decoration: underline;
+`;
+
+const Labels = styled.div<LayoutStyledProps>`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: ${defaultFontSize};
+  font-size: ${defaultFontSize};
+`;
+
+const LabelLeft = styled.div<LayoutStyledProps>`
+  text-align: left;
+`;
+const LabelMiddle = styled.div<LayoutStyledProps>`
+  text-align: center;
+`;
+const LabelRight = styled.div<LayoutStyledProps>`
+  text-align: right;
 `;
 
 type ResumeSkillsSectionProps = {};
@@ -47,6 +65,12 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
         have created that pertain to it:
       </ExamplePageParagraph>
       <SkillContainer>
+        <div />
+        <Labels>
+          <LabelLeft>Novice</LabelLeft>
+          <LabelMiddle>Proficient</LabelMiddle>
+          <LabelRight>Master</LabelRight>
+        </Labels>
         {Object.entries(SKILLS)
           .sort((a, b) =>
             a[0].toUpperCase() > b[0].toUpperCase()
@@ -64,7 +88,9 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
                 >
                   {skillName}:
                 </SkillName>
-               <ResumeSkillsSectionBar examplePageBarProps={{ percentage: details.level }} />
+                <ResumeSkillsSectionBar
+                  examplePageBarProps={{ percentage: details.level }}
+                />
               </React.Fragment>
             );
           })}

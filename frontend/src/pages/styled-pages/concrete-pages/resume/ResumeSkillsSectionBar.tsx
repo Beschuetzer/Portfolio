@@ -2,18 +2,19 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { LayoutStyledProps } from "../../../../layouts/types";
 import { ExamplePageBar, ExamplePageBarProps } from "../../ExamplePageBar";
+import { useColorScheme } from "../../../../hooks/useColorScheme";
 
 const Container = styled.div<LayoutStyledProps>`
+  position: relative;
   width: 100%;
   transition: transform 0.5s ease-in-out;
   transform-origin: left;
+  z-index: -1;
 
   ${(props) =>
     props.isvisible === "true"
-      ? "transform: translate3d(0,0,0) scaleX(1);"
-      : `
-    
-    transform: translate3d(0,0,0) scaleX(0);`}
+      ? "transform: scaleX(1);"
+      : "transform: scaleX(0);"}
 `;
 
 type ResumeSkillsSectionBarProps = {
@@ -22,8 +23,14 @@ type ResumeSkillsSectionBarProps = {
 
 export function ResumeSkillsSectionBar(props: ResumeSkillsSectionBarProps) {
   const { examplePageBarProps } = props;
+  const colorScheme = useColorScheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const [isContainerVisible, setIsContainerVisible] = useState(false);
+
+  const propsToAdd: LayoutStyledProps = {
+    colorscheme: colorScheme,
+    isvisible: String(isContainerVisible),
+  };
 
   useEffect(() => {
     const elementRefCopy = containerRef.current;
@@ -54,7 +61,7 @@ export function ResumeSkillsSectionBar(props: ResumeSkillsSectionBarProps) {
   }, []);
 
   return (
-    <Container ref={containerRef} isvisible={String(isContainerVisible)}>
+    <Container ref={containerRef} {...propsToAdd}>
       <ExamplePageBar
         {...examplePageBarProps}
         hideLabels
