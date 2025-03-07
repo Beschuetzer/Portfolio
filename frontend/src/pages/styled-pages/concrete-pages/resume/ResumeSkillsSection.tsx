@@ -9,6 +9,88 @@ import { useAppDispatch } from "../../../../hooks";
 import { setSelectedSkill } from "../../../../slices";
 import { ResumeSkillsSectionBar } from "./ResumeSkillsSectionBar";
 
+type Skills = {
+  [key: string]: {
+    apiTopic?: string;
+    experience?: {
+      professionalMonths: number;
+      personalMonths: number;
+    };
+    level: number;
+    isClickable?: boolean;
+  };
+};
+
+const SKILLS: Skills = {
+  OpenAI: {
+    level: 59,
+  },
+  NestJs: {
+    level: 40,
+  },
+  Express: {
+    level: 87,
+  },
+  "Next.js": {
+    level: 70,
+    apiTopic: "nextjs",
+  },
+  Javascript: {
+    level: 93,
+  },
+  Redux: {
+    level: 87,
+  },
+  React: {
+    level: 90,
+  },
+  Typescript: {
+    level: 85,
+  },
+  MongoDB: {
+    apiTopic: "Mongoose",
+    level: 75,
+  },
+  GraphQL: {
+    level: 78,
+  },
+  Angular: {
+    level: 38,
+  },
+  Bootstrap: {
+    level: 59,
+  },
+  SCSS: {
+    level: 62,
+  },
+  Html5: {
+    level: 50,
+  },
+  CSS3: {
+    level: 89,
+  },
+  Jquery: {
+    level: 33,
+  },
+  Python: {
+    level: 29,
+  },
+  Java: {
+    level: 40,
+  },
+  Ruby: {
+    level: 15,
+  },
+  "c#": {
+    apiTopic: "csharp",
+    level: 71,
+  },
+  ".NET": {
+    level: 71,
+    isClickable: false,
+  },
+};
+
 const CONTAINER_MARKER_WIDTH = 2;
 
 const BarContainer = styled.div<LayoutStyledProps>`
@@ -66,6 +148,14 @@ const SkillContainer = styled.div<LayoutStyledProps>`
 const SkillName = styled.a<LayoutStyledProps>`
   ${linkStyles}
   text-decoration: underline;
+
+  ${(props) =>
+    props.isclickable === "true"
+      ? ""
+      : `
+        cursor: auto; 
+        text-decoration: none;
+    `}
 `;
 
 const Labels = styled.div<LayoutStyledProps>`
@@ -107,10 +197,10 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
   return (
     <>
       <ExamplePageParagraph>
-        Below is my self evaluation of my skills. Clicking on a skill will take
-        you to modal with a list of the public repos in which that skill is
-        used. If you want to get an idea of the kind of code I write, look
-        through the repos.
+        Below is my self evaluation of my skills based on professional and personal experience. Clicking on a skill will open
+        a modal with a list of the public repos in which that skill is
+        used. If you want to get an idea of the code I write for that skill,
+        look through the most recent repo for the skill in question.
       </ExamplePageParagraph>
       <SkillContainer>
         <div />
@@ -128,11 +218,13 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
               : 0
           )
           .map(([skillName, details], index) => {
+            const isClickableToUse = details.isClickable == null ? true : details.isClickable;
             return (
               <React.Fragment key={index}>
                 <SkillName
                   {...propToAdd}
-                  onClick={() => onSkillClick(details.apiTopic || skillName)}
+                  isclickable={isClickableToUse ? "true" : "false"}
+                  onClick={isClickableToUse ? () => onSkillClick(details.apiTopic || skillName) : undefined}
                 >
                   {skillName}:
                 </SkillName>
@@ -150,86 +242,6 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
     </>
   );
 }
-
-type Skills = {
-  [key: string]: {
-    apiTopic?: string;
-    experience?: {
-      professionalMonths: number;
-      personalMonths: number;
-    };
-    level: number;
-  };
-};
-
-const SKILLS: Skills = {
-  OpenAI: {
-    level: 59,
-  },
-  NestJs: {
-    level: 90,
-  },
-  Express: {
-    level: 90,
-  },
-  "Next.js": {
-    level: 90,
-    apiTopic: "nextjs",
-  },
-  Javascript: {
-    level: 90,
-  },
-  Redux: {
-    level: 90,
-  },
-  React: {
-    level: 90,
-  },
-  Typescript: {
-    level: 80,
-  },
-  MongoDB: {
-    apiTopic: "Mongoose",
-    level: 70,
-  },
-  GraphQL: {
-    level: 60,
-  },
-  Angular: {
-    level: 60,
-  },
-  Bootstrap: {
-    level: 60,
-  },
-  SCSS: {
-    level: 60,
-  },
-  Html: {
-    level: 60,
-  },
-  CSS3: {
-    level: 60,
-  },
-  Jquery: {
-    level: 60,
-  },
-  Python: {
-    level: 60,
-  },
-  Java: {
-    level: 60,
-  },
-  Ruby: {
-    level: 60,
-  },
-  "c#": {
-    apiTopic: "csharp",
-    level: 60,
-  },
-  //   ".NET": {
-  //     level: 68,
-  //   },
-};
 
 //todo: add skills section using this data
 // const RESUME_SKILLS_SECTIONS = [

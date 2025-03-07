@@ -71,6 +71,7 @@ const ItemUpdatedAt = styled.div<LayoutStyledProps>``;
 
 const LoadingContainer = styled.div<LayoutStyledProps>`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: ${defaultFontSize};
@@ -78,6 +79,11 @@ const LoadingContainer = styled.div<LayoutStyledProps>`
   width: 100%;
   height: 100%;
   color: ${(props) => props.colorscheme?.primary1};
+`;
+
+const LoadingText = styled.span<LayoutStyledProps>`
+  padding-bottom: ${defaultFontSize};
+  font-size: ${fontSizeThree};
 `;
 
 const LoadingSpinner = styled.div<LayoutStyledProps>`
@@ -161,6 +167,7 @@ export function ResumeSkillsModalReposList(
       ))}
       {isLoading ? (
         <LoadingContainer {...propsToAdd}>
+          <LoadingText>Loading repos from Github GraphQL API...</LoadingText>
           <LoadingSpinner {...propsToAdd} />
         </LoadingContainer>
       ) : null}
