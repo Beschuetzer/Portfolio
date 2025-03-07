@@ -111,6 +111,11 @@ export const App: React.FC<AppProps> = (props) => {
               {
                 text: RESUME_SECTION_TITLES[3],
                 to: `${RESUME_URL}#${RESUME_SECTION_TITLES[3]}`,
+                image: skillsPic,
+              },
+              {
+                text: RESUME_SECTION_TITLES[4],
+                to: `${RESUME_URL}#${RESUME_SECTION_TITLES[4]}`,
                 image: referencesPic,
               },
             ],

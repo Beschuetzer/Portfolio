@@ -133,7 +133,7 @@ export function ResumeSkillsModalReposList(
                 url={repo.url || ""}
                 hoverEffectType={HoverEffect.rotate}
                 title={{
-                  text: "View",
+                  text: "Code",
                   color: colorScheme?.primary1,
                 }}
                 size={fontSizeNine}

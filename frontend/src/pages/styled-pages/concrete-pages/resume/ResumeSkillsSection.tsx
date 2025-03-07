@@ -59,6 +59,7 @@ const SkillContainer = styled.div<LayoutStyledProps>`
   grid-template-columns: max-content 1fr;
   align-items: center;
   column-gap: ${defaultFontSize};
+  margin-top: ${defaultFontSize};
   width: 100%;
 `;
 
@@ -106,8 +107,10 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
   return (
     <>
       <ExamplePageParagraph>
-        Click on any of the skills below to see a list of the public repos I
-        have created that pertain to it:
+        Below is my self evaluation of my skills. Clicking on a skill will take
+        you to modal with a list of the public repos in which that skill is
+        used. If you want to get an idea of the kind of code I write, look
+        through the repos.
       </ExamplePageParagraph>
       <SkillContainer>
         <div />
@@ -151,7 +154,7 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
 type Skills = {
   [key: string]: {
     apiTopic?: string;
-    experience: {
+    experience?: {
       professionalMonths: number;
       personalMonths: number;
     };
@@ -160,149 +163,72 @@ type Skills = {
 };
 
 const SKILLS: Skills = {
+  OpenAI: {
+    level: 59,
+  },
   NestJs: {
-    experience: {
-      professionalMonths: 60,
-      personalMonths: 60,
-    },
     level: 90,
   },
   Express: {
-    experience: {
-      professionalMonths: 60,
-      personalMonths: 60,
-    },
     level: 90,
   },
   "Next.js": {
-    experience: {
-      professionalMonths: 60,
-      personalMonths: 60,
-    },
     level: 90,
     apiTopic: "nextjs",
   },
   Javascript: {
-    experience: {
-      professionalMonths: 60,
-      personalMonths: 60,
-    },
     level: 90,
   },
   Redux: {
-    experience: {
-      professionalMonths: 60,
-      personalMonths: 60,
-    },
     level: 90,
   },
   React: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 90,
   },
   Typescript: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 80,
   },
   MongoDB: {
     apiTopic: "Mongoose",
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 70,
   },
   GraphQL: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 60,
   },
   Angular: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 60,
   },
   Bootstrap: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 60,
   },
   SCSS: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 60,
   },
   Html: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 60,
   },
   CSS3: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 60,
   },
   Jquery: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 60,
   },
   Python: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 60,
   },
   Java: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 60,
   },
   Ruby: {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     level: 60,
   },
   "c#": {
-    experience: {
-      professionalMonths: 48,
-      personalMonths: 48,
-    },
     apiTopic: "csharp",
     level: 60,
   },
-//   ".NET": {
-//     experience: {
-//       professionalMonths: 48,
-//       personalMonths: 48,
-//     },
-//     level: 70,
-//   },
+  //   ".NET": {
+  //     level: 68,
+  //   },
 };
 
 //todo: add skills section using this data
