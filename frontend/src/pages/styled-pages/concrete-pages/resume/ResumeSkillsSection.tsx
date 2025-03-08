@@ -98,6 +98,7 @@ const SKILLS: Skills = {
   },
   "Spring Boot": {
     level: 49,
+    apiTopic: "spring-boot",
   },
   Jest: {
     level: 80,
