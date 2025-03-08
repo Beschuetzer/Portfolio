@@ -58,7 +58,7 @@ const SKILLS: Skills = {
     level: 38,
   },
   Bootstrap: {
-    level: 59,
+    level: 69,
   },
   SCSS: {
     level: 62,
@@ -83,12 +83,44 @@ const SKILLS: Skills = {
   },
   "c#": {
     apiTopic: "csharp",
-    level: 71,
+    level: 78,
   },
   ".NET": {
     level: 71,
     isClickable: false,
   },
+  nx: {
+    level: 66,
+  },
+  "React Native": {
+    level: 78,
+    apiTopic: "react-native",
+  },
+  "Spring Boot": {
+    level: 49,
+  },
+  Jest: {
+    level: 80,
+  },
+  "MS SQL": {
+    level: 49,
+    isClickable: false,
+  },
+  PostgreSQL: {
+    level: 75,
+    isClickable: false,
+  },
+  "Paper.js": {
+    level: 59,
+    apiTopic: "paperjs",
+  },
+  "socket.io": {
+    level: 62,
+    apiTopic: "socketio",
+  },
+  Howler: {
+    level: 59,
+  }
 };
 
 const CONTAINER_MARKER_WIDTH = 2;
@@ -197,10 +229,11 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
   return (
     <>
       <ExamplePageParagraph>
-        Below is my self evaluation of my skills based on professional and personal experience. Clicking on a skill will open
-        a modal with a list of the public repos in which that skill is
-        used. If you want to get an idea of the code I write for that skill,
-        look through the most recent repo for the skill in question.
+        Below is my self evaluation of my skills based on professional and
+        personal experience. Clicking on a skill will open a modal with a list
+        of the public repos in which that skill is used. If you want to get an
+        idea of the code I write for that skill, look through the most recent
+        repo for the skill in question.
       </ExamplePageParagraph>
       <SkillContainer>
         <div />
@@ -218,13 +251,18 @@ export function ResumeSkillsSection(props: ResumeSkillsSectionProps) {
               : 0
           )
           .map(([skillName, details], index) => {
-            const isClickableToUse = details.isClickable == null ? true : details.isClickable;
+            const isClickableToUse =
+              details.isClickable == null ? true : details.isClickable;
             return (
               <React.Fragment key={index}>
                 <SkillName
                   {...propToAdd}
                   isclickable={isClickableToUse ? "true" : "false"}
-                  onClick={isClickableToUse ? () => onSkillClick(details.apiTopic || skillName) : undefined}
+                  onClick={
+                    isClickableToUse
+                      ? () => onSkillClick(details.apiTopic || skillName)
+                      : undefined
+                  }
                 >
                   {skillName}:
                 </SkillName>
