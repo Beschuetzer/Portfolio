@@ -23,7 +23,7 @@ type Skills = {
 
 const SKILLS: Skills = {
   OpenAI: {
-    level: 59,
+    level: 52,
   },
   NestJs: {
     level: 40,
@@ -95,6 +95,7 @@ const SKILLS: Skills = {
   "React Native": {
     level: 78,
     apiTopic: "react-native",
+    isClickable: false,
   },
   "Spring Boot": {
     level: 49,
@@ -121,6 +122,13 @@ const SKILLS: Skills = {
   },
   Howler: {
     level: 59,
+  },
+  Xunit: {
+    level: 80,
+  },
+  "three.js": {
+    level: 49,
+    apiTopic: "threejs",
   }
 };
 
