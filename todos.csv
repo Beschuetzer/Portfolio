@@ -1,6 +1,5 @@
 
 refactor stuff:
-  -update the skills values to match current values
   -do all items need to have autoPlay specified or can it be made in the carousel package?
 
   -how to handle ResumeLayout?
