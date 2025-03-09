@@ -3,6 +3,7 @@ import {
   BEST_BUY_URL,
   BRIDGE_URL,
   LINKED_IN_URL,
+  MAIL_TO_STRING,
   PLAYLIST_SYNCER_URL,
   REPLAY_VIEWER_URL,
   YORK_B2E_URL,
@@ -39,14 +40,20 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
           text="You are not your résumé, you are your work."
         />
         <ExamplePageParagraph>
-          Welcome! I am a developer with a passion for creating things that are
-          both perfomant and seamless. Below you will find my experience,
-          education, and my references.
+          Welcome! My name is Adam. I am a developer with a passion for solving
+          problems and creating new things with technology. Below you will find
+          my experience, current skill set, formal education, and references. If
+          you would like to learn more about me, please feel free to reach out
+          to me on{" "}
+          <ExamplePageLink url={LINKED_IN_URL} includeSpaces={false}>
+            LinkedIn
+          </ExamplePageLink>{" "}
+          and/or{" "}
+          <ExamplePageLink url={MAIL_TO_STRING} includeSpaces={false}>
+            email
+          </ExamplePageLink>
+          .
         </ExamplePageParagraph>
-        {/* <ExamplePageParagraph>
-          Selecting a skill will open a modal with links to the Github repo and
-          a live demo if available.
-        </ExamplePageParagraph> */}
       </>
     ),
   },
@@ -210,7 +217,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             phone: "913-209-2823",
             email: "troymccabe@gmail.com",
             linkedInUrl: "https://www.linkedin.com/in/troymccabe/",
-          },        
+          },
           {
             name: "Alissa Monroe",
             relation: "Best Buy Co-worker",
@@ -224,7 +231,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             phone: "612-720-4675",
             email: "KaylaAnnOtterness@gmail.com",
             linkedInUrl: "https://www.linkedin.com/in/kaykuhl/",
-          },  
+          },
           {
             name: "Brian Thompson",
             relation: "Best Buy Co-worker",
