@@ -16,7 +16,7 @@ import { ResumePageWorkHistory } from "./resume/ResumePageWorkHistory";
 import { defaultFontSize } from "../../../styles/constants";
 import { ExamplePageLink } from "../ExamplePageLink";
 import EducationList from "./resume/EducationList";
-import ReferenceItems from "./resume/ReferenceItems";
+import { ReferenceItems } from "./resume/ReferenceItems";
 import { LinkedInIcon } from "../icons/LinkedInIcon";
 import { ResumeSkillsModal } from "./resume/ResumeSkillsModal";
 import { ResumeSkillsSection } from "./resume/ResumeSkillsSection";

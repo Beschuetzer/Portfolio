@@ -53,7 +53,7 @@ type ReferenceItemsProps = {
   items: Omit<ReferenceItemProps, "isLast">[];
 };
 
-export default function ReferenceItems(props: ReferenceItemsProps) {
+export function ReferenceItems(props: ReferenceItemsProps) {
   const { items } = props;
 
   return (
