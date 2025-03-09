@@ -84,19 +84,6 @@ export const App: React.FC<AppProps> = (props) => {
   // 	dispatch(setSounds(sounds as unknown as LoadedSounds));
   // }, [setSounds]);
 
-  useEffect(() => {
-    (async () => {
-      // Trigger a call to the URL behind the scenes
-      const bridgeUrlPromise = fetch(LIVE_BRIDGE_URL, {
-        mode: "no-cors",
-      });
-      const replaysUrlPromise = fetch(LIVE_REPLAYS_URL, {
-        mode: "no-cors",
-      });
-      await Promise.all([bridgeUrlPromise, replaysUrlPromise]);
-    })();
-  }, []);
-
   return (
     <Router history={history}>
       <SiteNav
@@ -124,6 +111,11 @@ export const App: React.FC<AppProps> = (props) => {
               {
                 text: RESUME_SECTION_TITLES[3],
                 to: `${RESUME_URL}#${RESUME_SECTION_TITLES[3]}`,
+                image: skillsPic,
+              },
+              {
+                text: RESUME_SECTION_TITLES[4],
+                to: `${RESUME_URL}#${RESUME_SECTION_TITLES[4]}`,
                 image: referencesPic,
               },
             ],

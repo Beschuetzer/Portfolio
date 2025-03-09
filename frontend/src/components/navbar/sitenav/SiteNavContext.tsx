@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { SiteNavProps } from "./SiteNav";
+import { useHideMainScrollbar } from "../../../hooks/useHideMainScrollbar";
 
 type SiteNavContextProps = {
   buttonRadius: string;
@@ -23,21 +24,11 @@ export const SiteNavProvider: React.FC<SiteNavProviderProps> = ({
   scrollBarWidth,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  useHideMainScrollbar(!isOpen);
+  
   const toggleIsOpenLocal = () => {
     setIsOpen((prev) => !prev);
   };
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflowY = "hidden";
-    } else {
-      document.body.style.overflowY = "auto";
-    }
-    return () => {
-      document.body.style.overflowY = "auto";
-    };
-  }, [isOpen]);
 
   return (
     <SiteNavContext.Provider
