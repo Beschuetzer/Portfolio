@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const routes = require('./routes/gitHubRoute');
 const path = require('path');
+const fetch = require('node-fetch');
 require('dotenv').config();
 
 app.use(express.json());
