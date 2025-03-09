@@ -41,10 +41,12 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
         />
         <ExamplePageParagraph>
           Welcome! My name is Adam. I am a developer with a passion for solving
-          problems and creating new things with technology. Below you will find
-          my experience, current skill set, formal education, and references. If
-          you would like to learn more about me, please feel free to reach out
-          to me on{" "}
+          problems and creating new things with technology.
+        </ExamplePageParagraph>
+        <ExamplePageParagraph>
+          Below you will find my experience, current skill set, formal
+          education, and references. If you would like to learn more about me,
+          please feel free to reach out to me on{" "}
           <ExamplePageLink url={LINKED_IN_URL} includeSpaces={false}>
             LinkedIn
           </ExamplePageLink>{" "}
