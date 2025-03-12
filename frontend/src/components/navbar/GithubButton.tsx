@@ -49,8 +49,8 @@ const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
       left: auto;
       right: ${SITE_NAV_NAV_SWITCH_TOP};
       color: ${(props: SiteNavStyledProps) => props.colorscheme?.primary4};
-
       opacity: ${(props: SiteNavStyledProps)=> props.isopen === 'true' ? 0 : .5};
+      pointer-events: ${(props: SiteNavStyledProps)=> props.isopen === 'true' ? "none" : "auto"};
       &:hover {
         opacity: 1;
       }
