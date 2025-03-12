@@ -26,8 +26,6 @@ import startliteJam from "../../../music/Starlite_Five_Jam.mp3";
 import startliteOMB from "../../../music/Starlite_Five_OMB.mp3";
 import startliteTF from "../../../music/Starlite_Five_TF.mp3";
 
-import germany02 from "../../../imgs/about/germany-02.jpg";
-import germany03 from "../../../imgs/about/germany-03.jpg";
 import germany04 from "../../../imgs/about/germany-04.jpg";
 import germany05 from "../../../imgs/about/germany-05.jpg";
 import joshuaTree01 from "../../../imgs/about/joshua-tree-01.jpg";
@@ -42,7 +40,6 @@ import maui07 from "../../../imgs/about/maui-07.jpg";
 import molokai01 from "../../../imgs/about/molokai-01.jpg";
 import molokai02 from "../../../imgs/about/molokai-02.jpg";
 import molokai03 from "../../../imgs/about/molokai-03.jpg";
-import molokai04 from "../../../imgs/about/molokai-04.jpg";
 import oregon01 from "../../../imgs/about/oregon-01.jpg";
 import oregon02 from "../../../imgs/about/oregon-02.jpg";
 import oregon03 from "../../../imgs/about/oregon-03.jpg";
@@ -62,7 +59,6 @@ import waterfall1 from "../../../imgs/about/waterfall1.jpg";
 import waterfall2 from "../../../imgs/about/waterfall2.jpg";
 import waterfall3 from "../../../imgs/about/waterfall3.jpg";
 import waterfall4 from "../../../imgs/about/waterfall4.jpg";
-import waterfall5 from "../../../imgs/about/waterfall5.jpg";
 
 import arizona1Thumbnail from "../../../imgs/about/thumbnails/arizona1.jpg";
 import arizona2Thumbnail from "../../../imgs/about/thumbnails/arizona2.jpg";
@@ -79,13 +75,8 @@ import waterfall1Thumbnail from "../../../imgs/about/thumbnails/waterfall1.jpg";
 import waterfall2Thumbnail from "../../../imgs/about/thumbnails/waterfall2.jpg";
 import waterfall3Thumbnail from "../../../imgs/about/thumbnails/waterfall3.jpg";
 import waterfall4Thumbnail from "../../../imgs/about/thumbnails/waterfall4.jpg";
-import waterfall5Thumbnail from "../../../imgs/about/thumbnails/waterfall5.jpg";
-import germany02Thumbnail from "../../../imgs/about/thumbnails/germany-02-thumbnail.jpg";
-import germany03Thumbnail from "../../../imgs/about/thumbnails/germany-03-thumbnail.jpg";
 import germany04Thumbnail from "../../../imgs/about/thumbnails/germany-04-thumbnail.jpg";
 import germany05Thumbnail from "../../../imgs/about/thumbnails/germany-05-thumbnail.jpg";
-import germany07Thumbnail from "../../../imgs/about/thumbnails/germany-07-thumbnail.jpg";
-import germany09Thumbnail from "../../../imgs/about/thumbnails/germany-09-thumbnail.jpg";
 import joshuaTree01Thumbnail from "../../../imgs/about/thumbnails/joshua-tree-01-thumbnail.jpg";
 import joshuaTree02Thumbnail from "../../../imgs/about/thumbnails/joshua-tree-02-thumbnail.jpg";
 import maui01Thumbnail from "../../../imgs/about/thumbnails/maui-01-thumbnail.jpg";
@@ -98,12 +89,9 @@ import maui07Thumbnail from "../../../imgs/about/thumbnails/maui-07-thumbnail.jp
 import molokai01Thumbnail from "../../../imgs/about/thumbnails/molokai-01-thumbnail.jpg";
 import molokai02Thumbnail from "../../../imgs/about/thumbnails/molokai-02-thumbnail.jpg";
 import molokai03Thumbnail from "../../../imgs/about/thumbnails/molokai-03-thumbnail.jpg";
-import molokai04Thumbnail from "../../../imgs/about/thumbnails/molokai-04-thumbnail.jpg";
-import molokai05Thumbnail from "../../../imgs/about/thumbnails/molokai-05-thumbnail.jpg";
 import oregon01Thumbnail from "../../../imgs/about/thumbnails/oregon-01-thumbnail.jpg";
 import oregon02Thumbnail from "../../../imgs/about/thumbnails/oregon-02-thumbnail.jpg";
 import oregon03Thumbnail from "../../../imgs/about/thumbnails/oregon-03-thumbnail.jpg";
-import p2p01Thumbnail from "../../../imgs/about/thumbnails/p2p-01-thumbnail.png";
 import { Carousel } from "react-thumbnail-carousel";
 import { defaultFontSize } from "../../../styles/constants";
 import { AudioList } from "../../../components/AudioPlayer/AudioList";
@@ -170,7 +158,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
           Sort of a strange thing to put for an 'interest', but going to the gym
           and exercising is the main way that I maintain a healthy mindset.
         </ExamplePageTitledParagraph>
-        <ExamplePageTitledParagraph title="Seeing the world">
+        <ExamplePageTitledParagraph title="Photos">
           Here are some photos of enjoyable experiences:
           <Carousel
             options={{
@@ -227,24 +215,6 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
               },
             }}
             items={[
-              //create items from these imports
-              // import arizona1 from "../../../imgs/about/arizona1.jpg";
-              // import arizona2 from "../../../imgs/about/arizona2.jpg";
-              // import duluth1 from "../../../imgs/about/duluth1.jpg";
-              // import duluth2 from "../../../imgs/about/duluth2.jpg";
-              // import duluth3 from "../../../imgs/about/duluth3.jpg";
-              // import grandCanyon1 from "../../../imgs/about/grand-canyon1.jpg";
-              // import grandCanyon2 from "../../../imgs/about/grand-canyon2.jpg";
-              // import northernLights1 from "../../../imgs/about/northern-lights1.jpg";
-              // import northernLights2 from "../../../imgs/about/northern-lights2.jpg";
-              // import solarEclipse from "../../../imgs/about/solar-eclispe1.jpeg";
-              // import stlouis from "../../../imgs/about/st-louis.jpg";
-              // import waterfall1 from "../../../imgs/about/waterfall1.jpg";
-              // import waterfall2 from "../../../imgs/about/waterfall2.jpg";
-              // import waterfall3 from "../../../imgs/about/waterfall3.jpg";
-              // import waterfall4 from "../../../imgs/about/waterfall4.jpg";
-              // import waterfall5 from "../../../imgs/about/waterfall5.jpg";
-
               {
                 srcMain: arizona1,
                 srcThumbnail: arizona1Thumbnail,
@@ -308,22 +278,17 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
               {
                 srcMain: waterfall2,
                 srcThumbnail: waterfall2Thumbnail,
-                description: "Waterfall in Northern Minnoesota 2",
+                description: "Waterfall in Northern Minnoesota",
               },
               {
                 srcMain: waterfall3,
                 srcThumbnail: waterfall3Thumbnail,
-                description: "Waterfall in Northern Minnoesota 3",
+                description: "Waterfall in Northern Minnoesota",
               },
               {
                 srcMain: waterfall4,
                 srcThumbnail: waterfall4Thumbnail,
-                description: "Waterfall in Northern Minnoesota 4",
-              },
-              {
-                srcMain: waterfall5,
-                srcThumbnail: waterfall5Thumbnail,
-                description: "Waterfall in Northern Minnoesota 5",
+                description: "Waterfall in Northern Minnoesota",
               },
               {
                 srcMain: maui01,
@@ -386,11 +351,6 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
                 description: "Kaunakakai Harbor Sunet",
               },
               {
-                srcMain: molokai04,
-                srcThumbnail: molokai04Thumbnail,
-                description: "Double the Rainbow, Double the Treasure",
-              },
-              {
                 srcMain: oregon01,
                 srcThumbnail: oregon01Thumbnail,
                 description: "Sweet Creek in Oregon",
@@ -404,16 +364,6 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
                 srcMain: oregon03,
                 srcThumbnail: oregon03Thumbnail,
                 description: "Another Oregonian Creek",
-              },
-              {
-                srcMain: germany02,
-                srcThumbnail: germany02Thumbnail,
-                description: "Haubinda, Germany",
-              },
-              {
-                srcMain: germany03,
-                srcThumbnail: germany03Thumbnail,
-                description: "Sunset in Hungary on the Balaton See",
               },
               {
                 srcMain: germany04,
