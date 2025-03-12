@@ -32,7 +32,7 @@ const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
   justify-content: space-between;
   left: ${(props) => props.sitenavright};
   z-index: 100;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.33s ease;
 
   &:hover {
     & .svg-front,
@@ -50,7 +50,7 @@ const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
       right: ${SITE_NAV_NAV_SWITCH_TOP};
       color: ${(props: SiteNavStyledProps) => props.colorscheme?.primary4};
 
-      ${(props: SiteNavStyledProps) => (props.isopen === 'true' ? "" : `opacity: .5;`)}
+      opacity: ${(props: SiteNavStyledProps)=> props.isopen === 'true' ? 0 : .5};
       &:hover {
         opacity: 1;
       }

@@ -64,6 +64,9 @@ const Item = styled.div<
 
   ${respond.navSwitch`
     border-left: none;
+     &:hover {
+      box-shadow: 0px 4px 10px hsla(0, 0%, 7%, 0.5);
+    }
   `}
 `;
 
