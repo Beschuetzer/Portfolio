@@ -1,4 +1,6 @@
 
+make sure all carousels are using the sections approach for modal; then re-deploy after testing
+
 refactor stuff:
   -do all items need to have autoPlay specified or can it be made in the carousel package?
 
