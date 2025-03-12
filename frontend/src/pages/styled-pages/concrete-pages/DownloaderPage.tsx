@@ -85,21 +85,16 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
             srcThumbnail: problemVideoThumbnail,
             description: "The manual way of downloading",
             modal: {
-              children: (
-                <div>
-                  <ExamplePageTitledParagraph title="The Problem">
-                    Downloading new releases from{" "}
-                    <ExamplePageLink url={OC_REMIX_URL}>
-                      ocremix.org
-                    </ExamplePageLink>{" "}
-                    is exciting, but having to download a few months worth is
-                    more of a chore.&nbsp;
-                  </ExamplePageTitledParagraph>
-                  <ExamplePageTitledParagraph title="Reality Check">
-                    This is what it takes to download one song.
-                  </ExamplePageTitledParagraph>
-                </div>
-              ),
+              sections: [
+                {
+                  title: "The Problem",
+                  text: "Downloading new releases from ocremix.org is exciting, but having to download a few months worth is more of a chore.",
+                },
+                {
+                  title: "Reality Check",
+                  text: "This is what it takes to download one song.",
+                },
+              ],
             },
             video: {
               sections: [
