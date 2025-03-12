@@ -51,6 +51,39 @@ import oregon02 from "../../../imgs/about/oregon-02.jpg";
 import oregon03 from "../../../imgs/about/oregon-03.jpg";
 import p2p01 from "../../../imgs/about/p2p-01.png";
 
+import arizona1 from "../../../imgs/about/arizona1.jpg";
+import arizona2 from "../../../imgs/about/arizona2.jpg";
+import duluth1 from "../../../imgs/about/duluth1.jpg";
+import duluth2 from "../../../imgs/about/duluth2.jpg";
+import duluth3 from "../../../imgs/about/duluth3.jpg";
+import grandCanyon1 from "../../../imgs/about/grand-canyon1.jpg";
+import grandCanyon2 from "../../../imgs/about/grand-canyon2.jpg";
+import northernLights1 from "../../../imgs/about/northern-lights1.jpg";
+import northernLights2 from "../../../imgs/about/northern-lights2.jpg";
+import solarEclipse from "../../../imgs/about/solar-eclispe1.jpeg";
+import stlouis from "../../../imgs/about/st-louis.jpg";
+import waterfall1 from "../../../imgs/about/waterfall1.jpg";
+import waterfall2 from "../../../imgs/about/waterfall2.jpg";
+import waterfall3 from "../../../imgs/about/waterfall3.jpg";
+import waterfall4 from "../../../imgs/about/waterfall4.jpg";
+import waterfall5 from "../../../imgs/about/waterfall5.jpg";
+
+import arizona1Thumbnail from "../../../imgs/about/thumbnails/arizona1.jpg";
+import arizona2Thumbnail from "../../../imgs/about/thumbnails/arizona2.jpg";
+import duluth1Thumbnail from "../../../imgs/about/thumbnails/duluth1.jpg";
+import duluth2Thumbnail from "../../../imgs/about/thumbnails/duluth2.jpg";
+import duluth3Thumbnail from "../../../imgs/about/thumbnails/duluth3.jpg";
+import grandCanyon1Thumbnail from "../../../imgs/about/thumbnails/grand-canyon1.jpg";
+import grandCanyon2Thumbnail from "../../../imgs/about/thumbnails/grand-canyon2.jpg";
+import northernLights1Thumbnail from "../../../imgs/about/thumbnails/northern-lights1.jpg";
+import northernLights2Thumbnail from "../../../imgs/about/thumbnails/northern-lights2.jpg";
+import solarEclipseThumbnail from "../../../imgs/about/thumbnails/solar-eclispe1.jpeg";
+import stlouisThumbnail from "../../../imgs/about/thumbnails/st-louis.jpg";
+import waterfall1Thumbnail from "../../../imgs/about/thumbnails/waterfall1.jpg";
+import waterfall2Thumbnail from "../../../imgs/about/thumbnails/waterfall2.jpg";
+import waterfall3Thumbnail from "../../../imgs/about/thumbnails/waterfall3.jpg";
+import waterfall4Thumbnail from "../../../imgs/about/thumbnails/waterfall4.jpg";
+import waterfall5Thumbnail from "../../../imgs/about/thumbnails/waterfall5.jpg";
 import germany02Thumbnail from "../../../imgs/about/thumbnails/germany-02-thumbnail.jpg";
 import germany03Thumbnail from "../../../imgs/about/thumbnails/germany-03-thumbnail.jpg";
 import germany04Thumbnail from "../../../imgs/about/thumbnails/germany-04-thumbnail.jpg";
@@ -96,8 +129,8 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
         <ExamplePageParagraph>
           My mind is always active, whether at work or at play. I have a passion
           for learning new things and bring a natural curiosity to everything I
-          encounter. While I often enjoy being out in the world, I always look forward
-          to evenings at home with others, engaging in great
+          encounter. While I often enjoy being out in the world, I always look
+          forward to evenings at home with others, engaging in great
           conversation or playing a board game. I also find happiness in
           solitary activities, such as working on a project, reading a good
           book, or diving into a challenging problem.
@@ -124,8 +157,8 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Hiking">
           Living in Oregon for two years really awakened a fondness for hiking.
-          I don't plan on hiking Everest anytime soon, but I definitely
-          enjoy any chance I get to explore the outdoors.
+          I don't plan on hiking Everest anytime soon, but I definitely enjoy
+          any chance I get to explore the outdoors.
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Drums">
           I've been playing drums since I was 14. I'm not the best drummer in
@@ -198,6 +231,104 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
               },
             }}
             items={[
+              //create items from these imports
+              // import arizona1 from "../../../imgs/about/arizona1.jpg";
+              // import arizona2 from "../../../imgs/about/arizona2.jpg";
+              // import duluth1 from "../../../imgs/about/duluth1.jpg";
+              // import duluth2 from "../../../imgs/about/duluth2.jpg";
+              // import duluth3 from "../../../imgs/about/duluth3.jpg";
+              // import grandCanyon1 from "../../../imgs/about/grand-canyon1.jpg";
+              // import grandCanyon2 from "../../../imgs/about/grand-canyon2.jpg";
+              // import northernLights1 from "../../../imgs/about/northern-lights1.jpg";
+              // import northernLights2 from "../../../imgs/about/northern-lights2.jpg";
+              // import solarEclipse from "../../../imgs/about/solar-eclispe1.jpeg";
+              // import stlouis from "../../../imgs/about/st-louis.jpg";
+              // import waterfall1 from "../../../imgs/about/waterfall1.jpg";
+              // import waterfall2 from "../../../imgs/about/waterfall2.jpg";
+              // import waterfall3 from "../../../imgs/about/waterfall3.jpg";
+              // import waterfall4 from "../../../imgs/about/waterfall4.jpg";
+              // import waterfall5 from "../../../imgs/about/waterfall5.jpg";
+
+              {
+                srcMain: arizona1,
+                srcThumbnail: arizona1Thumbnail,
+                description: "Horseshoe Bend in Arizona",
+              },
+              {
+                srcMain: arizona2,
+                srcThumbnail: arizona2Thumbnail,
+                description: "Antelope Canyon in Page, Arizona",
+              },
+              {
+                srcMain: duluth1,
+                srcThumbnail: duluth1Thumbnail,
+                description: "Lake Superior 1",
+              },
+              {
+                srcMain: duluth2,
+                srcThumbnail: duluth2Thumbnail,
+                description: "Lake Superior 2",
+              },
+              {
+                srcMain: duluth3,
+                srcThumbnail: duluth3Thumbnail,
+                description: "Lake Superior 3",
+              },
+              {
+                srcMain: grandCanyon1,
+                srcThumbnail: grandCanyon1Thumbnail,
+                description: "Grand Canyon",
+              },
+              {
+                srcMain: grandCanyon2,
+                srcThumbnail: grandCanyon2Thumbnail,
+                description: "Grand Canyon 2",
+              },
+              {
+                srcMain: northernLights1,
+                srcThumbnail: northernLights1Thumbnail,
+                description: "Northern Lights in Grand Marais, MN",
+              },
+              {
+                srcMain: northernLights2,
+                srcThumbnail: northernLights2Thumbnail,
+                description: "Northern Lights in Grand Marais, MN",
+              },
+              {
+                srcMain: solarEclipse,
+                srcThumbnail: solarEclipseThumbnail,
+                description: "Total Solar Solar Eclipse in Missouri",
+              },
+              {
+                srcMain: stlouis,
+                srcThumbnail: stlouisThumbnail,
+                description: "St. Louis Arch",
+              },
+              {
+                srcMain: waterfall1,
+                srcThumbnail: waterfall1Thumbnail,
+                description: "Waterfall in Northern Minnoesota",
+              },
+              {
+                srcMain: waterfall2,
+                srcThumbnail: waterfall2Thumbnail,
+                description: "Waterfall in Northern Minnoesota 2",
+              },
+              {
+                srcMain: waterfall3,
+                srcThumbnail: waterfall3Thumbnail,
+                description: "Waterfall in Northern Minnoesota 3",
+              },
+              {
+                srcMain: waterfall4,
+                srcThumbnail: waterfall4Thumbnail,
+                description: "Waterfall in Northern Minnoesota 4",
+              },
+              {
+                srcMain: waterfall5,
+                srcThumbnail: waterfall5Thumbnail,
+                description: "Waterfall in Northern Minnoesota 5",
+              },
               {
                 srcMain: maui01,
                 srcThumbnail: maui01Thumbnail,
@@ -206,7 +337,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
               {
                 srcMain: maui02,
                 srcThumbnail: maui02Thumbnail,
-                description: "Friendly Turtle Visit",
+                description: "Friendly Turtle at Kapalua Cliff House",
               },
               {
                 srcMain: maui03,
@@ -216,7 +347,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
               {
                 srcMain: maui04,
                 srcThumbnail: maui04Thumbnail,
-                description: "Stunning Beach, Less than Ideal Sand",
+                description: "Beautiful Beach on Maui",
               },
               {
                 srcMain: maui05,
@@ -264,11 +395,6 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
                 description: "Double the Rainbow, Double the Treasure",
               },
               {
-                srcMain: molokai05,
-                srcThumbnail: molokai05Thumbnail,
-                description: "Molokai Biking Requires Preparedness",
-              },
-              {
                 srcMain: oregon01,
                 srcThumbnail: oregon01Thumbnail,
                 description: "Sweet Creek in Oregon",
@@ -302,21 +428,6 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
                 srcMain: germany05,
                 srcThumbnail: germany05Thumbnail,
                 description: "Not much left of the old city in Nuernberg",
-              },
-              {
-                srcMain: germany07,
-                srcThumbnail: germany07Thumbnail,
-                description: "The pain is real even if the equipment is not",
-              },
-              {
-                srcMain: germany09,
-                srcThumbnail: germany09Thumbnail,
-                description: "Shields only work if you know how to use them",
-              },
-              {
-                srcMain: p2p01,
-                srcThumbnail: p2p01Thumbnail,
-                description: "Abseiling an English Castle",
               },
             ]}
           />
@@ -406,20 +517,8 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
                 path: { earliest3 },
               },
               {
-                name: "Paula - Quiet Condolences",
-                path: { othersQC },
-              },
-              {
-                name: "Paula, and Steve - Luminescent Ether",
-                path: { othersLE },
-              },
-              {
                 name: "Steve - Eerie Correspondence",
                 path: { othersEC },
-              },
-              {
-                name: "Steve - Reunited",
-                path: { othersReunited },
               },
               {
                 name: "Steve - Nostalgia",
