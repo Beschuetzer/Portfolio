@@ -81,18 +81,12 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
             srcThumbnail: demoVideoThumbnail,
             description: "Video Demonstration",
             modal: {
-              children: (
-                <div>
-                  <ExamplePageTitledParagraph title="Transferring Files">
-                    The playlist syncer has the ability to transfer songs to
-                    either an SD card or the phone's internal memory.
-                    Files in the playlist that are not found in the destination
-                    are copied to '/destination/music'. After that .m3u
-                    playlist file is transferred to
-                    'destination/music/playlists'.
-                  </ExamplePageTitledParagraph>
-                </div>
-              ),
+              sections: [
+                {
+                  title: "Transferring Files",
+                  text: "The playlist syncer has the ability to transfer songs to either an SD card or the phone's internal memory. Files in the playlist that are not found in the destination are copied to '/destination/music'. After that .m3u playlist file is transferred to 'destination/music/playlists'.",
+                }
+              ]
             },
             video: {
               sections: [

@@ -109,26 +109,16 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
             srcThumbnail: clipFiltersThumbnail,
             description: "Applying Filters",
             modal: {
-              children: (
-                <div>
-                  <ExamplePageTitledParagraph
-                    title="Contract is 1&clubs;"
-                    htmlAttributes={getModalHtmlAttributes(propsToAdd)}
-                  >
-                    The first part of the video highlights the process of
-                    applying the contract matching filter. There are two matches
-                    found.
-                  </ExamplePageTitledParagraph>
-                  <ExamplePageTitledParagraph
-                    title="Two Filters = Double the Filtering"
-                    htmlAttributes={getModalHtmlAttributes(propsToAdd)}
-                  >
-                    The second filter applied requires 'Ann' to have the
-                    2&clubs;. In one of the filtered games she does, and in the
-                    other one she doesn't.
-                  </ExamplePageTitledParagraph>
-                </div>
-              ),
+              sections: [
+                {
+                  title: "Contract is 1&clubs;",
+                  text: "The first part of the video highlights the process of applying the contract matching filter. There are two matches found.",
+                },
+                {
+                  title: "Two Filters = Double the Filtering",
+                  text: "The second filter applied requires 'Ann' to have the 2&clubs;. In one of the filtered games she does, and in the other one she doesn't.",
+                }
+              ]
             },
             video: {
               autoPlay: false,
@@ -158,39 +148,16 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
             srcThumbnail: clipDealPlayerThumbnail,
             description: "Using the deal player",
             modal: {
-              children: (
-                <div>
-                  <ExamplePageTitledParagraph
-                    title="Critical Analysis"
-                    htmlAttributes={getModalHtmlAttributes(propsToAdd)}
-                  >
-                    One of the main reasons I created the
-                    <ExamplePageLink
-                      url={LIVE_REPLAYS_URL}
-                      htmlAttributes={getModalHtmlAttributes(propsToAdd)}
-                    >
-                      Replay Viewer
-                    </ExamplePageLink>
-                    was to be able to easily review the trick-taking phase of
-                    games completed on
-                    <ExamplePageLink
-                      url={LIVE_BRIDGE_URL}
-                      htmlAttributes={getModalHtmlAttributes(propsToAdd)}
-                    >
-                      A# Maj Bridge
-                    </ExamplePageLink>
-                    .
-                  </ExamplePageTitledParagraph>
-                  <ExamplePageTitledParagraph
-                    title="Viewing Options"
-                    htmlAttributes={getModalHtmlAttributes(propsToAdd)}
-                  >
-                    There are two ways to get to the questionable play: by
-                    turning on auto play or by skipping ahead to the trick in
-                    question.
-                  </ExamplePageTitledParagraph>
-                </div>
-              ),
+              sections: [
+                {
+                  title: "Critical Analysis",
+                  text: "One of the main reasons I created the replay viewer was to be able to easily review the trick-taking phase of games completed on A# Maj Bridge.",
+                },
+                {
+                  title: "Viewing Options",
+                  text: "There are two ways to get to the questionable play: by turning on auto play or by skipping ahead to the trick in question.",
+                }
+              ]
             },
             video: {
               autoPlay: false,
@@ -210,17 +177,12 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
             srcThumbnail: clipNavigationsThumbnail,
             description: "Animations and Settings",
             modal: {
-              children: (
-                <div>
-                  <ExamplePageTitledParagraph
-                    title="Cherry on Top"
-                    htmlAttributes={getModalHtmlAttributes(propsToAdd)}
-                  >
-                    Animations can turn a boring app into an interesting one,
-                    assuming the user experience is good.
-                  </ExamplePageTitledParagraph>
-                </div>
-              ),
+              sections: [
+                {
+                  title: "Cherry on Top",
+                  text: "Animations can turn a boring app into an interesting one, assuming the user experience is good.",
+                }
+              ]
             },
             video: {
               autoPlay: false,

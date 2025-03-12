@@ -113,19 +113,16 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
             srcThumbnail: demoVideoThumbnail,
             description: "The automated way of downloading",
             modal: {
-              children: (
-                <div>
-                  <ExamplePageTitledParagraph title="Embedded Links">
-                    The downloader app not only downloads links it finds
-                    matching the given criteria, but will do the same for any
-                    embedded links it finds.
-                  </ExamplePageTitledParagraph>
-                  <ExamplePageTitledParagraph title="Buggy but functional">
-                    The download logs aren't always correct, but there's no
-                    denying the result.
-                  </ExamplePageTitledParagraph>
-                </div>
-              ),
+              sections: [
+                {
+                  title: "Embedded Links",
+                  text: "The downloader app not only downloads links it finds matching the given criteria, but will do the same for any embedded links it finds.",
+                },
+                {
+                  title: "Logs",
+                  text: "The download logs display twice, but only one file is downloaded.",
+                }
+              ]
             },
             video: {
               sections: [
