@@ -1,6 +1,7 @@
 
 -change how the containers are pinged (move to front end pages from which they can be accessed?)
-
+-have each section move in from the side (alternating from each side) when the page section becomes visible
+-merge the refactor/pure-react branch into main
 
 make sure all carousels are using the sections approach for modal; then re-deploy after testing
 
