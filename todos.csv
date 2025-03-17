@@ -1,4 +1,7 @@
 
+-change how the containers are pinged (move to front end pages from which they can be accessed?)
+
+
 make sure all carousels are using the sections approach for modal; then re-deploy after testing
 
 refactor stuff:
