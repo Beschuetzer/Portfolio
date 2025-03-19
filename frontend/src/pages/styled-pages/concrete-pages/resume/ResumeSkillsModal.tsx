@@ -124,7 +124,6 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
   const [shouldShowMore, setSetshouldShowMore] = useState(true);
   const [endCursor, setEndCursor] = useState("");
   const lastPageInfo = useRef<GithubPageInfo | null>(null);
-  console.log("rendering modal");
   const propsToAdd: LayoutStyledProps = {
     isopen: selectedSkill ? "true" : "false",
     colorscheme: colorScheme,
@@ -147,10 +146,8 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
 
   const onLoadNextBatch = useCallback(() => {
     if (!lastPageInfo.current?.hasNextPage) {
-      console.log("no more pages");
       return;
     }
-    console.log({ lastPageInfo: lastPageInfo.current });
     setEndCursor(lastPageInfo.current?.endCursor || "");
   }, []);
 
@@ -172,11 +169,9 @@ export function ResumeSkillsModal(props: ResumeSkillsModalProps) {
   });
 
   useEffect(() => {
-    console.log({ lastPageInfo: lastPageInfo.current });
     setSetshouldShowMore(lastPageInfo.current?.hasNextPage || false);
   }, [reposToDisplay]);
 
-  console.log({ data, error, isLoading });
   return (
     <Container {...propsToAdd} onClick={onContainerClick}>
       <Content {...propsToAdd} onClick={onConentClick}>
