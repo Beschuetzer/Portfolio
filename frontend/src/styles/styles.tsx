@@ -69,7 +69,7 @@ export function getCarouselStylingOptions(
         backgroundColor: colorScheme?.primary4,
         loadingSpinner: {
           options: {
-            color: colorScheme?.primary4,
+            color: colorScheme?.primary1,
           },
         },
       },
