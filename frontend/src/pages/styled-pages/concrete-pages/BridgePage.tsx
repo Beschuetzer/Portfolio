@@ -36,6 +36,7 @@ import saveGameVideoThumbnail from "../../../clips/bridge/thumbnails/save-game.p
 import { Carousel } from "react-thumbnail-carousel";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import { defaultFontSize } from "../../../styles/constants";
+import { useAwakenSleepingContainers } from "../../../hooks/useAwakenSleepingContainers";
 
 const SECTION_NAMES = ["Overview", "Features", "Details", "Lessons"];
 const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
@@ -189,6 +190,7 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
 
 type BridgePageProps = {};
 export function BridgePage(props: BridgePageProps) {
+  useAwakenSleepingContainers([LIVE_BRIDGE_URL]);
   return (
     <ExamplePage
       title="A# Major Bridge"

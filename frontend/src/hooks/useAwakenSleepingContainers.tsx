@@ -1,19 +1,15 @@
-import { useCallback, useEffect } from "react";
-import { LIVE_BRIDGE_URL, LIVE_REPLAYS_URL } from "../components/constants";
+import { useCallback, useEffect, useRef } from "react";
 
-const NUMBER_OF_MINUTES = .1;
+const NUMBER_OF_MINUTES = 8;
 const PING_INTERVAL = 60 * 1000 * NUMBER_OF_MINUTES;
-const GROCIFY_BFF_URL = "https://grocify-bff-ac27c2662495.herokuapp.com/";
-const URLS_TO_PING = [
-  `${GROCIFY_BFF_URL}/ping`,
-  LIVE_BRIDGE_URL,
-  LIVE_REPLAYS_URL,
-];
 
-export const useAwakenSleepingContainers = () => {
+export const useAwakenSleepingContainers = (urls: string[], pingIntervalInMs = PING_INTERVAL) => {
+  const intervalRef = useRef<any>(null);
+
   const makeCalls = useCallback(async () => {
     const promises = [];
-    for (const url of URLS_TO_PING) {
+    for (const url of urls) {
+      console.log(`Pinging '${url}'...`);
       promises.push(
         fetch(url, {
           mode: "no-cors",
@@ -21,14 +17,18 @@ export const useAwakenSleepingContainers = () => {
       );
     }
     await Promise.allSettled(promises);
-  }, []);
+  }, [urls]);
 
   useEffect(() => {
     makeCalls();
-    setInterval(() => {
+    intervalRef.current = setInterval(() => {
       (async () => {
         await makeCalls();
       })();
-    }, PING_INTERVAL);
-  }, [makeCalls]);
+    }, pingIntervalInMs);
+
+    return () => {
+      clearInterval(intervalRef.current);
+    }
+  }, [makeCalls, pingIntervalInMs]);
 };

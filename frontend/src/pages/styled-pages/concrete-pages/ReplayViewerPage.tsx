@@ -43,6 +43,7 @@ import clipNavigationsThumbnail from "../../../clips/replay-viewer/thumbnails/na
 import clipDealPlayerThumbnail from "../../../clips/replay-viewer/thumbnails/deal-player-thumbnail.png";
 import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
 import { defaultFontSize } from "../../../styles/constants";
+import { useAwakenSleepingContainers } from "../../../hooks/useAwakenSleepingContainers";
 
 export const REPLAY_VIEWER_SECTION_NAMES = [
   "Motivation",
@@ -117,8 +118,8 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
                 {
                   title: "Two Filters = Double the Filtering",
                   text: "The second filter applied requires 'Ann' to have the 2&clubs;. In one of the filtered games she does, and in the other one she doesn't.",
-                }
-              ]
+                },
+              ],
             },
             video: {
               autoPlay: false,
@@ -156,8 +157,8 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
                 {
                   title: "Viewing Options",
                   text: "There are two ways to get to the questionable play: by turning on auto play or by skipping ahead to the trick in question.",
-                }
-              ]
+                },
+              ],
             },
             video: {
               autoPlay: false,
@@ -181,8 +182,8 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
                 {
                   title: "Cherry on Top",
                   text: "Animations can turn a boring app into an interesting one, assuming the user experience is good.",
-                }
-              ]
+                },
+              ],
             },
             video: {
               autoPlay: false,
@@ -329,6 +330,7 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
 type ReplayViewerPageProps = {};
 
 export function ReplayViewerPage(props: ReplayViewerPageProps) {
+  useAwakenSleepingContainers([LIVE_REPLAYS_URL]);
   return (
     <ExamplePage
       title="Replay Viewer"
