@@ -5,7 +5,8 @@
   "main": "app.js",
   "type": "commonjs",
   "scripts": {
-    "start": "concurrently \"node app.js\" \"npm --prefix frontend start\"",
+    "start": "node app.js",
+    "start:dev": "concurrently \"node app.js\" \"npm --prefix frontend start\"",
     "dev": "nodemon app.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --prefix frontend && npm run build --prefix frontend"
   },
