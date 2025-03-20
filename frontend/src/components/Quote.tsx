@@ -1,111 +1,139 @@
-import React from "react";
-import { useRef } from "react";
-import { getComputedStyleCustom, getSentencesFromString } from "../helpers";
-import { HIDDEN_CLASSNAME, QUOTE_POPUP_TRANSFORM_DEFAULT_CUSTOM_PROPERTY_NAME } from "./constants";
+import { HtmlHTMLAttributes, useRef, useState } from "react";
+import { LayoutStyledProps } from "../layouts/types";
+import styled from "styled-components";
+import {
+  defaultFontSize,
+  fontSizeFour,
+  fontSizeNine,
+  getFontSizeCustom,
+} from "../styles/constants";
+import { useColorScheme } from "../hooks/useColorScheme";
+import { paragraphMarginTop } from "../styles/styles";
 
-export const QUOTE_CLASSNAME = "quote";
+const Container = styled.figure<LayoutStyledProps>`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 ${getFontSizeCustom(2)};
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  color: ${(props) => props.colorscheme?.primary1};
+  transition: opacity 0.25s ease-in-out;
+  ${paragraphMarginTop}
 
-export interface QuoteProps {
-	children: string;
-	author: string;
-	shouldBreakLines?: boolean;
-	className?: string;
-}
+  &:hover > *:not(:first-child) {
+    opacity: 0.75;
+  }
 
-export const Quote: React.FC<QuoteProps> = ({
-	children,
-	author,
-	shouldBreakLines = false,
-	className = ''
-}) => {
-	const POPUP_SHOW_DURATION = 2500;
-	const POPUP_MESSAGE = 'Quote Copied to Clipboard';
-	const messageRef = useRef<HTMLElement>(null);
-	const authorRef = useRef<HTMLElement>(null);
-	const popUpRef = useRef<HTMLElement>(null);
-	const punctuationMarks = [".", "?", "!"];
+  &:hover::before,
+  &:hover::after {
+    opacity: 1;
+  }
 
-	let popUpTimeout: any;
+  &::before,
+  &::after {
+    transition: opacity 0.25s ease-in-out;
+    font-size: ${fontSizeNine};
+    opacity: 0.125;
+    position: absolute;
+    top: 0;
+  }
 
-	function copyToClipboard() {
-		const message = `"${(messageRef.current as any)?.textContent}" ${
-			(authorRef.current as any)?.textContent
-		}`;
+  &::before {
+    content: "“";
+    left: 0;
+  }
 
-		const el = document.createElement("textarea") as HTMLTextAreaElement;
-		el.value = message;
-		document.body.appendChild(el);
-		el.select();
-		document.execCommand("copy");
-		document.body.removeChild(el);
-		showPopup();
-	};
+  &::after {
+    content: "”";
+    right: 0;
+  }
+`;
 
-	function getMessage() {
-		if (!children.split) return null;
-		const splitByPeriod = children?.split(".");
-		const splitByQuestionMark = children?.split("?");
-		const splitByExclamationPoint = children?.split("!");
-		const splitsToIterateThrough = [
-			splitByPeriod,
-			splitByQuestionMark,
-			splitByExclamationPoint,
-		];
+const BlockQuote = styled.blockquote<LayoutStyledProps>`
+  position: relative;
+  font-style: italic;
+  font-size: ${fontSizeFour};
+  font-family: "New Tegomin", serif;
+`;
 
-		let sentences = [children];
-		if (shouldBreakLines)
-			sentences = getSentencesFromString(children, punctuationMarks);
+const Cite = styled.cite<LayoutStyledProps>`
+  font-size: ${defaultFontSize};
+  font-family: "Merriweather", serif;
+`;
 
-		let shouldReturnOriginal = true;
-		for (let i = 0; i < splitsToIterateThrough.length; i++) {
-			const splitToIterateThrough = splitsToIterateThrough[i];
-			if (splitToIterateThrough.length > 1) {
-				shouldReturnOriginal = false;
-			}
-		}
+const Popup = styled.div<LayoutStyledProps>`
+  user-select: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: ${(props) => props.colorscheme?.primary1};
+  color: ${(props) => props.colorscheme?.primary4};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: ${(props) => (props.ispopupvisible === 'true' ? 1 : 0)};
+  transition: opacity 0.25s ease-in-out;
+  font-size: ${fontSizeFour};
+  z-index: 1000;
+  border-radius: ${getFontSizeCustom(0.5)};
+`;
 
-		return sentences.map((sentence, index) => {
-			if (index === 0 || index === sentences.length - 1)
-				return (
-					<span key={index}>{shouldReturnOriginal ? children : sentence}</span>
-				);
-
-			return (
-				<div key={index}>{shouldReturnOriginal ? children : sentence}</div>
-			);
-		});
-	};
-
-	function showPopup() {
-		const popUp = popUpRef.current as HTMLElement;
-		if (!popUp) return;
-		clearTimeout(popUpTimeout);
-
-		popUp.classList.remove(HIDDEN_CLASSNAME);
-		popUp.style.transform = `translate(-0%, 00%) scale(1)`;
-
-		popUpTimeout = setTimeout(() => {
-			popUp.style.transform = getComputedStyleCustom(QUOTE_POPUP_TRANSFORM_DEFAULT_CUSTOM_PROPERTY_NAME);
-			popUp.classList.add(HIDDEN_CLASSNAME);
-		}, POPUP_SHOW_DURATION)
-	}
-
-	return (
-		<figure
-			onClick={(e: any) => copyToClipboard()}
-			className={`${QUOTE_CLASSNAME} ${className}`}>
-			<blockquote ref={messageRef as any} className={`${QUOTE_CLASSNAME}__message`}>
-				{getMessage()}
-			</blockquote>
-			<cite ref={authorRef as any} className={`${QUOTE_CLASSNAME}__author`}>
-				&#8212;{author}
-			</cite>
-			<div ref={popUpRef as any} className={`${QUOTE_CLASSNAME}__popup hidden`}>
-				{POPUP_MESSAGE}
-				{/* <div className={`arrow-down arrow-down--left`}></div> */}
-				<div className={`arrow-down arrow-down--center`}></div>
-				{/* <div className={`arrow-down arrow-down--right`}></div> */}
-			</div>
-		</figure>
-	);
+type QuoteProps = {
+  author: string;
+  containerProps?: HtmlHTMLAttributes<HTMLDivElement>;
+  text: string;
 };
+
+const COPY_MESSAGE_TIMEOUT = 1000;
+
+export function Quote(props: QuoteProps) {
+  const { author, containerProps, text } = props;
+  const colorScheme = useColorScheme();
+  const messageRef = useRef<HTMLQuoteElement>(null);
+  const authorRef = useRef<HTMLDivElement>(null);
+  const [popupMessage, setPopupMessage] = useState("");
+  const isVisibleTimeout = useRef<any>(null);
+
+  const propsToAdd: LayoutStyledProps = {
+    colorscheme: colorScheme != null ? colorScheme : undefined,
+    ispopupvisible: popupMessage.length > 0 ? "true" : "false",
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        messageRef.current?.textContent || ""
+      );
+      setPopupMessage("Copied Quote to Clipboard!");
+    } catch (error) {
+      setPopupMessage("Failed to Copy Quote to Clipboard...");
+    } finally {
+      isVisibleTimeout.current && clearTimeout(isVisibleTimeout.current);
+      isVisibleTimeout.current = setTimeout(() => {
+        setPopupMessage("");
+      }, COPY_MESSAGE_TIMEOUT);
+    }
+  };
+
+  return (
+    <Container
+      {...containerProps}
+      {...propsToAdd}
+      onClick={(e: any) => copyToClipboard()}
+    >
+      <Popup {...propsToAdd}>{popupMessage}</Popup>
+      <BlockQuote ref={messageRef} {...propsToAdd}>
+        {text}
+      </BlockQuote>
+      <Cite ref={authorRef} {...propsToAdd}>
+        &#8212;{author}
+      </Cite>
+    </Container>
+  );
+}

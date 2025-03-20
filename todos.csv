@@ -1,3 +1,21 @@
+
+-have each section move in from the side (alternating from each side) when the page section becomes visible
+-merge the refactor/pure-react branch into main
+
+make sure all carousels are using the sections approach for modal; then re-deploy after testing
+
+refactor stuff:
+  -do all items need to have autoPlay specified or can it be made in the carousel package?
+
+  -how to handle ResumeLayout?
+  -how to handle BridgeLayout?
+   -SiteNavDrawer:
+    --how hard would it be to only have one open section at a time (the ones not clicked would transform back to the original position)
+    --SiteNavItem is handling too many cases.  Create separate components for each case and centralize the common styles instead.
+
+  -Add some pazazz to the fonts (https://itssharl.ee/fr)
+
+
 -create low-res version of every video?
 -create sections for each video (in the progress bar)
 

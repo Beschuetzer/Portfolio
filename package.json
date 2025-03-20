@@ -21,14 +21,15 @@
   },
   "homepage": "https://github.com/Beschuetzer/Portfolio#readme",
   "dependencies": {
-    "axios": "^0.21.1",
     "debug": "^4.3.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
-    "graphql-request": "^3.4.0"
+    "graphql-request": "^3.4.0",
+    "react-syntax-highlighter": "^15.6.1"
   },
   "devDependencies": {
+    "@types/react-syntax-highlighter": "^15.5.13",
     "@welldone-software/why-did-you-render": "^6.1.4",
     "eslint": "^8.40.0",
     "eslint-config-semistandard": "^17.0.0",

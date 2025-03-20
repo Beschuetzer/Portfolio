@@ -103,7 +103,7 @@ $home-content-header-gradient-colors: var(--color-primary-4),
 
 //#region Resume
 $resume-section-padding-top: $default-font-size * 2;
-$resume-card-width-full: $default-font-size * 53.125;
+$resume-card-width-full: 600px;
 $resume-header-text-shadow: getTextShadow(
 	close,
 	var(--color-primary-3-rgb),
@@ -334,7 +334,7 @@ $page-nav-top: calc(#{$navbar__logo-width} + #{$default-font-size} * 1);
 	--bridge-page-nav-link-color: var(--color-primary-4);
 	--bridge-section-height: 0px;
 	--bridge-section-padding: 0;
-	--card-playing-transform: translate(0, 0) scale(1);
+	--card-playing-transform: translate3d(0, 0, 0) scale(1);
 	--card-scale-amount: 1;
 	--hero-more-y-translate: -50%;
 
@@ -346,7 +346,7 @@ $page-nav-top: calc(#{$navbar__logo-width} + #{$default-font-size} * 1);
 	--diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));
 	--aspect-ratio-factor: calc(16 / 9);
 	--diamond-fractal-rotation: 45deg;
-	--translate-center: translate(-50%, -50%);
+	--translate-center: translate3d(-50%, -50%, 0);
 	--square-root-of-two: 0.707106781;
 	--diamond-outer-opacity: 0.05;
 

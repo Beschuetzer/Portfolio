@@ -58,6 +58,7 @@ export async function getRandomQuote({ authors = [], tags = [] }: { authors?: st
       },
     })
     const response = await stream.json();
+    
     return response as Quote;
   }
   catch (err) {
