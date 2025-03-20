@@ -381,127 +381,127 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
       </>
     ),
   },
-  {
-    name: ABOUT_SECTION_NAMES[2],
-    renderContent: (propsToAdd: LayoutStyledProps) => (
-      <>
-        <Quote
-          author="Leornard Bernstein"
-          text="To achieve great things, two things are needed: a plan, and not quite enough time."
-        />
-        <ExamplePageTitledParagraph title="An Innate Passion">
-          Music has been a big part of my life since I was young.&nbsp; Ever
-          since first discovered Fruity Loops, I have been using music as a
-          cathartic outlet.&nbsp; The songs are almost universally of low
-          quality, but the act of getting the idea out of my head into the real
-          world is really the part that brings me joy.&nbsp; Listening to the
-          song reminds me of the process.&nbsp;
-        </ExamplePageTitledParagraph>
-        <ExamplePageTitledParagraph title="Electronic">
-          Here are some of the first songs I made on Fruity Loops:
-          <AudioList
-            className="margin-top-1"
-            items={[
-              {
-                name: "Adam - Fruity Loops 1",
-                path: { earliest1 },
-              },
-              {
-                name: "Adam - Fruity Loops 2",
-                path: { earliest2 },
-              },
-              {
-                name: "Adam - Mario Jingle",
-                path: { selfMario },
-              },
-            ]}
-          />
-        </ExamplePageTitledParagraph>
-        <ExamplePageTitledParagraph title="Youthful Aspirations">
-          In high school, some friends and I were in a band:
-          <AudioList
-            className="margin-top-1"
-            items={[
-              {
-                name: "Band - Altus",
-                path: { earlier5 },
-              },
-              {
-                name: "Band - Hey Joe",
-                path: { earlier7 },
-              },
-              {
-                name: "Band - Vodoo Child",
-                path: { earlier3 },
-              },
-              {
-                name: "Band - Washed Away",
-                path: { earlier6 },
-              },
-            ]}
-          />
-        </ExamplePageTitledParagraph>
-        <ExamplePageTitledParagraph title="Real Instruments">
-          As time went on, I tried out different genres of music:
-          <AudioList
-            className="margin-top-1"
-            items={[
-              {
-                name: "Adam - Honeydew in June",
-                path: { selfHDIJC },
-              },
-              {
-                name: "Adam - Hopeful Uncertainty",
-                path: { selfHU },
-              },
-              {
-                name: "Adam - Relentless Sacrifice",
-                path: { selfRS },
-              },
-              {
-                name: "Adam and Linda - Rear-view Mirror",
-                path: { earliest3 },
-              },
-              {
-                name: "Steve - Eerie Correspondence",
-                path: { othersEC },
-              },
-              {
-                name: "Steve - Nostalgia",
-                path: { othersSweet },
-              },
-            ]}
-          />
-        </ExamplePageTitledParagraph>
-        <ExamplePageTitledParagraph title="Making the Most of It">
-          For a few years, I whole-heartedly pursued the idea of becoming a
-          recording/mixing engineer.&nbsp; Unfortunately, hard work doesn't
-          always make up for lack of connections:
-          <AudioList
-            className="margin-top-1"
-            items={[
-              {
-                name: "Starlite Five - The Blues is Stalkin' Me",
-                path: { startliteBISM },
-              },
-              {
-                name: "Starlite Five - That feeling",
-                path: { startliteJam },
-              },
-              {
-                name: "Starlite Five - Oldsmobile Blue",
-                path: { startliteOMB },
-              },
-              {
-                name: "Starlite Five - Those Feet",
-                path: { startliteTF },
-              },
-            ]}
-          />
-        </ExamplePageTitledParagraph>
-      </>
-    ),
-  },
+  // {
+  //   name: ABOUT_SECTION_NAMES[2],
+  //   renderContent: (propsToAdd: LayoutStyledProps) => (
+  //     <>
+  //       <Quote
+  //         author="Leornard Bernstein"
+  //         text="To achieve great things, two things are needed: a plan, and not quite enough time."
+  //       />
+  //       <ExamplePageTitledParagraph title="An Innate Passion">
+  //         Music has been a big part of my life since I was young.&nbsp; Ever
+  //         since first discovered Fruity Loops, I have been using music as a
+  //         cathartic outlet.&nbsp; The songs are almost universally of low
+  //         quality, but the act of getting the idea out of my head into the real
+  //         world is really the part that brings me joy.&nbsp; Listening to the
+  //         song reminds me of the process.&nbsp;
+  //       </ExamplePageTitledParagraph>
+  //       <ExamplePageTitledParagraph title="Electronic">
+  //         Here are some of the first songs I made on Fruity Loops:
+  //         <AudioList
+  //           className="margin-top-1"
+  //           items={[
+  //             {
+  //               name: "Adam - Fruity Loops 1",
+  //               path: { earliest1 },
+  //             },
+  //             {
+  //               name: "Adam - Fruity Loops 2",
+  //               path: { earliest2 },
+  //             },
+  //             {
+  //               name: "Adam - Mario Jingle",
+  //               path: { selfMario },
+  //             },
+  //           ]}
+  //         />
+  //       </ExamplePageTitledParagraph>
+  //       <ExamplePageTitledParagraph title="Youthful Aspirations">
+  //         In high school, some friends and I were in a band:
+  //         <AudioList
+  //           className="margin-top-1"
+  //           items={[
+  //             {
+  //               name: "Band - Altus",
+  //               path: { earlier5 },
+  //             },
+  //             {
+  //               name: "Band - Hey Joe",
+  //               path: { earlier7 },
+  //             },
+  //             {
+  //               name: "Band - Vodoo Child",
+  //               path: { earlier3 },
+  //             },
+  //             {
+  //               name: "Band - Washed Away",
+  //               path: { earlier6 },
+  //             },
+  //           ]}
+  //         />
+  //       </ExamplePageTitledParagraph>
+  //       <ExamplePageTitledParagraph title="Real Instruments">
+  //         As time went on, I tried out different genres of music:
+  //         <AudioList
+  //           className="margin-top-1"
+  //           items={[
+  //             {
+  //               name: "Adam - Honeydew in June",
+  //               path: { selfHDIJC },
+  //             },
+  //             {
+  //               name: "Adam - Hopeful Uncertainty",
+  //               path: { selfHU },
+  //             },
+  //             {
+  //               name: "Adam - Relentless Sacrifice",
+  //               path: { selfRS },
+  //             },
+  //             {
+  //               name: "Adam and Linda - Rear-view Mirror",
+  //               path: { earliest3 },
+  //             },
+  //             {
+  //               name: "Steve - Eerie Correspondence",
+  //               path: { othersEC },
+  //             },
+  //             {
+  //               name: "Steve - Nostalgia",
+  //               path: { othersSweet },
+  //             },
+  //           ]}
+  //         />
+  //       </ExamplePageTitledParagraph>
+  //       <ExamplePageTitledParagraph title="Making the Most of It">
+  //         For a few years, I whole-heartedly pursued the idea of becoming a
+  //         recording/mixing engineer.&nbsp; Unfortunately, hard work doesn't
+  //         always make up for lack of connections:
+  //         <AudioList
+  //           className="margin-top-1"
+  //           items={[
+  //             {
+  //               name: "Starlite Five - The Blues is Stalkin' Me",
+  //               path: { startliteBISM },
+  //             },
+  //             {
+  //               name: "Starlite Five - That feeling",
+  //               path: { startliteJam },
+  //             },
+  //             {
+  //               name: "Starlite Five - Oldsmobile Blue",
+  //               path: { startliteOMB },
+  //             },
+  //             {
+  //               name: "Starlite Five - Those Feet",
+  //               path: { startliteTF },
+  //             },
+  //           ]}
+  //         />
+  //       </ExamplePageTitledParagraph>
+  //     </>
+  //   ),
+  // },
 ];
 
 export function AboutPage(props: AboutProps) {
