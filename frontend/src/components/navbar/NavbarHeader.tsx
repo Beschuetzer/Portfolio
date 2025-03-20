@@ -15,9 +15,10 @@ const NavbarHeaderNav = styled.nav<SiteNavStyledProps>`
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: ${props => props.isopen === 'true' ? '10000000' : '1000000'};
+  z-index: ${props => props.isopen === 'true' ? '10000000' : '1'};
   border-bottom: 1px solid ${(props: SiteNavStyledProps) =>
     props.colorscheme?.primary1};
+    transition: z-index .25s;
 
   ${respond.navSwitch`
     background-color: ${(props: SiteNavStyledProps) =>
