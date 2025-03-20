@@ -213,13 +213,13 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <ReferenceItems
         items={[
-          {
-            name: "Troy McCabe",
-            relation: "Best Buy Manager",
-            phone: "913-209-2823",
-            email: "troymccabe@gmail.com",
-            linkedInUrl: "https://www.linkedin.com/in/troymccabe/",
-          },
+          // {
+          //   name: "Troy McCabe",
+          //   relation: "Best Buy Manager",
+          //   phone: "913-209-2823",
+          //   email: "troymccabe@gmail.com",
+          //   linkedInUrl: "https://www.linkedin.com/in/troymccabe/",
+          // },
           {
             name: "Alissa Monroe",
             relation: "Best Buy Co-worker",
