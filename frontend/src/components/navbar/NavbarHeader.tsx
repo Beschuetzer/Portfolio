@@ -24,6 +24,7 @@ const NavbarHeaderNav = styled.nav<SiteNavStyledProps>`
     background-color: ${(props: SiteNavStyledProps) =>
       hexToRgba(props.colorscheme?.primary4, 1)};
     border-radius: 0;
+    z-index: 10000000;
     ${navbarHeaderNavSwitchHeightStyles}
   `}  
 `;
