@@ -7,7 +7,6 @@ import { LayoutStyledProps } from "../../../layouts/types";
 import { ExamplePageLink } from "../ExamplePageLink";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
 import { ExamplePageTitledList } from "../ExamplePageTitledList";
-import { Carousel } from "react-thumbnail-carousel";
 
 import leadTypes from "../../../clips/ssk/lead-types.mp4";
 import leadTypesThumbnail from "../../../clips/ssk/thumbnails/lead-types.png";
@@ -18,6 +17,7 @@ import leadSchedulingThumbnail from "../../../clips/ssk/thumbnails/lead-scheduli
 import leadAddress from "../../../clips/ssk/lead-address.mp4";
 import leadAddressThumbnail from "../../../clips/ssk/thumbnails/lead-address.png";
 import { getCarouselStylingOptions } from "../../../styles/styles";
+import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
 
 const SECTION_NAMES = ["Overview", "Leads", "Details", "Lessons"];
 const SSK_SECTIONS: ExamplePageSectionProps[] = [
@@ -52,7 +52,7 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
                 "Provide a way to schedule a follow-up appointment with the customer"
             ]}/>
         </ExamplePageParagraph>
-        <Carousel 
+        <LazyLoadedCarousel 
             options={{
                 ...getCarouselStylingOptions(propsToAdd.colorscheme),
                 itemViewer: {

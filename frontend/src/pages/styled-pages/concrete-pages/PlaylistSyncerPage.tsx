@@ -30,7 +30,7 @@ import { Quote } from "../../../components/Quote";
 import { ExamplePageLink } from "../ExamplePageLink";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import { defaultFontSize } from "../../../styles/constants";
-import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
+import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
 
 type PlaylistSyncerProps = {};
 
@@ -65,7 +65,7 @@ const PLAYLIST_SYNCER_SECTIONS: ExamplePageSectionProps[] = [
       paddingTop: defaultFontSize,
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
-      <Carousel
+      <LazyLoadedCarousel
         options={getCarouselStylingOptions(propsToAdd.colorscheme)}
         items={[
           {

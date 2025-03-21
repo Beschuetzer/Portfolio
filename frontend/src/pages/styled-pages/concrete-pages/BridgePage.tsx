@@ -33,10 +33,10 @@ import preferencesVideo from "../../../clips/bridge/preferences.mp4";
 import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import saveGameVideoThumbnail from "../../../clips/bridge/thumbnails/save-game.png";
-import { Carousel } from "react-thumbnail-carousel";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import { defaultFontSize } from "../../../styles/constants";
 import { useAwakenSleepingContainers } from "../../../hooks/useAwakenSleepingContainers";
+import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
 
 const SECTION_NAMES = ["Overview", "Features", "Details", "Lessons"];
 const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
@@ -75,7 +75,7 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
       paddingTop: defaultFontSize,
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
-      <Carousel
+      <LazyLoadedCarousel
         options={getCarouselStylingOptions(propsToAdd.colorscheme)}
         items={[
           {

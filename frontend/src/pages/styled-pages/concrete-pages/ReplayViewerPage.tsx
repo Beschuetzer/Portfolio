@@ -44,6 +44,7 @@ import clipDealPlayerThumbnail from "../../../clips/replay-viewer/thumbnails/dea
 import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
 import { defaultFontSize } from "../../../styles/constants";
 import { useAwakenSleepingContainers } from "../../../hooks/useAwakenSleepingContainers";
+import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
 
 export const REPLAY_VIEWER_SECTION_NAMES = [
   "Motivation",
@@ -51,12 +52,6 @@ export const REPLAY_VIEWER_SECTION_NAMES = [
   "Features",
   "Notes",
 ];
-
-function getModalHtmlAttributes(propsToAdd: LayoutStyledProps) {
-  return {
-    style: { color: propsToAdd.colorscheme?.primary4 },
-  };
-}
 
 const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
   {
@@ -89,7 +84,7 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
       paddingTop: defaultFontSize,
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
-      <Carousel
+      <LazyLoadedCarousel
         options={{
           ...getCarouselStylingOptions(propsToAdd.colorscheme),
           layout: {

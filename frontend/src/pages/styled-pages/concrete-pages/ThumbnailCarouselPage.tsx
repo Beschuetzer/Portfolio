@@ -24,6 +24,7 @@ import {
 import { CodeDisplayer } from "./CodeDisplayer";
 import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 import { Quote } from "../../../components/Quote";
+import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
 
 export const THUMBNAIL_CAROUSEL_SECTION_NAMES = [
   "Overview",
@@ -114,7 +115,7 @@ const FOURTH_CAROUSEL_ITEMS: CarouselItemProps[] = [
     description: "Current item is displayed below the thumbnails",
   },
   ...SECOND_CAROUSEL_ITEMS,
-  ...THIRD_CAROUSEL_ITEMS
+  ...THIRD_CAROUSEL_ITEMS,
 ];
 
 const SECTIONS: ExamplePageSectionProps[] = [
@@ -122,7 +123,10 @@ const SECTIONS: ExamplePageSectionProps[] = [
     name: THUMBNAIL_CAROUSEL_SECTION_NAMES[0],
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
-        <Quote author="Lao Tzu" text="The journey of a thousand miles begins with one step." />
+        <Quote
+          author="Lao Tzu"
+          text="The journey of a thousand miles begins with one step."
+        />
         <ExamplePageParagraph>
           <ExamplePageLink
             url={THUMBNAIL_CAROUSEL_PACKAGE_URL}
@@ -151,7 +155,7 @@ const SECTIONS: ExamplePageSectionProps[] = [
           of images in a row. This is useful for showcasing a collection of
           images in a visually appealing way:
         </ExamplePageParagraph>
-        <Carousel
+        <LazyLoadedCarousel
           options={{
             styling: {
               container: {
@@ -176,7 +180,7 @@ const SECTIONS: ExamplePageSectionProps[] = [
 import defaultGif from "../../../clips/react-thumbnail-carousel/Default.gif";
 import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gif";
 
-<Carousel
+<LazyLoadedCarousel
   options={{
     thumbnail: {
       size: [[100], [75, 1200, "max-width"], [66, 600, "max-width"]],
@@ -218,37 +222,37 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
           navigation bar will appear, allowing the user to navigate through the
           items by pressing the left and right arrows or swiping:
         </ExamplePageTitledParagraph>
-        <Carousel
-          options={{
-            ...getCarouselStylingOptions(propsToAdd.colorscheme),
-            layout: {
-              itemDisplayLocation: "none",
-            },
-            styling: {
-              ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
-              container: {
-                margin: {
-                  top: [
-                    [14],
-                    [12, parseInt(BREAK_POINTS.phone, 10), "max-width"],
-                  ],
+          <LazyLoadedCarousel
+            options={{
+              ...getCarouselStylingOptions(propsToAdd.colorscheme),
+              layout: {
+                itemDisplayLocation: "none",
+              },
+              styling: {
+                ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
+                container: {
+                  margin: {
+                    top: [
+                      [14],
+                      [12, parseInt(BREAK_POINTS.phone, 10), "max-width"],
+                    ],
+                  },
                 },
               },
-            },
-            thumbnail: {
-              ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
-              size: [
-                [SECTION_WIDTH_IN_PIXELS / 2 - 50],
-                [
-                  window.innerWidth / 2 - 50,
-                  parseInt(BREAK_POINTS.phone, 10),
-                  "max-width",
+              thumbnail: {
+                ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
+                size: [
+                  [SECTION_WIDTH_IN_PIXELS / 2 - 50],
+                  [
+                    window.innerWidth / 2 - 50,
+                    parseInt(BREAK_POINTS.phone, 10),
+                    "max-width",
+                  ],
                 ],
-              ],
-            },
-          }}
-          items={SECOND_CAROUSEL_ITEMS}
-        />
+              },
+            }}
+            items={SECOND_CAROUSEL_ITEMS}
+          />
       </>
     ),
   },
@@ -260,7 +264,7 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
           This layout allows you to display the selected item above the
           carousel:
         </ExamplePageParagraph>
-        <Carousel
+        <LazyLoadedCarousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             layout: {
@@ -300,7 +304,7 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
           This layout allows you to display the selected item below the
           carousel:
         </ExamplePageParagraph>
-        <Carousel
+        <LazyLoadedCarousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             layout: {
