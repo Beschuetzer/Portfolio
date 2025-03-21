@@ -16,6 +16,7 @@ import { ExamplePageLink } from "../ExamplePageLink";
 import { LIVE_BRIDGE_URL } from "../../../components/constants";
 import { Carousel } from "react-thumbnail-carousel";
 import { getCarouselStylingOptions } from "../../../styles/styles";
+import { defaultFontSize } from "../../../styles/constants";
 
 type BridgeDemoProps = {};
 
@@ -89,7 +90,7 @@ const BRIDGE_DEMO_SECTIONS: ExamplePageSectionProps[] = [
   {
     name: BRIDGE_DEMO_SECTION_NAMES[2],
     contentStyle: {
-      padding:0
+      paddingTop: defaultFontSize
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <Carousel
