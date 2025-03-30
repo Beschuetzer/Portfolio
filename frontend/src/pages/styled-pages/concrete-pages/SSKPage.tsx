@@ -98,6 +98,17 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
                   },
                 ],
               },
+              video: {
+                sections: [
+                    ["Lead Details", 1000],
+                    ["Getting Availability in test env", 10000],
+                    ["Picking a time", 10000],
+                    ["Getting Next Month's Availability", 7500],
+                    ["Changing Location", 5000],
+                    ["Getting New Location Availability", 2100],
+                    ["No Availability Modal", 3500],
+                ]
+              }
             },
             {
               srcMain: leadAttachmentView,
