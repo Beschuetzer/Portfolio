@@ -14,10 +14,12 @@ import leadScheduling from "../../../clips/ssk/lead-scheduling.mp4";
 import leadSchedulingThumbnail from "../../../clips/ssk/thumbnails/lead-scheduling.png";
 import leadAddress from "../../../clips/ssk/lead-address.mp4";
 import leadAddressThumbnail from "../../../clips/ssk/thumbnails/lead-address.png";
+import recommendations from "../../../clips/ssk/recommendations.mp4";
+import recommendationsThumbnail from "../../../clips/ssk/thumbnails/recommendations.png";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
 
-const SECTION_NAMES = ["Overview", "Leads", "Details", "Lessons"];
+const SECTION_NAMES = ["Overview", "Leads", "Recommendations", "Lessons"];
 const SSK_SECTIONS: ExamplePageSectionProps[] = [
   {
     name: SECTION_NAMES[0],
@@ -135,6 +137,64 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
                   },
                 ],
               },
+            },
+          ]}
+        />
+      </>
+    ),
+  },
+  {
+    name: SECTION_NAMES[2],
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <>
+        <ExamplePageParagraph>
+          The recommendations history page was designed to allow in store employees to view their recommendations.  The recommendations were fetched from the backend in a paginated manner and displayed using an infinitie scroll approach:
+        </ExamplePageParagraph>
+        <LazyLoadedCarousel
+          options={{
+            ...getCarouselStylingOptions(propsToAdd.colorscheme),
+            itemViewer: {
+              aspectRatio: 0.8,
+            },
+            styling: {
+              ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
+              container: {
+                margin: {
+                  top: 14,
+                },
+              },
+            },
+            thumbnail: {
+              ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
+              spacingStrategy: "max",
+            },
+          }}
+          items={[
+            {
+              srcMain: recommendations,
+              srcThumbnail: recommendationsThumbnail,
+              description: "Viewing Recommendations",
+              modal: {
+                sections: [
+                  {
+                    title: "Inifinite Scroll",
+                    text: "Scrolling to the bottom of the page will trigger a fetch for more recommendations.",
+                  },
+                  {
+                    title: "Paginated Fetching",
+                    text: "Each call retreived 50 recommendations.",
+                  },
+                ],
+              },
+              video: {
+                sections: [
+                        ["Fetching First Batch", 4000],
+                        ["Infinite Scrolling", 7000],
+                        ["Viewing Recommendation Details", 3500],
+                        ["Caching of Recommendations", 6000],
+                        ["Last Batch", 4000],
+                ]
+              }
             },
           ]}
         />
