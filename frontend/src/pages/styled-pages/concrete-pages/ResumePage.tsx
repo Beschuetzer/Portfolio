@@ -30,6 +30,11 @@ export const RESUME_SECTION_TITLES = [
   "References",
 ];
 
+const CONTRACTOR_START_DATE = "02/22";
+const PROMOTION_DATE = "01/25";
+const FTE_START_DATE = "11/22";
+const LAST_DATE = "02/25";
+
 const RESUME_SECTIONS: ExamplePageSectionProps[] = [
   {
     name: RESUME_SECTION_TITLES[0],
@@ -75,14 +80,14 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               url: BEST_BUY_URL,
             },
             achievements: [
-              "Assisted in the migration from Azure to AWS (Stratus) for the in-house app store, <b>reducing maintenance costs by 5%</b>.",
+              "Assisted in the migration from Azure to AWS (Stratus) for the in-house app store, reducing maintenance costs by 5%.",
               "Identified and resolved bugs in the React.js client apps as well as the .NET (C#) backend apps, enhancing functionality and significantly improving user experience.",
               "Created a fully-customizable batch service using .NET 8 (C#) and Entity Framework in order to pull Twillio attributes at a pre-defined interval and store them in a PostgreSQL database, allowing the authorization service to evaluate policies based on Twillio attributes while still maintaining quick response times.",
             ],
             jobDescription:
               "Continued contributions to the in-house app store and started contributing to the authorization service.",
-            dateEnd: "02/25",
-            dateStart: "12/24",
+            dateEnd: LAST_DATE,
+            dateStart: PROMOTION_DATE,
             jobTitle: "Engineer I",
           },
           {
@@ -91,15 +96,15 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               url: BEST_BUY_URL,
             },
             achievements: [
-              "Implemented a .NET (C#) backend service for auto-adding protection plans, resulting in over <b>10% growth in sales</b> of these plans.",
+              "Implemented a .NET (C#) backend service for auto-adding protection plans, resulting in over 10% growth in sales of these plans.",
               "Created a .NET hosted service to migrate Azure storage data to AWS S3, simplifying the migration of the in-house app store to AWS.",
               "Created a Node.js script to convert the MS SQL .csv files into PostgreSQL .sql files, allowing for a seamless transition to the new database.",
               "Built a typescript(Node.js and Frontend compatible) library which streamlines interactions with the on-site authorization service (OPS).",
               "Built a typescript(Node.js and Frontend compatible) authentication library which simplified setup to the employee OAuth2 provider.",
               "Built a typescript(Node.js and Frontend compatible) library which wrapped the native fetch function to provide de-duplication, caching, circuit-breaking, retrying, and token management.",
             ],
-            dateStart: "11/22",
-            dateEnd: "09/24",
+            dateStart: FTE_START_DATE,
+            dateEnd: PROMOTION_DATE,
             jobTitle: "Engineer Associate (FTE)",
             jobDescription:
               "Continued contributions to the Solution Sidekick mobile app but shifted focus to its Backend for Frontend service.  Eventually was moved to the in-store app store team where I supported multiple .NET and React projects.",
@@ -112,13 +117,13 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             jobDescription:
               "Contributed primarily to the development, documentation, testing, and growth of the Solution Sidekick mobile app.",
             achievements: [
-              "Leveraged my React and Redux skills to implement a new feature, which allowed in-store employees to create re-useable baskets and schedule consultations in store, leading to a <b>sales increase of 12%</b>.",
+              "Leveraged my React and Redux skills to implement a new feature, which allowed in-store employees to create re-useable baskets and schedule consultations in store, leading to a sales increase of 12%.",
               "Created a paginated, (infinite scroll) React component which leveraged Redux to display the re-usable baskets, allowing employees to easily access saved baskets.",
               "Created the QuantitySelector, a re-usable React component for displaying the quantity of a product in the cart as well as adding a variable number to the cart.",
               "Collaborated with cross-functional teams in an Agile environment, actively participating in daily stand-ups, sprint planning, and retrospectives to ensure the delivery of high-quality software solutions.",
             ],
-            dateStart: "02/22",
-            dateEnd: "11/22",
+            dateStart: CONTRACTOR_START_DATE,
+            dateEnd: FTE_START_DATE,
             jobTitle: "Engineer Associate (CW)",
           },
           {
@@ -131,7 +136,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               `Created a "Movie Night Recommendation" app leveraging Best Buy APIs in Spring Boot and React as
               well as a team project.`,
             ],
-            dateEnd: "02/22",
+            dateEnd: CONTRACTOR_START_DATE,
             dateStart: "11/21",
             jobTitle: "Barriers to Entry Java Full Stack Program",
           },
