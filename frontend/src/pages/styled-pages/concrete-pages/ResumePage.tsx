@@ -21,6 +21,12 @@ import { LinkedInIcon } from "../icons/LinkedInIcon";
 import { ResumeSkillsModal } from "./resume/ResumeSkillsModal";
 import { ResumeSkillsSection } from "./resume/ResumeSkillsSection";
 
+type Achievement = {
+  name: string;
+  date: Date;
+  shouldDisplay?: boolean;
+}
+
 export const RESUME_PAGE_HEADER_NAME = "Résumé";
 export const RESUME_SECTION_TITLES = [
   "Overview",
@@ -34,6 +40,91 @@ const CONTRACTOR_START_DATE = "02/22";
 const PROMOTION_DATE = "01/25";
 const FTE_START_DATE = "11/22";
 const LAST_DATE = "02/25";
+
+
+// • 
+// • 
+// • 
+// • Assisted in migration from Azure to Stratus, for the in-house app store, reducing maintenance costs by +8%.
+// • Added backend logic to auto add the correct protection plans to baskets when an eligible item is added to the cart, resulting in a +14% growth of said plans.
+// • Wrote unit tests using Jest and xUnit for all new functionality and bug fixes.
+// • Identified and resolved a production bug where the UI for creating rules would break in some cases, causing users to lose their changes.
+// • Identified and resolved a production bug where redundant calls were being made when feedback filters where changed.
+
+const FRONT_END_ACHIEVEMENTS: Achievement[] = [
+  {
+    name: "Created a typescript library which wrapped the native fetch method and provided call retrying, circuit breaking, de-duplication, and caching.",
+    date: new Date(2023, 10, 1),
+  },
+  {
+    name: "Built the “leads” feature from scratch, which allowed in-store employees to create re-usable baskets and schedule consultations, leading to a sales increase of ~15%.",
+    date: new Date(2022, 6, 15),
+  },
+  {
+    name: "Created a re-usable React component which was used throughout the app to adjust the quantity of an item and display the current quantity in the basket.",
+    date: new Date(2022, 7, 5),
+  },
+  {
+    name: "Created a recommendations drawer which displayed after the user added a product to the cart, displaying related items using an infinite scroll approach.",
+    date: new Date(2022, 7, 15),
+  },
+  {
+    name: "Used Redux Toolkit and Tanstack Query to complex state interaction and cache service calls.",
+    date: new Date(2022, 7, 15),
+  },
+  {
+    name: "Maintained 80%+ test coverage through Jest and xUnit testing, ensuring high-quality deliverables.",
+    date: new Date(2022, 7, 15),
+  },
+]
+
+const BACK_END_ACHIEVEMENTS: Achievement[] = [
+  {
+    name: "Created a fully-customizable batcher service by pulling Twillio attributes at a defined interval and storing them in a PostgreSQL database, allowing the policy service to evaluate policies based on Twillio attributes.",
+    date: new Date(2025, 1, 20),
+  },
+  {
+    name: "Refactored the .NET 8 backend to use GraphQL queries to fetch feedback data, eliminating one network call.",
+    date: new Date(2023, 10, 1),
+  },
+  {
+    name: "Added backend logic to auto add the correct protection plans to baskets when an eligible item is added to the cart, resulting in a +14% growth of said plans.",
+    date: new Date(2023, 1, 15),
+  },
+
+]
+
+const OTHER_ACHIEVEMENTS: Achievement[] = [
+  {
+    name: "Combined the 3 existing GraphQL queries for getting store details (storeById, storeLookupByLatLong, and storeLookupByZip) into a single query (storeLookup), providing a single query to obtain store details.",
+    date: new Date(2022, 7, 1),
+  },
+  {
+    name: "Wrote unit tests using Jest and xUnit for all new functionality and bug fixes.",
+    date: new Date(2023, 1, 21),
+  }, {
+    name: "Identified and resolved a production bug where the UI for creating rules would break in some cases, causing users to lose their changes.",
+    date: new Date(2023, 1, 21),
+  },
+  {
+    name: "Identified and resolved a production bug where redundant calls were being made when feedback filters where changed.",
+    date: new Date(2023, 1, 21),
+  },
+  {
+    name: "Translated Figma designs into pixel-perfect implementations with meticulous attention to detail.",
+    date: new Date(2022, 7, 15),
+  },
+  {
+    name: "Attended design meetings and spoke up when something was either unclear or unnecessarily complex.",
+    date: new Date(2022, 7, 15),
+  }
+]
+
+const ALL_ACHIEVEMENTS: Achievement[] = [
+  ...FRONT_END_ACHIEVEMENTS,
+  ...BACK_END_ACHIEVEMENTS,
+  ...OTHER_ACHIEVEMENTS,
+]
 
 const RESUME_SECTIONS: ExamplePageSectionProps[] = [
   {
