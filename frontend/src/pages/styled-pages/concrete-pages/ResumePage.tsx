@@ -20,6 +20,7 @@ import { ReferenceItems } from "./resume/ReferenceItems";
 import { LinkedInIcon } from "../icons/LinkedInIcon";
 import { ResumeSkillsModal } from "./resume/ResumeSkillsModal";
 import { ResumeSkillsSection } from "./resume/ResumeSkillsSection";
+import { getAchievements } from "./resume/achievements";
 
 export const RESUME_PAGE_HEADER_NAME = "Résumé";
 export const RESUME_SECTION_TITLES = [
@@ -29,6 +30,13 @@ export const RESUME_SECTION_TITLES = [
   "Education",
   "References",
 ];
+
+const BESTBUY_CONTRACTOR_START_DATE = new Date(2022, 1, 1);
+const BESTBUY_ENGINEER_I_PROMOTION_DATE = new Date(2025, 0, 1);
+const BESTBUY_FTE_START_DATE = new Date(2022, 10, 13);
+const BESTBUY_LAST_DATE = new Date(2025, 1, 14);
+const YORK_SOLUTIONS_START_DATE = new Date(2021, 10, 1);
+const DEVELOPER_START_DATE = new Date(2020, 2, 25);
 
 const RESUME_SECTIONS: ExamplePageSectionProps[] = [
   {
@@ -74,15 +82,14 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               name: "Best Buy",
               url: BEST_BUY_URL,
             },
-            achievements: [
-              "Assisted in the migration from Azure to AWS (Stratus) for the in-house app store, <b>reducing maintenance costs by 5%</b>.",
-              "Identified and resolved bugs in the React.js client apps as well as the .NET (C#) backend apps, enhancing functionality and significantly improving user experience.",
-              "Created a fully-customizable batch service using .NET 8 (C#) and Entity Framework in order to pull Twillio attributes at a pre-defined interval and store them in a PostgreSQL database, allowing the authorization service to evaluate policies based on Twillio attributes while still maintaining quick response times.",
-            ],
+            achievements: getAchievements(
+              BESTBUY_ENGINEER_I_PROMOTION_DATE,
+              BESTBUY_LAST_DATE
+            ).map((achievement) => achievement.name),
             jobDescription:
               "Continued contributions to the in-house app store and started contributing to the authorization service.",
-            dateEnd: "02/25",
-            dateStart: "12/24",
+            dateEnd: BESTBUY_LAST_DATE,
+            dateStart: BESTBUY_ENGINEER_I_PROMOTION_DATE,
             jobTitle: "Engineer I",
           },
           {
@@ -90,16 +97,12 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               name: "Best Buy",
               url: BEST_BUY_URL,
             },
-            achievements: [
-              "Implemented a .NET (C#) backend service for auto-adding protection plans, resulting in over <b>10% growth in sales</b> of these plans.",
-              "Created a .NET hosted service to migrate Azure storage data to AWS S3, simplifying the migration of the in-house app store to AWS.",
-              "Created a Node.js script to convert the MS SQL .csv files into PostgreSQL .sql files, allowing for a seamless transition to the new database.",
-              "Built a typescript(Node.js and Frontend compatible) library which streamlines interactions with the on-site authorization service (OPS).",
-              "Built a typescript(Node.js and Frontend compatible) authentication library which simplified setup to the employee OAuth2 provider.",
-              "Built a typescript(Node.js and Frontend compatible) library which wrapped the native fetch function to provide de-duplication, caching, circuit-breaking, retrying, and token management.",
-            ],
-            dateStart: "11/22",
-            dateEnd: "09/24",
+            achievements: getAchievements(
+              BESTBUY_FTE_START_DATE,
+              BESTBUY_ENGINEER_I_PROMOTION_DATE
+            ).map((achievement) => achievement.name),
+            dateStart: BESTBUY_FTE_START_DATE,
+            dateEnd: BESTBUY_ENGINEER_I_PROMOTION_DATE,
             jobTitle: "Engineer Associate (FTE)",
             jobDescription:
               "Continued contributions to the Solution Sidekick mobile app but shifted focus to its Backend for Frontend service.  Eventually was moved to the in-store app store team where I supported multiple .NET and React projects.",
@@ -111,14 +114,12 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             },
             jobDescription:
               "Contributed primarily to the development, documentation, testing, and growth of the Solution Sidekick mobile app.",
-            achievements: [
-              "Leveraged my React and Redux skills to implement a new feature, which allowed in-store employees to create re-useable baskets and schedule consultations in store, leading to a <b>sales increase of 12%</b>.",
-              "Created a paginated, (infinite scroll) React component which leveraged Redux to display the re-usable baskets, allowing employees to easily access saved baskets.",
-              "Created the QuantitySelector, a re-usable React component for displaying the quantity of a product in the cart as well as adding a variable number to the cart.",
-              "Collaborated with cross-functional teams in an Agile environment, actively participating in daily stand-ups, sprint planning, and retrospectives to ensure the delivery of high-quality software solutions.",
-            ],
-            dateStart: "02/22",
-            dateEnd: "11/22",
+            achievements: getAchievements(
+              BESTBUY_CONTRACTOR_START_DATE,
+              BESTBUY_FTE_START_DATE
+            ).map((achievement) => achievement.name),
+            dateStart: BESTBUY_CONTRACTOR_START_DATE,
+            dateEnd: BESTBUY_FTE_START_DATE,
             jobTitle: "Engineer Associate (CW)",
           },
           {
@@ -131,13 +132,13 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               `Created a "Movie Night Recommendation" app leveraging Best Buy APIs in Spring Boot and React as
               well as a team project.`,
             ],
-            dateEnd: "02/22",
-            dateStart: "11/21",
+            dateEnd: BESTBUY_CONTRACTOR_START_DATE,
+            dateStart: YORK_SOLUTIONS_START_DATE,
             jobTitle: "Barriers to Entry Java Full Stack Program",
           },
           {
-            dateStart: "03/20",
-            dateEnd: "11/21",
+            dateStart: DEVELOPER_START_DATE,
+            dateEnd: YORK_SOLUTIONS_START_DATE,
             jobTitle: "Developer in Training",
             achievements: [
               () => (
