@@ -92,6 +92,13 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
               spacingStrategy: "max",
             },
           }}
+          lazyLoadProps={{
+            containerProps: {
+              style: {
+                height: 587,
+              },
+            },
+          }}
           items={[
             {
               srcMain: leadScheduling,
@@ -192,6 +199,13 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
           infinitie scroll approach:
         </ExamplePageParagraph>
         <LazyLoadedCarousel
+        lazyLoadProps={{
+            containerProps: {
+              style: {
+                height: 100,
+              },
+            },
+          }}
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {
@@ -254,6 +268,13 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
           cart and display associated items:
         </ExamplePageParagraph>
         <LazyLoadedCarousel
+        lazyLoadProps={{
+            containerProps: {
+              style: {
+                height: 100,
+              },
+            },
+          }}
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {
@@ -313,6 +334,13 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
           added.
         </ExamplePageParagraph>
         <LazyLoadedCarousel
+        lazyLoadProps={{
+            containerProps: {
+              style: {
+                height: 100,
+              },
+            },
+          }}
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {

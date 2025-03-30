@@ -1,4 +1,3 @@
--fix # issue with multi-word section names
 -add video sections for each carousel
 make sure all carousels are using the sections approach for modal; then re-deploy after testing
 
