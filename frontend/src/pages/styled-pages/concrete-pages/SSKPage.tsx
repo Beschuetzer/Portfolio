@@ -18,14 +18,17 @@ import recommendations from "../../../clips/ssk/recommendations.mp4";
 import recommendationsThumbnail from "../../../clips/ssk/thumbnails/recommendations.png";
 import accessoryDrawer from "../../../clips/ssk/accessory-drawer.mp4";
 import accessoryDrawerThumbnail from "../../../clips/ssk/thumbnails/accessory-drawer.png";
+import quantitySelector from "../../../clips/ssk/quantity-selector.mp4";
+import quantitySelectorThumbnail from "../../../clips/ssk/thumbnails/quantity-selector.png";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
 
 const SECTION_NAMES = [
   "Overview",
   "Leads",
-  "Recommendations",
+  "Recommendations History",
   "Accessory Drawer",
+  "Quantity Selector",
 ];
 const SSK_SECTIONS: ExamplePageSectionProps[] = [
   {
@@ -203,8 +206,8 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
               },
             },
             layout: {
-                itemDisplayLocation: "none",
-              },
+              itemDisplayLocation: "none",
+            },
             thumbnail: {
               ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
               spacingStrategy: "max",
@@ -299,7 +302,62 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
       </>
     ),
   },
-
+  {
+    name: SECTION_NAMES[4],
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <>
+        <ExamplePageParagraph>
+          The QuantitySelector was a re-usable component that allowed the user to change the quantity of a product in the cart. It was the de-facto way to adjust the quantity of a product in the cart after it had been added. 
+        </ExamplePageParagraph>
+        <LazyLoadedCarousel
+          options={{
+            ...getCarouselStylingOptions(propsToAdd.colorscheme),
+            itemViewer: {
+              aspectRatio: 0.8,
+            },
+            layout: {
+              itemDisplayLocation: "none",
+            },
+            styling: {
+              ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
+              container: {
+                margin: {
+                  top: 14,
+                },
+              },
+            },
+            thumbnail: {
+              ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
+              spacingStrategy: "max",
+            },
+          }}
+          items={[
+            {
+              srcMain: quantitySelector,
+              srcThumbnail: quantitySelectorThumbnail,
+              description: "Adjusting the quantity",
+              modal: {
+                sections: [
+                  {
+                    title: "Inifinite Scroll",
+                    text: "Scrolling to the bottom of the page will trigger a fetch for more recommendations.",
+                  },
+                ],
+              },
+              video: {
+                sections: [
+                  ["Opening the drawer", 1000],
+                  ["Selecting a Quantity", 5500],
+                  ["New Quantity Registered", 3500],
+                  ["Removing Product", 2500],
+                ],
+              },
+            },
+          ]}
+        />
+      </>
+    ),
+  },
 ];
 
 type SSKPageProps = {};
