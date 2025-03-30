@@ -49,14 +49,14 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <ExamplePageParagraph>
-          The leads feature was implemented over the course of multiple sprints
-          and involved various integrations with external services. The purpose
+          The leads flow was designed to allow in store employees to create baskets and schedule consultations for customers.  It was developed over the course of multiple sprints
+          and involved various integrations with internal services. The purpose
           of the feature is twofold:
           <ExamplePageTitledList
             tabCount={2}
             items={[
-              "To save interactions in the form of a basket which can be imported at home by the customer",
-              "Provide a way to schedule a follow-up appointment with the customer",
+              "To save the interaction in the form of a basket/recommendation which could be imported at home by the customer on bestbuy.com",
+              "Provide a way to schedule a follow-up appointment with the customer to discuss a product solution.",
             ]}
           />
         </ExamplePageParagraph>
@@ -70,7 +70,7 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
               ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
               container: {
                 margin: {
-                  top: 14,
+                  top: 28,
                 },
               },
             },
