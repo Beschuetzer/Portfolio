@@ -93,7 +93,7 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
             },
           }}
           lazyLoadProps={{
-            containerProps: {
+            loadingSkeletonProps: {
               style: {
                 height: 587,
               },
@@ -199,10 +199,10 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
           infinitie scroll approach:
         </ExamplePageParagraph>
         <LazyLoadedCarousel
-        lazyLoadProps={{
-            containerProps: {
+          lazyLoadProps={{
+            loadingSkeletonProps: {
               style: {
-                height: 100,
+                height: 114,
               },
             },
           }}
@@ -268,10 +268,10 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
           cart and display associated items:
         </ExamplePageParagraph>
         <LazyLoadedCarousel
-        lazyLoadProps={{
-            containerProps: {
+          lazyLoadProps={{
+            loadingSkeletonProps: {
               style: {
-                height: 100,
+                height: 114,
               },
             },
           }}
@@ -334,10 +334,10 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
           added.
         </ExamplePageParagraph>
         <LazyLoadedCarousel
-        lazyLoadProps={{
-            containerProps: {
+          lazyLoadProps={{
+            loadingSkeletonProps: {
               style: {
-                height: 100,
+                height: 114,
               },
             },
           }}

@@ -7,6 +7,8 @@ export type LazyLoadProps = {
   loadingSkeletonProps?: React.ComponentPropsWithoutRef<"div">;
 };
 
+export const LAZY_LOAD_SKELETON_HEIGHT = 430;
+
 export function LazyLoad({
   children,
   containerProps,
@@ -50,7 +52,7 @@ export function LazyLoad({
           {...loadingSkeletonProps}
           style={{
             ...loadingSkeletonProps?.style,
-            height: "404px",
+            height: loadingSkeletonProps?.style?.height || LAZY_LOAD_SKELETON_HEIGHT,
           }}
         />
       )}
