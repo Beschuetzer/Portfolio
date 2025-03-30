@@ -87,8 +87,8 @@ type ResumePageWorkHistoryItem = {
     | string
     | ((propsToAdd: LayoutStyledProps) => ReactNode | ReactNode[])
   )[];
-  dateEnd: string;
-  dateStart: string;
+  dateEnd: Date;
+  dateStart: Date;
   employer?: {
     name: string;
     url?: string;
@@ -112,6 +112,15 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
   return (
     <Container {...propsToAdd} {...containerProps}>
       {items.map((item, index) => {
+        const divider = "/";
+        const startMonth = `${item.dateStart.getMonth() + 1}`.padStart(2, "0");
+        const startYear = `${item.dateStart.getFullYear()}`.slice(-2);
+        const startTime = `${startMonth}${divider}${startYear}`;
+
+        const endMonth = `${item.dateEnd.getMonth() + 1}`.padStart(2, "0");
+        const endYear = `${item.dateEnd.getFullYear()}`.slice(-2);
+        const endTime = `${endMonth}${divider}${endYear}`;
+
         return (
           <ItemContainer
             key={index}
@@ -122,9 +131,9 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
               <HeaderTop>
                 <JobTitle>{item.jobTitle}</JobTitle>
                 <TimeRange>
-                  <time dateTime={item.dateStart}>{item.dateStart}</time>
+                  <time dateTime={startTime}>{startTime}</time>
                   <span>&nbsp;-&nbsp;</span>
-                  <time dateTime={item.dateEnd}>{item.dateEnd}</time>
+                  <time dateTime={endTime}>{endTime}</time>
                 </TimeRange>
               </HeaderTop>
               {item.employer ? (
