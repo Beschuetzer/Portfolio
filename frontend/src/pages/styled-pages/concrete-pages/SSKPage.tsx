@@ -143,6 +143,14 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
                   },
                 ],
               },
+              video: {
+                sections: [
+                    ["Opening the Address Form", 2000],
+                    ["Showing Validation", 8000],
+                    ["State Picker", 3500],
+                    ["Button Disabling on Invalid Value", 5000],
+                ]
+              }
             },
             {
               srcMain: leadTypes,
