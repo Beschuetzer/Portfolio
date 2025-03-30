@@ -1,6 +1,7 @@
-
--have each section move in from the side (alternating from each side) when the page section becomes visible
--merge the refactor/pure-react branch into main
+-Fix resume date issue with Engineer I
+-Add all of the accomplishment to the correct section from the resume full version
+-add the section for ssk
+-Make the side buttons stay at the top for smaller viewports
 
 make sure all carousels are using the sections approach for modal; then re-deploy after testing
 
