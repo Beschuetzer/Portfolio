@@ -21,7 +21,12 @@ import accessoryDrawerThumbnail from "../../../clips/ssk/thumbnails/accessory-dr
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
 
-const SECTION_NAMES = ["Overview", "Leads", "Recommendations", "Accessory Drawer"];
+const SECTION_NAMES = [
+  "Overview",
+  "Leads",
+  "Recommendations",
+  "Accessory Drawer",
+];
 const SSK_SECTIONS: ExamplePageSectionProps[] = [
   {
     name: SECTION_NAMES[0],
@@ -53,9 +58,10 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <ExamplePageParagraph>
-          The leads flow was designed to allow in store employees to create baskets and schedule consultations for customers.  It was developed over the course of multiple sprints
-          and involved various integrations with internal services. The purpose
-          of the feature is twofold:
+          The leads flow was designed to allow in store employees to create
+          baskets and schedule consultations for customers. It was developed
+          over the course of multiple sprints and involved various integrations
+          with internal services. The purpose of the feature is twofold:
           <ExamplePageTitledList
             tabCount={2}
             items={[
@@ -102,15 +108,15 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
               },
               video: {
                 sections: [
-                    ["Lead Details", 1000],
-                    ["Getting Availability in test env", 10000],
-                    ["Picking a time", 10000],
-                    ["Getting Next Month's Availability", 7500],
-                    ["Changing Location", 5000],
-                    ["Getting New Location Availability", 2100],
-                    ["No Availability Modal", 3500],
-                ]
-              }
+                  ["Lead Details", 1000],
+                  ["Getting Availability in test env", 10000],
+                  ["Picking a time", 10000],
+                  ["Getting Next Month's Availability", 7500],
+                  ["Changing Location", 5000],
+                  ["Getting New Location Availability", 2100],
+                  ["No Availability Modal", 3500],
+                ],
+              },
             },
             {
               srcMain: leadAttachmentView,
@@ -126,12 +132,12 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
               },
               video: {
                 sections: [
-                    ["Opening the Bottomsheet", 4800],
-                    ["Toggling Combo Item Visibility", 2300],
-                    ["Toggling Basket Visibility", 2000],
-                    ["Removing Basket from Lead", 2000],
-                ]
-              }
+                  ["Opening the Bottomsheet", 4800],
+                  ["Toggling Combo Item Visibility", 2300],
+                  ["Toggling Basket Visibility", 2000],
+                  ["Removing Basket from Lead", 2000],
+                ],
+              },
             },
             {
               srcMain: leadAddress,
@@ -147,12 +153,12 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
               },
               video: {
                 sections: [
-                    ["Opening the Address Form", 2000],
-                    ["Showing Validation", 8000],
-                    ["State Picker", 3500],
-                    ["Button Disabling on Invalid Value", 5000],
-                ]
-              }
+                  ["Opening the Address Form", 2000],
+                  ["Showing Validation", 8000],
+                  ["State Picker", 3500],
+                  ["Button Disabling on Invalid Value", 5000],
+                ],
+              },
             },
             {
               srcMain: leadTypes,
@@ -177,7 +183,10 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <ExamplePageParagraph>
-          The recommendations history page was designed to allow in store employees to view their recommendations.  The recommendations were fetched from the backend in a paginated manner and displayed using an infinitie scroll approach:
+          The recommendations history page was designed to allow in store
+          employees to view their recommendations. The recommendations were
+          fetched from the backend in a paginated manner and displayed using an
+          infinitie scroll approach:
         </ExamplePageParagraph>
         <LazyLoadedCarousel
           options={{
@@ -193,6 +202,9 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
                 },
               },
             },
+            layout: {
+                itemDisplayLocation: "none",
+              },
             thumbnail: {
               ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
               spacingStrategy: "max",
@@ -217,13 +229,13 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
               },
               video: {
                 sections: [
-                        ["Fetching First Batch", 4000],
-                        ["Infinite Scrolling", 7000],
-                        ["Viewing Recommendation Details", 3500],
-                        ["Caching of Recommendations", 6000],
-                        ["Last Batch", 4000],
-                ]
-              }
+                  ["Fetching First Batch", 4000],
+                  ["Infinite Scrolling", 7000],
+                  ["Viewing Recommendation Details", 3500],
+                  ["Caching of Recommendations", 6000],
+                  ["Last Batch", 4000],
+                ],
+              },
             },
           ]}
         />
@@ -235,13 +247,17 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <ExamplePageParagraph>
-          The accessory drawer would show up whenever a product is added to the cart and display associated items:
+          The accessory drawer would show up whenever a product is added to the
+          cart and display associated items:
         </ExamplePageParagraph>
         <LazyLoadedCarousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {
               aspectRatio: 0.8,
+            },
+            layout: {
+              itemDisplayLocation: "none",
             },
             styling: {
               ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
@@ -271,18 +287,19 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
               },
               video: {
                 sections: [
-                        ["Recommendations and Categories", 2000],
-                        ["Viewing Mounts", 4500],
-                        ["Caching Demonstration", 4800],
-                        ["Loading Skeleton", 2500],
-                ]
-              }
+                  ["Recommendations and Categories", 2000],
+                  ["Viewing Mounts", 4500],
+                  ["Caching Demonstration", 4800],
+                  ["Loading Skeleton", 2500],
+                ],
+              },
             },
           ]}
         />
       </>
     ),
   },
+
 ];
 
 type SSKPageProps = {};
