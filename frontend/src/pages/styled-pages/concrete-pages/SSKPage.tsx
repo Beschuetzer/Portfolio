@@ -16,10 +16,12 @@ import leadAddress from "../../../clips/ssk/lead-address.mp4";
 import leadAddressThumbnail from "../../../clips/ssk/thumbnails/lead-address.png";
 import recommendations from "../../../clips/ssk/recommendations.mp4";
 import recommendationsThumbnail from "../../../clips/ssk/thumbnails/recommendations.png";
+import accessoryDrawer from "../../../clips/ssk/accessory-drawer.mp4";
+import accessoryDrawerThumbnail from "../../../clips/ssk/thumbnails/accessory-drawer.png";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
 
-const SECTION_NAMES = ["Overview", "Leads", "Recommendations", "Lessons"];
+const SECTION_NAMES = ["Overview", "Leads", "Recommendations", "Accessory Drawer"];
 const SSK_SECTIONS: ExamplePageSectionProps[] = [
   {
     name: SECTION_NAMES[0],
@@ -220,6 +222,59 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
                         ["Viewing Recommendation Details", 3500],
                         ["Caching of Recommendations", 6000],
                         ["Last Batch", 4000],
+                ]
+              }
+            },
+          ]}
+        />
+      </>
+    ),
+  },
+  {
+    name: SECTION_NAMES[3],
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <>
+        <ExamplePageParagraph>
+          The accessory drawer would show up whenever a product is added to the cart and display associated items:
+        </ExamplePageParagraph>
+        <LazyLoadedCarousel
+          options={{
+            ...getCarouselStylingOptions(propsToAdd.colorscheme),
+            itemViewer: {
+              aspectRatio: 0.8,
+            },
+            styling: {
+              ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
+              container: {
+                margin: {
+                  top: 14,
+                },
+              },
+            },
+            thumbnail: {
+              ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
+              spacingStrategy: "max",
+            },
+          }}
+          items={[
+            {
+              srcMain: accessoryDrawer,
+              srcThumbnail: accessoryDrawerThumbnail,
+              description: "Viewing Accessories",
+              modal: {
+                sections: [
+                  {
+                    title: "Inifinite Scroll",
+                    text: "Scrolling to the bottom of the page will trigger a fetch for more recommendations.",
+                  },
+                ],
+              },
+              video: {
+                sections: [
+                        ["Recommendations and Categories", 2000],
+                        ["Viewing Mounts", 4500],
+                        ["Caching Demonstration", 4800],
+                        ["Loading Skeleton", 2500],
                 ]
               }
             },
