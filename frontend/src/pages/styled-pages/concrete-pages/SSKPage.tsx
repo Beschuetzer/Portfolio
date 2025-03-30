@@ -122,6 +122,14 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
                   },
                 ],
               },
+              video: {
+                sections: [
+                    ["Opening the Bottomsheet", 4800],
+                    ["Toggling Combo Item Visibility", 2300],
+                    ["Toggling Basket Visibility", 2000],
+                    ["Removing Basket from Lead", 2000],
+                ]
+              }
             },
             {
               srcMain: leadAddress,
