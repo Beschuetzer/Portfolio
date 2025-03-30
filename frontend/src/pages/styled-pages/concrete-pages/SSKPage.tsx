@@ -65,14 +65,14 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
           baskets and schedule consultations for customers. It was developed
           over the course of multiple sprints and involved various integrations
           with internal services. The purpose of the feature is twofold:
-          <ExamplePageTitledList
-            tabCount={2}
-            items={[
-              "To save the interaction in the form of a basket/recommendation which could be imported at home by the customer on bestbuy.com",
-              "Provide a way to schedule a follow-up appointment with the customer to discuss a product solution.",
-            ]}
-          />
         </ExamplePageParagraph>
+        <ExamplePageTitledList
+          tabCount={2}
+          items={[
+            "To save the interaction in the form of a basket/recommendation which could be imported at home by the customer on bestbuy.com",
+            "Provide a way to schedule a follow-up appointment with the customer to discuss a product solution.",
+          ]}
+        />
         <LazyLoadedCarousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
@@ -307,7 +307,10 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <ExamplePageParagraph>
-          The QuantitySelector was a re-usable component that allowed the user to change the quantity of a product in the cart. It was the de-facto way to adjust the quantity of a product in the cart after it had been added. 
+          The QuantitySelector was a re-usable component that allowed the user
+          to change the quantity of a product in the cart. It was the de-facto
+          way to adjust the quantity of a product in the cart after it had been
+          added.
         </ExamplePageParagraph>
         <LazyLoadedCarousel
           options={{
