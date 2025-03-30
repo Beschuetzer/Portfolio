@@ -1,6 +1,6 @@
 -add the section for ssk
 -add video sections for each carousel
-
+-fix # issue with multi-word section names
 make sure all carousels are using the sections approach for modal; then re-deploy after testing
 
 refactor stuff:
