@@ -156,6 +156,13 @@ const SECTIONS: ExamplePageSectionProps[] = [
           images in a visually appealing way:
         </ExamplePageParagraph>
         <LazyLoadedCarousel
+          lazyLoadProps={{
+            loadingSkeletonProps: {
+              style: {
+                height: 114,
+              },
+            },
+          }}
           options={{
             styling: {
               container: {
@@ -222,37 +229,44 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
           navigation bar will appear, allowing the user to navigate through the
           items by pressing the left and right arrows or swiping:
         </ExamplePageTitledParagraph>
-          <LazyLoadedCarousel
-            options={{
-              ...getCarouselStylingOptions(propsToAdd.colorscheme),
-              layout: {
-                itemDisplayLocation: "none",
+        <LazyLoadedCarousel
+          lazyLoadProps={{
+            loadingSkeletonProps: {
+              style: {
+                height: 288,
               },
-              styling: {
-                ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
-                container: {
-                  margin: {
-                    top: [
-                      [14],
-                      [12, parseInt(BREAK_POINTS.phone, 10), "max-width"],
-                    ],
-                  },
+            },
+          }}
+          options={{
+            ...getCarouselStylingOptions(propsToAdd.colorscheme),
+            layout: {
+              itemDisplayLocation: "none",
+            },
+            styling: {
+              ...getCarouselStylingOptions(propsToAdd.colorscheme).styling,
+              container: {
+                margin: {
+                  top: [
+                    [14],
+                    [12, parseInt(BREAK_POINTS.phone, 10), "max-width"],
+                  ],
                 },
               },
-              thumbnail: {
-                ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
-                size: [
-                  [SECTION_WIDTH_IN_PIXELS / 2 - 50],
-                  [
-                    window.innerWidth / 2 - 50,
-                    parseInt(BREAK_POINTS.phone, 10),
-                    "max-width",
-                  ],
+            },
+            thumbnail: {
+              ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
+              size: [
+                [SECTION_WIDTH_IN_PIXELS / 2 - 50],
+                [
+                  window.innerWidth / 2 - 50,
+                  parseInt(BREAK_POINTS.phone, 10),
+                  "max-width",
                 ],
-              },
-            }}
-            items={SECOND_CAROUSEL_ITEMS}
-          />
+              ],
+            },
+          }}
+          items={SECOND_CAROUSEL_ITEMS}
+        />
       </>
     ),
   },
@@ -265,6 +279,13 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
           carousel:
         </ExamplePageParagraph>
         <LazyLoadedCarousel
+          lazyLoadProps={{
+            loadingSkeletonProps: {
+              style: {
+                height: 406,
+              },
+            },
+          }}
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             layout: {
@@ -305,6 +326,13 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
           carousel:
         </ExamplePageParagraph>
         <LazyLoadedCarousel
+          lazyLoadProps={{
+            loadingSkeletonProps: {
+              style: {
+                height: 444,
+              },
+            },
+          }}
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             layout: {

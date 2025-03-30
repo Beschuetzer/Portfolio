@@ -3,7 +3,7 @@ import { Carousel, CarouselProps } from "react-thumbnail-carousel";
 import { LazyLoad, LazyLoadProps } from "./LazyLoad";
 
 type LazyLoadedCarouselProps = CarouselProps & {
-  lazyLoadProps?: LazyLoadProps;
+  lazyLoadProps?: Omit<LazyLoadProps, "children">;
 };
 
 export default function LazyLoadedCarousel(props: LazyLoadedCarouselProps) {

@@ -15,7 +15,7 @@ import { ExamplePageSection } from "./ExamplePageSection";
 import { ExamplePageSectionContent } from "./ExamplePageSectionContent";
 import { ExamplePageSectionHeader } from "./ExamplePageSectionHeader";
 import { getTextShadowStyle } from "../../styles/styles";
-import { getHeaderName } from "../../helpers";
+import { getFormattedSectionId, getHeaderName } from "../../helpers";
 import { AnyAction, Dispatch } from "redux";
 import { useDispatch } from "react-redux";
 
@@ -89,7 +89,7 @@ export function ExamplePage(props: ExamplePageProps) {
             <ExamplePageSection
               key={index}
               htmlAttributes={{
-                id: name,
+                id: getFormattedSectionId(name),
                 style: containerStyle,
               }}
               {...propsToAdd}

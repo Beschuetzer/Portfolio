@@ -96,6 +96,11 @@ export function getMinuteAndSecondsString(songLengthInSeconds: number) {
   }`;
 }
 
+export function getFormattedSectionId(sectionName: string) {
+  if (!sectionName) return "";
+  return sectionName.replace(/ /g, "-").toLocaleLowerCase();
+}
+
 export const replaceCharacters = (
   str: string,
   characterMappings: [string, string][] = []

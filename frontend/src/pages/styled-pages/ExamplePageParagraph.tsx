@@ -1,15 +1,23 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { LayoutStyledProps } from "../../layouts/types";
 import { FONT_SIZE } from "./constants";
 import { useColorScheme } from "../../hooks/useColorScheme";
 import { StyledPageProps } from "./types";
 import { paragraphMarginTop } from "../../styles/styles";
 
-const Paragraph = styled.p<LayoutStyledProps>`
+const commonStyles = css<LayoutStyledProps>`
   font-size: ${FONT_SIZE};
   color: ${(props) => props.colorscheme?.primary1};
   width: 100%;
   ${paragraphMarginTop}
+`;
+
+const Paragraph = styled.p<LayoutStyledProps>`
+  ${commonStyles}
+`;
+
+const ContainerDiv = styled.div<LayoutStyledProps>`
+  ${commonStyles}
 `;
 
 export function ExamplePageParagraph(props: StyledPageProps) {
@@ -18,9 +26,11 @@ export function ExamplePageParagraph(props: StyledPageProps) {
   const propsToAdd = {
     colorscheme: colorScheme,
   };
+  const ContainerToUse =
+    typeof children === "string" ? Paragraph : ContainerDiv;
   return (
-    <Paragraph {...propsToAdd} {...htmlAttributes}>
+    <ContainerToUse {...propsToAdd} {...htmlAttributes}>
       {children}
-    </Paragraph>
+    </ContainerToUse>
   );
 }
