@@ -139,11 +139,11 @@ export const App: React.FC<AppProps> = (props) => {
               //   to: `${ABOUT_URL}#${ABOUT_SECTION_NAMES[2]}`,
               //   image: musicPic,
               // },
-              // {
-              //   text: "Personality",
-              //   to: `${PERSONALITY_URL}`,
-              //   image: personalityPic,
-              // },
+              {
+                text: "Personality",
+                to: `${PERSONALITY_URL}`,
+                image: personalityPic,
+              },
             ],
           },
           {
@@ -160,6 +160,11 @@ export const App: React.FC<AppProps> = (props) => {
                 to: THUMBNAIL_CAROUSEL_URL,
                 image: carouselPic,
               },
+              // {
+              //   text: SSK_NAME,
+              //   to: SSK_URL,
+              //   image: sskPic,
+              // },
               { text: "A# Maj Bridge", to: BRIDGE_URL, image: bridgeImage },
               {
                 text: "Replay Viewer",
@@ -196,7 +201,7 @@ export const App: React.FC<AppProps> = (props) => {
           component={PlaylistSyncerPage}
         />
         <Route path={REPLAY_VIEWER_URL} exact component={ReplayViewerPage} />
-        {/* <Route path={SSK_URL} exact component={SSKPage} /> */}
+        <Route path={SSK_URL} exact component={SSKPage} />
         <Route path={GROCIFY_URL} exact component={GrocifyPage} />
         <Route path={ABOUT_URL} exact component={AboutPage} />
         <Route path={RESUME_URL} exact component={ResumePage} />
