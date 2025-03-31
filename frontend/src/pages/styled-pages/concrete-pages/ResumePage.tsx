@@ -48,17 +48,22 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
           text="You are not your résumé, you are your work."
         />
         <ExamplePageParagraph>
-          Welcome! My name is Adam. I am a developer with a passion for solving
-          problems and creating new things with technology.
+          Java trained, full-stack software engineer with .NET experience at a
+          fortune 500 company. Experienced in all stages of the SDLC:
+          requirements analysis, front-end development, back-end development,
+          database design, and performance test engineering. Believes in solving
+          key business and organizational problems with careful software design,
+          focusing on great user experience and managing technical debt to
+          produce maintainable solutions.
         </ExamplePageParagraph>
         <ExamplePageParagraph>
           Below you will find my experience, current skill set, formal
           education, and references. If you would like to learn more about me,
-          please feel free to reach out to me on{" "}
-          <ExamplePageLink url={LINKED_IN_URL} includeSpaces={false}>
+          please feel free to reach out to me on
+          <ExamplePageLink url={LINKED_IN_URL}>
             LinkedIn
-          </ExamplePageLink>{" "}
-          and/or{" "}
+          </ExamplePageLink>
+          and/or&nbsp;
           <ExamplePageLink url={MAIL_TO_STRING} includeSpaces={false}>
             email
           </ExamplePageLink>
@@ -294,7 +299,7 @@ export function ResumePage(props: ResmueProps) {
               title: {
                 text: "Download",
               },
-              url: `/resume.pdf`,
+              url: `/Resume for Adam Major.docx`,
               svg: {
                 xlinkHref: `/sprite.svg#icon-code`,
               },
