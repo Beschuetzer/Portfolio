@@ -82,7 +82,7 @@ const JobTitle = styled.h6<LayoutStyledProps>`
   padding-right: ${defaultFontSize};
 `;
 
-type ResumePageWorkHistoryItem = {
+export type ResumePageWorkHistoryItem = {
   achievements: (
     | string
     | ((propsToAdd: LayoutStyledProps) => ReactNode | ReactNode[])

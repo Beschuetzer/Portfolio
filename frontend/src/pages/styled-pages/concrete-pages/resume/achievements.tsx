@@ -1,5 +1,9 @@
+import { SSK_URL } from "../../../../components/constants";
+import { ExamplePageLink } from "../../ExamplePageLink";
+import { ResumePageWorkHistoryItem } from "./ResumePageWorkHistory";
+
 type Achievement = {
-  name: string;
+  name: ResumePageWorkHistoryItem["achievements"][number];
   date: Date;
   shouldDisplay?: boolean;
   description?: string;
@@ -8,7 +12,16 @@ type Achievement = {
 
 export const FRONT_END_ACHIEVEMENTS: Achievement[] = [
   {
-    name: "Used React Typescript to build the leads feature, which allowed in-store employees to create re-usable baskets and schedule consultations, leading to a sales increase of ~15%.",
+    name: () => (
+      <div>
+        Used React Typescript to build the
+        <ExamplePageLink url={`${SSK_URL}#leads`}>
+          leads feature
+        </ExamplePageLink>
+        , which allowed in-store employees to create re-usable baskets and
+        schedule consultations, leading to a sales increase of ~15%.
+      </div>
+    ),
     date: new Date(2022, 5, 15),
     tags: ["Typescript", "React", "Redux", "GraphQL"],
   },
@@ -18,17 +31,44 @@ export const FRONT_END_ACHIEVEMENTS: Achievement[] = [
     tags: ["Typescript", "React"],
   },
   {
-    name: "Used React Typescript to create a re-usable quantity selector component which displayed the current count of a product in the basket as well as adjusted it.",
+    name: () => (
+      <div>
+        Used React Typescript to create a re-usable
+        <ExamplePageLink url={`${SSK_URL}#quantity-selector`}>
+          quantity selector
+        </ExamplePageLink>
+        component which displayed the current quantity as well as adjusted the
+        quantity of a product in the basket.
+      </div>
+    ),
     date: new Date(2022, 6, 5),
     tags: ["Typescript", "React"],
   },
   {
-    name: "Used React Typescript and Redux to create a component which displayed the saved consultations in a table, allowing employees to easily refer back to past consultations.",
+    name: () => (
+      <div>
+        Used React Typescript and Redux to create a component which displayed
+        the saved consultations in a
+        <ExamplePageLink url={`${SSK_URL}#recommendations-history`}>
+          table
+        </ExamplePageLink>
+        , allowing employees to easily refer back to past consultations.
+      </div>
+    ),
     date: new Date(2022, 6, 5),
     tags: ["Typescript", "React"],
   },
   {
-    name: "Used React Typescript to create a recommendations drawer which displayed after the user added a product to the cart, displaying related items using infinite scroll.",
+    name: () => (
+      <div>
+        Used React Typescript to create an
+        <ExamplePageLink url={`${SSK_URL}#accessory-drawer`}>
+          accessory drawer
+        </ExamplePageLink>
+        which displayed after the user added a product to the cart, displaying
+        related accessories using infinite scroll.
+      </div>
+    ),
     date: new Date(2022, 6, 15),
     tags: ["Typescript", "React", "Redux"],
   },
@@ -51,7 +91,7 @@ export const BACK_END_ACHIEVEMENTS: Achievement[] = [
     tags: [".NET", "PostgreSQL"],
   },
   {
-    name: "Refactored the .NET 8 backend to use GraphQL queries to fetch feedback data, eliminating one network call.",
+    name: "Refactored the .NET 8 backend to use new and existing GraphQL queries to fetch feedback data, eliminating one network call.",
     date: new Date(2023, 9, 1),
     tags: [".NET", "GraphQL"],
   },
