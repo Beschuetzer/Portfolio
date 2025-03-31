@@ -153,20 +153,25 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
             ) : null}
             <Achievements {...propsToAdd}>
               {item.achievements.map((achievement, index) => {
-                return (
-                  <AchievementItem
-                    key={index}
-                    dangerouslySetInnerHTML={
-                      typeof achievement === "string"
-                        ? { __html: achievement }
-                        : undefined
-                    }
-                  >
-                    {typeof achievement !== "string"
-                      ? achievement(propsToAdd)
-                      : null}
-                  </AchievementItem>
-                );
+                if (typeof achievement === "string") {
+                  // Ensure the achievement ends with a period
+                  const formattedAchievement = achievement.trim().endsWith(".")
+                    ? achievement
+                    : `${achievement}.`;
+
+                  return (
+                    <AchievementItem
+                      key={index}
+                      dangerouslySetInnerHTML={{ __html: formattedAchievement }}
+                    />
+                  );
+                } else {
+                  return (
+                    <AchievementItem key={index}>
+                      {achievement(propsToAdd)}
+                    </AchievementItem>
+                  );
+                }
               })}
             </Achievements>
           </ItemContainer>
