@@ -146,7 +146,7 @@ const BarContainer = styled.div<LayoutStyledProps>`
     background-color: ${(props) => props.colorscheme?.primary1};
     height: calc(100% + ${CONTAINER_MARKER_WIDTH}px);
     width: ${CONTAINER_MARKER_WIDTH}px;
-    z-index: 10000000000;
+    z-index: 100;
   }
 
   &:after {
@@ -157,7 +157,7 @@ const BarContainer = styled.div<LayoutStyledProps>`
     background-color: ${(props) => props.colorscheme?.primary1};
     height: calc(100% + ${CONTAINER_MARKER_WIDTH}px);
     width: ${CONTAINER_MARKER_WIDTH}px;
-    z-index: 10000000000;
+    z-index: 100;
   }
 `;
 
@@ -173,7 +173,7 @@ const BarInnerContainer = styled.div<LayoutStyledProps>`
     background-color: ${(props) => props.colorscheme?.primary1};
     height: calc(100% + ${CONTAINER_MARKER_WIDTH}px);
     width: ${CONTAINER_MARKER_WIDTH}px;
-    z-index: 10000000000;
+    z-index: 100;
   }
 `;
 
