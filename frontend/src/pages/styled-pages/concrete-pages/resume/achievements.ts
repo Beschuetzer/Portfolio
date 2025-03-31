@@ -47,7 +47,7 @@ export const FRONT_END_ACHIEVEMENTS: Achievement[] = [
 export const BACK_END_ACHIEVEMENTS: Achievement[] = [
   {
     name: "Created a fully-customizable .NET 8 batcher service by pulling Twillio attributes at a defined interval and storing them in a PostgreSQL database, allowing the policy service to evaluate policies based on Twillio attributes without having to make calls itself.",
-    date: new Date(2025, 0, 1),
+    date: new Date(2025, 0, 14),
     tags: [".NET", "PostgreSQL"],
   },
   {
