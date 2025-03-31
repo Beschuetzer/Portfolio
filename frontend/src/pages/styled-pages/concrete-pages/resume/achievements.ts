@@ -8,12 +8,12 @@ type Achievement = {
 
 export const FRONT_END_ACHIEVEMENTS: Achievement[] = [
   {
-    name: "Used React Typescript to build the “leads” feature, which allowed in-store employees to create re-usable baskets and schedule consultations, leading to a sales increase of ~15%.",
+    name: "Used React Typescript to build the leads feature, which allowed in-store employees to create re-usable baskets and schedule consultations, leading to a sales increase of ~15%.",
     date: new Date(2022, 5, 15),
     tags: ["Typescript", "React", "Redux", "GraphQL"],
   },
   {
-    name: "Used React Typescript to add a voice notes feature to the leads flow, allowing employees to leave voice notes about a consultation for future reference.",
+    name: "Used React Typescript to add a voice notes feature complete with 360 degree duration animation, allowing employees to leave voice notes about a consultation when using the leads feature.",
     date: new Date(2022, 5, 22),
     tags: ["Typescript", "React"],
   },
@@ -27,7 +27,6 @@ export const FRONT_END_ACHIEVEMENTS: Achievement[] = [
     date: new Date(2022, 6, 5),
     tags: ["Typescript", "React"],
   },
-
   {
     name: "Used React Typescript to create a recommendations drawer which displayed after the user added a product to the cart, displaying related items using infinite scroll.",
     date: new Date(2022, 6, 15),
@@ -57,7 +56,7 @@ export const BACK_END_ACHIEVEMENTS: Achievement[] = [
     tags: [".NET", "GraphQL"],
   },
   {
-    name: "Added backend service to automatically add the correct protection plan to a basket when an eligible item is added to the cart, resulting in a +14% growth of said plans.",
+    name: "Created a .NET 8 service to automatically add the correct protection plan to a basket when an eligible item is added to the cart, resulting in a +14% growth of said plans.",
     date: new Date(2023, 0, 15),
     tags: [".NET"],
   },
@@ -65,7 +64,7 @@ export const BACK_END_ACHIEVEMENTS: Achievement[] = [
 
 export const OTHER_ACHIEVEMENTS: Achievement[] = [
   {
-    name: "Combined the 3 existing GraphQL queries for getting store details (storeById, storeLookupByLatLong, and storeLookupByZip) into a single query (storeLookup), providing a single query to obtain store details.",
+    name: "Combined three existing GraphQL queries for getting store details (storeById, storeLookupByLatLong, and storeLookupByZip) into a single query (storeLookup).",
     date: new Date(2022, 6, 1),
     tags: ["GraphQL"],
   },
