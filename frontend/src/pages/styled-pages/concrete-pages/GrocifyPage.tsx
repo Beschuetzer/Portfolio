@@ -3,7 +3,6 @@ import { GROCIFY_PAGE_NAME } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
 import { LayoutStyledProps } from "../../../layouts/types";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
-import { Carousel } from "react-thumbnail-carousel";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 
 import quickAddFlowVideo from "../../../clips/grocify/quick-add/flow.mp4";
@@ -27,8 +26,10 @@ import previouslyPurchasedPic from "../../../imgs/grocify/previously-purchased.j
 import scanOnePic from "../../../imgs/grocify/scan-1.jpg";
 import scanTwoPic from "../../../imgs/grocify/scan-2.jpg";
 import scanThreePic from "../../../imgs/grocify/scan-3.jpg";
+import quickAddPic from "../../../imgs/grocify/quick-add-screen.jpg";
 import storesListPic from "../../../imgs/grocify/stores-list.jpg";
 import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
+import { Carousel } from "react-thumbnail-carousel";
 
 const SECTION_NAMES = ["Overview", "ChatGPT Integration", "Media"];
 const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
@@ -57,6 +58,13 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <LazyLoadedCarousel
+          lazyLoadProps={{
+            loadingSkeletonProps: {
+              style: {
+                height: 597,
+              },
+            },
+          }}
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {
@@ -68,11 +76,21 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
           }}
           items={[
             {
+              srcMain: quickAddPic,
+              description: "Quick Add Screen",
+            },
+            {
               srcMain: quickAddFlowVideo,
               srcThumbnail: quickAddFlowVideoThumbnail,
               description: "Quick add flow",
-               video: {
+              video: {
                 autoPlay: false,
+                sections: [
+                  ["Navigating to screen", 5000],
+                  ["Uploading the image", 13000],
+                  ["Selecting missing item", 5300],
+                  ["Adding items to cart", 2000],
+                ]
               },
               modal: {
                 sections: [
@@ -87,8 +105,12 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: quickAddNewItemVideo,
               srcThumbnail: quickAddNewItemVideoThumbnail,
               description: "When no item is found",
-               video: {
+              video: {
                 autoPlay: false,
+                sections: [
+                  ["Inputting values for missing item", 27500],
+                  ["Validating values after save", 4000],
+                ]
               },
               modal: {
                 sections: [
@@ -103,8 +125,13 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: quickAddRowChangesVideo,
               srcThumbnail: quickAddRowChangesVideoThumbnail,
               description: "Adding a row",
-               video: {
+              video: {
                 autoPlay: false,
+                sections: [
+                  ["Swipe to delete", 1800],
+                  ["Manually add item", 7200],
+                  ["Selecting correct match", 3000],
+                ]
               },
               modal: {
                 sections: [
@@ -119,7 +146,7 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               srcMain: quickAddQuantityVideo,
               srcThumbnail: quickAddQuantityVideoThumbnail,
               description: "Changing Quantity",
-               video: {
+              video: {
                 autoPlay: false,
               },
             },
@@ -132,7 +159,14 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
     name: SECTION_NAMES[2],
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
-        <LazyLoadedCarousel
+        <Carousel
+          // lazyLoadProps={{
+          //   loadingSkeletonProps: {
+          //     style: {
+          //       height: 597,
+          //     },
+          //   },
+          // }}
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {
@@ -143,6 +177,10 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
             },
           }}
           items={[
+            {
+              srcMain: optionsPic,
+              description: "Options",
+            },
             {
               srcMain: addItemFlowVideo,
               srcThumbnail: addItemFlowVideoThumbnail,
@@ -187,10 +225,7 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
                 autoPlay: false,
               },
             },
-            {
-              srcMain: optionsPic,
-              description: "Options",
-            },
+
             {
               srcMain: previouslyPurchasedPic,
               description: "Previously Purchased Items",
