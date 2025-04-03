@@ -187,6 +187,11 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
               description: "Adding a new item",
               video: {
                 autoPlay: false,
+                sections: [
+                  ["Swipe to delete", 1800],
+                  ["Manually add item", 7200],
+                  ["Selecting correct match", 3000],
+                ]
               },
               modal: {
                 sections: [
