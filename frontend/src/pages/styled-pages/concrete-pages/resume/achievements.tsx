@@ -142,20 +142,27 @@ export const OTHER_ACHIEVEMENTS: Achievement[] = [
     tags: ["Node.js", "PostgreSQL", "MS SQL"],
   },
   {
-    name: "Built a typescript(Node.js and frontend compatible) library which provided a simplified interface for making policy-related decisions in an app.",
+    name: "Built a typescript(Node.js and frontend compatible) library (bundled by Rollup) which provided a simplified interface for making policy-related decisions in an app.",
     date: new Date(2023, 9, 1),
     description: "omnichannel-policy-server-lib",
-    tags: ["Node.js", "typescript"],
+    tags: ["Node.js", "typescript", "Rollup"],
   },
   {
-    name: "Built a typescript(Node.js and frontend compatible) authentication library which simplified the setup of the employee OAuth2 provider for new apps.",
+    name: "Built a typescript(Node.js and frontend compatible) authentication library (bundled by Rollup) which simplified the setup of the employee OAuth2 provider for new apps.",
     date: new Date(2023, 9, 1),
     description: "omnichannel-bsl-auth-node-js-provider",
+    tags: ["Node.js", "typescript", "Rollup"],
   },
   {
-    name: "Built a typescript(Node.js and frontend compatible) library which wrapped the native fetch function and provided call de-duplication, caching, circuit-breaking, retrying, and token management.",
+    name: "Built a typescript(Node.js and frontend compatible) library (bundled by Rollup) which wrapped the native fetch function and provided call de-duplication, caching, circuit-breaking, retrying, and token management.",
     date: new Date(2023, 9, 1),
     description: "omnichannel-fetch-lib",
+    tags: ["Node.js", "typescript", "Rollup"],
+  },
+  {
+    name: "Set up Module Federation webpack configs.",
+    date: new Date(2023, 9, 1),
+    tags: ["Module Federation", "Webpack"],
   },
 ];
 
