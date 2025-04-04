@@ -14,6 +14,8 @@ export type AccomplishmentStoryDetail = {
 export enum AccomplishmentStoryTags {
   Frontend = "Frontend",
   GraphQL = "GraphQL",
+  Library = "Library",
+  Javascript = "Javascript",
   Optimization = "Optimization",
   React = "React",
   Redux = "Redux",
