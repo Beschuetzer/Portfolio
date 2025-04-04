@@ -5,6 +5,7 @@ import {
   AccomplishmentStoryTags,
 } from "../../../types";
 import { AccomplishmentStory } from "../../../components/AccomplishmentStory";
+import { defaultFontSize } from "../../../styles/constants";
 
 export const ACCOMPLISHMENT_STORIES: AccomplishmentStoryDetail[] = [
   {
@@ -31,7 +32,7 @@ const ACCOMPLISHMENT_SECTIONS: ExamplePageSectionProps[] =
     return {
       name: tag,
       renderContent: (propsToAdd: LayoutStyledProps) => (
-        <div className="accomplishment-story-tag">
+        <div style={{ display: "flex", flexDirection: "column", gap: defaultFontSize }}>
           {ACCOMPLISHMENT_STORIES.filter((story) =>
             story.tags?.includes(tag as AccomplishmentStoryTags)
           ).map((story, index) => (
