@@ -25,6 +25,24 @@ export const ACCOMPLISHMENT_STORIES: AccomplishmentStoryDetail[] = [
     },
     name: "Refactor Feedback Data Retrieval Using GraphQL",
   },
+  {
+    tags: [
+      AccomplishmentStoryTags.Frontend,
+      AccomplishmentStoryTags.React,
+      AccomplishmentStoryTags.Typescript,
+      AccomplishmentStoryTags.Redux,
+    ],
+    details: {
+      situation:
+        "At Best Buy, in-store employees needed a more efficient way to record customer interactions and assist with purchases.",
+      task: "I was responsible for developing a feature that allowed employees to create reusable product baskets and schedule consultations.",
+      action:
+        "I worked with the Product Manager and UI Designer to bring Figma designs to life.  I used React Typescript and Redux to create consultations that could be sent to the backend for saving.  I collaborated with the Product Manager and UI Designer to transform Figma designs into a fully functional feature. Using React TypeScript and Redux, I built the leads feature, enabling employees to create and save baskets along with notes about the interaction as well as schedule consultations with a solutions expert.",
+      result:
+        "This feature streamlined the sales process, making it easier for employees to assist customers.  It also made it easier for customers to continue shopping when they got home, since the interaction was mailed to them in the form of a basket that could be loaded on bestbuy.com. It directly contributed to a 15% increase in sales as a result.",
+    },
+    name: "Leads Feature for In-Store Employees",
+  },
 ];
 
 const ACCOMPLISHMENT_SECTIONS: ExamplePageSectionProps[] =

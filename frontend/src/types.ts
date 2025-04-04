@@ -12,9 +12,13 @@ export type AccomplishmentStoryDetail = {
 };
 
 export enum AccomplishmentStoryTags {
+  Frontend = "Frontend",
   GraphQL = "GraphQL",
   Optimization = "Optimization",
+  React = "React",
+  Redux = "Redux",
   Refactoring = "Refactoring",
+  Typescript = "Typescript",
 }
 
 //#region Types and Interfaces
