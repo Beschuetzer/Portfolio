@@ -12,6 +12,8 @@ export type AccomplishmentStoryDetail = {
 };
 
 export enum AccomplishmentStoryTags {
+  Challenge = "Challenge",
+  Express = "Express",
   Frontend = "Frontend",
   GraphQL = "GraphQL",
   Library = "Library",

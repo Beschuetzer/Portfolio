@@ -44,36 +44,60 @@ export const ACCOMPLISHMENT_STORIES: AccomplishmentStoryDetail[] = [
     name: "Leads Feature for In-Store Employees",
   },
   {
+    tags: [AccomplishmentStoryTags.Library, AccomplishmentStoryTags.Typescript],
+    name: "Fetch Library",
+    details: {
+      situation:
+        "At Best Buy, we various apps that used Module Federation.  One challenge they were having is that each micro front end would make the a lot of the same calls on loading.",
+      task: "I was tasked with creating a general purpose library that could provide caching, de-duplication, and token management across micro frontend.",
+      action:
+        "I created a library that worked both on the frontend and backend by wrapping the native Fetch API with .  It was designed to be used with Module Federation and could be used by any micro frontend.  I created a performance benchmarking app, a test suite and documentation on how to use it.",
+      result:
+        "It was implemented into another library that was used to interact with the in-house policy server in order to provide call retries, circuit breaking, call de-duplication, caching, and token management.  It improved performance in many cases by caching responses and simplified certain use cases by handling tokens tokens internally.",
+    },
+  },
+  {
     tags: [
       AccomplishmentStoryTags.Library,
       AccomplishmentStoryTags.Typescript,
+      AccomplishmentStoryTags.Express,
+      AccomplishmentStoryTags.Challenge,
     ],
-    name: "Fetch Library",
+    name: "BSL Auth Library",
     details: {
-      situation: "At Best Buy, we had an app that used Module Federation, which led to each micro front end making the same calls unnecessarily.",
-      task: "I was tasked with creating a general purpose library that could provide caching, de-duplication, and token management across micro frontend.",
-      action: "I created a library that worked both on the frontend and backend by wrapping the native Fetch API with .  It was designed to be used with Module Federation and could be used by any micro frontend.  I created a performance benchmarking app, a test suite and documentation on how to use it.",
-      result: "It was implemented into another library that was used to interact with the in-house policy server in order to provide call retries, circuit breaking, call de-duplication, caching, and token management.  It improved performance in many cases by caching responses and simplified certain use cases by handling tokens tokens internally.",
-    }
-  }
+      situation:
+        "At Best Buy, we used an in-house OAuth2 server for authentication.  Every app would have to go through the same set up process to use it.",
+      task: "I was tasked with creating a general purpose library that could be used by Express backends to simplify the set up process.",
+      action:
+        "I created a library that used passport's oauth 2 strategy.  I made sure to make it configurable so that all of the options that the strategy had could be passed in via the library.  I then created a proof of concept application and documentation on how to use it.",
+      result:
+        "Unfortunately, the library was never used in production as it was completed right before the announcement that the auth provider was changing.  However, it was a good learning experience for me and I learned a lot about how to create libraries that are easy to use and configure.",
+    },
+  },
 ];
 
-const ACCOMPLISHMENT_SECTIONS: ExamplePageSectionProps[] =
-  Object.values(AccomplishmentStoryTags).map((tag) => {
-    return {
-      name: tag,
-      renderContent: (propsToAdd: LayoutStyledProps) => (
-        <div style={{ display: "flex", flexDirection: "column", gap: defaultFontSize }}>
-          {ACCOMPLISHMENT_STORIES.filter((story) =>
-            story.tags?.includes(tag as AccomplishmentStoryTags)
-          ).map((story, index) => (
-            <AccomplishmentStory {...story} {...propsToAdd} key={index} />
-          ))}
-        </div>
-      ),
-    };
-  });
- 
+const ACCOMPLISHMENT_SECTIONS: ExamplePageSectionProps[] = Object.values(
+  AccomplishmentStoryTags
+).map((tag) => {
+  return {
+    name: tag,
+    renderContent: (propsToAdd: LayoutStyledProps) => (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: defaultFontSize,
+        }}
+      >
+        {ACCOMPLISHMENT_STORIES.filter((story) =>
+          story.tags?.includes(tag as AccomplishmentStoryTags)
+        ).map((story, index) => (
+          <AccomplishmentStory {...story} {...propsToAdd} key={index} />
+        ))}
+      </div>
+    ),
+  };
+});
 
 type AccomplishmentStoriesProps = {};
 
