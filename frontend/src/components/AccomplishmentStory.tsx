@@ -30,15 +30,6 @@ export function AccomplishmentStory({ details, name, tags }: Props) {
       <p>
         <strong>Result:</strong> {details.result}
       </p>
-      {tags && (
-        <div className="tags">
-          {tags.map((tag, index) => (
-            <span key={index} className="tag">
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
     </Container>
   );
 }
