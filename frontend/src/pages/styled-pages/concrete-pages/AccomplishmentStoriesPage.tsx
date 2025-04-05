@@ -67,9 +67,9 @@ export const ACCOMPLISHMENT_STORIES: AccomplishmentStoryDetail[] = [
     details: {
       situation:
         "At Best Buy, we used an in-house OAuth2 server for authentication.  Every app would have to go through the same set up process to use it.",
-      task: "I was tasked with creating a general purpose library that could be used by Express backends to simplify the set up process.",
+      task: "I was tasked with creating a general purpose library and middleware that could be used by Express backends to simplify the set up process.",
       action:
-        "I created a library that used passport's oauth 2 strategy.  I made sure to make it configurable so that all of the options that the strategy had could be passed in via the library.  I then created a proof of concept application and documentation on how to use it.",
+        "I created a library that used passport's oauth 2 strategy.  I made sure to make it configurable so that all of the options that the strategy had could be passed in via the library.  Optional middleware could be added which attached the token to the request object later in the middle ware chain.  I also created a proof of concept application and documentation on how to use it.",
       result:
         "Unfortunately, the library was never used in production as it was completed right before the announcement that the auth provider was changing.  However, it was a good learning experience for me and I learned a lot about how to create libraries that are easy to use and configure.",
     },
