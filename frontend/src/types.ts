@@ -22,6 +22,7 @@ export enum AccomplishmentStoryTags {
   React = "React",
   Redux = "Redux",
   Refactoring = "Refactoring",
+  Scalability = "Scalability",
   Typescript = "Typescript",
 }
 
