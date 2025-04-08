@@ -78,13 +78,13 @@ export const ACCOMPLISHMENT_STORIES: AccomplishmentStoryDetail[] = [
     tags: [
       AccomplishmentStoryTags.Scalability,
     ],
-    name: "AWS Cloudfront and S3",
+    name: "AWS S3",
     details: {
       situation:
         "At Best Buy, we had an app that accepted user upload in the form of images and application binaries.  The server was handling all of the uploads itself.  This was causing performance issues and was not scalable.",
       task: "I was tasked with finding a solution that was scalable.",
       action:
-        "I looked into AWS S3 and Cloudfront.  I created a proof of concept that used S3 for uploads and downloads.  I also created a Cloudfront distribution to serve the files.  I created a library that could be used to upload and download files from S3 using presigned URLs.",
+        "I looked into AWS S3 and Cloudfront.  I created a proof of concept that used S3 for uploads and downloads.  I also created a CDN distribution resource via Cloudfront to serve the files.",
       result:
         "As a result, the server was able to handle upload and download requst more requests and the performance of the app improved.  The app was able to scale to handle more users without any issues.  I also learned a lot about AWS and how to use it.",
     },
