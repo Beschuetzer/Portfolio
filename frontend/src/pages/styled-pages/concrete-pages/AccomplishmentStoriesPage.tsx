@@ -50,12 +50,12 @@ export const ACCOMPLISHMENT_STORIES: AccomplishmentStoryDetail[] = [
     name: "Fetch Library",
     details: {
       situation:
-        "At Best Buy, we various apps that used Module Federation.  One challenge they were having is that each micro front end would make the a lot of the same calls on loading.",
+        "At Best Buy, there were various apps that used Module Federation.  One challenge they were having is that each micro front end would make the a lot of the same calls on loading.",
       task: "I was tasked with creating a general purpose library that could provide caching, de-duplication, and token management across micro frontend.",
       action:
-        "I created a library that worked both on the frontend and backend by wrapping the native Fetch API with .  It was designed to be used with Module Federation and could be used by any micro frontend.  I created a performance benchmarking app, a test suite and documentation on how to use it.",
+        "I created a library that worked both on the frontend and backend by wrapping the native Fetch API.  It was designed to be used with Module Federation and could be used by any micro frontend.  I created a performance benchmarking app, a test suite and documentation on how to use it.",
       result:
-        "It was implemented into another library that was used to interact with the in-house policy server in order to provide call retries, circuit breaking, call de-duplication, caching, and token management.  It improved performance in many cases by caching responses and simplified certain use cases by handling tokens tokens internally.",
+        "It was implemented into another library that was used to interact with the in-house policy server in order to provide call retries, circuit breaking, call de-duplication, caching, and token management.  It improved performance in many cases by caching responses and simplified certain use cases by handling tokens internally.",
     },
   },
   {
