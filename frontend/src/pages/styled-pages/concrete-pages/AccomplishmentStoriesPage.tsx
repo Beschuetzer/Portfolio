@@ -5,7 +5,9 @@ import {
   AccomplishmentStoryTags,
 } from "../../../types";
 import { AccomplishmentStory } from "../../../components/AccomplishmentStory";
-import { defaultFontSize } from "../../../styles/constants";
+import InterviewQuestion, {
+  InterviewQuestionProps,
+} from "../../../components/InterviewQuestion";
 
 export const ACCOMPLISHMENT_STORIES: AccomplishmentStoryDetail[] = [
   {
@@ -75,9 +77,7 @@ export const ACCOMPLISHMENT_STORIES: AccomplishmentStoryDetail[] = [
     },
   },
   {
-    tags: [
-      AccomplishmentStoryTags.Scalability,
-    ],
+    tags: [AccomplishmentStoryTags.Scalability],
     name: "AWS S3",
     details: {
       situation:
@@ -91,28 +91,59 @@ export const ACCOMPLISHMENT_STORIES: AccomplishmentStoryDetail[] = [
   },
 ];
 
-const ACCOMPLISHMENT_SECTIONS: ExamplePageSectionProps[] = Object.values(
-  AccomplishmentStoryTags
-).map((tag) => {
-  return {
-    name: tag,
-    renderContent: (propsToAdd: LayoutStyledProps) => (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: defaultFontSize,
-        }}
-      >
-        {ACCOMPLISHMENT_STORIES.filter((story) =>
-          story.tags?.includes(tag as AccomplishmentStoryTags)
-        ).map((story, index) => (
-          <AccomplishmentStory {...story} {...propsToAdd} key={index} />
-        ))}
-      </div>
-    ),
-  };
-});
+const INTERVIEW_QUESTIONS: InterviewQuestionProps[] = [
+  {
+    answer:
+      "I'm looking for an opportunity to grow as a developer — both by deepening my technical skills and by working on meaningful projects with a collaborative team. I value clean code, good communication, and a culture that encourages continuous learning. I'm especially excited to contribute to a team where I can take ownership of features and see the impact of my work.",
+    question:
+      "What are you looking for in your next role / Why do you want to work for us?",
+  },
+  {
+    question: "What does maintainable code mean to you?",
+    answer:
+      "To me, maintainability means writing code that's easy to understand, modify, and extend without introducing bugs. It means clear structure, meaningful naming, and following consistent coding standards so that someone else — or even me months later — can pick up the code and work with it efficiently. I aim to keep functions focused, avoid unnecessary complexity, and write tests and documentation where appropriate. Maintainable code reduces technical debt and helps teams move faster in the long run.",
+  },
+  {
+    question: "Why are you no longer with you last employer (Exit Statement)?",
+    answer:
+      'In February of 2025 Best Buy "right-sized" their workforce and redirected resources to areas like Best Buy Health and AI.  As part of this effort, my department was restructured. I\'m now exploring opportunities that will take full advantage of my extensive skillset, namely in React, .NET, Node, and SQL.',
+  },
+  {
+    question: "Tell me about yourself",
+    answer:
+      "I'm a full-stack software engineer with experience at a fortune 500 company.  I'm experienced in all stages of the software development lifecycle (i.e requirements analysis, front-end development, back-end development, database design, and performance testing. I'm the one who volunteers for the stories that no one else wants.  I have a proven track record of delivering on time even if it involves extra effort.",
+  },
+  {
+    question: "What is your bigggest weakness?",
+    answer:
+      "The area where I need the most work is web accessibility.  I've come to realize how crucial it is to create inclusive experiences for all users, including those with disabilities.  While I have a basic understanding of accessibility principles, I want to go deeper. I've been studying WCAG guidelines and experimenting with ARIA attributes.  I plan to test my projects with screen readers and other accessibility tools going forward.",
+  },
+  {
+    question: "What is your biggest strength?",
+    answer: "I have a strong ability to learn quickly and adapt to new technologies.  I have a proven track record of picking up new languages and frameworks on the job.  For example, I learned .NET in a matter of weeks and was able to contribute to a large-scale project.  I also have a knack for problem-solving and debugging.",
+  }
+];
+
+const ACCOMPLISHMENT_SECTIONS: ExamplePageSectionProps[] =
+  ACCOMPLISHMENT_STORIES.map((story) => {
+    return {
+      name: story.name,
+      renderContent: (propsToAdd: LayoutStyledProps) => (
+        <AccomplishmentStory {...story} {...propsToAdd} />
+      ),
+    };
+  });
+
+const INTERVIEW_SECTIONS: ExamplePageSectionProps[] = INTERVIEW_QUESTIONS.map(
+  (question) => {
+    return {
+      name: question.question,
+      renderContent: (propsToAdd: LayoutStyledProps) => (
+        <InterviewQuestion {...question} {...propsToAdd} />
+      ),
+    };
+  }
+);
 
 type AccomplishmentStoriesProps = {};
 
@@ -120,7 +151,7 @@ export function AccomplishmentStoriesPage(props: AccomplishmentStoriesProps) {
   return (
     <ExamplePage
       title="Accomplishment Stories"
-      sections={ACCOMPLISHMENT_SECTIONS}
+      sections={[...INTERVIEW_SECTIONS, ...ACCOMPLISHMENT_SECTIONS]}
     />
   );
 }
