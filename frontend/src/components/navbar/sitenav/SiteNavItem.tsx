@@ -142,7 +142,7 @@ export function SiteNavItem(props: SiteNavItemProps) {
       ) : (
         <StyledLink
           {...propsToAdd}
-          to={to || ""}
+          to={to.toLowerCase() || ""}
           className="item-link"
           onClick={onClickLocal}
         >
