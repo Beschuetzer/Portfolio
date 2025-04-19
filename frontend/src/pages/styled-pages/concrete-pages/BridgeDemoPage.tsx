@@ -17,7 +17,7 @@ import { LIVE_BRIDGE_URL } from "../../../components/constants";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import { defaultFontSize } from "../../../styles/constants";
 import { LazyLoad } from "../../../components/LazyLoad";
-import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
+import { Carousel } from "react-thumbnail-carousel";
 
 type BridgeDemoProps = {};
 
@@ -99,7 +99,7 @@ const BRIDGE_DEMO_SECTIONS: ExamplePageSectionProps[] = [
           width: "100%",
         }
       }}>
-        <LazyLoadedCarousel
+        <Carousel
           options={getCarouselStylingOptions(propsToAdd.colorscheme)}
           items={[
             {

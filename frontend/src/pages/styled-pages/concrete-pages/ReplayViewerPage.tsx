@@ -44,7 +44,6 @@ import clipDealPlayerThumbnail from "../../../clips/replay-viewer/thumbnails/dea
 import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
 import { defaultFontSize } from "../../../styles/constants";
 import { useAwakenSleepingContainers } from "../../../hooks/useAwakenSleepingContainers";
-import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
 
 export const REPLAY_VIEWER_SECTION_NAMES = [
   "Motivation",
@@ -84,7 +83,7 @@ const REPLAY_VIEWER_SECTIONS: ExamplePageSectionProps[] = [
       paddingTop: defaultFontSize,
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
-      <LazyLoadedCarousel
+      <Carousel
         options={{
           ...getCarouselStylingOptions(propsToAdd.colorscheme),
           layout: {

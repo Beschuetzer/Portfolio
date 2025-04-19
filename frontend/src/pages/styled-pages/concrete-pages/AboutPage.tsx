@@ -94,7 +94,7 @@ import oregon02Thumbnail from "../../../imgs/about/thumbnails/oregon-02-thumbnai
 import oregon03Thumbnail from "../../../imgs/about/thumbnails/oregon-03-thumbnail.jpg";
 import { defaultFontSize } from "../../../styles/constants";
 import { AudioList } from "../../../components/AudioPlayer/AudioList";
-import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
+import { Carousel } from "react-thumbnail-carousel";
 
 type AboutProps = {};
 
@@ -160,7 +160,7 @@ const ABOUT_SECTIONS: ExamplePageSectionProps[] = [
         </ExamplePageTitledParagraph>
         <ExamplePageTitledParagraph title="Photos">
           Here are some photos of enjoyable experiences:
-          <LazyLoadedCarousel
+          <Carousel
             options={{
               modal: {
                 maintainMinimizedStateAcrossItems: true,

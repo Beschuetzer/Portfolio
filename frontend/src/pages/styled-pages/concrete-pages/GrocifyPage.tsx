@@ -28,7 +28,6 @@ import scanTwoPic from "../../../imgs/grocify/scan-2.jpg";
 import scanThreePic from "../../../imgs/grocify/scan-3.jpg";
 import quickAddPic from "../../../imgs/grocify/quick-add-screen.jpg";
 import storesListPic from "../../../imgs/grocify/stores-list.jpg";
-import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
 import { Carousel } from "react-thumbnail-carousel";
 
 const SECTION_NAMES = ["Overview", "ChatGPT Integration", "Media"];
@@ -57,14 +56,7 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
     name: SECTION_NAMES[1],
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
-        <LazyLoadedCarousel
-          lazyLoadProps={{
-            loadingSkeletonProps: {
-              style: {
-                height: 597,
-              },
-            },
-          }}
+        <Carousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {
@@ -160,13 +152,6 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
     renderContent: (propsToAdd: LayoutStyledProps) => (
       <>
         <Carousel
-          // lazyLoadProps={{
-          //   loadingSkeletonProps: {
-          //     style: {
-          //       height: 597,
-          //     },
-          //   },
-          // }}
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {
