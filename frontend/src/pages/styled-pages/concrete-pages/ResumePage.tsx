@@ -2,6 +2,7 @@ import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import {
   BEST_BUY_URL,
   BRIDGE_URL,
+  ISD_622_URL,
   KUALAPUU_URL,
   LINKED_IN_URL,
   MAIL_TO_STRING,
@@ -209,9 +210,30 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             jobDescription:
               "My finance at the time was a teacher at the school, and I volunteered to help out in her classroom.  This was a transition period for me as I knew I wanted to do something in IT but was not sure what the path forward was yet.",
             achievements: [
-             `Created a grading tool to facilitate grading of math assessments.`,
-									`Created a Book Trust tool to simplify the monthly ordering process.`,
-									`Used my time to study Bash, Powershell, Windows Active Directory, get the Google IT Support Specialist Certificate, and other IT Support related skills.`,
+              `Created a grading tool to facilitate grading of math assessments.`,
+              `Created a Book Trust tool to simplify the monthly ordering process.`,
+              `Used my time to study Bash, Powershell, Windows Active Directory, get the Google IT Support Specialist Certificate, and other IT Support related skills.`,
+            ],
+            dateStart: ISD_622_END_DATE,
+            dateEnd: RICOH_START_DATE,
+            jobTitle: "Second Grade Classroom Volunteer",
+          },
+          {
+            employer: {
+              name: "PearsonVue Test Admin / Office Administrator",
+              url: ISD_622_URL,
+            },
+            jobDescription:
+              "I worked at a PearsonVue testing center as a test administrator and office administrator.  I was responsible for administering tests, providing customer service, and maintaining the testing center.  The school also offered adult education classes, and I was responsible for assisting the teachers and students with their needs.",
+            achievements: [
+              "Served a diverse set of individuals, including seniors learning to read, single-parent mothers, incarcerated youth pursuing their G.E.D.s, refugees acquiring English language skills, and professionals striving to earn certifications.",
+              "Administered G.E.D. tests in a minimum-security correctional facility for 4 years.",
+              "Offered technical support to teachers and other staff members.",
+              "Guided learners throughout the registration process.",
+              "Created reports and documents, provided recommendations, etc.",
+              "Created VBA macros to automate report generation, reducing the time-to-complete by more than 80%.",
+              `Created custom grading forms using Excel userForms and macros in order to reduce the time it took to grade assessment tests by 75%.`,
+              "Created a tool that used testing data to produce reports that the teachers could use to understand the areas in which their students were having difficulties, preventing the purchase of dedicated software.",
             ],
             dateStart: ISD_622_END_DATE,
             dateEnd: RICOH_START_DATE,
