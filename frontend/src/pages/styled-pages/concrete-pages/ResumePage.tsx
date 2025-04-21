@@ -7,10 +7,12 @@ import {
   KUALAPUU_URL,
   LINKED_IN_URL,
   MAIL_TO_STRING,
+  ODIN_PROJECT_URL,
   PLAYLIST_SYNCER_URL,
   REPLAY_VIEWER_URL,
   RICOH_URL,
   TOYS_R_US_RUL,
+  UDEMY_BOOTCAMP_URL,
   YORK_B2E_URL,
 } from "../../../components/constants";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
@@ -156,6 +158,20 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             dateStart: DEVELOPER_START_DATE,
             dateEnd: YORK_SOLUTIONS_START_DATE,
             jobTitle: "Developer in Training",
+            jobDescription: (
+              <>
+                I used resources like the
+                <ExamplePageLink url={ODIN_PROJECT_URL}>
+                  Odin Project
+                </ExamplePageLink>
+                and 
+                <ExamplePageLink url={UDEMY_BOOTCAMP_URL}>
+                  Udemy
+                </ExamplePageLink>
+                to learn the fundamentals of Web development. I then
+                used those learnings to build various projects:
+              </>
+            ),
             achievements: [
               () => (
                 <div>

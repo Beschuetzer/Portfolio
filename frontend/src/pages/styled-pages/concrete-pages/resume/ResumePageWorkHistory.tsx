@@ -93,7 +93,7 @@ export type ResumePageWorkHistoryItem = {
     url?: string;
   };
   jobTitle: string;
-  jobDescription?: string;
+  jobDescription?: string | ReactNode | ReactNode[];
 };
 
 type ResumePageWorkHistoryProps = {
