@@ -24,7 +24,6 @@ import {
 import { CodeDisplayer } from "./CodeDisplayer";
 import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 import { Quote } from "../../../components/Quote";
-import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
 
 export const THUMBNAIL_CAROUSEL_SECTION_NAMES = [
   "Overview",
@@ -155,14 +154,7 @@ const SECTIONS: ExamplePageSectionProps[] = [
           of images in a row. This is useful for showcasing a collection of
           images in a visually appealing way:
         </ExamplePageParagraph>
-        <LazyLoadedCarousel
-          lazyLoadProps={{
-            loadingSkeletonProps: {
-              style: {
-                height: 114,
-              },
-            },
-          }}
+        <Carousel
           options={{
             styling: {
               container: {
@@ -187,7 +179,7 @@ const SECTIONS: ExamplePageSectionProps[] = [
 import defaultGif from "../../../clips/react-thumbnail-carousel/Default.gif";
 import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gif";
 
-<LazyLoadedCarousel
+<Carousel
   options={{
     thumbnail: {
       size: [[100], [75, 1200, "max-width"], [66, 600, "max-width"]],
@@ -229,14 +221,7 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
           navigation bar will appear, allowing the user to navigate through the
           items by pressing the left and right arrows or swiping:
         </ExamplePageTitledParagraph>
-        <LazyLoadedCarousel
-          lazyLoadProps={{
-            loadingSkeletonProps: {
-              style: {
-                height: 288,
-              },
-            },
-          }}
+        <Carousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             layout: {
@@ -278,14 +263,7 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
           This layout allows you to display the selected item above the
           carousel:
         </ExamplePageParagraph>
-        <LazyLoadedCarousel
-          lazyLoadProps={{
-            loadingSkeletonProps: {
-              style: {
-                height: 406,
-              },
-            },
-          }}
+        <Carousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             layout: {
@@ -325,14 +303,7 @@ import fullscreenGif from "../../../clips/react-thumbnail-carousel/fullscreen.gi
           This layout allows you to display the selected item below the
           carousel:
         </ExamplePageParagraph>
-        <LazyLoadedCarousel
-          lazyLoadProps={{
-            loadingSkeletonProps: {
-              style: {
-                height: 444,
-              },
-            },
-          }}
+        <Carousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             layout: {

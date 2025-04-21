@@ -96,7 +96,7 @@ export const BACK_END_ACHIEVEMENTS: Achievement[] = [
     tags: [".NET", "GraphQL"],
   },
   {
-    name: "Created a .NET 8 service to automatically add the correct protection plan to a basket when an eligible item is added to the cart, resulting in a +14% growth of said plans.",
+    name: "Created a .NET 8 service class that leveraged external APIs to automatically add the correct protection plan to the basket when applicable, increasing protection plan sales by +15%.",
     date: new Date(2023, 0, 15),
     tags: [".NET"],
   },

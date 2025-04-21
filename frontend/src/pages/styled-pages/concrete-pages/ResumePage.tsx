@@ -2,10 +2,15 @@ import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import {
   BEST_BUY_URL,
   BRIDGE_URL,
+  HERMAN_LIETZ_SCHULE_URL,
+  ISD_622_URL,
+  KUALAPUU_URL,
   LINKED_IN_URL,
   MAIL_TO_STRING,
   PLAYLIST_SYNCER_URL,
   REPLAY_VIEWER_URL,
+  RICOH_URL,
+  TOYS_R_US_RUL,
   YORK_B2E_URL,
 } from "../../../components/constants";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
@@ -37,6 +42,14 @@ const BESTBUY_FTE_START_DATE = new Date(2022, 10, 13);
 const BESTBUY_LAST_DATE = new Date(2025, 1, 14);
 const YORK_SOLUTIONS_START_DATE = new Date(2021, 10, 1);
 const DEVELOPER_START_DATE = new Date(2020, 2, 25);
+const RICOH_START_DATE = new Date(2019, 6, 19);
+const RICOH_END_DATE = new Date(2020, 2, 20);
+const ISD_622_START_DATE = new Date(2007, 6, 20);
+const ISD_622_END_DATE = new Date(2018, 6, 20);
+const TOYS_R_US_START_DATE = new Date(2006, 8, 20);
+const TOYS_R_US_END_DATE = new Date(2006, 11, 20);
+const GERMANY_START_DATE = new Date(2005, 8, 20);
+const GERMANY_END_DATE = new Date(2006, 6, 20);
 
 const RESUME_SECTIONS: ExamplePageSectionProps[] = [
   {
@@ -60,9 +73,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
           Below you will find my experience, current skill set, formal
           education, and references. If you would like to learn more about me,
           please feel free to reach out to me on
-          <ExamplePageLink url={LINKED_IN_URL}>
-            LinkedIn
-          </ExamplePageLink>
+          <ExamplePageLink url={LINKED_IN_URL}>LinkedIn</ExamplePageLink>
           and/or&nbsp;
           <ExamplePageLink url={MAIL_TO_STRING} includeSpaces={false}>
             email
@@ -179,6 +190,88 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
                 </div>
               ),
             ],
+          },
+          {
+            employer: {
+              name: "Ricoh",
+              url: RICOH_URL,
+            },
+            jobDescription:
+              "Troubleshot and repaired Ricoh printers and copiers in a fast-paced environment.  Provided customer service to clients in the field.",
+            achievements: [
+              "Worked with clients to resolve issues related to their multi-function devices.",
+              "Configured, troubleshot, installed, and repaired multi-function devices.",
+              "Secured two contracts with clients by going the extra mile to ensure customer satisfaction.",
+              `Increased productivity by 10% by automating repetitive tasks.`,
+            ],
+            dateStart: RICOH_START_DATE,
+            dateEnd: RICOH_END_DATE,
+            jobTitle: "Technology Services Support Representative",
+          },
+          {
+            employer: {
+              name: "Kualapuu Charter School",
+              url: KUALAPUU_URL,
+            },
+            jobDescription:
+              "My fiancé at the time was a teacher at the school, and I volunteered to help out in her classroom.  This was a transition period for me as I knew I wanted to do something in IT but was not sure what the path forward was yet.",
+            achievements: [
+              `Created a grading tool to facilitate grading of math assessments.`,
+              `Created a Book Trust tool to simplify the monthly ordering process.`,
+              `Used my time to study Bash, Powershell, Windows Active Directory, get the Google IT Support Specialist Certificate, and other IT Support related skills.`,
+            ],
+            dateStart: ISD_622_END_DATE,
+            dateEnd: RICOH_START_DATE,
+            jobTitle: "Second Grade Classroom Volunteer",
+          },
+          {
+            jobTitle: "PearsonVue Test Admin / Office Administrator",
+            employer: {
+              name: "ISD 622",
+              url: ISD_622_URL,
+            },
+            jobDescription:
+              "I worked at a PearsonVue testing center as a test administrator and office administrator.  I was responsible for administering tests, providing customer service, and maintaining the testing center.  The school also offered adult education classes, and I was responsible for assisting the teachers and students with their needs.",
+            achievements: [
+              "Served a diverse set of individuals, including seniors learning to read, single-parent mothers, incarcerated youth pursuing their G.E.D.s, refugees acquiring English language skills, and professionals striving to earn certifications.",
+              "Administered G.E.D. tests in a minimum-security correctional facility for 4 years.",
+              "Offered technical support to teachers and other staff members.",
+              "Guided learners throughout the registration process.",
+              "Created reports and documents, provided recommendations, etc.",
+              "Created VBA macros to automate report generation, reducing the time-to-complete by more than 80%.",
+              `Created custom grading forms using Excel userForms and macros in order to reduce the time it took to grade assessment tests by 75%.`,
+              "Created a tool that used testing data to produce reports that the teachers could use to understand the areas in which their students were having difficulties, preventing the purchase of dedicated software.",
+            ],
+            dateStart: ISD_622_START_DATE,
+            dateEnd: ISD_622_END_DATE,
+          },
+          {
+            jobTitle: "Overnight Stocker",
+            employer: {
+              name: "Toys R Us",
+              url: TOYS_R_US_RUL,
+            },
+            achievements: [
+              "Unloaded Freight.",
+              "Opened boxes and placed merchandise on displays/shelves.",
+              "Cleaned up and disposed up boxes.",
+            ],
+            dateStart: TOYS_R_US_START_DATE,
+            dateEnd: TOYS_R_US_END_DATE,
+          },
+          {
+            jobTitle: "English Assistant",
+            employer: {
+              name: "Herman-Lietz Schule Haubinda",
+              url: HERMAN_LIETZ_SCHULE_URL,
+            },
+            achievements: [
+              "Collaborated with English language teacher to enhance lessons.",
+              "Led small group sessions with 5-8 students.",
+              "Conducted remedial 1-on-1 tutoring sessions with students struggling in English.",
+            ],
+            dateStart: GERMANY_START_DATE,
+            dateEnd: GERMANY_END_DATE,
           },
         ]}
       />

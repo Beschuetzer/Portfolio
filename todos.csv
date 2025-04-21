@@ -1,5 +1,7 @@
 
--add a new page where i can access the soar/star stories
+-accomplishments:
+  --write a story for each statement in my resume) 
+-add ability to click on reference email and phone number to copy to clipboard (use react-copy-to-clipboard)
 -add video sections for each carousel
 make sure all carousels are using the sections approach for modal; then re-deploy after testing
 

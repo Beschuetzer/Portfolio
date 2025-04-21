@@ -32,7 +32,7 @@ import {
 } from "../../../components/constants";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import { defaultFontSize } from "../../../styles/constants";
-import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
+import { Carousel } from "react-thumbnail-carousel";
 
 const SECTION_NAMES = ["Description", "Media", "Notes"];
 const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
@@ -74,7 +74,7 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
       paddingTop: defaultFontSize,
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
-      <LazyLoadedCarousel
+      <Carousel
         options={getCarouselStylingOptions(propsToAdd.colorscheme)}
         items={[
           {

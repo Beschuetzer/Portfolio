@@ -98,7 +98,7 @@ export function getMinuteAndSecondsString(songLengthInSeconds: number) {
 
 export function getFormattedSectionId(sectionName: string) {
   if (!sectionName) return "";
-  return sectionName.replace(/ /g, "-").toLocaleLowerCase();
+  return sectionName.replace(/ /g, "-").toLowerCase();
 }
 
 export const replaceCharacters = (

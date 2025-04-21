@@ -67,7 +67,6 @@ const HeaderTop = styled.div<LayoutStyledProps>`
 const TimeRange = styled.div<LayoutStyledProps>`
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
   font-size: ${fontSizeThree};
   font-style: italic;

@@ -21,7 +21,7 @@ import accessoryDrawerThumbnail from "../../../clips/ssk/thumbnails/accessory-dr
 import quantitySelector from "../../../clips/ssk/quantity-selector.mp4";
 import quantitySelectorThumbnail from "../../../clips/ssk/thumbnails/quantity-selector.png";
 import { getCarouselStylingOptions } from "../../../styles/styles";
-import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
+import { Carousel } from "react-thumbnail-carousel";
 
 const SECTION_NAMES = [
   "Overview",
@@ -73,7 +73,7 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
             "Provide a way to schedule a follow-up appointment with the customer to discuss a product solution.",
           ]}
         />
-        <LazyLoadedCarousel
+        <Carousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {
@@ -90,13 +90,6 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
             thumbnail: {
               ...getCarouselStylingOptions(propsToAdd.colorscheme).thumbnail,
               spacingStrategy: "max",
-            },
-          }}
-          lazyLoadProps={{
-            loadingSkeletonProps: {
-              style: {
-                height: 587,
-              },
             },
           }}
           items={[
@@ -198,14 +191,7 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
           fetched from the backend in a paginated manner and displayed using an
           infinitie scroll approach:
         </ExamplePageParagraph>
-        <LazyLoadedCarousel
-          lazyLoadProps={{
-            loadingSkeletonProps: {
-              style: {
-                height: 114,
-              },
-            },
-          }}
+        <Carousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {
@@ -267,14 +253,7 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
           The accessory drawer would show up whenever a product is added to the
           cart and display associated items:
         </ExamplePageParagraph>
-        <LazyLoadedCarousel
-          lazyLoadProps={{
-            loadingSkeletonProps: {
-              style: {
-                height: 114,
-              },
-            },
-          }}
+        <Carousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {
@@ -333,14 +312,7 @@ const SSK_SECTIONS: ExamplePageSectionProps[] = [
           way to adjust the quantity of a product in the cart after it had been
           added.
         </ExamplePageParagraph>
-        <LazyLoadedCarousel
-          lazyLoadProps={{
-            loadingSkeletonProps: {
-              style: {
-                height: 114,
-              },
-            },
-          }}
+        <Carousel
           options={{
             ...getCarouselStylingOptions(propsToAdd.colorscheme),
             itemViewer: {

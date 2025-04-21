@@ -36,7 +36,7 @@ import saveGameVideoThumbnail from "../../../clips/bridge/thumbnails/save-game.p
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import { defaultFontSize } from "../../../styles/constants";
 import { useAwakenSleepingContainers } from "../../../hooks/useAwakenSleepingContainers";
-import LazyLoadedCarousel from "../../../components/LazyLoadedCarousel";
+import { Carousel } from "react-thumbnail-carousel";
 
 const SECTION_NAMES = ["Overview", "Features", "Details", "Lessons"];
 const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
@@ -56,15 +56,24 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           <ExamplePageLink url={WIKIPEDIA_BRIDGE_URL}>
             contract bridge
           </ExamplePageLink>
-          online during the pandemic. I started serious coding of the project in
-          August of 2020 and completed the main code base in January of 2021.
+          online during the COVID-19 lockdown. I started serious coding of the
+          project in August of 2020 and completed the main code base in January
+          of 2021.
         </ExamplePageTitledParagraph>
         <ExamplePageParagraph>
           It is also the first web app I ever created. For that reason it was
           written in Vanilla Html, CSS, and Javascript. The backend end uses
-          Express, socket.io, and MongoDb to achieve a real-time bridge
-          experience with saving and replaying. Paper.js was used to make the
-          cards feel more real.
+          Express,
+          <ExamplePageLink url="https://socket.io/">socket.io</ExamplePageLink>,
+          and
+          <ExamplePageLink url="https://www.mongodb.com/company/what-is-mongodb">
+            MongoDB
+          </ExamplePageLink>
+          to achieve a real-time bridge experience with saving and replaying.
+          <ExamplePageLink url="https://paperjs.org/about/">
+            Paper.js
+          </ExamplePageLink>
+          was used to make the cards feel more real.
         </ExamplePageParagraph>
       </>
     ),
@@ -75,7 +84,7 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
       paddingTop: defaultFontSize,
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
-      <LazyLoadedCarousel
+      <Carousel
         options={getCarouselStylingOptions(propsToAdd.colorscheme)}
         items={[
           {

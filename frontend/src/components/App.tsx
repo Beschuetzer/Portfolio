@@ -4,6 +4,7 @@ import history from "./history";
 
 import {
   ABOUT_URL,
+  ACCOMPLISHMENT_STORIES_URL,
   BRIDGE_DEMO_URL,
   BRIDGE_URL,
   DOWNLOADER_URL,
@@ -64,6 +65,7 @@ import { BridgeDemoPage } from "../pages/styled-pages/concrete-pages/BridgeDemoP
 import { ThumbnailCarouselPage } from "../pages/styled-pages/concrete-pages/ThumbnailCarouselPage";
 import { SSKPage } from "../pages/styled-pages/concrete-pages/SSKPage";
 import { GrocifyPage } from "../pages/styled-pages/concrete-pages/GrocifyPage";
+import { AccomplishmentStoriesPage } from "../pages/styled-pages/concrete-pages/AccomplishmentStoriesPage";
 
 type AppProps = {};
 
@@ -206,6 +208,7 @@ export const App: React.FC<AppProps> = (props) => {
         <Route path={ABOUT_URL} exact component={AboutPage} />
         <Route path={RESUME_URL} exact component={ResumePage} />
         <Route path={PERSONALITY_URL} exact component={BigFivePage} />
+        <Route path={ACCOMPLISHMENT_STORIES_URL} exact component={AccomplishmentStoriesPage} />
         <Route
           path={THUMBNAIL_CAROUSEL_URL}
           exact
