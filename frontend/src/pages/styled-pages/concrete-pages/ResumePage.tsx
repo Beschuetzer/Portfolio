@@ -2,6 +2,7 @@ import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import {
   BEST_BUY_URL,
   BRIDGE_URL,
+  KUALAPUU_URL,
   LINKED_IN_URL,
   MAIL_TO_STRING,
   PLAYLIST_SYNCER_URL,
@@ -40,6 +41,8 @@ const YORK_SOLUTIONS_START_DATE = new Date(2021, 10, 1);
 const DEVELOPER_START_DATE = new Date(2020, 2, 25);
 const RICOH_START_DATE = new Date(2019, 6, 19);
 const RICOH_END_DATE = new Date(2020, 2, 20);
+const ISD_622_START_DATE = new Date(2007, 6, 20);
+const ISD_622_END_DATE = new Date(2018, 6, 20);
 
 const RESUME_SECTIONS: ExamplePageSectionProps[] = [
   {
@@ -197,6 +200,22 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             dateStart: RICOH_START_DATE,
             dateEnd: RICOH_END_DATE,
             jobTitle: "Technology Services Support Representative",
+          },
+          {
+            employer: {
+              name: "Kualapuu Charter School",
+              url: KUALAPUU_URL,
+            },
+            jobDescription:
+              "My finance at the time was a teacher at the school, and I volunteered to help out in her classroom.  This was a transition period for me as I knew I wanted to do something in IT but was not sure what the path forward was yet.",
+            achievements: [
+             `Created a grading tool to facilitate grading of math assessments.`,
+									`Created a Book Trust tool to simplify the monthly ordering process.`,
+									`Used my time to study Bash, Powershell, Windows Active Directory, get the Google IT Support Specialist Certificate, and other IT Support related skills.`,
+            ],
+            dateStart: ISD_622_END_DATE,
+            dateEnd: RICOH_START_DATE,
+            jobTitle: "Second Grade Classroom Volunteer",
           },
         ]}
       />
