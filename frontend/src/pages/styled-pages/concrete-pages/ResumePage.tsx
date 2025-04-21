@@ -6,6 +6,7 @@ import {
   MAIL_TO_STRING,
   PLAYLIST_SYNCER_URL,
   REPLAY_VIEWER_URL,
+  RICOH_URL,
   YORK_B2E_URL,
 } from "../../../components/constants";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
@@ -37,6 +38,8 @@ const BESTBUY_FTE_START_DATE = new Date(2022, 10, 13);
 const BESTBUY_LAST_DATE = new Date(2025, 1, 14);
 const YORK_SOLUTIONS_START_DATE = new Date(2021, 10, 1);
 const DEVELOPER_START_DATE = new Date(2020, 2, 25);
+const RICOH_START_DATE = new Date(2019, 6, 19);
+const RICOH_END_DATE = new Date(2020, 2, 20);
 
 const RESUME_SECTIONS: ExamplePageSectionProps[] = [
   {
@@ -60,9 +63,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
           Below you will find my experience, current skill set, formal
           education, and references. If you would like to learn more about me,
           please feel free to reach out to me on
-          <ExamplePageLink url={LINKED_IN_URL}>
-            LinkedIn
-          </ExamplePageLink>
+          <ExamplePageLink url={LINKED_IN_URL}>LinkedIn</ExamplePageLink>
           and/or&nbsp;
           <ExamplePageLink url={MAIL_TO_STRING} includeSpaces={false}>
             email
@@ -179,6 +180,23 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
                 </div>
               ),
             ],
+          },
+          {
+            employer: {
+              name: "Ricoh",
+              url: RICOH_URL,
+            },
+            jobDescription:
+              "Troubleshot and repaired Ricoh printers and copiers in a fast-paced environment.  Provided customer service to clients in the field.",
+            achievements: [
+              "Worked with clients to resolve issues related to their multi-function devices.",
+              "Configured, troubleshot, installed, and repaired multi-function devices.",
+              "Secured two contracts with clients by going the extra mile to ensure customer satisfaction.",
+              `Increased productivity by 10% by automating repetitive tasks.`,
+            ],
+            dateStart: RICOH_START_DATE,
+            dateEnd: RICOH_END_DATE,
+            jobTitle: "Technology Services Support Representative",
           },
         ]}
       />
