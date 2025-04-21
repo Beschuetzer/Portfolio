@@ -2,6 +2,7 @@ import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 import {
   BEST_BUY_URL,
   BRIDGE_URL,
+  HERMAN_LIETZ_SCHULE_URL,
   ISD_622_URL,
   KUALAPUU_URL,
   LINKED_IN_URL,
@@ -9,6 +10,7 @@ import {
   PLAYLIST_SYNCER_URL,
   REPLAY_VIEWER_URL,
   RICOH_URL,
+  TOYS_R_US_RUL,
   YORK_B2E_URL,
 } from "../../../components/constants";
 import { ExamplePageParagraph } from "../ExamplePageParagraph";
@@ -44,6 +46,10 @@ const RICOH_START_DATE = new Date(2019, 6, 19);
 const RICOH_END_DATE = new Date(2020, 2, 20);
 const ISD_622_START_DATE = new Date(2007, 6, 20);
 const ISD_622_END_DATE = new Date(2018, 6, 20);
+const TOYS_R_US_START_DATE = new Date(2006, 8, 20);
+const TOYS_R_US_END_DATE = new Date(2006, 11, 20);
+const GERMANY_START_DATE = new Date(2005, 8, 20);
+const GERMANY_END_DATE = new Date(2006, 6, 20);
 
 const RESUME_SECTIONS: ExamplePageSectionProps[] = [
   {
@@ -208,7 +214,7 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               url: KUALAPUU_URL,
             },
             jobDescription:
-              "My finance at the time was a teacher at the school, and I volunteered to help out in her classroom.  This was a transition period for me as I knew I wanted to do something in IT but was not sure what the path forward was yet.",
+              "My fiancé at the time was a teacher at the school, and I volunteered to help out in her classroom.  This was a transition period for me as I knew I wanted to do something in IT but was not sure what the path forward was yet.",
             achievements: [
               `Created a grading tool to facilitate grading of math assessments.`,
               `Created a Book Trust tool to simplify the monthly ordering process.`,
@@ -219,8 +225,9 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
             jobTitle: "Second Grade Classroom Volunteer",
           },
           {
+            jobTitle: "PearsonVue Test Admin / Office Administrator",
             employer: {
-              name: "PearsonVue Test Admin / Office Administrator",
+              name: "ISD 622",
               url: ISD_622_URL,
             },
             jobDescription:
@@ -235,9 +242,36 @@ const RESUME_SECTIONS: ExamplePageSectionProps[] = [
               `Created custom grading forms using Excel userForms and macros in order to reduce the time it took to grade assessment tests by 75%.`,
               "Created a tool that used testing data to produce reports that the teachers could use to understand the areas in which their students were having difficulties, preventing the purchase of dedicated software.",
             ],
-            dateStart: ISD_622_END_DATE,
-            dateEnd: RICOH_START_DATE,
-            jobTitle: "Second Grade Classroom Volunteer",
+            dateStart: ISD_622_START_DATE,
+            dateEnd: ISD_622_END_DATE,
+          },
+          {
+            jobTitle: "Overnight Stocker",
+            employer: {
+              name: "Toys R Us",
+              url: TOYS_R_US_RUL,
+            },
+            achievements: [
+              "Unloaded Freight.",
+              "Opened boxes and placed merchandise on displays/shelves.",
+              "Cleaned up and disposed up boxes.",
+            ],
+            dateStart: TOYS_R_US_START_DATE,
+            dateEnd: TOYS_R_US_END_DATE,
+          },
+          {
+            jobTitle: "English Assistant",
+            employer: {
+              name: "Herman-Lietz Schule Haubinda",
+              url: HERMAN_LIETZ_SCHULE_URL,
+            },
+            achievements: [
+              "Collaborated with English language teacher to enhance lessons.",
+              "Led small group sessions with 5-8 students.",
+              "Conducted remedial 1-on-1 tutoring sessions with students struggling in English.",
+            ],
+            dateStart: GERMANY_START_DATE,
+            dateEnd: GERMANY_END_DATE,
           },
         ]}
       />

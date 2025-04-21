@@ -59,9 +59,9 @@ export const GOOGLE_IT_SPECIALIST_URL =
   "https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ";
 export const HARMONY_URL = "https://www.isd622.org/harmony";
 export const HERMAN_LIETZ_SCHULE_URL =
-  "https://www.lietz-schulen.de/en/haubinda/boarding-school-village/";
+  "https://www.lietz-schulen.de/hermann-lietz-schule/unsere-internatsschulen/internatsdorf-haubinda";
 export const HUBB_CENTER_URL = "https://www.spps.org/hubbs";
-export const ISD_622_URL = "https://www.isd622.org/";
+export const ISD_622_URL = "https://communityeducation.isd622.org/adult/harmony";
 export const KH_INSIDER_URL = "https://downloads.khinsider.com";
 export const KUALAPUU_URL = "https://www.kualapuucharterschool.org/";
 export const LIVE_BRIDGE_URL =
