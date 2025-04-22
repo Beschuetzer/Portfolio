@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
 
@@ -7,6 +7,7 @@ import {
   ACCOMPLISHMENT_STORIES_URL,
   BRIDGE_DEMO_URL,
   BRIDGE_URL,
+  BUILD_URL,
   DOWNLOADER_URL,
   GROCIFY_PAGE_NAME,
   GROCIFY_URL,
@@ -15,6 +16,7 @@ import {
   MAIL_TO_STRING,
   PERSONALITY_URL,
   PLAYLIST_SYNCER_URL,
+  QUESTIONS_URL,
   REPLAY_VIEWER_URL,
   RESUME_URL,
   SSK_NAME,
@@ -66,6 +68,8 @@ import { ThumbnailCarouselPage } from "../pages/styled-pages/concrete-pages/Thum
 import { SSKPage } from "../pages/styled-pages/concrete-pages/SSKPage";
 import { GrocifyPage } from "../pages/styled-pages/concrete-pages/GrocifyPage";
 import { AccomplishmentStoriesPage } from "../pages/styled-pages/concrete-pages/AccomplishmentStoriesPage";
+import { InterviewQuestionsPage } from "../pages/styled-pages/InterviewQuestionsPage";
+import { BuildPage } from "../pages/styled-pages/concrete-pages/BuildPage";
 
 type AppProps = {};
 
@@ -209,6 +213,8 @@ export const App: React.FC<AppProps> = (props) => {
         <Route path={RESUME_URL} exact component={ResumePage} />
         <Route path={PERSONALITY_URL} exact component={BigFivePage} />
         <Route path={ACCOMPLISHMENT_STORIES_URL} exact component={AccomplishmentStoriesPage} />
+        <Route path={BUILD_URL} exact component={BuildPage} />
+        <Route path={QUESTIONS_URL} exact component={InterviewQuestionsPage} />
         <Route
           path={THUMBNAIL_CAROUSEL_URL}
           exact
