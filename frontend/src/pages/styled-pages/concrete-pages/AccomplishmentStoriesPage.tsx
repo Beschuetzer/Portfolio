@@ -121,6 +121,14 @@ const INTERVIEW_QUESTIONS: InterviewQuestionProps[] = [
   {
     question: "What is your biggest strength?",
     answer: "I have a strong ability to learn quickly and adapt to new technologies.  I have a proven track record of picking up new languages and frameworks on the job.  For example, I learned .NET in a matter of weeks and was able to contribute to a large-scale project.  I also have a knack for problem-solving and debugging.",
+  },
+  {
+    question: "How do you deal with difficult people?",
+    answer: "I try to approach difficult interactions with curiosity and empathy, rather than judgment.  I ask questions to understand their perspective and find common ground. I also try to remain calm and professional, even if the other person is not. If necessary, I will involve a manager or HR to mediate the situation.",
+  },
+  {
+    question: "How do you debug an application across the full stack?",
+    answer: "Whenever I debug, I start by reproducing the issue as clearly as possible—ideally capturing steps, inputs, and what the expected vs. actual behavior is. If i'm familiar with the application, I use my familiarity to guide the starting point.  If not, I work systematically, starting from the UI and moving backward through the stack.  Some tools I use are the browser's dev tools, logging, and debugging tools like Postman.",
   }
 ];
 

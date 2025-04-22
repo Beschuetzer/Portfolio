@@ -32,7 +32,7 @@ export const PAGE_NAMES = [
 
 //#region Internal URLs
 export const ABOUT_URL = `/${ABOUT_PAGE_NAME}`;
-export const ACCOMPLISHMENT_STORIES_URL = `/${ACCOMPLISHMENT_STORIES_NAME}`;
+export const ACCOMPLISHMENT_STORIES_URL = `/stories`;
 export const AUTO_BID_URL = `/examples/${AUTO_BID_PAGE_NAME}`;
 export const BRIDGE_DEMO_URL = `/${BRIDGE_DEMO_PAGE_NAME}`;
 export const BRIDGE_URL = `/examples/${BRIDGE_PAGE_NAME}`;
