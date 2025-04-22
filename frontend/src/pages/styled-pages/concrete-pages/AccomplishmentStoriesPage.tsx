@@ -129,6 +129,27 @@ const INTERVIEW_QUESTIONS: InterviewQuestionProps[] = [
   {
     question: "How do you debug an application across the full stack?",
     answer: "Whenever I debug, I start by reproducing the issue as clearly as possible—ideally capturing steps, inputs, and what the expected vs. actual behavior is. If i'm familiar with the application, I use my familiarity to guide the starting point.  If not, I work systematically, starting from the UI and moving backward through the stack.  Some tools I use are the browser's dev tools, logging, and debugging tools like Postman.",
+  },
+  {
+    question: "What are some deployments optimizations?",
+    answer: "There are many optimizations that can be made to improve deployment times.  Some of the most common ones are: Minifying and compressing assets to reduce their size. Using a CDN to serve static assets. Caching assets on the client side. Using lazy loading to load assets only when they are needed. Using a build tool like Webpack to bundle and optimize assets.",
+  },
+  {
+    question: "What are backend optimizations?",
+    answer: "There are many optimizations that can be made to improve backend performance.  Some of the most common ones are: Using a caching layer to store frequently accessed data. Optimizing database queries to reduce their execution time. Using a load balancer to distribute traffic across multiple servers. Using a content delivery network (CDN) to serve static assets. Using a message queue to decouple services and improve scalability.",
+  },
+  {
+    question: "What are message queues?",
+    answer: "Message queues are a way to decouple services and improve scalability.  They allow services to communicate asynchronously by sending messages to a queue.  The messages can be processed by one or more consumers, which can be scaled independently of the producers.  This allows for better load balancing and fault tolerance.  It is a common pattern in microservices architectures.",
+  },
+  {
+    question: "How would you optimize complex redux state?",
+    answer:
+      "To optimize complex Redux state, I would first analyze the state structure to identify any unnecessary nesting or redundancy. I would then consider normalizing the state to flatten it out, which can simplify updates and make it easier to manage. Additionally, I would use selectors to derive data from the state rather than storing derived data directly in the state. This can help reduce the amount of data stored in Redux and improve performance.",
+  },
+  {
+    question: "Why use React?",
+    answer: "React is a popular JavaScript library for building user interfaces.  It allows developers to create reusable components that can be easily composed to build complex UIs.  React uses a virtual DOM to optimize rendering performance, which can lead to faster updates and better user experiences.  Additionally, React has a large ecosystem of libraries and tools that make it easy to integrate with other technologies.",
   }
 ];
 
