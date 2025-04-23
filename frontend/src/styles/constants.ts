@@ -3,6 +3,7 @@ import {
   AUTO_BID_URL,
   BRIDGE_URL,
   DOWNLOADER_URL,
+  GROCIFY_URL,
   PERSONALITY_URL,
   PLAYLIST_SYNCER_URL,
   REPLAY_VIEWER_URL,
@@ -160,6 +161,13 @@ export const COLORS: Colors = {
     primary4: "#E4ECEF",
     primaryRed: "#E74C3C",
     resumeColorOpacity: 0.95,
+  },
+  [GROCIFY_URL]: {
+    primary1: "#0A3D62",
+    primary2: "#3C6382",
+    primary3: "#F5F5F5",
+    primary4: "#BDC3C7",
+    primaryRed: "#E74C3C",
   },
   [PLAYLIST_SYNCER_URL]: {
     primary1: "#ffc996",
