@@ -82,7 +82,7 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
                   ["Uploading the image", 13000],
                   ["Selecting missing item", 5300],
                   ["Adding items to cart", 2000],
-                ]
+                ],
               },
               modal: {
                 sections: [
@@ -102,7 +102,7 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
                 sections: [
                   ["Inputting values for missing item", 27500],
                   ["Validating values after save", 4000],
-                ]
+                ],
               },
               modal: {
                 sections: [
@@ -123,7 +123,7 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
                   ["Swipe to delete", 1800],
                   ["Manually add item", 7200],
                   ["Selecting correct match", 3000],
-                ]
+                ],
               },
               modal: {
                 sections: [
@@ -176,7 +176,7 @@ const GROCIFY_SECTIONS: ExamplePageSectionProps[] = [
                   ["Swipe to delete", 1800],
                   ["Manually add item", 7200],
                   ["Selecting correct match", 3000],
-                ]
+                ],
               },
               modal: {
                 sections: [
