@@ -1,5 +1,7 @@
 import React from "react";
-import InterviewQuestion, { InterviewQuestionProps } from "../../components/InterviewQuestion";
+import InterviewQuestion, {
+  InterviewQuestionProps,
+} from "../../components/InterviewQuestion";
 import { LayoutStyledProps } from "../../layouts/types";
 import { ExamplePage, ExamplePageSectionProps } from "./ExamplePage";
 
@@ -72,24 +74,25 @@ const INTERVIEW_QUESTIONS: InterviewQuestionProps[] = [
   },
 ];
 
-const INTERVIEW_SECTIONS: ExamplePageSectionProps[] = INTERVIEW_QUESTIONS.map(
-  (question) => {
-    return {
-      name: question.question,
-      renderContent: (propsToAdd: LayoutStyledProps) => (
-        <InterviewQuestion {...question} {...propsToAdd} />
-      ),
-    };
-  }
-);
+const INTERVIEW_SECTIONS: ExamplePageSectionProps[] = [
+  {
+    name: "Interview Questions",
+    renderContent: (propsToAdd: LayoutStyledProps) => {
+      return INTERVIEW_QUESTIONS.map((question, index) => (
+        <InterviewQuestion
+          key={index}
+          {...question}
+          {...propsToAdd}
+        />
+      ));
+    },
+  },
+];
 
 type InterviewQuestionsPageProps = {};
 
 export function InterviewQuestionsPage(props: InterviewQuestionsPageProps) {
- return (
-    <ExamplePage
-      title="Interview Questions"
-      sections={INTERVIEW_SECTIONS}
-    />
+  return (
+    <ExamplePage title="Interview Questions" sections={INTERVIEW_SECTIONS} />
   );
 }
