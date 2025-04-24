@@ -90,7 +90,7 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           {
             srcMain: animationRoundEndVideo,
             srcThumbnail: animationRoundEndVideoThumbnail,
-            description: "Up up and away!",
+            description: "Animated Trick End",
             modal: {
               sections: [
                 {
@@ -103,11 +103,11 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           {
             srcMain: animationCardPlayVideo,
             srcThumbnail: animationCardPlayVideoThumbnail,
-            description: "The perfect throw",
+            description: "Animated Card Play",
             modal: {
               sections: [
                 {
-                  title: "How did they do that?",
+                  title: "The perfect throw",
                   text: "This animation appears for other players when someone else plays a card.",
                 },
               ],
@@ -116,11 +116,11 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           {
             srcMain: saveGameVideo,
             srcThumbnail: saveGameVideoThumbnail,
-            description: "Have no fear!  MongoDB is here.",
+            description: "Auto-saving",
             modal: {
               sections: [
                 {
-                  title: "Save Game",
+                  title: "Have no fear!  MongoDB is here",
                   text: "The server saves each play and bid automatically, allowing players to resume playing at a later time without having to worry about losing the game state.",
                 },
               ],
@@ -129,11 +129,11 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           {
             srcMain: resizingVideo,
             srcThumbnail: resizingVideoThumbnail,
-            description: "All viewport are welcome!",
+            description: "Dynamic Resizing",
             modal: {
               sections: [
                 {
-                  title: "Dynamic Resizing",
+                  title: "All viewport are welcome",
                   text: "The playing screen dynamically adjusts to the viewport, allowing users to play on their Android phone or with the window only taking up a fraction of the screen.",
                 },
               ],
@@ -142,11 +142,11 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           {
             srcMain: undoVideo,
             srcThumbnail: undoVideoThumbnail,
-            description: "We can fix this",
+            description: "Undo",
             modal: {
               sections: [
                 {
-                  title: "Undo",
+                  title: "We can fix this",
                   text: " Players are able to undo during the bidding phase as well as the playing phase.",
                 },
               ],
@@ -155,11 +155,11 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           {
             srcMain: dealSummaryVideo,
             srcThumbnail: dealSummaryVideoThumbnail,
-            description: "Good to know!",
+            description: "Deal Summary",
             modal: {
               sections: [
                 {
-                  title: "Deal Summary",
+                  title: "Good to Know",
                   text: "The Deal Summary screen allows players to review the last hand.  It shows who had which cards, how the bidding went, and which cards each player had at any given point in the hand.",
                 },
               ],
@@ -168,11 +168,11 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           {
             srcMain: claimSomeVideo,
             srcThumbnail: claimSomeVideoThumbnail,
-            description: "When you know you've got X tricks",
+            description: "Claim Some",
             modal: {
               sections: [
                 {
-                  title: "Claim Some",
+                  title: "When you know you've got X tricks",
                   text: "The 'Claim Some' feature speeds up gameplay in some scenarios by allowing the declarer (person playing the contract) to claim some number of tricks less than or equal to the number of tricks remaining.  The UI guides players through the selection process by disabling invalid choices and displaying the choices made in a table.",
                 },
               ],
@@ -181,11 +181,11 @@ const DOWNLOADER_SECTIONS: ExamplePageSectionProps[] = [
           {
             srcMain: claimAllVideo,
             srcThumbnail: claimAllVideoThumbnail,
-            description: "When you know you've won",
+            description: "Claim All",
             modal: {
               sections: [
                 {
-                  title: "Claim All",
+                  title: "When you know you've got the rest",
                   text: "'Claim All' allows players to claim the rest of the tricks rather than play them out.  It does this by showing he claimer's cards to the two defensive players.  If both players accept the claim, the claimer gets the rest of the tricks and the game moves to the deal summary screen.",
                 },
               ],
