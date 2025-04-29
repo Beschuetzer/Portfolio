@@ -7,6 +7,30 @@ import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 
 const INTERVIEW_QUESTIONS: InterviewQuestionProps[] = [
   {
+    question: "What are common optimazation techniques for front end?",
+    answer: [
+      "Use a Content Delivery Network (CDN) to distribute assets closer to users",
+      "Optimize Images by serving appropriately sized images and using next-gen formats like WebP or AVIF",
+      "Lazy Load Images and Components in order to improve initial load time",
+      "Minify and Compress Assets using build tools like Webpack, Terser, or esbuild",
+      "Cache Static Assets by using long-term caching headers for unchanging files as well as implementing service workers for advanced caching (PWA style)",
+      "Defer or Async Load JavaScript to prevent render-blocking scripts and prioritize critical JS and delay non-essential code",
+      "Reduce DOM Complexity by simplifying nested elements and avoiding deeply nested structures",
+      "Minimize HTTP Requests by combining files when possible and using CSS sprites.",
+      "Use Efficient CSS by eliminating unused CSS and ovoiding overly complex selectors",
+    ],
+  },
+  {
+    question: "What are common optimazation techniques for back end?",
+    answer: [
+      "Optimize Database Queries by using indexes, avoiding N+1 queries, and caching expensive queries (e.g. Redis).",
+      "Use API Pagination and Filtering to return only necessary data sets.",
+      "Implement Server-Side Caching by using caching layers like Redis for common responses or rendered views.",
+      "Optimize Server-Side Rendering (SSR) by caching static pages and using techniques like code splitting.",
+      "Profile and Monitor Backend Performance to identify bottlenecks using tools like New Relic, Datadog, or APM.",
+    ],
+  },
+  {
     question: "What are web application security best practices?",
     answer: [
       "Validate and Sanitize All User Inputs",
@@ -20,7 +44,7 @@ const INTERVIEW_QUESTIONS: InterviewQuestionProps[] = [
       "Conduct Regular Security Testing",
       "Follow the Principle of Least Privilege",
       "Adopt Secure Development Lifecycle (SDLC) Practices",
-    ]
+    ],
   },
   {
     answer:
@@ -95,11 +119,7 @@ const INTERVIEW_SECTIONS: ExamplePageSectionProps[] = [
     name: "Interview Questions",
     renderContent: (propsToAdd: LayoutStyledProps) => {
       return INTERVIEW_QUESTIONS.map((question, index) => (
-        <InterviewQuestion
-          key={index}
-          {...question}
-          {...propsToAdd}
-        />
+        <InterviewQuestion key={index} {...question} {...propsToAdd} />
       ));
     },
   },
