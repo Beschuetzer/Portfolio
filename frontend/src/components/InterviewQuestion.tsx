@@ -23,7 +23,7 @@ export default function InterviewQuestion({
   function renderContent() {
     if (!isOpen) return null;
     const answers = Array.isArray(answer)
-      ? answer.map((a, index) => <p key={index}>{a}</p>)
+      ? answer.map((a, index) => <p key={index}>-&nbsp;{a}</p>)
       : answer;
     return (
       <div style={{ marginLeft: defaultFontSize }}>
