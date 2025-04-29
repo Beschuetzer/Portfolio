@@ -7,6 +7,22 @@ import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 
 const INTERVIEW_QUESTIONS: InterviewQuestionProps[] = [
   {
+    question: "What are web application security best practices?",
+    answer: [
+      "Validate and Sanitize All User Inputs",
+      "Use Parameterized Queries and ORMs",
+      "Implement Proper Authentication and Authorization",
+      "Use HTTPS Everywhere",
+      "Protect Against Cross-Site Scripting (XSS)",
+      "Keep Dependencies and Frameworks Updated",
+      "Log and Monitor Security Events",
+      "Use Secure Session Management",
+      "Conduct Regular Security Testing",
+      "Follow the Principle of Least Privilege",
+      "Adopt Secure Development Lifecycle (SDLC) Practices",
+    ]
+  },
+  {
     answer:
       "I'm looking for an opportunity to grow as a developer — both by deepening my technical skills and by working on meaningful projects with a collaborative team. I value clean code, good communication, and a culture that encourages continuous learning. I'm especially excited to contribute to a team where I can take ownership of features and see the impact of my work.",
     question:
