@@ -21,7 +21,7 @@ import {
   defaultFontSize,
   SECTION_WIDTH_IN_PIXELS,
 } from "../../../styles/constants";
-import { CodeDisplayer } from "./CodeDisplayer";
+import { CodeDisplayer } from "../../../components/CodeDisplayer";
 import { ExamplePageTitledParagraph } from "../ExamplePageTitledParagraph";
 import { Quote } from "../../../components/Quote";
 

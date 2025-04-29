@@ -1,9 +1,9 @@
 import React from "react";
 import InterviewQuestion, {
   InterviewQuestionProps,
-} from "../../components/InterviewQuestion";
-import { LayoutStyledProps } from "../../layouts/types";
-import { ExamplePage, ExamplePageSectionProps } from "./ExamplePage";
+} from "../../../components/InterviewQuestion";
+import { LayoutStyledProps } from "../../../layouts/types";
+import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 
 const INTERVIEW_QUESTIONS: InterviewQuestionProps[] = [
   {

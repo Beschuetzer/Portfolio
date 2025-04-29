@@ -68,7 +68,7 @@ import { ThumbnailCarouselPage } from "../pages/styled-pages/concrete-pages/Thum
 import { SSKPage } from "../pages/styled-pages/concrete-pages/SSKPage";
 import { GrocifyPage } from "../pages/styled-pages/concrete-pages/GrocifyPage";
 import { AccomplishmentStoriesPage } from "../pages/styled-pages/concrete-pages/AccomplishmentStoriesPage";
-import { InterviewQuestionsPage } from "../pages/styled-pages/InterviewQuestionsPage";
+import { InterviewQuestionsPage } from "../pages/styled-pages/concrete-pages/InterviewQuestionsPage";
 import { BuildPage } from "../pages/styled-pages/concrete-pages/BuildPage";
 
 type AppProps = {};
