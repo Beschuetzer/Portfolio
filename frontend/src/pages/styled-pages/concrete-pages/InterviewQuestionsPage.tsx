@@ -7,6 +7,16 @@ import { ExamplePage, ExamplePageSectionProps } from "../ExamplePage";
 
 const INTERVIEW_QUESTIONS: InterviewQuestionProps[] = [
   {
+    question: "Tell me about yourself",
+    answer:
+      "I'm a full-stack software engineer with experience at a fortune 500 company.  I'm experienced in all stages of the software development lifecycle (i.e requirements analysis, front-end development, back-end development, database design, and performance testing. I'm the one who volunteers for the stories that no one else wants.  I have a proven track record of delivering on time even if it involves extra effort.",
+  },
+  {
+    question: "Elevator Pitch",
+    answer:
+      "In 2020, I was working in tech support when the pandemic hit—and like many people, I found myself stuck at home. I used that time to teach myself how to build a website so my friends and I could play bridge online. That project sparked something deeper: I fell in love with the idea that you could build almost anything on the web.Driven by that curiosity, I joined a coding boot camp, partnered with a recruiting agency, and eventually landed a role at a Fortune 500 company, where I spent the next three years building scalable web applications. Now, I’m looking for my next opportunity in web or mobile development—somewhere I can keep solving real problems with code and keep growing as a developer.",
+  },
+  {
     question: "What are common optimazation techniques for front end?",
     answer: [
       "Use a Content Delivery Network (CDN) to distribute assets closer to users",
@@ -61,11 +71,6 @@ const INTERVIEW_QUESTIONS: InterviewQuestionProps[] = [
     question: "Why are you no longer with you last employer (Exit Statement)?",
     answer:
       'In February of 2025 Best Buy "right-sized" their workforce and redirected resources to areas like Best Buy Health and AI.  As part of this effort, my department was restructured. I\'m now exploring opportunities that will take full advantage of my extensive skillset, namely in React, .NET, Node, and SQL.',
-  },
-  {
-    question: "Tell me about yourself",
-    answer:
-      "I'm a full-stack software engineer with experience at a fortune 500 company.  I'm experienced in all stages of the software development lifecycle (i.e requirements analysis, front-end development, back-end development, database design, and performance testing. I'm the one who volunteers for the stories that no one else wants.  I have a proven track record of delivering on time even if it involves extra effort.",
   },
   {
     question: "What is your bigggest weakness?",
