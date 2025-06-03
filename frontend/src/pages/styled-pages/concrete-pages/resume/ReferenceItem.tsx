@@ -4,6 +4,7 @@ import { LayoutStyledProps } from "../../../../layouts/types";
 import { ExamplePageLink } from "../../ExamplePageLink";
 import { defaultFontSize } from "../../../../styles/constants";
 import { copyClickedElementTextToClipboard } from "../../../../helpers";
+import { toast } from "react-toastify";
 
 const itemStyles = css<LayoutStyledProps>`
   height: 100%;
@@ -46,6 +47,13 @@ export function ReferenceItem(props: ReferenceItemProps) {
     islast: isLast ? "true" : "false",
   };
 
+  const handleCopy = (e: React.MouseEvent<HTMLElement>) => {
+    if (phone) {
+      copyClickedElementTextToClipboard(e);
+      toast.success("Copied to clipboard!");
+    }
+  };
+
   return (
     <>
       <Item {...propsToAdd}>
@@ -53,10 +61,10 @@ export function ReferenceItem(props: ReferenceItemProps) {
           {name}
         </ExamplePageLink>
       </Item>
-      <ItemCopyable {...propsToAdd} onClick={copyClickedElementTextToClipboard}>
+      <ItemCopyable {...propsToAdd} onClick={handleCopy}>
         {phone}
       </ItemCopyable>
-      <ItemCopyable {...propsToAdd} onClick={copyClickedElementTextToClipboard}>
+      <ItemCopyable {...propsToAdd} onClick={handleCopy}>
         {relation}
       </ItemCopyable>
       {email ? (

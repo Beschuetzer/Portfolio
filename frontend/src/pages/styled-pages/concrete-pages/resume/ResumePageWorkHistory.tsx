@@ -13,6 +13,7 @@ import { ExamplePageLink } from "../../ExamplePageLink";
 import { resumeContainerStyles } from "./styles";
 import { respond } from "../../../../styles/breakpoints";
 import { copyClickedElementTextToClipboard } from "../../../../helpers";
+import { toast } from "react-toastify";
 
 const Achievements = styled.ul<LayoutStyledProps>`
   display: flex;
@@ -167,7 +168,10 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
                     <AchievementItem
                       key={index}
                       dangerouslySetInnerHTML={{ __html: formattedAchievement }}
-                      onClick={copyClickedElementTextToClipboard}
+                      onClick={(e) => {
+                        copyClickedElementTextToClipboard(e);
+                        toast.success("Copied to clipboard!");
+                      }}
                     />
                   );
                 } else {
