@@ -12,6 +12,7 @@ import { HTMLAttributes, ReactNode } from "react";
 import { ExamplePageLink } from "../../ExamplePageLink";
 import { resumeContainerStyles } from "./styles";
 import { respond } from "../../../../styles/breakpoints";
+import { copyClickedElementTextToClipboard } from "../../../../helpers";
 
 const Achievements = styled.ul<LayoutStyledProps>`
   display: flex;
@@ -27,6 +28,10 @@ const Achievements = styled.ul<LayoutStyledProps>`
 
 const AchievementItem = styled.li<LayoutStyledProps>`
   font-size: ${fontSizeFour};
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;
 
 const Container = styled.div<LayoutStyledProps>`
@@ -162,6 +167,7 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
                     <AchievementItem
                       key={index}
                       dangerouslySetInnerHTML={{ __html: formattedAchievement }}
+                      onClick={copyClickedElementTextToClipboard}
                     />
                   );
                 } else {
