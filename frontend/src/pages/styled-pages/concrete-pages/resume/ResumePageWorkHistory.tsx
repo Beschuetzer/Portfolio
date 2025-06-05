@@ -12,6 +12,8 @@ import { HTMLAttributes, ReactNode } from "react";
 import { ExamplePageLink } from "../../ExamplePageLink";
 import { resumeContainerStyles } from "./styles";
 import { respond } from "../../../../styles/breakpoints";
+import { copyClickedElementTextToClipboard } from "../../../../helpers";
+import { toast } from "react-toastify";
 
 const Achievements = styled.ul<LayoutStyledProps>`
   display: flex;
@@ -27,6 +29,15 @@ const Achievements = styled.ul<LayoutStyledProps>`
 
 const AchievementItem = styled.li<LayoutStyledProps>`
   font-size: ${fontSizeFour};
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  &:focus {
+    outline: 2px solid ${({ colorscheme }) => colorscheme?.primary1};
+    outline-offset: 2px;
+    text-decoration: underline;
+  }
 `;
 
 const Container = styled.div<LayoutStyledProps>`
@@ -161,7 +172,13 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
                   return (
                     <AchievementItem
                       key={index}
+                      role="button"
+                      tabIndex={0}
                       dangerouslySetInnerHTML={{ __html: formattedAchievement }}
+                      onClick={(e) => {
+                        copyClickedElementTextToClipboard(e);
+                        toast.success("Copied to clipboard!");
+                      }}
                     />
                   );
                 } else {

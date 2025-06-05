@@ -1,10 +1,12 @@
 import { useColorScheme } from "../../../../hooks/useColorScheme";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { LayoutStyledProps } from "../../../../layouts/types";
 import { ExamplePageLink } from "../../ExamplePageLink";
 import { defaultFontSize } from "../../../../styles/constants";
+import { copyClickedElementTextToClipboard } from "../../../../helpers";
+import { toast } from "react-toastify";
 
-const Item = styled.div<LayoutStyledProps>`
+const itemStyles = css<LayoutStyledProps>`
   height: 100%;
   display: flex;
   align-items: center;
@@ -12,6 +14,19 @@ const Item = styled.div<LayoutStyledProps>`
   padding-right: ${defaultFontSize};
   margin-bottom: 0;
   padding-bottom: 0;
+`;
+
+const Item = styled.div<LayoutStyledProps>`
+  ${itemStyles}
+`;
+
+const ItemCopyable = styled.div<LayoutStyledProps>`
+  ${itemStyles}
+  cursor: pointer;
+  &:hover {
+    color: ${(props) => props.colorscheme?.primary1};
+    text-decoration: underline;
+  }
 `;
 
 export type ReferenceItemProps = {
@@ -31,13 +46,37 @@ export function ReferenceItem(props: ReferenceItemProps) {
     colorscheme: colorScheme,
     islast: isLast ? "true" : "false",
   };
+
+  const handleCopy = (e: React.MouseEvent<HTMLElement>) => {
+    if (phone) {
+      copyClickedElementTextToClipboard(e);
+      toast.success("Copied to clipboard!");
+    }
+  };
+
   return (
     <>
       <Item {...propsToAdd}>
-        <ExamplePageLink url={linkedInUrl || href} includeSpaces={false}>{name}</ExamplePageLink>
+        <ExamplePageLink url={linkedInUrl || href} includeSpaces={false}>
+          {name}
+        </ExamplePageLink>
       </Item>
-      <Item {...propsToAdd}>{phone}</Item>
-      <Item {...propsToAdd}>{relation}</Item>
+      <ItemCopyable
+        {...propsToAdd}
+        onClick={handleCopy}
+        role="button"
+        tabIndex={0}
+      >
+        {phone}
+      </ItemCopyable>
+      <ItemCopyable
+        {...propsToAdd}
+        onClick={handleCopy}
+        role="button"
+        tabIndex={0}
+      >
+        {relation}
+      </ItemCopyable>
       {email ? (
         <Item {...propsToAdd}>
           <ExamplePageLink includeSpaces={false} url={`mailto:${email}`}>

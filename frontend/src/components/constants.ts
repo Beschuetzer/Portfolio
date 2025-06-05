@@ -32,15 +32,17 @@ export const PAGE_NAMES = [
 
 //#region Internal URLs
 export const ABOUT_URL = `/${ABOUT_PAGE_NAME}`;
-export const ACCOMPLISHMENT_STORIES_URL = `/${ACCOMPLISHMENT_STORIES_NAME}`;
+export const ACCOMPLISHMENT_STORIES_URL = `/stories`;
 export const AUTO_BID_URL = `/examples/${AUTO_BID_PAGE_NAME}`;
 export const BRIDGE_DEMO_URL = `/${BRIDGE_DEMO_PAGE_NAME}`;
 export const BRIDGE_URL = `/examples/${BRIDGE_PAGE_NAME}`;
 export const BRIDGE_LIVE_URL = `/${BRIDGE_PAGE_NAME}`;
+export const BUILD_URL = `/build`;
 export const DOWNLOADER_URL = `/examples/${DOWNLOADER_PAGE_NAME}`;
 export const GROCIFY_URL = `/examples/${GROCIFY_PAGE_NAME}`;
 export const PERSONALITY_URL = `/${BIG_FIVE_PAGE_NAME}`;
 export const PLAYLIST_SYNCER_URL = `/examples/${PLAYLIST_SYNCER_PAGE_NAME}`;
+export const QUESTIONS_URL = `/questions`;
 export const REPLAY_VIEWER_URL = `/examples/${REPLAY_PAGE_NAME}`;
 export const REPLAY_LIVE_URL = `/${REPLAY_PAGE_NAME}`;
 export const RESUME_URL = `/${RESUME_PAGE_NAME}`;

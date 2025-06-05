@@ -6,6 +6,15 @@ export function capitalize(str: string | undefined | null) {
     .join(" ");
 }
 
+export function copyClickedElementTextToClipboard(
+  event: React.MouseEvent<HTMLElement>
+) {
+  const target = event.currentTarget;
+  if (target && target.textContent) {
+    navigator.clipboard.writeText(target.textContent);
+  }
+}
+
 export function ensureMaxLength(str: string, maxLength: number) {
   if (!str) return "";
   if (str.length <= maxLength) return str;

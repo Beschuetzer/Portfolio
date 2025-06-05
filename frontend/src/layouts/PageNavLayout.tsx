@@ -23,6 +23,7 @@ const ChildrenContainer = styled.div<LayoutStyledProps>`
 
 const Layout = styled.div<LayoutStyledProps>`
   width: 100%;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr ${SECTION_WIDTH_IN_PIXELS}px 1fr;
   background: ${(props) => props.colorscheme?.primary1};

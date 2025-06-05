@@ -16,7 +16,6 @@ import { ExamplePageLink } from "../ExamplePageLink";
 import { LIVE_BRIDGE_URL } from "../../../components/constants";
 import { getCarouselStylingOptions } from "../../../styles/styles";
 import { defaultFontSize } from "../../../styles/constants";
-import { LazyLoad } from "../../../components/LazyLoad";
 import { Carousel } from "react-thumbnail-carousel";
 
 type BridgeDemoProps = {};
@@ -94,11 +93,6 @@ const BRIDGE_DEMO_SECTIONS: ExamplePageSectionProps[] = [
       paddingTop: defaultFontSize,
     },
     renderContent: (propsToAdd: LayoutStyledProps) => (
-      <LazyLoad containerProps={{
-        style: {
-          width: "100%",
-        }
-      }}>
         <Carousel
           options={getCarouselStylingOptions(propsToAdd.colorscheme)}
           items={[
@@ -187,7 +181,6 @@ const BRIDGE_DEMO_SECTIONS: ExamplePageSectionProps[] = [
             },
           ]}
         />
-      </LazyLoad>
     ),
   },
 ];
