@@ -77,4 +77,4 @@ npm start
 ### Deployment
 The application can be deployed using services like Heroku, Vercel, or Netlify. The `heroku-postbuild` script is included for Heroku deployment.
 
-Live Project Link: https://www.adammajor.com
+[Live Project Link](https://www.adammajor.com)
