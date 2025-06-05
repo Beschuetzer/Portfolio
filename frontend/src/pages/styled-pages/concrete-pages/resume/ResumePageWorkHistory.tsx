@@ -33,6 +33,11 @@ const AchievementItem = styled.li<LayoutStyledProps>`
     text-decoration: underline;
     cursor: pointer;
   }
+  &:focus {
+    outline: 2px solid ${({ colorscheme }) => colorscheme?.primary1};
+    outline-offset: 2px;
+    text-decoration: underline;
+  }
 `;
 
 const Container = styled.div<LayoutStyledProps>`
@@ -167,6 +172,8 @@ export function ResumePageWorkHistory(props: ResumePageWorkHistoryProps) {
                   return (
                     <AchievementItem
                       key={index}
+                      role="button"
+                      tabIndex={0}
                       dangerouslySetInnerHTML={{ __html: formattedAchievement }}
                       onClick={(e) => {
                         copyClickedElementTextToClipboard(e);
