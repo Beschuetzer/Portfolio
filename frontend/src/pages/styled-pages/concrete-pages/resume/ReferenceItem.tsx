@@ -61,10 +61,20 @@ export function ReferenceItem(props: ReferenceItemProps) {
           {name}
         </ExamplePageLink>
       </Item>
-      <ItemCopyable {...propsToAdd} onClick={handleCopy}>
+      <ItemCopyable
+        {...propsToAdd}
+        onClick={handleCopy}
+        role="button"
+        tabIndex={0}
+      >
         {phone}
       </ItemCopyable>
-      <ItemCopyable {...propsToAdd} onClick={handleCopy}>
+      <ItemCopyable
+        {...propsToAdd}
+        onClick={handleCopy}
+        role="button"
+        tabIndex={0}
+      >
         {relation}
       </ItemCopyable>
       {email ? (
