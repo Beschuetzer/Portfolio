@@ -1,4 +1,8 @@
 
+-rework the page nav menu for smaller viewports (mobile)
+  -make the page nav scrollable if it is too long for the viewport
+  -make each item take up less space (smaller font-size, less padding, etc.)
+
 -accomplishments:
   --write a story for each statement in my resume) 
 -add ability to click on reference email and phone number to copy to clipboard (use react-copy-to-clipboard)
