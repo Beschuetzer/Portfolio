@@ -73,16 +73,6 @@ npm start
 cd backend  # Not ./frontend as mentioned in the original README
 npm start
 ```
-### Project Structure
-
-- frontend - React application with TypeScript
-    - /src/pages - Page components
-    - /src/components - Reusable UI components
-    - styles - Global styles and theme
-    - /src/hooks - Custom React hooks
-- /backend - Node.js server
-    - routes - API endpoints
-    - /models - Data schemas
 
 ### Deployment
 The application can be deployed using services like Heroku, Vercel, or Netlify. The `heroku-postbuild` script is included for Heroku deployment.
