@@ -79,7 +79,6 @@ export function PageNav(props: PageNavProps) {
   useEffect(() => {
     const elementsWithId = Array.from(document.querySelectorAll("section[id]"));
     if (!elementsWithId || elementsWithId.length === 0) {
-      console.warn("PageNav - No elements with id found");
       return;
     }
     setSections(
